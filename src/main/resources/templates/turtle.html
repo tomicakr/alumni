@@ -1,0 +1,64 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <title>Turtle page</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+</head>
+<style>
+main {
+    text-align: center;
+    margin: auto;
+    width: 50%;
+    color: white;
+    font-size: 1.8em;
+}
+
+img {
+    margin-top: 10%;
+    ;
+    width: 80%;
+    border-radius: 30px;
+    animation: float 6s ease-in-out infinite;
+}
+
+@keyframes float {
+    0% {
+        box-shadow: 0 5px 15px 0px rgba(0, 0, 0, 0.6);
+        transform: translatey(0px);
+    }
+    50% {
+        box-shadow: 0 25px 15px 0px rgba(0, 0, 0, 0.2);
+        transform: translatey(-100px);
+    }
+    100% {
+        box-shadow: 0 5px 15px 0px rgba(0, 0, 0, 0.6);
+        transform: translatey(0px);
+    }
+}
+</style>
+
+<body>
+    <main>
+        <h1 th:text="'Hello, ' + ${name} + '!'"></h1>
+        <img alt="nema nista" src="https://www.wildgratitude.com/wp-content/uploads/2015/07/turtle-spirit-animal1.jpg" />
+    </main>
+</body>
+<script>
+//<![CDATA[
+function chooseRandomColor() {
+    var color = "rgb(";
+    for (var i = 0; i <= 2; i++) {
+        color += Math.floor(Math.random() * 256);
+        color += (i === 2 ? ")" : ", ");
+    }
+    return color;
+}
+
+setInterval(function() {
+    document.body.style.backgroundColor = chooseRandomColor();
+}, 50);
+// ]]>
+</script>
+
+</html>

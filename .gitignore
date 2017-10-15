@@ -22,3 +22,9 @@ nbbuild/
 dist/
 nbdist/
 .nb-gradle/
+
+
+### Eclipse ###
+.classpath
+.project
+spring-*/src/main/java/META-INF/MANIFEST.MF

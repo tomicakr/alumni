@@ -12,3 +12,7 @@ BROJ	|	DATUM			| SUDIONICI 				| OPIS
 		|					| Kravrščan					|
 		|					| Paulinović				|
 ▔▔▔▔▔▔▔▔▔▔▔▔▔▔▔▔▔▔▔▔▔▔▔▔▔▔▔▔▔▔▔▔▔▔▔▔▔▔▔▔▔▔▔▔▔▔▔▔▔▔▔▔▔▔▔▔▔▔▔▔▔▔▔▔▔▔▔▔▔▔▔▔▔▔▔▔
+3.		| 23.10.2017.		| Sodić						| Izrada funkcionalnih zahtjeva 
+		|					| Kravrščan					| (use caseovi definirani)
+		|					| Galić  					|
+▔▔▔▔▔▔▔▔▔▔▔▔▔▔▔▔▔▔▔▔▔▔▔▔▔▔▔▔▔▔▔▔▔▔▔▔▔▔▔▔▔▔▔▔▔▔▔▔▔▔▔▔▔▔▔▔▔▔▔▔▔▔▔▔▔▔▔▔▔▔▔▔▔▔▔▔

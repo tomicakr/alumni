@@ -1,0 +1,14 @@
+BROJ	|	DATUM			| SUDIONICI 				| OPIS 
+▔▔▔▔▔▔▔▔▔▔▔▔▔▔▔▔▔▔▔▔▔▔▔▔▔▔▔▔▔▔▔▔▔▔▔▔▔▔▔▔▔▔▔▔▔▔▔▔▔▔▔▔▔▔▔▔▔▔▔▔▔▔▔▔▔▔▔▔▔▔▔▔▔▔▔▔
+1.	 	| 7.10.2017.		| Sodić						| Definiranje projektnog zadatka
+	 	|					| Paulinović				|
+		|					| Modrušan					|
+		|					| Krmpotić-Đurđević			|
+		|					| Galić						|
+▔▔▔▔▔▔▔▔▔▔▔▔▔▔▔▔▔▔▔▔▔▔▔▔▔▔▔▔▔▔▔▔▔▔▔▔▔▔▔▔▔▔▔▔▔▔▔▔▔▔▔▔▔▔▔▔▔▔▔▔▔▔▔▔▔▔▔▔▔▔▔▔▔▔▔▔
+2.		| 13.10.2017.		| Sodić						| Osnovne funkcionalnosti aplikacije i use caseovi
+		|					| Modrušan					|
+		|					| Krmpotić-Đurđević			|
+		|					| Kravrščan					|
+		|					| Paulinović				|
+▔▔▔▔▔▔▔▔▔▔▔▔▔▔▔▔▔▔▔▔▔▔▔▔▔▔▔▔▔▔▔▔▔▔▔▔▔▔▔▔▔▔▔▔▔▔▔▔▔▔▔▔▔▔▔▔▔▔▔▔▔▔▔▔▔▔▔▔▔▔▔▔▔▔▔▔

@@ -11,8 +11,11 @@ BROJ	|	DATUM			| SUDIONICI 				| OPIS
 		|					| Krmpotić-Đurđević			|
 		|					| Kravrščan					|
 		|					| Paulinović				|
-▔▔▔▔▔▔▔▔▔▔▔▔▔▔▔▔▔▔▔▔▔▔▔▔▔▔▔▔▔▔▔▔▔▔▔▔▔▔▔▔▔▔▔▔▔▔▔▔▔▔▔▔▔▔▔▔▔▔▔▔▔▔▔▔▔▔▔▔▔▔▔▔▔▔▔▔
-3.		| 23.10.2017.		| Sodić						| Izrada funkcionalnih zahtjeva 
+▔▔▔▔▔▔▔▔
+3.		| 22.10.2017.		| Sodić						| Osnovne funkcionalnosti html-a, css-a i 
+		|					| Modrušan					| javascripta
+▔▔▔▔▔▔▔▔▔▔▔▔▔▔▔▔▔▔▔▔▔▔▔▔▔▔▔▔▔▔▔▔▔▔▔▔▔▔▔▔▔▔▔▔▔▔▔▔▔▔▔▔▔▔▔▔▔▔▔▔▔▔▔▔▔▔▔▔▔▔▔▔▔▔▔▔▔▔▔▔▔▔▔▔▔▔▔▔▔▔▔▔▔▔▔▔▔▔▔▔▔▔▔▔▔▔▔▔▔▔▔▔▔▔▔▔▔▔▔
+4.		| 23.10.2017.		| Sodić						| Izrada funkcionalnih zahtjeva 
 		|					| Kravrščan					| (use caseovi definirani)
 		|					| Galić  					|
 ▔▔▔▔▔▔▔▔▔▔▔▔▔▔▔▔▔▔▔▔▔▔▔▔▔▔▔▔▔▔▔▔▔▔▔▔▔▔▔▔▔▔▔▔▔▔▔▔▔▔▔▔▔▔▔▔▔▔▔▔▔▔▔▔▔▔▔▔▔▔▔▔▔▔▔▔

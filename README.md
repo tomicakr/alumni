@@ -1,10 +1,10 @@
-#Imena
+# Imena
 
-*Filip
-*Tomislav
-*Vlado
-*Maja (je prosli put random upisala svoje ime jer nije pratila kaj se dogada)
-*Antun
-*Mate
+* Filip
+* Tomislav
+* Vlado
+* Maja (je prosli put random upisala svoje ime jer nije pratila kaj se dogada)
+* Antun
+* Mate
 
 //vlado proba grafova i commita

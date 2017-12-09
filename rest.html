@@ -23,7 +23,7 @@
     }
 
     li {
-        margin-bottom: 8px;
+        margin-bottom: 10px;
     }
 
     header {
@@ -70,7 +70,6 @@
         padding: 10px;
     }
 
-
     section {
         width: 40%;
         margin: 5% auto;
@@ -101,7 +100,7 @@
         background: white;
     }
 
-    .show {
+    .show {     
         background: #d0fffe;
     }
 
@@ -131,7 +130,7 @@
     <main>
         <header>
             <div id="crud-legend">
-                <h2><acronym title="Create, Read, Update, Destroy">CRUD</acronym> funkcionalnosti:</h2>
+                <h2><acronym title="Create, Read, Update, Delete">CRUD</acronym> funkcionalnosti:</h2>
                 <dl>
                     <dt class="create legend">&nbsp;</dt>
                     <dd>Stvaranje</dd>
@@ -144,6 +143,9 @@
                     <br>
                     <dt class="destroy legend">&nbsp;</dt>
                     <dd>Brisanje</dd>
+                    <br>
+                    <dt class="bended legend">&nbsp;</dt>
+                    <dd>Specifično za nas</dd>
                 </dl>
             </div>
             <div id="rules">
@@ -151,7 +153,7 @@
                 <ul>
                     <li>Arhitektura i određivanje ruta naše aplikacije bazirat će se na načelu <a href="https://en.wikipedia.org/wiki/Representational_state_transfer" target="new"><em>Representational state transfer</em></a>.</li>
                     <li>Jedno od dobrih praksa izgradnja je kontrolera na temelju zajedničke odgovornosti pa smo ih tako i podijelili.</li>
-                    <li>Pri zahtjevu s metodom koja se nalazi u stupcu <em>HTTP Metoda</em> upućenom na URI iz stupca <em>Ruta</em> (appenda se na podrazumijevanu rutu), u kontorleru kojem tablica pripada zove se metoda koja će obaviti <em>Funkcionalnost</em>. Ta je funkcionalnost implementacija operacije iz stupca <em>REST ruta</em>, a dio je CRUD funkcije obilježene bojom.</li>
+                    <li>Pri zahtjevu s metodom koja se nalazi u stupcu <em>HTTP Metoda</em> upućenom na URI iz stupca <em>Ruta</em> (appenda se na podrazumijevanu rutu), u kontroleru kojem tablica pripada zove se metoda koja će obaviti <em>Funkcionalnost</em>. Ta je funkcionalnost implementacija operacije iz stupca <em>REST ruta</em>, a dio je CRUD funkcije obilježene bojom.</li>
                     <li>":id" je placeholder za jedinstveni id pojedinog entiteta.</li>
                 </ul>
             </div>

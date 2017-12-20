@@ -1,4 +1,4 @@
-package com.petsonly.model;
+package hr.petsonly.model;
 
 public class Location {
 

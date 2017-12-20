@@ -1,4 +1,4 @@
-package com.petsonly.web;
+package hr.petsonly.web;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -8,7 +8,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-import service.LoginService;
+import hr.petsonly.service.LoginService;
 
 @Controller
 @RequestMapping("/sessions")

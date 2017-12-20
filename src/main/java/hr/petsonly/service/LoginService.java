@@ -1,4 +1,4 @@
-package service;
+package hr.petsonly.service;
 
 import org.springframework.stereotype.Service;
 

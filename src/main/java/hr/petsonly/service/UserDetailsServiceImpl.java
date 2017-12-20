@@ -1,12 +1,12 @@
-package service;
+package hr.petsonly.service;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 
-import com.petsonly.model.User;
-import com.petsonly.repository.UserRepository;
+import hr.petsonly.model.User;
+import hr.petsonly.repository.UserRepository;
 
 public class UserDetailsServiceImpl implements UserDetailsService {
 	

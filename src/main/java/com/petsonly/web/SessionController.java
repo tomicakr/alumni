@@ -1,4 +1,4 @@
-package demo;
+package com.petsonly.web;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -8,12 +8,19 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import service.LoginService;
+
 @Controller
 @RequestMapping("/sessions")
 public class SessionController {
 
 	@Autowired
 	LoginService service;
+	
+	@RequestMapping("/suc")
+	private String suc(Model model) {
+		return "Gj";
+	}
 
 	@RequestMapping(value = "/new", method = RequestMethod.GET)
 	public String showLoginPage(Model model) {

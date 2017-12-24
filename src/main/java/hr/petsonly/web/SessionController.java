@@ -19,7 +19,7 @@ public class SessionController {
 	
 	@RequestMapping("/suc")
 	private String suc(Model model) {
-		return "Gj";
+		return "userPage";
 	}
 
 	@RequestMapping(value = "/new", method = RequestMethod.GET)

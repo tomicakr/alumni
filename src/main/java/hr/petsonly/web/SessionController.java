@@ -14,9 +14,13 @@ import hr.petsonly.service.LoginService;
 @RequestMapping("/sessions")
 public class SessionController {
 
+	private final LoginService service;
+
 	@Autowired
-	LoginService service;
-	
+	public SessionController(LoginService service) {
+		this.service = service;
+	}
+
 	@RequestMapping("/suc")
 	private String suc(Model model) {
 		return "userPage";
@@ -33,7 +37,7 @@ public class SessionController {
 		
 		if(service.validateUser(name, password)) {
 			return String.format("Bok %s, tvoj pass je %s! heheheh", name, password);
-		};
+		}
 		
 		return "krivo ti je nes";
 	}

@@ -6,7 +6,7 @@
 <title>JSP Example</title>
 </head>
 <body>
-	<form method="post">
+	<form method="post" action="/sessions/">
 		<center>
 			<table border="1" width="30%" cellpadding="3">
 				<thead>
@@ -17,11 +17,11 @@
 				<tbody>
 					<tr>
 						<td>User Name</td>
-						<td><input type="text" name="name" value="" /></td>
+						<td><input type="text" name="email"  /></td>
 					</tr>
 					<tr>
 						<td>Password</td>
-						<td><input type="password" name="password" value="" /></td>
+						<td><input type="password" name="password"  /></td>
 					</tr>
 					<tr>
 						<td><input type="submit" value="Login" /></td>
@@ -37,3 +37,4 @@
 	</form>
 </body>
 </html>
+

@@ -1,11 +1,15 @@
-<%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>User page</title>
+<title>Greska</title>
 </head>
 <body>
-	Bok, ${name}.
+	<h1>Dogodila se pogreska!</h1>
+
+	<br>
+	<br>
+
+	<div>${errorMessage}</div>
 </body>
 </html>

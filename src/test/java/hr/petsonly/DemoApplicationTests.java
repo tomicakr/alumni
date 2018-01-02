@@ -1,4 +1,4 @@
-package demo;
+package hr.petsonly;
 
 import org.junit.Test;
 import org.junit.runner.RunWith;

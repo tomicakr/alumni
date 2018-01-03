@@ -79,7 +79,7 @@ public class UserController {
 		User userInSession = (User) httpSession.getAttribute("user");
 		User userWithThatIdInDatabase = userRepository.getOne(id);
 
-		if (!(userInSession.equals(userWithThatIdInDatabase) || userInSession.getRole() == 1)) { // pretpostavljam da je
+		if (!(userInSession.equals(userWithThatIdInDatabase))) { // pretpostavljam da je
 																									// 1 admin
 			model.addAttribute("errorMessage", "Nemas ovlasti za ovo!"); // TODO: ovakve poruke stavljati u
 																			// application.properties da nisu ovako
@@ -93,11 +93,7 @@ public class UserController {
 			return "customError";
 		}
 
-		if (userInSession.getRole() == 1) {
-			return "redirect:/users/";
-		} else {
-			return "redirect:/index";
-		}
+		return "redirect:/index";
 	}
 
 	@RequestMapping(value = "/{id}/edit", method = RequestMethod.GET)
@@ -106,7 +102,7 @@ public class UserController {
 		User userInSession = (User) httpSession.getAttribute("user");
 		User userWithThatIdInDatabase = userRepository.getOne(id);
 
-		if (!(userInSession.equals(userWithThatIdInDatabase) || userInSession.getRole() == 1)) { // pretpostavljam da je
+		if (!(userInSession.equals(userWithThatIdInDatabase))) { // pretpostavljam da je
 																									// 1 admin
 			model.addAttribute("errorMessage", "Nemas ovlasti za ovo!"); // TODO: ovakve poruke stavljati u
 																			// application.properties da nisu ovako

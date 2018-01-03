@@ -1,52 +1,65 @@
 package hr.petsonly.model;
 
-import javax.persistence.Entity;
-import javax.persistence.FetchType;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
-import javax.persistence.Table;
+import java.util.List;
+import javax.persistence.*;
+import java.util.UUID;
+
 
 @Entity
 @Table(name = "pet")
 public class Pet {
 
-	private Long petKey;
+	@Id
+	@Column
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	private UUID petKey;
+	
+	@ManyToOne(fetch = FetchType.LAZY)
+	@JoinColumn(name = "userId")
 	private User owner;
+	
+	@Column
 	private String name;
+	
+	@Column
 	private int age;
+	
+	@Column
 	private String species;
+	
+	@Column
 	private String breed;
+	
+	@Column
 	private char sex;
+	
+	@Column
 	private String microchip;
+	
+	@Column
 	private String remark;
+	
+	@OneToMany(fetch = FetchType.LAZY, mappedBy="pet")
+	private List<Reservation> reservations;
 	
 	public Pet() {
 	}
 
-	@Id
-	@GeneratedValue(strategy = GenerationType.AUTO)
-	public Long getPetKey() {
+	public UUID getPetKey() {
 		return petKey;
 	}
 
-	public void setPetKey(Long petKey) {
+	public void setPetKey(UUID petKey) {
 		this.petKey = petKey;
 	}
 
-	@ManyToOne(fetch = FetchType.LAZY)
-	@JoinColumn(name = "owner")
+	
 	public User getOwner() {
 		return owner;
 	}
 
 	public void setOwner(User owner) {
 		this.owner = owner;
-		if(!owner.getPets().contains(this)) { 
-			owner.getPets().add(this);
-		}
 	}
 
 	public String getName() {
@@ -103,6 +116,14 @@ public class Pet {
 
 	public void setRemark(String remark) {
 		this.remark = remark;
+	}
+
+	public List<Reservation> getReservations() {
+		return reservations;
+	}
+
+	public void setReservations(List<Reservation> reservations) {
+		this.reservations = reservations;
 	}
 
 }

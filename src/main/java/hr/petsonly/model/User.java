@@ -2,48 +2,96 @@ package hr.petsonly.model;
 
 import java.time.LocalTime;
 import java.util.List;
+import java.util.UUID;
 
-import javax.persistence.Entity;
-import javax.persistence.FetchType;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.OneToMany;
-import javax.persistence.OneToOne;
-import javax.persistence.Table;
+import javax.persistence.*;
 
 @Entity
-@Table(name = "user")
+@Table(name ="users")
 public class User {
 
-	private Long userPid;
+	@Id
+	@Column
+	@GeneratedValue(strategy = GenerationType.AUTO)
+	private UUID userId;
+	
+	@Column
+	private String userPid;
+	
+	@Column
 	private String name;
+	
+	@Column
 	private String surname;
+	
+	@Column
 	private String mobilePhone;
+	
+	@Column
 	private String phone;
+	
+	@Column
 	private String email;
+	
+	@Column
 	private String password;
-	private int role;
+	
+	@Column
 	private String remark;
+	
+	@Column
 	private String userMnemonic;
+	
+	@Column
 	private String address;
+	
+	@ManyToOne(fetch = FetchType.LAZY)
+	@JoinColumn(name = "locationId")
 	private Location location;
+	
+	@Column
 	private int notificationSetting;
+	
+	@Column
 	private LocalTime notAvailableFrom;
+	
+	@Column
 	private LocalTime notAvailableTo;
+
+	@OneToMany(fetch = FetchType.LAZY, mappedBy = "owner")
 	private List<Pet> pets;
 
+	@OneToMany(fetch = FetchType.LAZY, mappedBy = "user")
+	private List<Reservation> reservations;
+	
+	@OneToMany(fetch = FetchType.LAZY, mappedBy = "employee")
+	private List<Reservation> tasks;
+	
+	 @ManyToMany
+	    @JoinTable( 
+	        name = "users_roles", 
+	        joinColumns = @JoinColumn(
+	          name = "user_id", referencedColumnName = "userId"), 
+	        inverseJoinColumns = @JoinColumn(
+	          name = "role_id", referencedColumnName = "id")) 
+	    private List<Role> roles;
+	
 	public User() {
 	}
-
-	@Id
-	@GeneratedValue(strategy = GenerationType.AUTO)
-	public Long getUserPid() {
+	
+	public UUID getUserId() {
+		return userId;
+	}
+	
+	public void setUserId(UUID userId) {
+		this.userId = userId;
+	}
+	
+	public String getUserPid() {
 		return userPid;
 	}
 
-	public void setUserPid(Long userPid) {
+	public void setUserPid(String userPid) {
 		this.userPid = userPid;
 	}
 
@@ -145,21 +193,6 @@ public class User {
 		this.notAvailableTo = notAvailableTo;
 	}
 
-	@OneToMany(mappedBy = "owner")
-	public List<Pet> getPets() {
-		return pets;
-	}
-
-	public void setPets(List<Pet> pets) {
-		this.pets = pets;
-	}
-
-	public void addPet(Pet pet) {
-		this.pets.add(pet);
-		if (pet.getOwner() != this) {
-			pet.setOwner(this);
-		}
-	}
 
 	public String getPassword() {
 		return password;
@@ -169,12 +202,36 @@ public class User {
 		this.password = password;
 	}
 
-	public int getRole() {
-		return role;
+	public List<Pet> getPets() {
+		return pets;
 	}
 
-	public void setRole(int role) {
-		this.role = role;
+	public void setPets(List<Pet> pets) {
+		this.pets = pets;
+	}
+
+	public List<Reservation> getReservations() {
+		return reservations;
+	}
+
+	public void setReservations(List<Reservation> reservations) {
+		this.reservations = reservations;
+	}
+
+	public List<Reservation> getTasks() {
+		return tasks;
+	}
+
+	public void setTasks(List<Reservation> tasks) {
+		this.tasks = tasks;
+	}
+
+	public List<Role> getRoles() {
+		return roles;
+	}
+
+	public void setRoles(List<Role> roles) {
+		this.roles = roles;
 	}
 
 }

@@ -6,7 +6,7 @@
 <title>JSP Example</title>
 </head>
 <body>
-	<form method="post" action="/sessions/">
+	<form method="post" action="${pageContext.request.contextPath}/sessions/">
 		<center>
 			<table border="1" width="30%" cellpadding="3">
 				<thead>

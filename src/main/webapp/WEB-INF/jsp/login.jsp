@@ -1,16 +1,11 @@
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
-<%@taglib prefix="t" tagdir="/WEB-INF/tags" %>
 
-<t:genericpage>
+<jsp:include page="header.jsp" flush="true">
+<jsp:param name="title" value="Login" />
+</jsp:include>
 
-<jsp:attribute name="head">
-<title>Login</title>
-
-</jsp:attribute>
-
-<jsp:body>
-<header>This is Login Page!</header>
 <main>
+	<header>This is Login Page!</header>
 	<article>
 		<header>Login Here!</header>
 		<form method="post" action="/sessions/">
@@ -29,6 +24,5 @@
 		</form>
 	</article>
 </main>
-</jsp:body>
 
-</t:genericpage>
+<%@ include file = "footer.jsp" %>

@@ -4,7 +4,7 @@ import java.time.LocalTime;
 import java.util.List;
 import java.util.UUID;
 
-import javax.persistence.*
+import javax.persistence.*;
 
 @Entity
 @Table(name = "users")
@@ -68,8 +68,7 @@ public class User {
 	private List<Reservation> tasks;
 
 	@ManyToMany(cascade = CascadeType.ALL)
-	@OneToMany(fetch = FetchType.LAZY, mappedBy = "owner")
-	private List<Pet> pets;d"), inverseJoinColumns = @JoinColumn(name = "role_id", referencedColumnName = "id"))
+	@JoinTable(name = "users_roles", joinColumns = @JoinColumn(name = "user_id", referencedColumnName = "userId"), inverseJoinColumns = @JoinColumn(name = "role_id", referencedColumnName = "id"))
 	private List<Role> roles;
 
 	public User() {

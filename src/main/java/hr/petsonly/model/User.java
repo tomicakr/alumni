@@ -74,7 +74,7 @@ public class User {
 	          name = "user_id", referencedColumnName = "userId"), 
 	        inverseJoinColumns = @JoinColumn(
 	          name = "role_id", referencedColumnName = "id")) 
-	    private List<Role> roles;
+	 private List<Role> roles;
 	
 	public User() {
 	}

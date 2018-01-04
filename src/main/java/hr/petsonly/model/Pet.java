@@ -4,44 +4,43 @@ import java.util.List;
 import javax.persistence.*;
 import java.util.UUID;
 
-
 @Entity
 @Table(name = "pet")
 public class Pet {
 
 	@Id
 	@Column
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@GeneratedValue(strategy = GenerationType.AUTO)
 	private UUID petKey;
-	
+
 	@ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name = "userId")
 	private User owner;
-	
+
 	@Column
 	private String name;
-	
+
 	@Column
 	private int age;
-	
+
 	@Column
 	private String species;
-	
+
 	@Column
 	private String breed;
-	
+
 	@Column
 	private char sex;
-	
+
 	@Column
 	private String microchip;
-	
+
 	@Column
 	private String remark;
-	
-	@OneToMany(fetch = FetchType.LAZY, mappedBy="pet")
+
+	@OneToMany(fetch = FetchType.LAZY, mappedBy = "pet")
 	private List<Reservation> reservations;
-	
+
 	public Pet() {
 	}
 
@@ -53,7 +52,6 @@ public class Pet {
 		this.petKey = petKey;
 	}
 
-	
 	public User getOwner() {
 		return owner;
 	}

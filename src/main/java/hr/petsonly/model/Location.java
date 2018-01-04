@@ -12,15 +12,16 @@ public class Location {
 	@Column
 	@GeneratedValue
 	private UUID locationId;
-	
+
 	@Column
 	private int zipCode;
-	
+
 	@Column
 	private String locationName;
 
 	@OneToMany(fetch = FetchType.LAZY, mappedBy = "location")
 	private List<User> users;
+
 	public Location() {
 	}
 

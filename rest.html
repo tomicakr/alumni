@@ -1,0 +1,389 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <title>Plan za rute</title>
+    <style type="text/css">
+    body {
+        font-family: Helvetica, Arial, sans-serif;
+        font-size: 1.2em;
+        color: white;
+        background: #333
+    }
+
+    a {
+        font-style: none;
+        color: white;
+    }
+
+    acronym {
+        cursor: help;
+        text-decoration: none;
+    }
+
+    li {
+        margin-bottom: 10px;
+    }
+
+    header {
+        font-size: 1.2em;
+        text-align: center;
+    }
+
+    header div {
+        display: inline-block;
+        text-align: left;
+        width: 40%;
+        margin: auto;
+        vertical-align: top;
+    }
+
+    h2 code {
+        font-size: 2.5em
+    }
+
+    body,
+    html {
+        height: 100%
+    }
+
+    table {
+        color: black;
+        margin: 3% auto;
+    }
+
+    th {
+        background: white;
+    }
+
+    table,
+    td,
+    tr,
+    th {
+        border: 3px solid #333;
+    }
+
+
+    td,
+    th {
+        padding: 10px;
+    }
+
+    section {
+        width: 40%;
+        margin: 5% auto;
+        text-align: center;
+    }
+
+    main {
+        width: 100%;
+        margin: 20px auto;
+    }
+
+    dl * {
+        display: inline-block;
+        margin: 10px 5px;
+    }
+
+    dt {
+        width: 25px;
+        clear: both;
+    }
+
+    .legend {
+        border: 1px solid;
+        border-radius: 20%;
+    }
+
+    .index {
+        background: white;
+    }
+
+    .show {     
+        background: #d0fffe;
+    }
+
+    .create {
+        background: #e4ffde;
+    }
+
+    .update {
+        background: #fffddb;
+    }
+
+    .destroy {
+        background: #ffc3c3;
+    }
+
+    .bended {
+        background: #ffe7d3;
+    }
+
+    #rules em {
+        text-decoration: underline;
+    }
+    </style>
+</head>
+
+<body>
+    <main>
+        <header>
+            <div id="crud-legend">
+                <h2><acronym title="Create, Read, Update, Delete">CRUD</acronym> funkcionalnosti:</h2>
+                <dl>
+                    <dt class="create legend">&nbsp;</dt>
+                    <dd>Stvaranje</dd>
+                    <br>
+                    <dt class="show legend">&nbsp;</dt>
+                    <dd>Čitanje</dd>
+                    <br>
+                    <dt class="update legend">&nbsp;</dt>
+                    <dd>Uređivanje</dd>
+                    <br>
+                    <dt class="destroy legend">&nbsp;</dt>
+                    <dd>Brisanje</dd>
+                    <br>
+                    <dt class="bended legend">&nbsp;</dt>
+                    <dd>Specifično za nas</dd>
+                </dl>
+            </div>
+            <div id="rules">
+                <h2>Pravila:</h2>
+                <ul>
+                    <li>Arhitektura i određivanje ruta naše aplikacije bazirat će se na načelu <a href="https://en.wikipedia.org/wiki/Representational_state_transfer" target="new"><em>Representational state transfer</em></a>.</li>
+                    <li>Jedno od dobrih praksa izgradnja je kontrolera na temelju zajedničke odgovornosti pa smo ih tako i podijelili.</li>
+                    <li>Pri zahtjevu s metodom koja se nalazi u stupcu <em>HTTP Metoda</em> upućenom na URI iz stupca <em>Ruta</em> (appenda se na podrazumijevanu rutu), u kontroleru kojem tablica pripada zove se metoda koja će obaviti <em>Funkcionalnost</em>. Ta je funkcionalnost implementacija operacije iz stupca <em>REST ruta</em>, a dio je CRUD funkcije obilježene bojom.</li>
+                    <li>":id" je placeholder za jedinstveni id pojedinog entiteta.</li>
+                </ul>
+            </div>
+        </header>
+        <hr>
+        <section>
+            <h2><code>SessionController</code></h2>
+            <table>
+                <thead>Sve rute podrazumijevaju putanju
+                    <q>/sessions</q>
+                </thead>
+                <tr>
+                    <th>ime REST rute</th>
+                    <th>Funkcionalnost</th>
+                    <th>Ruta</th>
+                    <th>HTTP Metoda</th>
+                </tr>
+                <tr class="create">
+                    <td>New</td>
+                    <td>Prikazuje stranicu s formularom za prijavu</td>
+                    <td>"/new"</td>
+                    <td>GET</td>
+                </tr>
+                <tr class="create">
+                    <td>Create</td>
+                    <td>Prijavljuje korisnika, započinje sjednicu</td>
+                    <td>"/"</td>
+                    <td>POST</td>
+                </tr>
+                <tr class="destroy">
+                    <td>Destroy</td>
+                    <td>Odjavljuje korisnika, briše sjednicu</td>
+                    <td>"/"</td>
+                    <td>DELETE</td>
+                </tr>
+            </table>
+        </section>
+        <hr>
+        <section>
+            <h2><code>UserController</code></h2>
+            <table>
+                <thead>Sve rute podrazumijevaju putanju
+                    <q>/users</q>
+                </thead>
+                <tr>
+                    <th>ime REST rute</th>
+                    <th>Funkcionalnost</th>
+                    <th>Ruta</th>
+                    <th>HTTP Metoda</th>
+                </tr>
+                <tr class="index">
+                    <td>Index</td>
+                    <td>prikazuje listu korisnika</td>
+                    <td>"/"</td>
+                    <td>GET</td>
+                </tr>
+                <tr class="create">
+                    <td>New</td>
+                    <td>prikazuje formular za registraciju</td>
+                    <td>"/register"</td>
+                    <td>GET</td>
+                </tr>
+                <tr class="create">
+                    <td>Create</td>
+                    <td>dodaje novog korisnika</td>
+                    <td>"/"</td>
+                    <td>POST</td>
+                </tr>
+                <tr class="show">
+                    <td>Show</td>
+                    <td>prikazuje detalje korisnika</td>
+                    <td>"/:id"</td>
+                    <td>GET</td>
+                </tr>
+                <tr class="update">
+                    <td>Edit</td>
+                    <td>prikazuje formular za uređivanje</td>
+                    <td>"/:id/edit"</td>
+                    <td>GET</td>
+                </tr>
+                <tr class="update">
+                    <td>Update</td>
+                    <td>sprema promjene nastale uređivanjem</td>
+                    <td>"/:id"</td>
+                    <td>PUT</td>
+                </tr>
+                <tr class="destroy">
+                    <td>Destroy</td>
+                    <td>briše korisnika</td>
+                    <td>"/:id"</td>
+                    <td>DELETE</td>
+                </tr>
+            </table>
+        </section>
+        <hr>
+        <section>
+            <h2><code>PetController</code></h2>
+            <table>
+                <thead>Sve rute podrzumjevaju putanju
+                    <q>users/:id/pets</q>
+                </thead>
+                <tr>
+                    <th>ime REST rute</th>
+                    <th>Funkcionalnost</th>
+                    <th>Ruta</th>
+                    <th>HTTP Metoda</th>
+                </tr>
+                <tr class="show">
+                    <td>Show</td>
+                    <td>prikazuje popis ljubimaca</td>
+                    <td>u sklopu <code>userController</code>-a</td>
+                    <td>-</td>
+                </tr>
+                <tr class="create">
+                    <td>New</td>
+                    <td>prikazuje formular za dodavanje ljubimca</td>
+                    <td>"/new"</td>
+                    <td>GET</td>
+                </tr>
+                <tr class="create">
+                    <td>Create</td>
+                    <td>dodaje novog ljubimca</td>
+                    <td>"/"</td>
+                    <td>POST</td>
+                </tr>
+                <tr class="destroy">
+                    <td>Destroy</td>
+                    <td>briše ljubimca</td>
+                    <td>"/:id"</td>
+                    <td>DELETE</td>
+                </tr>
+            </table>
+        </section>
+        <hr>
+        <section>
+            <h2><code>ReservationController</code></h2>
+            <table>
+                <thead>Sve rute podrazumijevaju putanju
+                    <q>users/:id/reservations</q>
+                </thead>
+                <tr>
+                    <th>ime REST rute</th>
+                    <th>Funkcionalnost</th>
+                    <th>Ruta</th>
+                    <th>HTTP Metoda</th>
+                </tr>
+                <tr class="index">
+                    <td>Index</td>
+                    <td>prikazuje sve rezervacije za klijenta</td>
+                    <td>"/"</td>
+                    <td>GET</td>
+                </tr>
+                <tr class="create">
+                    <td>New</td>
+                    <td>prikazuje formular za rezervaciju</td>
+                    <td>"/:id/new"</td>
+                    <td>GET</td>
+                </tr>
+                <tr class="create">
+                    <td>Create</td>
+                    <td>stvora rezervaciju</td>
+                    <td>"/:id"</td>
+                    <td>POST</td>
+                </tr>
+                <tr class="show">
+                    <td>Show</td>
+                    <td>prikazuje rezervaciju detaljno</td>
+                    <td>"/:id/edit"</td>
+                    <td>GET</td>
+                </tr>
+                <tr class="update">
+                    <td>Edit</td>
+                    <td>prikazuje formular za uređivanje</td>
+                    <td>"/:id/edit"</td>
+                    <td>GET</td>
+                </tr>
+                <tr class="update">
+                    <td>Update</td>
+                    <td>spremi rezervaciju</td>
+                    <td>"/:id"</td>
+                    <td>PUT</td>
+                </tr>
+                <tr class="destroy">
+                    <td>Destroy</td>
+                    <td>otkaži rezervaciju</td>
+                    <td>"/:id"</td>
+                    <td>DELETE</td>
+                </tr>
+            </table>
+        </section>
+        <hr>
+        <section>
+            <h2><code>JobController</code></h2>
+            <table>
+                <thead>Sve rute podrazumijevaju putanju
+                    <q>/jobs</q>
+                </thead>
+                <tr>
+                    <th>ime REST rute</th>
+                    <th>Funkcionalnost</th>
+                    <th>Ruta</th>
+                    <th>HTTP Metoda</th>
+                </tr>
+                <tr class="index">
+                    <td>Index</td>
+                    <td>prikazuje pregled rezervacija</td>
+                    <td>"/"</td>
+                    <td>GET</td>
+                </tr>
+                <tr class="show">
+                    <td>Show</td>
+                    <td>prikazuje rezervaciju detaljno</td>
+                    <td>"/:id"</td>
+                    <td>GET</td>
+                </tr>
+                <tr class="bended">
+                    <td>Custom</td>
+                    <td>prihvaća rezervaciju</td>
+                    <td>"/:id/accept"</td>
+                    <td>POST</td>
+                </tr>
+                <tr class="bended">
+                    <td>Custom</td>
+                    <td>potvrđuje rezervaciju</td>
+                    <td>"/:id/confirm"</td>
+                    <td>POST</td>
+                </tr>
+            </table>
+        </section>
+    </main>
+</body>
+
+</html>

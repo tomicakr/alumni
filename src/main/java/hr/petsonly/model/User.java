@@ -7,86 +7,81 @@ import java.util.UUID;
 import javax.persistence.*;
 
 @Entity
-@Table(name ="users")
+@Table(name = "users")
 public class User {
 
 	@Id
 	@Column
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private UUID userId;
-	
+
 	@Column
 	private String userPid;
-	
+
 	@Column
 	private String name;
-	
+
 	@Column
 	private String surname;
-	
+
 	@Column
 	private String mobilePhone;
-	
+
 	@Column
 	private String phone;
-	
-	@Column
+
+	@Column(unique = true)
 	private String email;
-	
+
 	@Column
 	private String password;
-	
+
 	@Column
 	private String remark;
-	
+
 	@Column
 	private String userMnemonic;
-	
+
 	@Column
 	private String address;
-	
+
 	@ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name = "locationId")
 	private Location location;
-	
+
 	@Column
 	private int notificationSetting;
-	
+
 	@Column
 	private LocalTime notAvailableFrom;
-	
+
 	@Column
 	private LocalTime notAvailableTo;
 
-	@OneToMany(fetch = FetchType.LAZY, mappedBy = "owner")
+	@OneToMany(fetch = FetchType.LAZY, mappedBy = "owner", cascade = CascadeType.ALL)
 	private List<Pet> pets;
 
-	@OneToMany(fetch = FetchType.LAZY, mappedBy = "user")
+	@OneToMany(fetch = FetchType.LAZY, mappedBy = "user" , cascade = CascadeType.ALL)
 	private List<Reservation> reservations;
-	
-	@OneToMany(fetch = FetchType.LAZY, mappedBy = "employee")
+
+	@OneToMany(fetch = FetchType.LAZY, mappedBy = "employee" , cascade = CascadeType.ALL)
 	private List<Reservation> tasks;
-	
-	 @ManyToMany
-	    @JoinTable( 
-	        name = "users_roles", 
-	        joinColumns = @JoinColumn(
-	          name = "user_id", referencedColumnName = "userId"), 
-	        inverseJoinColumns = @JoinColumn(
-	          name = "role_id", referencedColumnName = "id")) 
-	    private List<Role> roles;
-	
+
+	@ManyToMany(cascade = CascadeType.ALL)
+	@JoinTable(name = "users_roles", joinColumns = @JoinColumn(name = "user_id", referencedColumnName = "userId"), inverseJoinColumns = @JoinColumn(name = "role_id", referencedColumnName = "id"))
+	private List<Role> roles;
+
 	public User() {
 	}
-	
+
 	public UUID getUserId() {
 		return userId;
 	}
-	
+
 	public void setUserId(UUID userId) {
 		this.userId = userId;
 	}
-	
+
 	public String getUserPid() {
 		return userPid;
 	}
@@ -192,7 +187,6 @@ public class User {
 	public void setNotAvailableTo(LocalTime notAvailableTo) {
 		this.notAvailableTo = notAvailableTo;
 	}
-
 
 	public String getPassword() {
 		return password;

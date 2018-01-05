@@ -1,9 +1,282 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<title>Home page</title>
+  <title></title>
+ <meta charset="UTF-8">
+<link href="//maxcdn.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css" rel="stylesheet">
+
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/css/bootstrap.min.css" integrity="sha384-rwoIResjU2yc3z8GV/NPeZWAv56rSmLldC3R/AZzGRnGxQQKnKkoFVhFQhNUwEyJ" crossorigin="anonymous">
+<script src="https://code.jquery.com/jquery-3.1.1.slim.min.js" integrity="sha384-A7FZj7v+d/sdmMqp/nOQwliLvUsJfDHW+k9Omg/a/EheAdgtzNs3hpfag6Ed950n" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/tether/1.4.0/js/tether.min.js" integrity="sha384-DztdAPBWPRXSA/3eYEEUWrWCy7G5KFbe8fFjk5JAIxUYHKkDx6Qin1DkWx51bBrb" crossorigin="anonymous"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/js/bootstrap.min.js" integrity="sha384-vBWWzlZJ8ea9aCX4pEW3rVHjgjt7zpkNpZk+02D9phzyeVkE+jo0ieGizqPLForn" crossorigin="anonymous"></script>
+<style type="text/css">
+ hr {
+    display: block;
+    height: 1px;
+    border: 0;
+    border-top: 1px solid #ccc;
+    margin: 1em 0;
+    padding: 0; 
+    border-color: #f01b57;
+    background-color: #f01b57;
+}   
+body {
+    background-image: url("dog4.jpg");
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-size: 100%;
+    background-position: 0px -80px;
+
+}
+#nav123{
+position: absolute; 
+margin-left: 31%;
+
+}
+
+#navbar456{
+  font-size: large;
+  color: white;
+  
+
+}
+#navbarCustom{
+ border-bottom-left-radius: 7px;
+ border-bottom-right-radius: 7px; 
+background-color: #272222 ;
+}
+
+i {
+    font-size : 12px;
+    padding-right: 10px;
+    color: #aece61;
+}
+
+/* Footer */
+.footer {
+    position: relative;
+    background-color: #092746;
+    color: #7d7975;
+    padding: 95px 0 50px;
+    font-size:16px;
+}
+.footer p {
+    line-height:26px;
+    color : #fff;
+}
+.footer h5 {
+    font-size: 22px;
+    font-weight: 700;
+    color: #aece61  ;
+    position: relative;
+    padding-bottom: 16px;
+}
+.footer h5:after {
+    content: '';
+    display: block;
+    margin: 5px 0 0;
+    width: 40%;
+    height: 1px;
+    background-color: #1e1d22 ;
+}
+
+.footer ul {
+    list-style: none;
+    line-height:35px;
+    margin: 0px;
+    color:#fff;
+    
+}
+.footer a {
+    color:# ;
+   
+}
+.footer a:hover {
+    color: #aece61 ;
+}
+
+/* Footer Logo */
+.foot-logo {
+    margin: 0px 0px 18px 0px;
+    padding: 0;
+}
+
+/*footer bottom */
+.footer-bottom {
+    padding-top: 10px;
+    padding-bottom: 25px;
+    border-top: 1px solid #2f2f33 ;
+    background: #1e1d22  ;
+    
+}
+.copyright-text p {
+    color: #7d7975;
+    margin-top: 18px;
+    margin-bottom: 0;
+    font-size:15px;
+}
+
+.copyright-text a {
+    color: #7d7975;
+    margin: 0px 10px 0px 10px;
+    
+}
+.copyright-text a:hover {
+    color: #aece61  ;
+    
+    
+}
+/* Social Icons */
+
+.social-icons{
+    
+    margin: 0;
+    padding: 0;
+    font-size : 10px;
+}
+
+.social {
+    margin:7px 7px 7px 0px;
+    color:#fff;
+}
+
+
+#social-fb:hover {
+     color: #3B5998;
+     transition:all .25s;
+ }
+ #social-tw:hover {
+     color: #4099FF;
+     transition:all .25s;
+ }
+ #social-gp:hover {
+     color: #d34836;
+     transition:all .25s;
+ }
+ #social-em:hover {
+     color: #f39c12;
+     transition:all .25s;
+ }
+
+</style>
+
+
+
 </head>
 <body>
-<a href="/turtle">See a turle</a>
+  <div style="text-align: center">
+     <img src="logo2.png" alt="Dispute Bills" height="100px" width="350px" style="margin-top: 10px;">
+  </div>
+ 
+  <div style="margin-bottom: -24px; margin-top: -18px;">
+    <hr>
+  </div>
+
+<nav class="navbar navbar-default navbar-fixed-top" role="navigation" style="margin-top: -20px;">
+  <div class="container">
+    <nav class="navbar navbar-toggleable-md navbar-light bg-faded" id="navbarCustom">
+  <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+<div class="navbar-brand" href="#"><img src="blank.png" alt="Dispute Bills" height="5px" width="200px"></div>
+  <div class=" navbar-collapse" id="nav123">
+    <div class="navbar-nav" >
+      <a class="nav-item nav-link" href="#" id="navbar456">Home<span class="sr-only">(current)</span></a>
+      <a class="nav-item nav-link" href="#indexUsluge" id="navbar456">Usluge</a>
+      <a class="nav-item nav-link" href="#" id="navbar456">Cjenik</a>
+      <a class="nav-item nav-link" href="#" id="navbar456">Forum</a>
+      <a class="nav-item nav-link" href="#" id="navbar456">Cjenik</a>
+      <a class="nav-item nav-link" href="#" id="navbar456">Forum</a>
+    </div>
+  </div>
+  </div>
+</nav>
+<div id="indexUsluge" style="text-align: center; background-color: white; font-size: 72px; margin-top: 800px;">Usluge:</div>
+<div id="indexUsluge" style="text-align: center; background-color: white; font-size: 72px;">...</div>
+<div id="indexUsluge" style="text-align: center; background-color: white; font-size: 72px;">...</div>
+<div id="indexUsluge" style="text-align: center; background-color: white; font-size: 72px;">...</div>
+<div id="indexUsluge" style="text-align: center; background-color: white; font-size: 72px;">...</div>
+<div id="indexUsluge" style="text-align: center; background-color: white; font-size: 72px;">...</div>
+<div id="indexUsluge" style="text-align: center; background-color: white; font-size: 72px;">...</div>
+<img src="cat1.jpg" alt="aa" id="about" width="100%" style="margin-top: 0px;">
+
+
+<div class="footer-section">
+    <div class="footer">
+  <div class="container">
+    <div class="row">
+      <div class="col-md-4 footer-one">
+          <div class="foot-logo" style="margin-top: -40px">
+              <img src="logo2.png" height="75px" width="300px">
+          </div> 
+           
+           <p>Čuvamo ljubimce u Zagrebu i okolici u stanu na više lokacija, ljubimce također dolazimo čuvati kod VAS! Šećemo na području cijelog Zagreba i okolice, te Pule.
+                </p>
+            <div class="social-icons"> 
+               <a href="https://www.facebook.com/PetsOnlyZg/"><i id="social-fb" class="fa fa-facebook-square fa-3x social"></i></a>
+               <a href="https://twitter.com/"><i id="social-tw" class="fa fa-twitter-square fa-3x social"></i></a>
+              <a href="https://plus.google.com/"><i id="social-gp" class="fa fa-google-plus-square fa-3x social"></i></a>
+              <a href="mailto:bootsnipp@gmail.com"><i id="social-em" class="fa fa-envelope-square fa-3x social"></i></a>
+          </div>
+        </div>
+        <div class="col-md-2 footer-two">
+           <h5>Quick Links</h5>
+              <ul>
+                    <li><a href="#"> About Us</a> </li>
+                    <li><a href="#"> Our News</a> </li>
+                    <li><a href="#"> Our Services</a> </li>
+                    <li><a href="#"> Contact Us</a> </li>
+                  </ul>
+                  
+        </div>
+        <div class="col-md-2 footer-three">
+           <h5>Services</h5>
+              <ul>
+                    <li><a href="#"> About Us</a> </li>
+                    <li><a href="#"> Our News</a> </li>
+                    <li><a href="#"> Our Services</a> </li>
+                    <li><a href="#"> Kontakt</a> </li>
+                  </ul>
+                  
+        </div>
+        <div class="col-md-4 footer-four">
+           <h5>Kontakt</h5>
+              <ul>
+                    <li><i class="fa fa-map-marker"></i>Biankinijeva, Zagreb, Croatia</li>
+                    <li><i class="fa fa-envelope-o"></i>petsonlyzg@gmail.com</li>
+                    <li><i class="fa fa-phone"></i>+387 97 621 7659</li>
+                    
+                  </ul>
+                  
+        </div>
+
+    </div>
+        
+        
+  
+  
+    <div class="clearfix"></div>
+  </div>
+</div>
+
+</div>
+<div class="footer-bottom">
+        <div class="container">
+          <div class="row">
+            <div class="col-sm-6 ">
+              <div class="copyright-text">
+                <p>CopyRight © 2017 FER</p>
+              </div>
+            </div> <!-- End Col -->
+            <div class="col-sm-6  ">
+                <div class="copyright-text pull-right">
+                <p> <a href="#">Home</a> | <a href="#">Privacy</a> |<a href="#">Terms & Conditions</a> | <a href="#">Refund Policy</a> </p>
+              </div>          
+                          
+            </div> <!-- End Col -->
+          </div>
+        </div>
+    </div>
+
 </body>
 </html>

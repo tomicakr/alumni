@@ -10,7 +10,8 @@ import java.util.UUID;
 public class Pet {
 
 	@Id
-	@GeneratedValue(strategy = GenerationType.TABLE)
+	@Column
+	@GeneratedValue(strategy = GenerationType.AUTO)
 	private UUID petKey;
 	
 	@ManyToOne(fetch = FetchType.LAZY)
@@ -38,7 +39,7 @@ public class Pet {
 	@Column
 	private String remark;
 	
-	@OneToMany(fetch = FetchType.LAZY, mappedBy="pet")
+	@OneToMany(fetch = FetchType.LAZY, mappedBy = "pet")
 	private List<Reservation> reservations;
 	
 	public Pet() {

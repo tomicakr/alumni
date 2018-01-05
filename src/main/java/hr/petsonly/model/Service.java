@@ -17,10 +17,10 @@ public class Service {
 	private double price;
 	@Column
 	private String description;
-	
+
 	@OneToMany(fetch = FetchType.LAZY, mappedBy = "service")
 	private List<Reservation> reservations;
-	
+
 	public Service() {
 	}
 
@@ -63,6 +63,5 @@ public class Service {
 	public void setReservations(List<Reservation> reservations) {
 		this.reservations = reservations;
 	}
-	
-	
+
 }

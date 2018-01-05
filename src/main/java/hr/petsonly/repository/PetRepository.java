@@ -12,7 +12,7 @@ import hr.petsonly.model.User;
 @Service
 public interface PetRepository extends JpaRepository<Pet, UUID>{
 	
-	
+	//OWNER
 	List<Pet> findByOwner(User owner);
 	
 	//NAME

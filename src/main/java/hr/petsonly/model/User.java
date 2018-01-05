@@ -6,6 +6,8 @@ import java.util.UUID;
 
 import javax.persistence.*;
 
+import org.hibernate.validator.constraints.NotEmpty;
+
 @Entity
 @Table(name = "users")
 public class User {
@@ -18,18 +20,22 @@ public class User {
 	@Column
 	private String userPid;
 
+	@NotEmpty
 	@Column
 	private String name;
 
+	@NotEmpty
 	@Column
 	private String surname;
 
+	@NotEmpty
 	@Column
 	private String mobilePhone;
 
 	@Column
 	private String phone;
 
+	@NotEmpty
 	@Column(unique = true)
 	private String email;
 

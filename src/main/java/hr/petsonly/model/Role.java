@@ -5,23 +5,18 @@ import java.util.List;
 
 @Entity
 public class Role {
-  
-    @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    private Long id;
- 
-    private String name;
-    @ManyToMany(mappedBy = "roles")
-    private List<User> users;
- 
-    @ManyToMany
-    @JoinTable(
-        name = "roles_privileges", 
-        joinColumns = @JoinColumn(
-          name = "role_id", referencedColumnName = "id"), 
-        inverseJoinColumns = @JoinColumn(
-          name = "privilege_id", referencedColumnName = "id"))
-    private List<Privilege> privileges;
+
+	@Id
+	@GeneratedValue(strategy = GenerationType.AUTO)
+	private Long id;
+
+	private String name;
+	@ManyToMany(mappedBy = "roles", cascade = CascadeType.ALL)
+	private List<User> users;
+
+	@ManyToMany(cascade = CascadeType.ALL)
+	@JoinTable(name = "roles_privileges", joinColumns = @JoinColumn(name = "role_id", referencedColumnName = "id"), inverseJoinColumns = @JoinColumn(name = "privilege_id", referencedColumnName = "id"))
+	private List<Privilege> privileges;
 
 	public Long getId() {
 		return id;
@@ -54,6 +49,5 @@ public class Role {
 	public void setPrivileges(List<Privilege> privileges) {
 		this.privileges = privileges;
 	}
-    
-    
+
 }

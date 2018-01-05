@@ -4,8 +4,23 @@ import java.time.LocalTime;
 import java.util.List;
 import java.util.UUID;
 
-import javax.persistence.*;
+import javax.persistence.CascadeType;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.FetchType;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
+import javax.persistence.ManyToMany;
+import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
+import javax.persistence.Table;
+import javax.validation.constraints.Size;
 
+import org.hibernate.validator.constraints.Email;
 import org.hibernate.validator.constraints.NotEmpty;
 
 @Entity
@@ -28,17 +43,19 @@ public class User {
 	@Column
 	private String surname;
 
-	@NotEmpty
 	@Column
 	private String mobilePhone;
 
+	@NotEmpty
 	@Column
 	private String phone;
 
 	@NotEmpty
+	@Email
 	@Column(unique = true)
 	private String email;
 
+	@Size(min = 6, max = 30)
 	@Column
 	private String password;
 
@@ -48,6 +65,7 @@ public class User {
 	@Column
 	private String userMnemonic;
 
+	@NotEmpty
 	@Column
 	private String address;
 
@@ -234,4 +252,14 @@ public class User {
 		this.roles = roles;
 	}
 
+	@Override
+	public String toString() {
+		return "User [userId=" + userId + ", userPid=" + userPid + ", name=" + name + ", surname=" + surname
+				+ ", mobilePhone=" + mobilePhone + ", phone=" + phone + ", email=" + email + ", password=" + password
+				+ ", remark=" + remark + ", userMnemonic=" + userMnemonic + ", address=" + address + ", location="
+				+ location + ", notificationSetting=" + notificationSetting + ", notAvailableFrom=" + notAvailableFrom
+				+ ", notAvailableTo=" + notAvailableTo + ", pets=" + pets + ", reservations=" + reservations
+				+ ", tasks=" + tasks + ", roles=" + roles + "]";
+	}
+	
 }

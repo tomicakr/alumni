@@ -1,22 +1,19 @@
 package hr.petsonly.web;
 
-import java.time.LocalTime;
-import java.util.Arrays;
 import java.util.List;
 import java.util.UUID;
 
 import javax.servlet.http.HttpSession;
+import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
-import hr.petsonly.model.Pet;
-import hr.petsonly.model.Privilege;
-import hr.petsonly.model.Role;
 import hr.petsonly.model.User;
 import hr.petsonly.repository.UserRepository;
 
@@ -38,7 +35,10 @@ public class UserController {
 	}
 
 	@RequestMapping(value = "/new", method = RequestMethod.GET)
-	public String showRegistrationForm() {
+	public String showRegistrationForm(Model model, User user) {
+		
+		model.addAttribute("user", user);
+		
 		return "register";
 	}
 
@@ -58,44 +58,20 @@ public class UserController {
 	}
 
 	@RequestMapping(value = "/", method = RequestMethod.POST)
-	public String createUser(Model model) {
+	public String createUser(Model model, @Valid User user, BindingResult result) {
 
-		System.out.println("AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAaa");
-		// TODO: Validacija upisanih podataka
-
-		User user = new User();
-
-		user.setName("Antun");
-		user.setSurname("Modrušan");
-		user.setAddress("Zagrebačka 25");
-		user.setEmail("antun.modrusan@fer.hr");
-		user.setMobilePhone("0965587456");
-		user.setNotAvailableFrom(LocalTime.MIDNIGHT);
-		user.setNotAvailableTo(LocalTime.NOON);
-		user.setNotificationSetting(Integer.valueOf(4));
-		user.setPassword("antun123");
-
-		Pet micko = new Pet();
-
-		micko.setAge(Integer.valueOf(10));
-		micko.setBreed("perzijska");
-		micko.setMicrochip("732492384");
-		micko.setName("Micko");
-		micko.setOwner(user);
-		micko.setRemark("Jako dobar.");
-		micko.setSex(Character.valueOf('2'));
-		micko.setSpecies("cat");
-
-		Role role = new Role();
-
-		role.setName("admin");
-		role.setPrivileges(Arrays.asList(new Privilege()));
-
-		user.setRoles(Arrays.asList(role));
-		user.setPets(Arrays.asList(micko));
-
+		if(result.hasErrors()) {
+			System.out.println(user);
+			System.out.println(result);
+			model.addAttribute("user", user);
+			model.addAttribute("errorMessage", "Registracija nije valjana"); // ovo odvoji u zasebni
+			return "register";
+		}
+		
+		System.out.println("AAAAAAAAAAAAAAAAAAAa");
+		
 		userRepository.save(user);
-
+		
 		return "redirect:/users"; // mozda drukcije?
 	}
 

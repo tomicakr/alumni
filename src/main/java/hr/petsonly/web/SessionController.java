@@ -33,12 +33,12 @@ public class SessionController {
 
 		if (user == null) {
 			model.addAttribute("errorMessage", "Korisnik sa e-mail adresom ' " + email + " ' ne postoji!");
-			return "customError";
+			return "login";
 		}
 		
 		if( !user.getPassword().equals(password) ) {
 			model.addAttribute("errorMessage", "Pogrešna lozinka!");
-			return "customError";
+			return "login";
 		}
 		
 		httpSession.setAttribute("user", user);

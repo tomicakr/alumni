@@ -64,7 +64,7 @@ INSERT INTO pet 	(pet_key, name, age, breed, species,
 					'm', '\x0002', "y", "");
 INSERT INTO pet 	(pet_key, name, age, breed, species,
 					 sex, user_id, microchip, remark)
-			VALUES ('\x3003', "ralf rudez", 1, "Doga", "Pas", 
+			VALUES ('\x3003', "ralf rudez", 1, "Šnaucer", "Pas", 
 					'm', '\x0001', "y", "");
                     
 /*SELECT petsonly_test.users.name, petsonly_test.users.surname, petsonly_test.pet.name FROM petsonly_test.users INNER JOIN petsonly_test.pet ON petsonly_test.users.user_id*/

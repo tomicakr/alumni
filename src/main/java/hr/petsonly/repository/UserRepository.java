@@ -4,9 +4,12 @@ import java.util.List;
 import java.util.UUID;
 
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.Query;
+import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Service;
 
 import hr.petsonly.model.Location;
+import hr.petsonly.model.Pet;
 import hr.petsonly.model.User;
 
 @Service
@@ -14,7 +17,10 @@ public interface UserRepository extends JpaRepository<User, UUID> {
 	
 	//USER_PID
 	User findByUserPid(String userPid);
-		
+	
+	@Query(value = "SELECT p FROM Pet p WHERE p.user_id = :user_id", nativeQuery = true)
+	List<Pet> findByOwnerId(@Param("user_id") UUID userId);
+	
 	//NAME
 	List<User> findAllByName(String name);
 	

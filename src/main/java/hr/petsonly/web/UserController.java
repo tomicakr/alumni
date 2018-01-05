@@ -27,7 +27,7 @@ public class UserController {
 	@Autowired
 	private UserRepository userRepository;
 
-	@RequestMapping(value = "/", method = RequestMethod.GET)
+	@RequestMapping(value = "", method = RequestMethod.GET)
 	public String showUserList(Model model) {
 
 		List<User> allUsers = userRepository.findAll();
@@ -39,7 +39,6 @@ public class UserController {
 
 	@RequestMapping(value = "/new", method = RequestMethod.GET)
 	public String showRegistrationForm() {
-		System.out.println("register");
 		return "register";
 	}
 
@@ -111,7 +110,7 @@ public class UserController {
 		// user.getRoles().add(role);
 		// userRepository.save(user);
 
-		return "redirect:/users/" + id.toString(); // mozda drukcije?
+		return "redirect:/users" + id.toString(); // mozda drukcije?
 	}
 
 	@RequestMapping(value = "/{id}", method = RequestMethod.DELETE)

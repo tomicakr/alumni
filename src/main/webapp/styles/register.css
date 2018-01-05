@@ -1,0 +1,27 @@
+@import url(https://fonts.googleapis.com/css?family=Raleway|Varela+Round|Coda);
+
+body{
+	background: #ecf0f1;
+}
+
+body>.grid {
+height: 100%;
+}
+
+.image {
+margin-top: -100px;
+}
+
+.column {
+max-width: 40%;
+}
+
+.darkred{
+	background: darkred !important;
+	color: white !important;
+}
+
+h1{
+	font-size: 4em !important;
+	font-family: Coda, sans-serif !important;
+}

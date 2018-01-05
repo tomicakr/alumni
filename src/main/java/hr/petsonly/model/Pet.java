@@ -10,7 +10,6 @@ import java.util.UUID;
 public class Pet {
 
 	@Id
-	@Column
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private UUID petKey;
 	

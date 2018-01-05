@@ -1,40 +1,31 @@
-<%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
-<head>
-<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>JSP Example</title>
-</head>
+<!-- head -->
+<jsp:include page="head.jsp" flush="true">
+<jsp:param name="title" value="Login" />
+</jsp:include>
+
 <body>
-	<form method="post" action="${pageContext.request.contextPath}/sessions/">
-		<center>
-			<table border="1" width="30%" cellpadding="3">
-				<thead>
-					<tr>
-						<th colspan="2">Login Here</th>
-					</tr>
-				</thead>
-				<tbody>
-					<tr>
-						<td>User Name</td>
-						<td><input type="text" name="email"  /></td>
-					</tr>
-					<tr>
-						<td>Password</td>
-						<td><input type="password" name="password"  /></td>
-					</tr>
-					<tr>
-						<td><input type="submit" value="Login" /></td>
-						<td><input type="reset" value="Reset" /></td>
-					</tr>
-					<tr>
-						<td colspan="2">Yet Not Registered!! <a href="reg.jsp">Register
-								Here</a></td>
-					</tr>
-				</tbody>
-			</table>
-		</center>
-	</form>
+	<main class="ui middle aligned center aligned grid">
+		<article>
+			<header>Login Here!</header>
+			<form method="post" action="/sessions/">
+				<ul>
+					<li><label>Email</label></li>
+					<input type="text" name="email"/>
+
+					<li><label>Password</label></li>
+					<input type="password" name="password"/>
+
+					<li>
+						<button type="submit" value="Login">Login</button>
+						<button href="reg.jsp">Register Here</button>
+					</li>				
+				</ul>
+			</form>
+		</article>
+	</main>
+
+	<%@ include file = "footer.jsp" %>
 </body>
 </html>
-

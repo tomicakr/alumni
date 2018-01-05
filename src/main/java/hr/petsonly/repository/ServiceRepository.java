@@ -25,4 +25,5 @@ public interface ServiceRepository extends JpaRepository<Service, UUID>{
 	List<Service> findAllByDescriptionIgnoreCase(String description);
 	
 	List<Service> findAllByDescriptionLike(String description);
+	
 }

@@ -1,6 +1,7 @@
 package hr.petsonly.web;
 
 import java.util.List;
+import java.util.UUID;
 
 import javax.servlet.http.HttpSession;
 
@@ -51,7 +52,7 @@ public class UserController {
 	}
 
 	@RequestMapping(value = "/{id}", method = RequestMethod.GET)
-	public String showUserProfile(Model model, @PathVariable Long id) {
+	public String showUserProfile(Model model, @PathVariable UUID id) {
 
 		User user = userRepository.findOne(id);
 		
@@ -74,7 +75,7 @@ public class UserController {
 	}
 
 	@RequestMapping(value = "/{id}", method = RequestMethod.DELETE)
-	public String deleteUser(Model model, @PathVariable Long id, HttpSession httpSession) {
+	public String deleteUser(Model model, @PathVariable UUID id, HttpSession httpSession) {
 
 		User userInSession = (User) httpSession.getAttribute("user");
 		User userWithThatIdInDatabase = userRepository.getOne(id);
@@ -97,7 +98,7 @@ public class UserController {
 	}
 
 	@RequestMapping(value = "/{id}/edit", method = RequestMethod.GET)
-	public String editUser(Model model, @PathVariable Long id, HttpSession httpSession) {
+	public String editUser(Model model, @PathVariable UUID id, HttpSession httpSession) {
 
 		User userInSession = (User) httpSession.getAttribute("user");
 		User userWithThatIdInDatabase = userRepository.getOne(id);

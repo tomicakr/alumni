@@ -18,6 +18,10 @@ const validationRules = {
     rules: [{
       type: 'empty',
       prompt: 'Molimo unesite OIB'
+    },
+    {
+      type: 'oibCheck[value]',
+      prompt: 'Molimo unesite OIB'
     }]
   },
   phone: {
@@ -80,6 +84,9 @@ const validationRules = {
     rules: [{
       type: 'empty',
       prompt: 'Molimo ponovite lozinku'
+    }, {
+      type: 'passwordMatch',
+        prompt:'Lozinke se ne podudaraju'
     }]
   }
 }
@@ -88,7 +95,7 @@ const validationRules = {
 $(document)
   .ready(function() {
     $('.ui.form').form({
-      inline: true,
+      inline: false,
       fields: validationRules
     });
   });
@@ -101,9 +108,30 @@ var matchIcon = $('#pass-match');
 var typingTimer;
 
 
-$.fn.form.settings.rules.passmatch = (value, adminLevel) => {
+$.fn.form.settings.rules.passwordMatch = () => {
   return passCheck.val() === pass.val();
 };
+
+$.fn.form.settings.rules.oibCheck = (oib) => {
+    oib = oib.toString();
+    if (oib.length != 11) return false;
+
+    var b = parseInt(oib, 10);
+    if (isNaN(b)) return false;
+
+    var a = 10;
+    for (var i = 0; i < 10; i++) {
+        a = a + parseInt(oib.substr(i, 1), 10);
+        a = a % 10;
+        if (a == 0) a = 10;
+        a *= 2;
+        a = a % 11;
+    }
+    var control = 11 - a;
+    if (control == 10) control = 0;
+
+    return control == parseInt(oib.substr(10, 1));
+}
 
 passCheck.focusout(() => {
   console.log("tu smo");
@@ -113,6 +141,7 @@ passCheck.focusout(() => {
     matchIcon.removeClass('fa-check-circle-o').addClass('fa-times-circle-o');
   }
 });
+
 
 $('.ui.form')
   .form({

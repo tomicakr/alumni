@@ -10,7 +10,7 @@ import java.util.UUID;
 public class Pet {
 
 	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@GeneratedValue(strategy = GenerationType.TABLE)
 	private UUID petKey;
 	
 	@ManyToOne(fetch = FetchType.LAZY)

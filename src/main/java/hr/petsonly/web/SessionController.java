@@ -35,23 +35,23 @@ public class SessionController {
 			model.addAttribute("errorMessage", "Korisnik sa e-mail adresom ' " + email + " ' ne postoji!");
 			return "login";
 		}
-		
-		if( !user.getPassword().equals(password) ) {
+
+		if (!user.getPassword().equals(password)) {
 			model.addAttribute("errorMessage", "Pogrešna lozinka!");
 			return "login";
 		}
-		
+
 		httpSession.setAttribute("user", user);
-		
-		return "redirect:/profile/" + user.getUserPid();
+
+		return "redirect:/profile";
 	}
 
 	@RequestMapping(value = "/", method = RequestMethod.DELETE)
 	public String logoutUser(Model model, HttpSession httpSession) {
-		
+
 		httpSession.invalidate();
-		
-		return "index";
+
+		return "redirect:/index";
 	}
-	
+
 }

@@ -13,4 +13,10 @@ public class CommonPathsController {
 		return "index";
 	}
 	
+	@RequestMapping(value = "/profile", method = RequestMethod.GET)
+	public String profile() {
+
+		return "profile";
+	}
+	
 }

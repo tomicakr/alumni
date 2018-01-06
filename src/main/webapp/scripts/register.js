@@ -154,7 +154,7 @@ $('#komba').click(function () {
             telephone.val(oibgen);
             pass.val(data.name.toLowerCase() + "123");
             passCheck.val(data.name.toLowerCase() + "123");
-            email.val(`${data.name}.${data.surname}@gmail.com`);
+            email.val(`${data.name.toLowerCase()}.${data.surname.toLowerCase()}@gmail.com`);
         })
         .fail(function () {
             alert('morat ces sam, ne radi API');

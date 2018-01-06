@@ -66,4 +66,11 @@ INSERT INTO pet 	(pet_key, name, age, breed, species,
 					 sex, user_id, microchip, remark)
 			VALUES ('33ef54cf-b2e2-4839-bd7f-866d51e7e571', "Šnaucer", 1, "njemacki ovcar", "Pas", 
 					'm', 'fb8f4014-e0b0-4a5e-9079-320c1e1516e8', "y", "");
+					
+INSERT INTO reservation (reservation_key, document_path, duration, 
+						 execution_time, price, reservation_status, reservation_time,
+                         send_reminder, user_id, pet_key, service_key)
+			VALUES ('372110c8-7141-432c-bc2f-95c6af824b3d', null, 123, 
+					'2017-01-08 12:00:00', 100, 1, '2017-01-06 23:15:00',
+                    1, 'fb8f4014-e0b0-4a5e-9079-320c1e1516e8', '33ef54cf-b2e2-4839-bd7f-866d51e7e571', '9f49e501-c5f9-41b7-a59b-51adad927fc8');
                     

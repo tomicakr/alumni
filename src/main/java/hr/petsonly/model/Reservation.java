@@ -1,5 +1,9 @@
 package hr.petsonly.model;
 
+import java.util.Calendar;
+import java.util.UUID;
+
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
@@ -8,12 +12,10 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
 
 import org.hibernate.annotations.Type;
-
-import javax.persistence.Column;
-import java.util.UUID;
-import java.time.LocalTime;
 
 @Entity
 @Table(name = "reservation")
@@ -45,9 +47,11 @@ public class Reservation {
 	private User employee;
 
 	@Column
-	private LocalTime reservationTime;
+	@Temporal(TemporalType.TIMESTAMP)
+	private Calendar reservationTime;
 	@Column
-	private LocalTime executionTime;
+	@Temporal(TemporalType.TIMESTAMP)
+	private Calendar executionTime;
 	@Column
 	private double duration;
 	@Column
@@ -108,19 +112,19 @@ public class Reservation {
 		this.employee = employee;
 	}
 
-	public LocalTime getReservationTime() {
+	public Calendar getReservationTime() {
 		return reservationTime;
 	}
 
-	public void setReservationTime(LocalTime reservationTime) {
+	public void setReservationTime(Calendar reservationTime) {
 		this.reservationTime = reservationTime;
 	}
 
-	public LocalTime getExecutionTime() {
+	public Calendar getExecutionTime() {
 		return executionTime;
 	}
 
-	public void setExecutionTime(LocalTime executionTime) {
+	public void setExecutionTime(Calendar executionTime) {
 		this.executionTime = executionTime;
 	}
 

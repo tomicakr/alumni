@@ -15,7 +15,7 @@
 			<h1 class="ui image massive header">
 				Izradite svoj račun
 			</h1>
-			<form:form action="/users/" method="post" class="ui large form segment stacked" modelAttribute="user">
+			<form:form action="/users" method="post" class="ui large form segment stacked" modelAttribute="user">
 				<div class="two fields">
 					<div class="field">
 						<input type="text" name="name" id="first-name" placeholder="Ime">

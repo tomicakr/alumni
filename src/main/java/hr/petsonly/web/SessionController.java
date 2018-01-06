@@ -10,6 +10,8 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import hr.petsonly.model.User;
+import hr.petsonly.model.details.UserDetailsBasic;
+import hr.petsonly.model.details.UserDetailsMore;
 import hr.petsonly.repository.UserRepository;
 
 @Controller
@@ -41,7 +43,9 @@ public class SessionController {
 			return "login";
 		}
 
-		httpSession.setAttribute("user", user);
+		UserDetailsMore userDetails = new UserDetailsMore(user);
+		
+		httpSession.setAttribute("userInSession", userDetails);
 
 		return "redirect:/profile";
 	}

@@ -11,10 +11,6 @@
 
 	<main>
 		<h1 style="text-align: center;">Dobrodosli na Pets Only Zg stranicu!</h1>
-		<div>
-			${user.name }
-			${user.surname }
-		</div>
 	</main>
 
 	<%@ include file = "footer.jsp" %>

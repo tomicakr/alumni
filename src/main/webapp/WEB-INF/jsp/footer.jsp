@@ -31,7 +31,7 @@
 			<div class="ui inverted section divider"></div>
 
 			<div class="ui horizontal inverted divided link list">
-				<a class="item" href="#">Home</a>
+				<a class="item" href="/">Home</a>
 				<a class="item" href="#">Usluge</a>
 				<a class="item" href="#">Cjenik</a>
 				<a class="item" href="#">Forum</a>

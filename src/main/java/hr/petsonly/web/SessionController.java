@@ -21,7 +21,7 @@ public class SessionController {
 
 	@RequestMapping(value = "/new", method = RequestMethod.GET)
 	public String showLoginPage() {
-
+		
 		return "login";
 	}
 
@@ -48,7 +48,7 @@ public class SessionController {
 
 	@RequestMapping(value = "/", method = RequestMethod.DELETE)
 	public String logoutUser(Model model, HttpSession httpSession) {
-
+		
 		httpSession.invalidate();
 
 		return "redirect:/index";

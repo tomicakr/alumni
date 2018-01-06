@@ -1,3 +1,4 @@
+<%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
 <!-- head -->
@@ -8,7 +9,9 @@
 <body>
 	<main class="ui middle aligned center aligned grid">
 		<article>
-			<header>Login Here!</header>
+
+			<header><h1>Login Here!</h1></header>
+			<h4 style="color: red">${errorMessage }</h4>
 			<form method="post" action="/sessions/">
 				<ul>
 					<li><label>Email</label></li>
@@ -19,13 +22,15 @@
 
 					<li>
 						<button type="submit" value="Login">Login</button>
-						<button href="reg.jsp">Register Here</button>
+					</li>
+					
+					<li>
+						<h4>Nemate svoj profil? <a class="item" name="Usluge" href="/users/new">Registriraj se!</a> </h4>
 					</li>				
 				</ul>
 			</form>
 		</article>
 	</main>
-
 	<%@ include file = "footer.jsp" %>
 </body>
 </html>

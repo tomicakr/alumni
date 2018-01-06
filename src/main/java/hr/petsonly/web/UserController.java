@@ -115,7 +115,7 @@ public class UserController {
 			return "customError";
 		}
 		
-		return "redirect:/profile";
+		return "redirect:/users/" + id.toString();
 	}
 
 	@RequestMapping(value = "/{id}", method = RequestMethod.DELETE)

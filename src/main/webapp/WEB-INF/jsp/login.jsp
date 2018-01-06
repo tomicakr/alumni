@@ -4,6 +4,7 @@
 <!-- head -->
 <jsp:include page="../partials/head.jsp" flush="true">
 <jsp:param name="title" value="Login" />
+<jsp:param name="view-name" value="login" />
 </jsp:include>
 
 <body>

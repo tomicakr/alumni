@@ -35,6 +35,15 @@
 					<input type="email" name="email" id="email" placeholder="Adresa elektroničke pošte">
 				</div>
 				<div class="field">
+					<select name="location">
+						<option value="" disabled selected>Odaberite grad</option>
+						<option value="10000">Zagreb</option>
+						<option value="21000">Split</option>
+						<option value="31000">Osijek</option>
+						<option value="42000">Varaždin</option>
+					</select>
+				</div>
+				<div class="field">
 					<input type="text" name="address" id="address" placeholder="Adresa stavnovanja">
 				</div>
 				<div class="field">

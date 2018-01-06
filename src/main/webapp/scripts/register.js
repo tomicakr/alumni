@@ -47,6 +47,13 @@ const validationRules = {
         identifier: 'email',
         rules: [{
             type: 'empty',
+            prompt: 'Molimo odaberite grad'
+        }]
+    },
+    address: {
+        identifier: 'email',
+        rules: [{
+            type: 'empty',
             prompt: 'Molimo upišite adresu elektroničke pošte'
         },
             {

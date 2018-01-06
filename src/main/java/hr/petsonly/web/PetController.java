@@ -35,7 +35,7 @@ public class PetController {
 	@ResponseBody
 	public List<PetDetails> showPetList(Model model, @PathVariable UUID id) {
 		
-		List<Pet> petList = petRepository.findByOwnerId(id);
+		List<Pet> petList = petRepository.findByOwnerId(id.toString());
 		List<PetDetails> petDetails = new ArrayList<>();
 		
 		petList.forEach(pet -> {

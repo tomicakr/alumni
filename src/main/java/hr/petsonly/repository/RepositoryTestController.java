@@ -128,6 +128,19 @@ public class RepositoryTestController {
 		}
 		return result;
 	}
+	
+
+	@RequestMapping("/repotest/petuuidowner")
+	public String findByOwnerUiid(){
+		String result = "";
+
+		List<Pet> pets = pr.findByOwnerId("fb8f4014-e0b0-4a5e-9079-320c1e1516e8");
+		System.out.println(pets.size());
+		for(Pet p: pets){
+			result += p.getName() + " " + p.getBreed() + " " + p.getOwner().getUserMnemonic() + " " + p.getOwner().getUserId() + "<br>";
+		}
+		return result;
+	}
 	@Autowired 
 	UserRepository ur;
 

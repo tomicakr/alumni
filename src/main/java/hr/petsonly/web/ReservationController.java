@@ -50,18 +50,17 @@ public class ReservationController {
 	}
 
 	@PostMapping(value = "")
-	@ResponseBody
-	public boolean createReservation(@PathVariable UUID uid, @Valid Reservation reservation, BindingResult result) {
+	public String createReservation(@PathVariable UUID uid, @Valid Reservation reservation, BindingResult result) {
 
 		if (result.hasErrors()) {
-			return false;
+			return "newReservation";
 		}
 
 		User user = userRepository.getOne(uid);
 		user.getReservations().add(reservation);
 
 		userRepository.save(user);
-		return true;
+		return String.format("redirect:/users/%s/reservations", uid.toString());
 	}
 	
 	@GetMapping(value = "/{id}")
@@ -83,10 +82,10 @@ public class ReservationController {
 	}
 
 	@PutMapping(value = "/{id}")
-	public boolean saveReservation(@PathVariable UUID uid, @Valid Reservation reservatioin, BindingResult result) {
+	public String saveReservation(@PathVariable UUID uid, @Valid Reservation reservatioin, BindingResult result) {
 		
 		if(result.hasErrors()) {
-			return false;
+			return "reservationEdit";
 		}
 		
 		// ovo naravno treba drugacije --------
@@ -102,13 +101,14 @@ public class ReservationController {
 		
 		
 		// ------------------------------------
-		return true;
+		return String.format("redirect:/users/%s/reservations", uid.toString());
 	}
 	
 	@DeleteMapping(value = "/{id}")
-	public void deleteReservation(@PathVariable UUID id) {
+	public String deleteReservation(@PathVariable UUID id, @PathVariable UUID uid) {
 		
 		reservationRepository.delete(id);
 		
+		return String.format("redirect:/users/%s/reservations", uid.toString());
 	}
 }

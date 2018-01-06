@@ -19,7 +19,7 @@ public class ReservationDetails {
 	public ReservationDetails(Reservation reservation) {
 
 		this.pet = reservation.getPet().getName();
-		this.service = reservation.getService().getName(); //TODO makni ovo
+		this.service = reservation.getService().getName(); 
 		this.employee = reservation.getEmployee().getName() + " " + reservation.getEmployee().getSurname();
 		this.time = reservation.getReservationTime().toString();
 

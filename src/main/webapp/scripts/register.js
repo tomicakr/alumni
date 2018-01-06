@@ -91,7 +91,8 @@ $(document)
 const matchIcon = $('#pass-match');
 const firstName = $('#first-name');
 const lastName = $('#last-name');
-const phone = $('#phone');
+const mobilePhone = $('#mobile-phone');
+const telephone = $('#telephone');
 const email = $('#email');
 const address = $('#address');
 const pass = $('#password');
@@ -143,7 +144,8 @@ $('#komba').click(function () {
             firstName.val(data.name);
             lastName.val(data.surname);
             address.val(`${data.region} ${Math.floor(Math.random() * 100)}`);
-            phone.val(oibgen);
+            mobilePhone.val(oibgen);
+            telephone.val(oibgen);
             pass.val(data.name.toLowerCase() + "123");
             passCheck.val(data.name.toLowerCase() + "123");
             email.val(`${data.name}.${data.surname}@gmail.com`);

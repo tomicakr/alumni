@@ -3,29 +3,33 @@
 <html>
 <!-- head -->
 <jsp:include page="../partials/head.jsp" flush="true">
-<jsp:param name="title" value="Register" />
+<jsp:param name="title" value="Registracija" />
+<jsp:param name="view-name" value="register" />
 </jsp:include>
 
 <body>
 	<main class="ui middle aligned center aligned grid">
 		<div class="column">
-			<h1 class="ui image header">
+			<h1 class="ui image massive header">
 				Izradite svoj račun
 			</h1>
 			<form class="ui large form segment stacked">
 				<div class="two fields">
 					<div class="field">
-						<input type="text" name="first-name" id="first-name" placeholder="Ime">
+						<input type="text" name="name" id="first-name" placeholder="Ime">
 					</div>
 					<div class="field">
-						<input type="text" name="last-name" id="last-name" placeholder="Prezime">
+						<input type="text" name="surname" id="last-name" placeholder="Prezime">
 					</div>
 				</div>
 				<div class="field">
-					<input type="text" name="oib" id="oib" placeholder="OIB">
+					<input type="text" name="userPid" id="oib" placeholder="OIB">
 				</div>
 				<div class="field">
-					<input type="tel" name="phone" id="phone" placeholder="Broj telefona">
+					<input type="tel" name="mobilePhone" id="mobile-phone" placeholder="Broj mobitela">
+				</div>
+				<div class="field">
+					<input type="tel" name="phone" id="telephone" placeholder="Broj telefona">
 				</div>
 				<div class="field">
 					<input type="email" name="email" id="email" placeholder="Adresa elektroničke pošte">

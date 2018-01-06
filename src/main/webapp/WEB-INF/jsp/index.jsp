@@ -3,7 +3,8 @@
 <html>
 <!-- head -->
 <jsp:include page="../partials/head.jsp" flush="true">
-<jsp:param name="title" value="Home" />
+	<jsp:param name="title" value="Home" />
+	<jsp:param name="view-name" value="index"/>
 </jsp:include>
 
 <body>

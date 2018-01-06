@@ -1,0 +1,41 @@
+footer.footer {
+	text-align: center;
+	margin-top: 70px;
+	border-top: 1px solid #E5E5E5;
+}
+
+.ui.footer.segment {
+	margin: 5em 0em 0em;
+	padding: 5em 0em;
+}
+
+
+.ui.secondary.pointing.menu a.item:hover,
+.ui.inverted.menu .dropdown.item:hover,
+.ui.inverted.menu .link.item:hover,
+.ui.inverted.menu a.item:hover,
+.ui.link.inverted.menu .item:hover {
+	 opacity: 0.8;
+}
+
+body{
+	background: #ecf0f1;
+}
+
+.darkred.button{
+	background: darkred !important;
+	color: white !important;
+}
+
+h1{
+	font-family: Coda, sans-serif !important;
+}
+
+#customMenu{
+	margin-top: 10px;
+	margin-left: 100px;
+	margin-right: 100px;
+	background-color: rgba(255,255,255,0.5);
+	border-radius: 5px
+
+}

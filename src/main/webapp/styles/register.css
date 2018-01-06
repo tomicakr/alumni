@@ -16,12 +16,6 @@ margin-top: -100px;
 max-width: 40%;
 }
 
-.darkred{
-	background: darkred !important;
-	color: white !important;
-}
-
 h1{
-	font-size: 4em !important;
-	font-family: Coda, sans-serif !important;
+	font-size: 3.5em !important;
 }

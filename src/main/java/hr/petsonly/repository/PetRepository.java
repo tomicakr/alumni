@@ -18,11 +18,11 @@ public interface PetRepository extends JpaRepository<Pet, UUID>{
 	List<Pet> findByOwner(User owner);
 	
 	
-	@Query(value = "SELECT * FROM Pet p WHERE p.user_id = :user_id", nativeQuery = true)
+	@Query(value = "SELECT * FROM PET p WHERE p.user_id = :user_id", nativeQuery = true)
 	List<Pet> findByOwnerId(@Param("user_id") String userId);
 	
 	@Query(value = "SELECT * "
-			+ "FROM pet p INNER JOIN Users u ON p.user_id = u.user_id "
+			+ "FROM pet p INNER JOIN users u ON p.user_id = u.user_id "
 			+ "WHERE u.user_mnemonic = :user_mnemonic", nativeQuery = true)
 	List<Pet> findByOwnerMnemonic(@Param("user_mnemonic") String userMnemonic);
 	

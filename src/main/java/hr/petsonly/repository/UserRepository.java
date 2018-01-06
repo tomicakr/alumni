@@ -73,9 +73,15 @@ public interface UserRepository extends JpaRepository<User, UUID> {
 	//NOTIFICATION_SETTING
 	List<User> findAllByNotificationSetting(int notificationSetting);
 	
-	/*
-	@Query("SELECT user.name, user.surname, pet.name FROM user INNER JOIN pet ON user.user_id")
-	List<Object[]> findAllUsersAndPets();
-	*/
+	//COUNT 
+	@Query(value = "SELECT COUNT(u.user_id) FROM users u WHERE u.user_mnemonic REGEXP :pattern", nativeQuery = true)
+	Long countByUserMnemonic(@Param("pattern") String pattern);
+	
+	default User saveWithMnemonic(User entity) {
+		String pattern = entity.getName() + entity.getSurname();
+		Long num = countByUserMnemonic(pattern);
+		entity.setUserMnemonic(pattern + num);
+		return this.save(entity);
+	}
 
 }

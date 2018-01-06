@@ -1,3 +1,4 @@
+<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
@@ -7,13 +8,14 @@
 <jsp:param name="view-name" value="register" />
 </jsp:include>
 
+
 <body>
 	<main class="ui middle aligned center aligned grid">
 		<div class="column">
 			<h1 class="ui image massive header">
 				Izradite svoj račun
 			</h1>
-			<form class="ui large form segment stacked">
+			<form:form action="/users/" method="post" class="ui large form segment stacked" modelAttribute="user">
 				<div class="two fields">
 					<div class="field">
 						<input type="text" name="name" id="first-name" placeholder="Ime">
@@ -54,7 +56,7 @@
 				</div>
 				<i id="pass-match" class="fa large" aria-hidden="true"></i>
 				<div class="ui fluid huge darkred submit button" style="width: 100%">Registriraj se!</div>
-			</form>
+			</form:form>
 			<button class="ui huge button" id="komba">Skombaj mi sve podatke</button>
 		</div>
 	</main>

@@ -68,7 +68,7 @@ public class UserController {
 	@GetMapping("/{id}")
 	public String showUserProfile(Model model, @PathVariable UUID id, HttpSession session) {
 
-		User userInSession = (User) session.getAttribute("userInSession");
+		UserDetailsMore userInSession = (UserDetailsMore) session.getAttribute("userInSession");
 
 		if (userInSession == null || !userInSession.getUserId().equals(id)) {
 			model.addAttribute("errorMessage", "Nemaš ovlasti za to!");
@@ -91,7 +91,7 @@ public class UserController {
 	@RequestMapping(value = "/{id}/edit", method = RequestMethod.GET)
 	public String editUser(Model model, @PathVariable UUID id, HttpSession session) {
 
-		User userInSession = (User) session.getAttribute("userInSession");
+		UserDetailsMore userInSession = (UserDetailsMore) session.getAttribute("userInSession");
 
 		if (userInSession == null || !userInSession.getUserId().equals(id)) {
 			model.addAttribute("errorMessage", "Nemaš ovlasti za to!");
@@ -108,12 +108,14 @@ public class UserController {
 	@RequestMapping(value = "/{id}", method = RequestMethod.PUT)
 	public String updateUser(Model model, @PathVariable UUID id, HttpSession session) {
 
-		User userInSession = (User) session.getAttribute("userInSession");
+		UserDetailsMore userInSession = (UserDetailsMore) session.getAttribute("userInSession");
 
 		if (userInSession == null || !userInSession.getUserId().equals(id)) {
 			model.addAttribute("errorMessage", "Nemaš ovlasti za to!");
 			return "customError";
 		}
+		
+		// TODO: dohvati usera iz baze i updateaj ga
 		
 		return "redirect:/users/" + id.toString();
 	}
@@ -121,7 +123,7 @@ public class UserController {
 	@RequestMapping(value = "/{id}", method = RequestMethod.DELETE)
 	public String deleteUser(Model model, @PathVariable UUID id, HttpSession session) {
 
-		User userInSession = (User) session.getAttribute("userInSession");
+		UserDetailsMore userInSession = (UserDetailsMore) session.getAttribute("userInSession");
 
 		if(userInSession == null || !userInSession.getUserId().equals(id)) {
 			model.addAttribute("errorMessage", "Nemaš ovlasti za to!");

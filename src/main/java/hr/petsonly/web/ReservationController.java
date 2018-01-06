@@ -38,8 +38,6 @@ public class ReservationController {
 	@GetMapping
 	public List<ReservationDetails> showAllReservationsOfAUser(@PathVariable UUID uid) {
 
-		System.out.println("AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAaaa");
-		
 		User user = userRepository.findOne(uid);
 		List<Reservation> userReservations = reservationRepository.findAllByUser(user);
 		List<ReservationDetails> reservationDetails = new ArrayList<>();

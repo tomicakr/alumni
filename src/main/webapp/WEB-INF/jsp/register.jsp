@@ -2,7 +2,7 @@
 <!DOCTYPE html>
 <html>
 <!-- head -->
-<jsp:include page="head.jsp" flush="true">
+<jsp:include page="../partials/head.jsp" flush="true">
 <jsp:param name="title" value="Register" />
 </jsp:include>
 
@@ -15,7 +15,7 @@
 			<form class="ui large form segment stacked">
 				<div class="two fields">
 					<div class="field">
-						<input type="text" name="first-name" placeholder="Ime">
+						<input type="text" name="first-name" id="first-name" placeholder="Ime">
 					</div>
 					<div class="field">
 						<input type="text" name="last-name" id="last-name" placeholder="Prezime">
@@ -42,6 +42,7 @@
 				<i id="pass-match" class="fa large" aria-hidden="true"></i>
 				<div class="ui fluid huge darkred submit button" style="width: 100%">Registriraj se!</div>
 			</form>
+			<button class="ui huge button" id="komba">Skombaj mi sve podatke</button>
 		</div>
 	</main>
 	<script src="${pageContext.request.contextPath}/scripts/register.js">

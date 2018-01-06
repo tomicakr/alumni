@@ -2,12 +2,12 @@
 <!DOCTYPE html>
 <html>
 <!-- head -->
-<jsp:include page="head.jsp" flush="true">
+<jsp:include page="../partials/head.jsp" flush="true">
 <jsp:param name="title" value="Home" />
 </jsp:include>
 
 <body>
-	<%@ include file = "header.jsp" %>
+	<%@ include file = "../partials/header.jsp" %>
 
 	<main style="text-align: center;">
 		<h1>Dobrodosli na Pets Only Zg stranicu!</h1>
@@ -18,6 +18,6 @@
 		
 	</main>
 	
-	<%@ include file = "footer.jsp" %>
+	<%@ include file = "../partials/footer.jsp" %>
 </body>
 </html>

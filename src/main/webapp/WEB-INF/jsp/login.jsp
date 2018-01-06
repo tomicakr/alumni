@@ -2,7 +2,7 @@
 <!DOCTYPE html>
 <html>
 <!-- head -->
-<jsp:include page="head.jsp" flush="true">
+<jsp:include page="../partials/head.jsp" flush="true">
 <jsp:param name="title" value="Login" />
 </jsp:include>
 
@@ -11,7 +11,7 @@
 		<article>
 
 			<header><h1>Login Here!</h1></header>
-			<h4 style="color: red">${errorMessage }</h4>
+			<h4 style="color: red">${errorMessage}</h4>
 			<form method="post" action="/sessions/">
 				<ul>
 					<li><label>Email</label></li>
@@ -31,6 +31,6 @@
 			</form>
 		</article>
 	</main>
-	<%@ include file = "footer.jsp" %>
+	<%@ include file = "../partials/footer.jsp" %>
 </body>
 </html>

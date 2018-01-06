@@ -4,6 +4,8 @@ import java.util.List;
 import java.util.UUID;
 
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.Query;
+import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Service;
 
 import hr.petsonly.model.Pet;
@@ -68,5 +70,8 @@ public interface PetRepository extends JpaRepository<Pet, UUID>{
 	List<Pet> findByRemarkIgnoreCase(String remark);
 	
 	List<Pet> findByOwnerAndRemarkLike(User owner, String remark);
+	
+	@Query(value = "SELECT p FROM Pet p WHERE p.user_id = :user_id", nativeQuery = true)
+	List<Pet> findByOwnerId(@Param("user_id") UUID userId);
 	
 }

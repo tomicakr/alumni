@@ -18,9 +18,6 @@ public interface UserRepository extends JpaRepository<User, UUID> {
 	//USER_PID
 	User findByUserPid(String userPid);
 	
-	@Query(value = "SELECT p FROM Pet p WHERE p.user_id = :user_id", nativeQuery = true)
-	List<Pet> findByOwnerId(@Param("user_id") UUID userId);
-	
 	//NAME
 	List<User> findAllByName(String name);
 	

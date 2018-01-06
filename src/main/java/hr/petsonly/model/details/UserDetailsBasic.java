@@ -1,6 +1,7 @@
 package hr.petsonly.model.details;
 
 import java.util.List;
+import java.util.UUID;
 
 import org.springframework.stereotype.Component;
 
@@ -9,6 +10,7 @@ import hr.petsonly.model.User;
 @Component
 public class UserDetailsBasic {
 
+	private UUID userId;
 	private String firstName;
 	private String lastName;
 	private String email;
@@ -20,6 +22,7 @@ public class UserDetailsBasic {
 
 	public UserDetailsBasic(User user) {
 
+		this.userId = user.getUserId();
 		this.firstName = user.getName();
 		this.lastName = user.getSurname();
 		this.email = user.getEmail();
@@ -68,6 +71,14 @@ public class UserDetailsBasic {
 
 	public void setRoles(List<String> roles) {
 		this.roles = roles;
+	}
+
+	public UUID getUserId() {
+		return userId;
+	}
+
+	public void setUserId(UUID userId) {
+		this.userId = userId;
 	}
 
 }

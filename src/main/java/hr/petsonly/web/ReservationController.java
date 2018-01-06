@@ -38,7 +38,9 @@ public class ReservationController {
 	@GetMapping
 	public List<ReservationDetails> showAllReservationsOfAUser(@PathVariable UUID uid) {
 
-		User user = userRepository.getOne(uid);
+		System.out.println("AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAaaa");
+		
+		User user = userRepository.findOne(uid);
 		List<Reservation> userReservations = reservationRepository.findAllByUser(user);
 		List<ReservationDetails> reservationDetails = new ArrayList<>();
 
@@ -56,10 +58,11 @@ public class ReservationController {
 		return "newReservation";
 	}
 
-	@PostMapping(value = "")
-	public String createReservation(@PathVariable UUID uid, @Valid Reservation reservation, BindingResult result) {
+	@PostMapping
+	public String createReservation(Model model, @PathVariable UUID uid, @Valid Reservation reservation, BindingResult result) {
 
 		if (result.hasErrors()) {
+			model.addAttribute("reservation", reservation);
 			return "newReservation";
 		}
 

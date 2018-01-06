@@ -33,7 +33,7 @@ public interface PetRepository extends JpaRepository<Pet, UUID>{
 	List<Pet> findByOwnerAndName(User owner, String name);
 	
 	@Query(value = "SELECT * "
-			+ "FROM Pet p INNER JOIN Users u ON p.user_id = u.user_id "
+			+ "FROM pet p INNER JOIN users u ON p.user_id = u.user_id "
 			+ "WHERE u.user_mnemonic = :user_mnemonic AND p.name = :name", nativeQuery = true)
 	List<Pet> findByOwnerMnemonicAndName(@Param("user_mnemonic") String userMnemonic, @Param("name") String name);
 	

@@ -9,10 +9,15 @@
 <body>
 	<%@ include file = "header.jsp" %>
 
-	<main>
-		<h1 style="text-align: center;">Dobrodosli na Pets Only Zg stranicu!</h1>
+	<main style="text-align: center;">
+		<h1>Dobrodosli na Pets Only Zg stranicu!</h1>
+		
+		<c:if test="${not empty user.userId}">
+		<h4>Sad za sad nek tu stoji: <a class="item" name="Usluge" href="/users/${user.userId}/reservations/new">Dodaj novu rezervaciju!</a></h4>
+		</c:if>
+		
 	</main>
-
+	
 	<%@ include file = "footer.jsp" %>
 </body>
 </html>

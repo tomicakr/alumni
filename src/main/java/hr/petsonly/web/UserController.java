@@ -1,5 +1,6 @@
 package hr.petsonly.web;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
 
@@ -15,6 +16,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
 import hr.petsonly.model.User;
+import hr.petsonly.model.details.UserDetailsBasic;
+import hr.petsonly.model.details.UserDetailsMore;
 import hr.petsonly.repository.UserRepository;
 
 @Controller
@@ -27,9 +30,14 @@ public class UserController {
 	@RequestMapping(value = "", method = RequestMethod.GET)
 	public String showUserList(Model model) {
 
-		List<User> allUsers = userRepository.findAll();
+		List<User> allUsersFull = userRepository.findAll();
+		List<UserDetailsBasic> allUsers = new ArrayList<>();
+		
+		allUsersFull.forEach((user) -> {
+			allUsers.add(new UserDetailsBasic(user));
+		});
+		
 		model.addAttribute("users", allUsers);
-
 		return "users";
 	}
 
@@ -65,7 +73,8 @@ public class UserController {
 			return "customError";
 		}
 
-		model.addAttribute("thisUser", user);
+		UserDetailsMore userDetails = new UserDetailsMore(user);
+		model.addAttribute("user", userDetails);
 
 		return "profile";
 	}

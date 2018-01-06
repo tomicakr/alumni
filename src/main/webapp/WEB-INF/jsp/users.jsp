@@ -21,11 +21,11 @@
 		<tbody>
 		<c:forEach var="user" items="${users}">
 			<tr>
-				<td>${user.name}</td>
-				<td>${user.surname}</td>
-				<td>Klijent</td><!--Sva logika mora biti u kontroleru, ovdje zelimo imati objekt koji je obavio sve i slozio model-->
-				<td>tu.dolazi@email.com</td>
-				<td><a href="${pageContext.request.contextPath}/users/nekiId/">Detalji</a></td>
+				<td>${user.firstName}</td>
+				<td>${user.lastName}</td>
+				<td>${user.email}</td><!--Sva logika mora biti u kontroleru, ovdje zelimo imati objekt koji je obavio sve i slozio model-->
+				<td>${user.roles[0]}</td>
+				<td><a href="${pageContext.request.contextPath}/users/${user.mnemonicId}/">Detalji</a></td>
 			</tr>
 		</c:forEach>
 		</tbody>

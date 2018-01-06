@@ -1,5 +1,6 @@
 package hr.petsonly.web;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
 
@@ -19,6 +20,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import hr.petsonly.model.Reservation;
 import hr.petsonly.model.User;
+import hr.petsonly.model.details.ReservationDetails;
 import hr.petsonly.repository.ReservationRepository;
 import hr.petsonly.repository.UserRepository;
 
@@ -34,12 +36,17 @@ public class ReservationController {
 
 	@ResponseBody
 	@GetMapping
-	public List<Reservation> showAllReservationsOfAUser(@PathVariable UUID id) {
+	public List<ReservationDetails> showAllReservationsOfAUser(@PathVariable UUID id) {
 
 		User user = userRepository.getOne(id);
 		List<Reservation> userReservations = reservationRepository.findAllByUser(user);
+		List<ReservationDetails> reservationDetails = new ArrayList<>();
 
-		return userReservations;
+		userReservations.forEach(reservation -> {
+			reservationDetails.add(new ReservationDetails(reservation));
+		});
+
+		return reservationDetails;
 	}
 
 	@GetMapping(value = "/new")
@@ -62,53 +69,53 @@ public class ReservationController {
 		userRepository.save(user);
 		return String.format("redirect:/users/%s/reservations", uid.toString());
 	}
-	
+
 	@GetMapping(value = "/{id}")
 	public String showSelectedReservation(Model model, @PathVariable UUID reservationId) {
-		
+
 		Reservation reservation = reservationRepository.getOne(reservationId);
-		model.addAttribute("reservation", reservation);
-		
+		ReservationDetails reservationDetails = new ReservationDetails(reservation);
+
+		model.addAttribute("reservation", reservationDetails);
 		return "reservation";
 	}
-	
+
 	@GetMapping(value = "/{id}/edit")
 	public String showReservationEditForm(Model model, @PathVariable UUID reservationId) {
-		
+
 		Reservation reservation = reservationRepository.getOne(reservationId);
 		model.addAttribute("reservation", reservation);
-		
+
 		return "reservationEdit";
 	}
 
 	@PutMapping(value = "/{id}")
 	public String saveReservation(@PathVariable UUID uid, @Valid Reservation reservatioin, BindingResult result) {
-		
-		if(result.hasErrors()) {
+
+		if (result.hasErrors()) {
 			return "reservationEdit";
 		}
-		
+
 		// ovo naravno treba drugacije --------
-		
+
 		User user = userRepository.getOne(uid);
-		
+
 		List<Reservation> usersReservations = user.getReservations();
 		usersReservations.removeIf(res -> res.getReservationKey().equals(reservatioin.getReservationKey()));
-		
+
 		usersReservations.add(reservatioin);
-		
+
 		userRepository.save(user);
-		
-		
+
 		// ------------------------------------
 		return String.format("redirect:/users/%s/reservations", uid.toString());
 	}
-	
+
 	@DeleteMapping(value = "/{id}")
 	public String deleteReservation(@PathVariable UUID id, @PathVariable UUID uid) {
-		
+
 		reservationRepository.delete(id);
-		
+
 		return String.format("redirect:/users/%s/reservations", uid.toString());
 	}
 }

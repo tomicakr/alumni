@@ -36,9 +36,9 @@ public class ReservationController {
 
 	@ResponseBody
 	@GetMapping
-	public List<ReservationDetails> showAllReservationsOfAUser(@PathVariable UUID id) {
+	public List<ReservationDetails> showAllReservationsOfAUser(@PathVariable UUID uid) {
 
-		User user = userRepository.getOne(id);
+		User user = userRepository.getOne(uid);
 		List<Reservation> userReservations = reservationRepository.findAllByUser(user);
 		List<ReservationDetails> reservationDetails = new ArrayList<>();
 

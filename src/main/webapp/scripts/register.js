@@ -135,7 +135,6 @@ function oibCheck(oib) {
 $.fn.form.settings.rules.oibCheck = oibCheck;
 
 passCheck.focusout(() => {
-    console.log("tu smo");
     if (passCheck.val() === pass.val()) {
         matchIcon.removeClass('fa-times-circle-o').addClass('fa-check-circle-o');
     } else {
@@ -146,7 +145,7 @@ passCheck.focusout(() => {
 $('#komba').click(function () {
     let oibgen = generateOib();
     oib.val(oibgen)
-    $.getJSON('https://uinames.com/api/')
+    $.getJSON('https://uinames.com/api/?region=england')
         .done(function (data) {
             firstName.val(data.name);
             lastName.val(data.surname);

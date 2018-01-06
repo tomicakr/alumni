@@ -57,7 +57,7 @@ public class UserController {
 			model.addAttribute("errorMessage", "Registracija nije valjana");
 			return "register";
 		}
-
+		
 		userRepository.save(user);
 
 		return "redirect:/users";

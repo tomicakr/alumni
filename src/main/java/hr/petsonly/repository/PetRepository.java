@@ -17,7 +17,6 @@ public interface PetRepository extends JpaRepository<Pet, UUID>{
 	//OWNER
 	List<Pet> findByOwner(User owner);
 	
-	
 	@Query(value = "SELECT * FROM pet p WHERE p.user_id = :user_id", nativeQuery = true)
 	List<Pet> findByOwnerId(@Param("user_id") String userId);
 	
@@ -84,5 +83,6 @@ public interface PetRepository extends JpaRepository<Pet, UUID>{
 	List<Pet> findByRemarkIgnoreCase(String remark);
 	
 	List<Pet> findByOwnerAndRemarkLike(User owner, String remark);
-
+	
+	
 }

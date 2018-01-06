@@ -5,6 +5,7 @@ import java.util.List;
 import java.util.UUID;
 
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.Query;
 
 import hr.petsonly.model.Pet;
 import hr.petsonly.model.Reservation;
@@ -21,6 +22,9 @@ public interface ReservationRepository extends JpaRepository<Reservation, UUID> 
 	
 	//USER
 	List<Reservation> findAllByUser(User user);
+	
+	@Query(value = "SELECT * FROM reservation r WHERE r.user_id = :user_id", nativeQuery = true)
+	List<Reservation> findAllByUserId(String userId);
 	
 	//RESERVATION_STATUS
 	List<Reservation> findAllByReservationStatus(int reservationStatus);

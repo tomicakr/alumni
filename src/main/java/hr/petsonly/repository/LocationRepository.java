@@ -9,7 +9,7 @@ import hr.petsonly.model.Location;
 
 public interface LocationRepository extends JpaRepository<Location, UUID>{
 
-	List<Location> findAllByZipCode(int zipCode);
+	Location findByZipCode(int zipCode);
 	
 	List<Location> findAllByLocationName(String locationName);
 	

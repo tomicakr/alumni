@@ -1,5 +1,6 @@
 package hr.petsonly.web;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
 
@@ -12,6 +13,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import hr.petsonly.model.Reservation;
+import hr.petsonly.model.details.ReservationDetails;
 import hr.petsonly.repository.ReservationRepository;
 
 @Controller
@@ -25,7 +27,10 @@ public class JobController {
 	public String showAllReservations(Model model) {
 		
 		List<Reservation> allReservations = reservationRepository.findAll();
-		model.addAllAttributes(allReservations);
+		List<ReservationDetails> reservationDetailsAll = new ArrayList<>();
+		
+		allReservations.forEach(res -> reservationDetailsAll.add(new ReservationDetails(res)));
+		model.addAttribute("reservations", reservationDetailsAll);
 		
 		return "jobs";
 	}
@@ -34,7 +39,8 @@ public class JobController {
 	public String showReservationDetalils(Model model, @PathVariable UUID reservationId) {
 		
 		Reservation reservation = reservationRepository.findOne(reservationId);
-		model.addAttribute("reservation", reservation);
+		ReservationDetails reservationDetails = new ReservationDetails(reservation);
+		model.addAttribute("reservation", reservationDetails);
 		
 		return "reservation";
 	}
@@ -43,7 +49,7 @@ public class JobController {
 	public String acceptReservation(@PathVariable UUID reservationId) {
 		
 		Reservation reservation = reservationRepository.findOne(reservationId);
-		reservation.setReservationStatus(1); 
+		reservation.setReservationStatus(2); //accepted
 		
 		return "redirect:/jobs";
 	}
@@ -52,7 +58,7 @@ public class JobController {
 	public String confirmReservation(@PathVariable UUID reservationId) {
 		
 		Reservation reservation = reservationRepository.findOne(reservationId);
-		reservation.setReservationStatus(1); 
+		reservation.setReservationStatus(3); //confirmed TODO: ovo treba pomocu enuma, ne samo broj
 		
 		return "redirect:/jobs";
 	}

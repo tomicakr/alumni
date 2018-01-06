@@ -43,7 +43,7 @@
 			</tr>
 		</table>
 	</section>
-
+	<a id="btn-edit" href="${pageContext.request.contextPath}/users/${user.mnemonicId}/edit">Uredi korisnika</a>
 
 	<section id="reservations">
 		<h2>Rezervacije</h2>

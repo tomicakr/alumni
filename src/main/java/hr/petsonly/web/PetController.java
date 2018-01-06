@@ -1,5 +1,6 @@
 package hr.petsonly.web;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
 
@@ -16,6 +17,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import hr.petsonly.model.Pet;
 import hr.petsonly.model.User;
+import hr.petsonly.model.details.PetDetails;
 import hr.petsonly.repository.PetRepository;
 import hr.petsonly.repository.UserRepository;
 
@@ -31,10 +33,16 @@ public class PetController {
 	
 	@RequestMapping(method = RequestMethod.GET)
 	@ResponseBody
-	public List<Pet> showPetList(Model model, @PathVariable UUID id) {
+	public List<PetDetails> showPetList(Model model, @PathVariable UUID id) {
 		
 		List<Pet> petList = petRepository.findByOwnerId(id);
-		return petList;
+		List<PetDetails> petDetails = new ArrayList<>();
+		
+		petList.forEach(pet -> {
+			petDetails.add(new PetDetails(pet));
+		});
+		
+		return petDetails;
 	}
 	
 	@RequestMapping(value = "/new", method = RequestMethod.GET)

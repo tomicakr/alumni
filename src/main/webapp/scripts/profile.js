@@ -93,7 +93,10 @@ $(document)
     .ready(function() {
         $('.ui.form').form({
             inline: false,
-            fields: petValidation
+            fields: petValidation,
+            onSuccess: function(){
+                $('.ui.modal')
+                    .modal('hide');
+            }
         });
     });
-

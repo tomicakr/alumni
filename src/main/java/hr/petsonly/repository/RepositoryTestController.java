@@ -157,4 +157,17 @@ public class RepositoryTestController {
 		return result;
 	}
 
+	@Autowired
+	ComplexQueryRepository cqr;
+	
+	@RequestMapping("/repotest/custom")
+	public String findOwnerAndAnimal(){
+		String result = "";
+		List<Object[]> list = cqr.findAllUsersAndPets();
+		for(Object[] o : list){
+			result += o[0] + " " + o[1] + " "  + o[2] + "<br>";
+		}
+		return result;
+	}
+	
 }

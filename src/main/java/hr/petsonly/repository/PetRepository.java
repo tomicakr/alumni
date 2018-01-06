@@ -83,5 +83,6 @@ public interface PetRepository extends JpaRepository<Pet, UUID>{
 	List<Pet> findByRemarkIgnoreCase(String remark);
 	
 	List<Pet> findByOwnerAndRemarkLike(User owner, String remark);
-
+	
+	
 }

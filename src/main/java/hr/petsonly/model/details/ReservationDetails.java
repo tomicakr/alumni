@@ -21,7 +21,7 @@ public class ReservationDetails {
 
 	public ReservationDetails(Reservation reservation) {
 
-		this.reservationId = reservation.getReservationKey();
+		this.setReservationId(reservation.getReservationKey());
 		this.pet = reservation.getPet().getName();
 		this.service = reservation.getService().getName(); 
 		this.employee = reservation.getEmployee().getName() + " " + reservation.getEmployee().getSurname();
@@ -81,6 +81,14 @@ public class ReservationDetails {
 
 	public void setTime(String time) {
 		this.time = time;
+	}
+
+	public UUID getReservationId() {
+		return reservationId;
+	}
+
+	public void setReservationId(UUID reservationId) {
+		this.reservationId = reservationId;
 	}
 
 }

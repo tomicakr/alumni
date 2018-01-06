@@ -1,4 +1,4 @@
-const userUrl =window.location.href;
+const userUrl =window.location.href + (window.location.href.endsWith('/') ? '' : '/');
 const reservationsTable = $('#reservations').find('table');
 const petsTable = $('#pets').find('table');
 const btnPets = $('#btn-pets');

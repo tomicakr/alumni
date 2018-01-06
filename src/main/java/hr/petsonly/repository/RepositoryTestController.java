@@ -107,6 +107,17 @@ public class RepositoryTestController {
 	}
 	
 	
+	@RequestMapping("/repotest/mnemonic")
+	public String findByMnemonic(){
+		String result = "";
+
+		List<Pet> pets = pr.findByOwnerMnemonic("mp");
+		for(Pet p: pets){
+			result += p.getName() + " " + p.getOwner().getUserMnemonic() + "<br>";
+		}
+		return result;
+	}
 	@Autowired 
 	UserRepository ur;
+
 }

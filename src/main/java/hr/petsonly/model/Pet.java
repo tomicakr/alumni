@@ -2,6 +2,9 @@ package hr.petsonly.model;
 
 import java.util.List;
 import javax.persistence.*;
+
+import org.hibernate.annotations.Type;
+
 import java.util.UUID;
 
 
@@ -11,6 +14,7 @@ public class Pet {
 
 	@Id
 	@Column
+	@Type(type = "uuid-char")
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private UUID petKey;
 	

@@ -8,6 +8,9 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
+
+import org.hibernate.annotations.Type;
+
 import javax.persistence.Column;
 import java.util.UUID;
 import java.time.LocalTime;
@@ -18,6 +21,7 @@ public class Reservation {
 
 	@Id
 	@Column
+	@Type(type="uuid-char")
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private UUID reservationKey;
 

@@ -4,11 +4,14 @@ import java.util.UUID;
 import java.util.List;
 import javax.persistence.*;
 
+import org.hibernate.annotations.Type;
+
 @Entity
 @Table(name = "service")
 public class Service {
 
 	@Id
+	@Type(type="uuid-char")
 	@Column
 	private UUID serviceKey;
 	@Column

@@ -1,6 +1,9 @@
 package hr.petsonly.model;
 
 import javax.persistence.*;
+
+import org.hibernate.annotations.Type;
+
 import java.util.UUID;
 import java.util.List;
 
@@ -10,6 +13,7 @@ public class Location {
 
 	@Id
 	@Column
+	@Type(type="uuid-char")
 	@GeneratedValue
 	private UUID locationId;
 	

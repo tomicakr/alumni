@@ -17,6 +17,13 @@ public interface PetRepository extends JpaRepository<Pet, UUID>{
 	//OWNER
 	List<Pet> findByOwner(User owner);
 	
+	
+	@Query(value = "SELECT p FROM Pet p WHERE p.user_id = :user_id", nativeQuery = true)
+	List<Pet> findByOwnerId(@Param("user_id") UUID userId);
+	
+	@Query(value = "SELECT * FROM Pet p INNER JOIN Users u WHERE u.user_mnemonic = :user_mnemonic", nativeQuery = true)
+	List<Pet> findByOwnerMnemonic(@Param("user_mnemonic") String userMnemonic);
+	
 	//NAME
 	List<Pet> findByName(String name);
 	
@@ -70,8 +77,6 @@ public interface PetRepository extends JpaRepository<Pet, UUID>{
 	List<Pet> findByRemarkIgnoreCase(String remark);
 	
 	List<Pet> findByOwnerAndRemarkLike(User owner, String remark);
-	
-	@Query(value = "SELECT p FROM Pet p WHERE p.user_id = :user_id", nativeQuery = true)
-	List<Pet> findByOwnerId(@Param("user_id") UUID userId);
+
 	
 }

@@ -47,7 +47,7 @@ public class SessionController {
 		
 		httpSession.setAttribute("userInSession", userDetails);
 
-		return "redirect:/profile";
+		return "redirect:/users/" + user.getUserId().toString();
 	}
 
 	@RequestMapping(value = "/", method = RequestMethod.DELETE)

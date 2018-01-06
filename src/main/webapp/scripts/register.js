@@ -43,7 +43,7 @@ const validationRules = {
             }
         ]
     },
-    address: {
+    city: {
         identifier: 'email',
         rules: [{
             type: 'empty',
@@ -54,13 +54,8 @@ const validationRules = {
         identifier: 'email',
         rules: [{
             type: 'empty',
-            prompt: 'Molimo upišite adresu elektroničke pošte'
-        },
-            {
-                type: 'email',
-                prompt: 'Adresa elektroničke pošte nije valjana'
-            }
-        ]
+            prompt: 'Molimo upišite kućnu adresu'
+        }]
     },
     password: {
         identifier: 'password',
@@ -85,6 +80,7 @@ const validationRules = {
         }]
     }
 }
+;
 
 
 $(document)

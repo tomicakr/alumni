@@ -1,5 +1,7 @@
 package hr.petsonly.model.details;
 
+import java.util.UUID;
+
 import org.springframework.stereotype.Component;
 
 import hr.petsonly.model.Reservation;
@@ -7,6 +9,7 @@ import hr.petsonly.model.Reservation;
 @Component
 public class ReservationDetails {
 
+	private UUID reservationId;
 	private String pet;
 	private String service;
 	private String employee;
@@ -18,6 +21,7 @@ public class ReservationDetails {
 
 	public ReservationDetails(Reservation reservation) {
 
+		this.reservationId = reservation.getReservationKey();
 		this.pet = reservation.getPet().getName();
 		this.service = reservation.getService().getName(); 
 		this.employee = reservation.getEmployee().getName() + " " + reservation.getEmployee().getSurname();

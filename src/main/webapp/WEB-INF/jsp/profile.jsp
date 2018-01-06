@@ -6,6 +6,37 @@
 	<jsp:param name="view-name" value="profile" />
 </jsp:include>
 <body>
+<div class="ui mini modal">
+	<div class="ui loader active"></div>
+	<i class="close icon"></i>
+	<div class="header">
+		Dodaj ljubimca
+	</div>
+	<div class="ui center aligned content">
+		<form:form action="${pageContext.request.contextPath}/users/${user.mnemonicId}" method="post" id="add-pet-form" class="ui large form" modelAttribute="user">
+			<div class="field">
+				<input type="text" name="name" id="pet-name" placeholder="Ime">
+			</div>
+			<div class="field">
+				<input type="number" name="age" id="pet-age" placeholder="Broj godina">
+			</div>
+			<div class="field">
+				<input type="text" name="species" id="pet-species" placeholder="Vrsta">
+			</div>
+			<div class="field">
+				<input type="text" name="breed" id="pet-breed" placeholder="Pasmina">
+			</div>
+			<div class="field">
+				<input type="text" name="microchip" id="pet-chip" placeholder="Broj mikročipa ljubimca.">
+			</div>
+			<div class="field">
+				<textarea rows="4" placeholder="Napomene..."></textarea>
+			</div>
+			<div class="ui fluid huge darkred submit button" style="width: 100%">Dodaj</div>
+		</form:form>
+	</div>
+</div>
+</div>
 	<section id="user-info">
 		<table class="ui celled table">
 			<h2>Profil korisnika</h2>
@@ -48,11 +79,13 @@
 
 	<section id="reservations">
 		<h2>Rezervacije</h2>
+		<button id="btn-add-reservation" class="ui button darkred">Dodaj rezervaciju</button>
 		<button id="btn-reservations" class="ui darkred button">Dohvati rezervacije</button>
 		<table class="ui celled table"></table>
 	</section>
 	<section id="pets" >
 		<h2>Ljubimci</h2>
+		<button id="btn-add-pet" class="ui button darkred">Dodaj ljubimca</button>
 		<button id="btn-pets" class="ui darkred button">Dohvati ljubimce</button>
 		<table class="ui celled table"></table>
 	</section>

@@ -7,6 +7,9 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import hr.petsonly.model.Reservation;
+import hr.petsonly.repository.ReservationRepository;
+
 @Controller
 @RequestMapping(value = "/testing")
 public class TestingController {
@@ -30,5 +33,11 @@ public class TestingController {
 	public boolean vratiJsonBooleanTest() {
 
 		return true;
+	}
+	
+	@RequestMapping(value = "/ubaciRez")
+	public String ubaciNekeRezervacije(ReservationRepository reservationRepository) {
+		
+		return null;
 	}
 }

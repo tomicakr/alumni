@@ -1,6 +1,7 @@
 package hr.petsonly.web;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 import java.util.UUID;
 
@@ -36,6 +37,8 @@ public class PetController {
 	public List<PetDetails> showPetList(Model model, @PathVariable UUID id) {
 		
 		List<Pet> petList = petRepository.findByOwnerId(id.toString());
+		System.out.println(Arrays.toString(petList.toArray()));
+		
 		List<PetDetails> petDetails = new ArrayList<>();
 		
 		petList.forEach(pet -> {

@@ -113,7 +113,7 @@ public class RepositoryTestController {
 
 		List<Pet> pets = pr.findByOwnerMnemonic("mp");
 		for(Pet p: pets){
-			result += p.getName() + " " + p.getOwner().getUserMnemonic() + "<br>";
+			result += p.getName() + " " + p.getBreed() + " " + p.getOwner().getUserMnemonic() + " " + p.getOwner().getUserId() + "<br>";
 		}
 		return result;
 	}

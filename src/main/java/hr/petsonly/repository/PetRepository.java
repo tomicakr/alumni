@@ -17,8 +17,7 @@ public interface PetRepository extends JpaRepository<Pet, UUID>{
 	//OWNER
 	List<Pet> findByOwner(User owner);
 	
-	
-	@Query(value = "SELECT * FROM PET p WHERE p.user_id = :user_id", nativeQuery = true)
+	@Query(value = "SELECT * FROM pet p WHERE p.user_id = :user_id", nativeQuery = true)
 	List<Pet> findByOwnerId(@Param("user_id") String userId);
 	
 	@Query(value = "SELECT * "

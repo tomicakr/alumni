@@ -50,6 +50,7 @@ public class JobController {
 		
 		Reservation reservation = reservationRepository.findOne(reservationId);
 		reservation.setReservationStatus(2); //accepted
+		reservationRepository.save(reservation);
 		
 		return "redirect:/jobs";
 	}
@@ -59,6 +60,7 @@ public class JobController {
 		
 		Reservation reservation = reservationRepository.findOne(reservationId);
 		reservation.setReservationStatus(3); //confirmed TODO: ovo treba pomocu enuma, ne samo broj
+		reservationRepository.save(reservation);
 		
 		return "redirect:/jobs";
 	}

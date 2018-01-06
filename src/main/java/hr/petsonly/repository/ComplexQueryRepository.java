@@ -1,14 +1,18 @@
 package hr.petsonly.repository;
 
 import java.util.List;
+import java.util.UUID;
 
+import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.NoRepositoryBean;
 
-@NoRepositoryBean
-public interface ComplexQueryRepository{
+import hr.petsonly.model.User;
+
+
+public interface ComplexQueryRepository extends JpaRepository<User, UUID>{
 	
-	@Query("SELECT u.name, u.surname, p.name FROM User u INNER JOIN Pet p ON user.user_id")
+	@Query(value = "SELECT u.name AS uname, u.surname AS usurname, p.name AS pname FROM users u INNER JOIN pet p ON u.user_id = p.user_id", nativeQuery = true)
 	List<Object[]> findAllUsersAndPets();
 	
 	

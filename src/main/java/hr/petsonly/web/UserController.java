@@ -55,6 +55,8 @@ public class UserController {
 	public String createUser(Model model, @Valid User user, BindingResult result) {
 
 		if (result.hasErrors()) {
+			System.out.println(result);
+			System.out.println(user);
 			model.addAttribute("user", user);
 			model.addAttribute("errorMessage", "Registracija nije valjana");
 			return "register";

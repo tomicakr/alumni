@@ -115,3 +115,21 @@ INSERT INTO reservation (reservation_key, document_path, duration, employee_id,
 					'2017-02-08 09:45:00', 50, 1, '2017-01-01 00:00:00',
                     1, 'fb8f4014-e0b0-4a5e-9079-320c1e1516e8', '33ef54cf-b2e2-4839-bd7f-866d51e7e571', '64ec5189-c400-451e-a986-97f06978aa5e');
                     
+INSERT INTO privilege (name) VALUES ("ADD_PET_OTHERS");
+INSERT INTO privilege (name) VALUES ("ADD_RESERVATION_OTHERS");
+INSERT INTO privilege (name) VALUES ("ELEVATE_USER_TO_EMPLOYEE");
+INSERT INTO privilege (name) VALUES ("ACCEPT_RESERVATION");
+INSERT INTO privilege (name) VALUES ("CONFIRM_RESERVATION");
+INSERT INTO privilege (name) VALUES ("VIEW_ALL_RESERVATIONS");
+INSERT INTO privilege (name) VALUES ("VIEW_FREE_RESERVATIONS");	
+
+INSERT INTO roles_privileges (role_id, privilege_id) VALUES (1,1);
+INSERT INTO roles_privileges (role_id, privilege_id) VALUES (1,2);
+INSERT INTO roles_privileges (role_id, privilege_id) VALUES (1,3);
+INSERT INTO roles_privileges (role_id, privilege_id) VALUES (1,4);
+INSERT INTO roles_privileges (role_id, privilege_id) VALUES (1,5);
+INSERT INTO roles_privileges (role_id, privilege_id) VALUES (1,6);
+INSERT INTO roles_privileges (role_id, privilege_id) VALUES (1,7);
+INSERT INTO roles_privileges (role_id, privilege_id) VALUES (2,4);
+INSERT INTO roles_privileges (role_id, privilege_id) VALUES (2,7);
+                    

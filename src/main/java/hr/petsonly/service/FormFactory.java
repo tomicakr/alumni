@@ -16,6 +16,7 @@ import hr.petsonly.model.Reservation;
 import hr.petsonly.model.Role;
 import hr.petsonly.model.User;
 import hr.petsonly.model.form.AddReservationForm;
+import hr.petsonly.model.form.EditUserForm;
 import hr.petsonly.model.form.PetForm;
 import hr.petsonly.model.form.RegistrationForm;
 import hr.petsonly.repository.LocationRepository;
@@ -97,5 +98,15 @@ public class FormFactory {
 		p.setSpecies(pf.getSpecies());
 		p.setOwner(ur.findOne(UUID.fromString(pf.getOwner())));
 		return p;
+	}
+	
+	public boolean editUserFromForm(User user, EditUserForm ef) {
+		if(ef.hasChanges(user)) {
+			return false;
+		}
+		
+		user.setMobilePhone(ef.getMobilePhone());
+		user.setLocation(lr.findOne(ef.getLocation()));
+		return true;
 	}
 }

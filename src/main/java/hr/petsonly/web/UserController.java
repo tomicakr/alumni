@@ -22,6 +22,7 @@ import hr.petsonly.model.User;
 import hr.petsonly.model.details.LocationDetails;
 import hr.petsonly.model.details.UserDetailsBasic;
 import hr.petsonly.model.details.UserDetailsMore;
+import hr.petsonly.model.form.EditUserForm;
 import hr.petsonly.model.form.RegistrationForm;
 import hr.petsonly.repository.LocationRepository;
 import hr.petsonly.repository.UserRepository;
@@ -55,13 +56,12 @@ public class UserController {
 	}
 
 	@GetMapping("/new")
-	public String showRegistrationForm(Model model, User user) {
+	public String showRegistrationForm(Model model) {
 
 		List<Location> locations = locationRepository.findAll();
 		List<LocationDetails> locationDetails = new ArrayList<>();
 		locations.forEach(location -> locationDetails.add(new LocationDetails(location)));
 
-		model.addAttribute("user", user);
 		model.addAttribute("locations", locationDetails);
 		
 		return "register";
@@ -70,9 +70,10 @@ public class UserController {
 	@PostMapping
 	public String createUser(Model model, @Valid RegistrationForm registrationForm, BindingResult result, HttpSession session) {
 
+		System.out.println(result);
+		System.out.println(registrationForm);
+
 		if (result.hasErrors()) {
-			System.out.println(result);
-			System.out.println(registrationForm);
 			model.addAttribute("registrationForm", registrationForm);
 			model.addAttribute("errorMessage", "Registracija nije valjana");
 			return "register";
@@ -122,6 +123,11 @@ public class UserController {
 
 		User user = userRepository.getOne(id);
 		
+		if(user == null) {
+			model.addAttribute("errorMessage", "Taj korisnik ne postoji!");
+			return "customError";
+		}
+		
 		List<Location> locations = locationRepository.findAll();
 		List<LocationDetails> locationDetails = new ArrayList<>();
 		locations.forEach(location -> locationDetails.add(new LocationDetails(location)));
@@ -133,7 +139,7 @@ public class UserController {
 	}
 
 	@RequestMapping(value = "/{id}", method = RequestMethod.PUT)
-	public String updateUser(Model model, @PathVariable UUID id, HttpSession session) {
+	public String updateUser(Model model, @PathVariable UUID id, HttpSession session, @Valid EditUserForm editUserForm, BindingResult result) {
 
 		UserDetailsMore userInSession = (UserDetailsMore) session.getAttribute("userInSession");
 
@@ -142,7 +148,16 @@ public class UserController {
 			return "customError";
 		}
 		
-		// TODO: dohvati usera iz baze i updateaj ga
+		if(result.hasErrors()) {
+			model.addAttribute("errorMessage", result.toString());
+			return "editUser";
+		}
+		
+		User user = userRepository.findOne(id);
+		
+		if(formFactory.editUserFromForm(user, editUserForm)) {
+			userRepository.save(user);
+		};
 		
 		return "redirect:/users/" + id.toString();
 	}
@@ -157,8 +172,8 @@ public class UserController {
 			return "customError";
 		}
 		
-		//TODO: delete user
-
+		userRepository.delete(userRepository.findOne(id));
+		
 		return "redirect:/index";
 	}
 

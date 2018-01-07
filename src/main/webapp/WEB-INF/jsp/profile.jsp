@@ -37,8 +37,24 @@
 			<div class="field">
 				<input type="text" name="name" id="pet-name" placeholder="Ime">
 			</div>
-			<div class="field">
-				<input type="number" name="age" id="pet-age" placeholder="Broj godina">
+			<div class="two equal width fields">
+				<div class="field">
+					<input type="number" name="age" id="pet-age" placeholder="Starost">
+				</div>
+				<div class="field">
+					<div class="ui dropdown selection" tabindex="0">
+						<select name="sex" id="gender">
+							<option value="">Spol</option>
+							<option value="M">Dečko</option>
+							<option value="F">Cura</option>
+						</select><i class="dropdown icon"></i>
+						<div class="default text">Spol</div>
+						<div class="menu transition hidden" tabindex="-1">
+							<div class="item" data-value="M">Dečko</div>
+							<div class="item" data-value="F">Cura</div>
+						</div>
+					</div>
+				</div>
 			</div>
 			<div class="field">
 				<input type="text" name="species" id="pet-species" placeholder="Vrsta">

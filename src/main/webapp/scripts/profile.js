@@ -101,12 +101,25 @@ const petValidation = {
             prompt: 'Ljubimac mora imati broj godina'
         }]
     },
+    sex: {
+        identifier: 'gender',
+        rules: [{
+            type: 'empty',
+            prompt: 'Molimo odredite spol'
+        }]
+    },
     species: {
         identifier: 'pet-species',
         rules: [{
             type: 'empty',
             prompt: 'Molimo odaberite vrstu ljubimca'
         }]
+    },
+    breed: {
+        identifier: 'pet-breed'
+    },
+    microchip: {
+        identifier: 'pet-chip'
     }
 };
 $(document)
@@ -120,11 +133,18 @@ $(document)
                 $('#add-pet-modal')
                     .modal('hide');
             }
-        });
+        })
+        ;
+        $('.ui.dropdown')
+            .dropdown({
+                action: 'activate'
+            })
+        ;
     });
 
 function addPet(fields){
-    appendPet(fields)
+    appendPet(fields);
+    //fields.owner = 'fb8f4014-e0b0-4a5e-9079-320c1e1516e8';
     $.post({
         url: petIndex,
         contentType: "application/json; charset=utf-8",
@@ -134,3 +154,7 @@ function addPet(fields){
     })
         .catch(console.log);
 }
+
+$('.ui.dropdown')
+    .dropdown()
+;

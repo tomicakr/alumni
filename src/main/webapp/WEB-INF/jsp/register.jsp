@@ -42,9 +42,9 @@
 					placeholder="Adresa elektroničke pošte">
 			</div>
 			<div class="field">
-				<select name="location" title="">
+				<select name="location" class="ui search dropdown">
 					<c:forEach var="location" items="${locations}">
-						<option value="${location.id}" selected>${location.name}</option>
+						<option value="${location.id}">${location.name}</option>
 					</c:forEach>
 				</select>
 			</div>

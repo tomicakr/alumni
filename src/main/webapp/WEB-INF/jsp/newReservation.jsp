@@ -41,7 +41,7 @@
 				<select name="employee" class="ui search dropdown" id="employeeOdabir">
 					<option value="">Odaberite zaposlenika</option>
 					<c:forEach var="employee" items="${employees}">
-					<option value="${employee.userId}">${employee.name}</option>
+					<option value="${employee.userId}">${employee.firstName} ${employee.lastName}</option>
 				</c:forEach>
 			</select>
 

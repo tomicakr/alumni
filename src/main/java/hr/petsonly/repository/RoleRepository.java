@@ -9,9 +9,9 @@ import hr.petsonly.model.Role;
 public interface RoleRepository extends JpaRepository<Role, Long>{
 	
 	//NAME
-	List<Role> findAllByName(String name);
+	Role findByName(String name);
 	
-	List<Role> findAllByNameIgnoreCase(String name);
+	Role findByNameIgnoreCase(String name);
 	
 	List<Role> findAllByNameLike(String name);
 	

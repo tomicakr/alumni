@@ -14,8 +14,7 @@ public class RegistrationForm {
 	
 	@NotNull
 	private String userPid;
-	
-	@NotNull
+
 	private String mobilePhone;
 	
 	@NotNull
@@ -24,10 +23,8 @@ public class RegistrationForm {
 	@NotNull
 	private String email;
 	
-	@NotNull
-	private String location;
+	private Integer location;
 	
-	@NotNull
 	private String address;
 	
 	@NotNull
@@ -42,7 +39,7 @@ public class RegistrationForm {
 	}
 
 	public RegistrationForm(String name, String surname, String userPid, String mobilePhone, String phone, String email,
-			String location, String address, String password, String password2) {
+			Integer location, String address, String password, String password2) {
 		super();
 		this.name = name;
 		this.surname = surname;
@@ -105,11 +102,11 @@ public class RegistrationForm {
 		this.email = email;
 	}
 
-	public String getLocation() {
+	public Integer getLocation() {
 		return location;
 	}
 
-	public void setLocation(String location) {
+	public void setLocation(Integer location) {
 		this.location = location;
 	}
 

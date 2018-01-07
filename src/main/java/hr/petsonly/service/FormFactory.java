@@ -7,6 +7,7 @@ import org.springframework.stereotype.Service;
 
 import hr.petsonly.model.Location;
 import hr.petsonly.model.User;
+import hr.petsonly.model.form.RegistrationForm;
 import hr.petsonly.repository.LocationRepository;
 import hr.petsonly.repository.UserRepository;
 
@@ -18,20 +19,20 @@ public class FormFactory {
 	@Autowired
 	UserRepository ur;
 	
-	public User createUserFromForm(/*RegistrationForm rf*/){
+	public User createUserFromForm(RegistrationForm rf){
 		User u = new User();
 		u.setUserId(UUID.randomUUID());
-		u.setName(null/*rf.getName()*/);
-		u.setSurname(null/*rf.getSurname()*/);
-		u.setUserPid(null/*rf.getUserPid()*/);
-		u.setMobilePhone(null/*rf.getMobilePhone()*/);
-		u.setPhone(null/*ref.getPhone()*/);
-		u.setEmail(null/*rf.getEmail()*/);
-		u.setAddress(null/*rf.getAddress*/);
-		u.setPassword(null/*rf.setPassword()*/);
+		u.setName(rf.getName());
+		u.setSurname(rf.getSurname());
+		u.setUserPid(rf.getUserPid());
+		u.setMobilePhone(rf.getMobilePhone());
+		u.setPhone(rf.getPhone());
+		u.setEmail(rf.getEmail());
+		u.setAddress(rf.getAddress());
+		u.setPassword(rf.getPassword());
 		
-		if(true/*rf.getLocation() != null*/){
-			Location l = lr.findByZipCode(0/*rf.getLocation()*/);
+		if(rf.getLocation() != null){
+			Location l = lr.findByZipCode(rf.getLocation());
 			u.setLocation(l);
 		}
 		

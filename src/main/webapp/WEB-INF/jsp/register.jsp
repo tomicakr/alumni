@@ -38,7 +38,7 @@
 				</div>
 				<div class="field">
 					<select name="location" title="">
-						<option value="292dd5ea-5f28-4794-8eec-94adb19e46c2" selected>Zagreb</option>
+						<option value="10000" selected>Zagreb</option>
 						<option value="21000">Split</option>
 						<option value="31000">Osijek</option>
 						<option value="42000">Varaždin</option>

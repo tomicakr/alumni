@@ -20,7 +20,9 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import hr.petsonly.model.User;
 import hr.petsonly.model.details.UserDetailsBasic;
 import hr.petsonly.model.details.UserDetailsMore;
+import hr.petsonly.model.form.RegistrationForm;
 import hr.petsonly.repository.UserRepository;
+import hr.petsonly.service.FormFactory;
 
 @Controller
 @RequestMapping("/users")
@@ -28,7 +30,10 @@ public class UserController {
 
 	@Autowired
 	private UserRepository userRepository;
-
+	
+	@Autowired
+	private FormFactory formFactory;
+	
 	@GetMapping
 	public String showUserList(Model model) {
 
@@ -52,17 +57,18 @@ public class UserController {
 	}
 
 	@PostMapping
-	public String createUser(Model model, @Valid User user, BindingResult result) {
+	public String createUser(Model model, @Valid RegistrationForm registrationForm, BindingResult result) {
 
 		if (result.hasErrors()) {
 			System.out.println(result);
-			System.out.println(user);
-			model.addAttribute("user", user);
+			System.out.println(registrationForm);
+			model.addAttribute("registrationForm", registrationForm);
 			model.addAttribute("errorMessage", "Registracija nije valjana");
 			return "register";
 		}
 		
-		userRepository.save(user);
+		User u = formFactory.createUserFromForm(registrationForm);
+		userRepository.save(u);
 
 		return "redirect:/users";
 	}

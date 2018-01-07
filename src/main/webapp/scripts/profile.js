@@ -63,16 +63,8 @@ function updateTable(jsonGetter, appender) {
         .fail(console.log);
 }
 
-function addPet(fields){
-    appendPet(fields)
-    $.post({
-        url: petIndex,
-        data: JSON.stringify(fields)
-    })
-        .catch(console.log);
-}
-
 btnPets.click(updatePets);
+
 btnAddPet.click(function() {
     $('#add-pet-modal')
         .modal('show');
@@ -92,8 +84,8 @@ btnDelete.click(function() {
         .modal('show')
     ;
 });
-
 btnEdit.click(() => window.location.href = `${userIndex}edit`);
+
 const petValidation = {
     name: {
         identifier: 'pet-name',
@@ -117,7 +109,6 @@ const petValidation = {
         }]
     }
 };
-
 $(document)
     .ready(function() {
         $('.ui.form').form({
@@ -131,3 +122,15 @@ $(document)
             }
         });
     });
+
+function addPet(fields){
+    appendPet(fields)
+    $.post({
+        url: petIndex,
+        contentType: "application/json; charset=utf-8",
+        cache: false,    //This will force requested pages not to be cached by the browser
+        processData:false, //To avoid making query String instead of JSON
+        data: JSON.stringify(fields)
+    })
+        .catch(console.log);
+}

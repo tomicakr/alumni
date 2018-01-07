@@ -60,8 +60,10 @@ public class PetController {
 		return "addPet";
 	}
 	
-	@RequestMapping(method = RequestMethod.POST)
-	public String addNewPet(Model model, @PathVariable UUID id, @Valid Pet pet, BindingResult result) {
+	@JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
+	@ResponseBody
+	@RequestMapping(method = RequestMethod.POST, produces = MediaType.APPLICATION_JSON_VALUE, consumes = MediaType.APPLICATION_JSON_VALUE)
+	public PetDetails addNewPet(@RequestBody PetForm petForm, Model model, @PathVariable UUID id, BindingResult result) {
 		
 		User user = userRepository.findOne(id);
 		if(result.hasErrors()) {

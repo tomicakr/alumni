@@ -95,7 +95,6 @@ public class FormFactory {
 		p.setRemark(pf.getRemark());
 		p.setSex(pf.getSex());
 		p.setSpecies(pf.getSpecies());
-		
 		p.setOwner(ur.findOne(UUID.fromString(pf.getOwner())));
 		return p;
 	}

@@ -114,7 +114,7 @@
 
 	<section id="reservations">
 		<h2>Rezervacije</h2>
-		<button id="btn-add-reservation" class="ui button darkred">Dodaj rezervaciju</button>
+		<button id="btn-add-reservation" class="ui button darkred" ><a href="${pageContext.request.contextPath}/users/${userInSession.userPid}/reservations/new">Dodaj rezervaciju</a></button>
 		<button id="btn-reservations" class="ui darkred button">Dohvati rezervacije</button>
 		<table class="ui celled table"></table>
 	</section>

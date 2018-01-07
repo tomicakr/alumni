@@ -10,31 +10,31 @@ INSERT INTO location (location_id, location_name, zip_code)
 INSERT INTO users (user_id, name, surname, user_pid, user_mnemonic,
 				   email, mobile_phone, phone, location_id, password,
                    address, notification_setting, remark)
-			VALUES('368ec8e2-c7cb-4eaf-b3f1-0077333fbea9', "Mate", "Paulinović", "mp00", "mp",
+			VALUES('368ec8e2-c7cb-4eaf-b3f1-0077333fbea9', "Mate", "Paulinović", "63884677757", "mp0",
 				   "mate.paulinovic@gmail.com", "0994562345", "4645555", '292dd5ea-5f28-4794-8eec-94adb19e46c2', "mate123",
                    "gracanska 126", 2, "nema");
 INSERT INTO users (user_id, name, surname, user_pid, user_mnemonic,
 				   email, mobile_phone, phone, location_id, password,
                    address, notification_setting, remark)
-			VALUES('fb8f4014-e0b0-4a5e-9079-320c1e1516e8', "Filip", "Sodić", "fs01", "fs",
+			VALUES('fb8f4014-e0b0-4a5e-9079-320c1e1516e8', "Filip", "Sodić", "69094866377", "fs0",
 				   "filip.sodic@gmail.com", "0994539394", "4645542", 'd167cd4c-be23-4dc3-9280-8e6451b41c46', "filip123",
                    "sodiceva 32", 2, "puno");
 INSERT INTO users (user_id, name, surname, user_pid, user_mnemonic,
 				   email, mobile_phone, phone, location_id, password,
                    address, notification_setting, remark)
-			VALUES('0e070ca1-4950-40ff-a1d7-8f65e6f559bf', "Tomica", "Kravršćan", "tk01", "tk",
+			VALUES('0e070ca1-4950-40ff-a1d7-8f65e6f559bf', "Tomica", "Kravršćan", "25295020607", "tk0",
 				   "tomica.kravrscan@gmail.com", "0996578125", "4643124", '10e619f2-5d4c-418a-b703-d265e873b774', "tomica123",
                    "smarkusevecka ulica 23", 2, "neki");
 INSERT INTO users (user_id, name, surname, user_pid, user_mnemonic,
 				   email, mobile_phone, phone, location_id, password,
                    address, notification_setting, remark)
-			VALUES('0ae3760e-8ce3-4a4e-b678-98d5f6a86c65', "Vlado", "Galiuskas", "vg01", "vg",
+			VALUES('0ae3760e-8ce3-4a4e-b678-98d5f6a86c65', "Vlado", "Galiuskas", "22242743756", "vg0",
 				   "galiuskas@gmail.com", "09", "4643134", 'bdd93cdb-a85f-4182-b051-c3d061eb583a', "vlado123",
                    "istrijanska ulica 23", 2, "ne bas");
 INSERT INTO users (user_id, name, surname, user_pid, user_mnemonic,
 				   email, mobile_phone, phone, location_id, password,
                    address, notification_setting, remark)
-			VALUES('48c2ad9c-c37a-4dbc-a823-11adbbe11769', "Maja", "Krmpotić-Đurđević", "mkđ01", "mkđ",
+			VALUES('48c2ad9c-c37a-4dbc-a823-11adbbe11769', "Maja", "Krmpotić-Đurđević", "41391200191", "mk0",
 				   "maja.krmpi@gmail.com", "0913264547", "3212132", 'bdd93cdb-a85f-4182-b051-c3d061eb583a', "maja123",
                    "pazinska 13", 1, "simpa");
                    
@@ -42,7 +42,7 @@ INSERT INTO users (user_id, name, surname, user_pid, user_mnemonic,
 				   email, mobile_phone, phone, location_id, password,
                    address, notification_setting, remark,
                    not_available_from, not_available_to)
-			VALUES('49341e99-918c-4214-a2f2-21403bc617aa', "Zaposlenik", "Zaposlenković", "zz00", "zz",
+			VALUES('49341e99-918c-4214-a2f2-21403bc617aa', "Zaposlenik", "Zaposlenković", "76885283160", "zz0",
 				   "zaposlenik@gmail.com", "099268953", "4645777", '292dd5ea-5f28-4794-8eec-94adb19e46c2', "zaposlenik123",
                    "zaposlenicka 3", 2, "nema",
                    '23:00:000', '06:00:00');

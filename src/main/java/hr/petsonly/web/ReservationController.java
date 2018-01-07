@@ -6,6 +6,7 @@ import java.util.UUID;
 
 import javax.validation.Valid;
 
+import org.hibernate.hql.internal.ast.tree.FromElementFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -21,8 +22,10 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import hr.petsonly.model.Reservation;
 import hr.petsonly.model.User;
 import hr.petsonly.model.details.ReservationDetails;
+import hr.petsonly.model.form.AddReservationForm;
 import hr.petsonly.repository.ReservationRepository;
 import hr.petsonly.repository.UserRepository;
+import hr.petsonly.service.FormFactory;
 
 @Controller
 @RequestMapping(value = "users/{uid}/reservations")
@@ -34,6 +37,9 @@ public class ReservationController {
 	@Autowired
 	private UserRepository userRepository;
 
+	@Autowired
+	private FormFactory formFactory;
+	
 	@ResponseBody
 	@GetMapping
 	public List<ReservationDetails> showAllReservationsOfAUser(@PathVariable UUID uid) {
@@ -50,31 +56,32 @@ public class ReservationController {
 	}
 
 	@GetMapping(value = "/new")
-	public String showReservationForm(Model model, Reservation reservation) {
-
-		model.addAttribute("reservation", reservation);
+	public String showReservationForm(Model model, @PathVariable UUID uid) {
+		
+		model.addAttribute("userId", uid);
+		
 		return "newReservation";
 	}
 
 	@PostMapping
-	public String createReservation(Model model, @PathVariable UUID uid, @Valid Reservation reservation, BindingResult result) {
+	public String createReservation(Model model, @PathVariable UUID uid, @Valid AddReservationForm reservationForm, BindingResult result) {
 
 		if (result.hasErrors()) {
-			model.addAttribute("reservation", reservation);
+			model.addAttribute("reservation", reservationForm);
 			return "newReservation";
 		}
 
 		User user = userRepository.getOne(uid);
-		user.getReservations().add(reservation);
-
+		user.getReservations().add(formFactory.createReservationFromForm(reservationForm));
 		userRepository.save(user);
+		
 		return String.format("redirect:/users/%s/reservations", uid.toString());
 	}
 
 	@GetMapping(value = "/{id}")
-	public String showSelectedReservation(Model model, @PathVariable UUID reservationId) {
+	public String showSelectedReservation(Model model, @PathVariable UUID id) {
 
-		Reservation reservation = reservationRepository.getOne(reservationId);
+		Reservation reservation = reservationRepository.getOne(id);
 		ReservationDetails reservationDetails = new ReservationDetails(reservation);
 
 		model.addAttribute("reservation", reservationDetails);
@@ -82,11 +89,7 @@ public class ReservationController {
 	}
 
 	@GetMapping(value = "/{id}/edit")
-	public String showReservationEditForm(Model model, @PathVariable UUID reservationId) {
-
-		Reservation reservation = reservationRepository.getOne(reservationId);
-		model.addAttribute("reservation", reservation);
-
+	public String showReservationEditForm(Model model, @PathVariable UUID id) {
 		return "reservationEdit";
 	}
 

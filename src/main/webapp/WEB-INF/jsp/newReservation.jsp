@@ -11,7 +11,7 @@
 	<main class="ui middle aligned center aligned grid">
 		<div class="column">
 			<h1 class="ui image massive header">Nova rezervacija</h1>
-			<form action="users/${userId}/reservations/" method="post"
+			<form action="/users/${userId}/reservations/" method="post"
 			class="ui large form segment stacked">
 			
 			<div class="field">

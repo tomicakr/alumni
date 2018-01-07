@@ -1,0 +1,5 @@
+@import url(forms.css);
+
+.accordion .title{
+    text-align: left;
+}

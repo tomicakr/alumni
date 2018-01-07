@@ -1,0 +1,14 @@
+@import url(https://fonts.googleapis.com/css?family=Raleway|Varela+Round|Coda);
+
+
+body>.grid {
+    height: 100%;
+}
+
+.column {
+    max-width: 40%;
+}
+
+h1{
+    font-size: 3.5em !important;
+}

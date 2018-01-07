@@ -1,3 +1,4 @@
+<%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -15,28 +16,34 @@
 				<tr>
 					<th>Ime ljubimaca</th>
 					<th>Usluga</th>
+					<th>Detaljno</th>
+					<th>Prihvati</th>
+					<th>Potvrdi</th>
 				</tr>
 			</thead>
 			<tbody>
 				<c:forEach var="reservation" items="${reservations}">
 				<tr>
 					<td>${reservation.pet}</td>
-					<td>${reservation.service}</td>
-
-					<form method="get" action="/jobs/${reservation.reservationId}">
+					<td>${reservation.reservationId}</td>
+					<td>
+						<form method="get" action="/jobs/${reservation.reservationId}">
 						<input type="hidden" name="reservationId" value="${reservation.reservationId}" />
-						<input type="submit" value="Detaljno">Detaljno</input>				
+						<input type="submit" value="Detaljno"></input>				
 					</form>
-
-					<form method="post" action="/jobs/${reservation.reservationId}/accept">
+					</td>
+					<td>
+						<form method="post" action="/jobs/${reservation.reservationId}/accept">
 						<input type="hidden" name="reservationId" value="${reservation.reservationId}" />
-						<input type="submit" value="Prihvati">Prihvati</input>				
+						<input type="submit" value="Prihvati"></input>				
 					</form>
-
-					<form method="post" action="/jobs/${reservation.reservationId}/confirm">
+					</td>
+					<td>
+						<form method="post" action="/jobs/${reservation.reservationId}/confirm">
 						<input type="hidden" name="reservationId" value="${reservation.reservationId}" />
-						<input type="submit" value="Potvrdi">Potrvrdi</input>					
+						<input type="submit" value="Potvrdi"></input>					
 					</form>
+					</td>				
 			</tr>
 		</c:forEach>
 	</tbody>

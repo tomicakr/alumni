@@ -28,16 +28,14 @@ public class JobController {
 		
 		List<Reservation> allReservations = reservationRepository.findAll();
 		List<ReservationDetails> reservationDetailsAll = new ArrayList<>();
-		
 		allReservations.forEach(res -> reservationDetailsAll.add(new ReservationDetails(res)));
 		model.addAttribute("reservations", reservationDetailsAll);
 		
 		return "jobs";
 	}
 	
-	@GetMapping("/{id}")
+	@GetMapping("/{reservationId}")
 	public String showReservationDetalils(Model model, @PathVariable UUID reservationId) {
-		
 		Reservation reservation = reservationRepository.findOne(reservationId);
 		ReservationDetails reservationDetails = new ReservationDetails(reservation);
 		model.addAttribute("reservation", reservationDetails);
@@ -45,7 +43,7 @@ public class JobController {
 		return "reservation";
 	}
 	
-	@PostMapping("/{id}/accept")
+	@PostMapping("/{reservationId}/accept")
 	public String acceptReservation(@PathVariable UUID reservationId) {
 		
 		Reservation reservation = reservationRepository.findOne(reservationId);
@@ -55,7 +53,7 @@ public class JobController {
 		return "redirect:/jobs";
 	}
 	
-	@PostMapping("/{id}/confirm")
+	@PostMapping("/{reservationId}/confirm")
 	public String confirmReservation(@PathVariable UUID reservationId) {
 		
 		Reservation reservation = reservationRepository.findOne(reservationId);

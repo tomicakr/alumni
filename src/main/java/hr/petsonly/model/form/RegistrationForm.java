@@ -2,8 +2,6 @@ package hr.petsonly.model.form;
 
 import javax.validation.constraints.NotNull;
 
-import hr.petsonly.model.Location;
-
 public class RegistrationForm {
 	
 	@NotNull

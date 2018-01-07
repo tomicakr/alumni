@@ -3,19 +3,24 @@ package hr.petsonly.service;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.Arrays;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.UUID;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import hr.petsonly.model.Location;
+import hr.petsonly.model.Pet;
 import hr.petsonly.model.Reservation;
 import hr.petsonly.model.Role;
 import hr.petsonly.model.User;
 import hr.petsonly.model.form.AddReservationForm;
+import hr.petsonly.model.form.PetForm;
 import hr.petsonly.model.form.RegistrationForm;
 import hr.petsonly.repository.LocationRepository;
 import hr.petsonly.repository.PetRepository;
+import hr.petsonly.repository.RoleRepository;
 import hr.petsonly.repository.ServiceRepository;
 import hr.petsonly.repository.UserRepository;
 
@@ -23,13 +28,15 @@ import hr.petsonly.repository.UserRepository;
 public class FormFactory {
 	
 	@Autowired
-	LocationRepository lr;
+	private LocationRepository lr;
 	@Autowired
-	UserRepository ur;
+	private UserRepository ur;
 	@Autowired
-	ServiceRepository sr;
+	private ServiceRepository sr;
 	@Autowired
-	PetRepository pr;
+	private PetRepository pr;
+	@Autowired 
+	private RoleRepository rr;
 	
 	public User createUserFromForm(RegistrationForm rf){
 		User u = new User();
@@ -55,6 +62,11 @@ public class FormFactory {
 		String pattern = u.getName() + u.getSurname();
 		Long num = ur.countByUserMnemonic(pattern+"[0-9]*");
 		u.setUserMnemonic(pattern + num);
+		
+		List<Role> roles = new ArrayList<>();
+		Role r = rr.findByNameIgnoreCase("ROLE_KORISNIK");
+		roles.add(r);
+		u.setRoles(roles);
 		return u;
 	}
 
@@ -74,5 +86,20 @@ public class FormFactory {
 			r.setEmployee(ur.findOne(UUID.fromString(arf.getEmployee())));	
 		}
 		return r;
+	}
+	
+	public Pet createPetFromForm(PetForm pf){
+		Pet p = new Pet();
+		p.setPetKey(UUID.randomUUID());
+		p.setName(pf.getName());
+		p.setAge(pf.getAge());
+		p.setBreed(pf.getBreed());
+		p.setMicrochip(pf.getMicrochip());
+		p.setRemark(pf.getRemark());
+		p.setSex(pf.getSex());
+		p.setSpecies(pf.getSpecies());
+		
+		p.setOwner(ur.findOne(UUID.fromString(pf.getOwner())));
+		return p;
 	}
 }

@@ -68,9 +68,7 @@ public class UserController {
 		}
 		
 		User user = formFactory.createUserFromForm(registrationForm);
-		userRepository.save(user);
-		
-		user = userRepository.findByEmail(user.getEmail());
+		user = userRepository.save(user);
 		
 		UserDetailsMore userDetails = new UserDetailsMore(user);
 		session.setAttribute("userInSession", userDetails);

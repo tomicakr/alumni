@@ -170,4 +170,25 @@ public class RepositoryTestController {
 		return result;
 	}
 	
+	@RequestMapping("/repotest/addPet")
+	public void addPet(){
+		User owner = ur.getOne(UUID.fromString("48c2ad9c-c37a-4dbc-a823-11adbbe11769"));
+		Pet p = new Pet();
+		p.setPetKey(UUID.randomUUID());
+		p.setAge(1);
+		p.setBreed("patuljasti šnaucer");
+		p.setMicrochip("ABXDESD");
+		p.setName("snjofo");
+		p.setOwner(owner);
+		p.setRemark("");
+		p.setSex('f');
+		p.setSpecies("pas");
+		
+		if(false){
+			owner.getPets().add(p);
+			ur.save(owner);
+		} else {
+			pr.save(p);
+		}
+	}
 }

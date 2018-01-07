@@ -2,6 +2,7 @@ package hr.petsonly.service;
 
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
+import java.util.Arrays;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
@@ -47,6 +48,10 @@ public class FormFactory {
 		u.setEmail(rf.getEmail());
 		u.setAddress(rf.getAddress());
 		u.setPassword(rf.getPassword());
+		
+		Role role = new Role();
+		role.setName("admin");
+		u.setRoles(Arrays.asList(role));
 		
 		if(rf.getLocation() != null){
 			Location l = lr.findByZipCode(rf.getLocation());

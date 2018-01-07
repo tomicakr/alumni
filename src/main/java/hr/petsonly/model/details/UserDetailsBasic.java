@@ -30,6 +30,7 @@ public class UserDetailsBasic {
 		this.mnemonicId = user.getUserMnemonic();
 		this.roles = new ArrayList<>();
 		
+		roles = new ArrayList<>();
 		user.getRoles().forEach((role) -> {
 			roles.add(role.getName());
 		});

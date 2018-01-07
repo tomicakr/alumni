@@ -53,10 +53,8 @@ public class FormFactory {
 		role.setName("admin");
 		u.setRoles(Arrays.asList(role));
 		
-		if(rf.getLocation() != null){
-			Location l = lr.findByZipCode(rf.getLocation());
-			u.setLocation(l);
-		}
+		Location l = lr.findOne(rf.getLocation());
+		u.setLocation(l);
 		
 		String pattern = u.getName() + u.getSurname();
 		Long num = ur.countByUserMnemonic(pattern+"[0-9]*");

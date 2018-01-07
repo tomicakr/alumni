@@ -121,8 +121,13 @@ public class UserController {
 		}
 
 		User user = userRepository.getOne(id);
+		
+		List<Location> locations = locationRepository.findAll();
+		List<LocationDetails> locationDetails = new ArrayList<>();
+		locations.forEach(location -> locationDetails.add(new LocationDetails(location)));
 
-		model.addAttribute("userForEdit", user);
+		model.addAttribute("locations", locationDetails);
+		model.addAttribute("user", user);
 
 		return "editUser";
 	}

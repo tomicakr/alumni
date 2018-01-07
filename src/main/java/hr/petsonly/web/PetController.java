@@ -69,9 +69,8 @@ public class PetController {
 		petForm.setOwner(id.toString());
 		Pet pet = formFactory.createPetFromForm(petForm);
 		
-		petRepository.save(pet);
-		List<Pet> petList = petRepository.findByOwnerAndMicrochip(pet.getOwner(), pet.getMicrochip()); // Treba ovo jer se u bazi postavlja petKey
-		PetDetails petDetails = new PetDetails(petList.get(0));
+		pet = petRepository.save(pet);
+		PetDetails petDetails = new PetDetails(pet);
 		
 		return petDetails;
 	}

@@ -16,8 +16,6 @@ public class AddReservationForm {
 	private UUID pet;
 	
 	@NotNull
-	private UUID user;
-	
 	private UUID employee;
 	
 	@NotNull
@@ -26,7 +24,6 @@ public class AddReservationForm {
 	@NotNull
 	private String executionDate;
 	
-
 	@NotNull
 	private String duration;
 		
@@ -47,14 +44,6 @@ public class AddReservationForm {
 
 	public void setPet(UUID pet) {
 		this.pet = pet;
-	}
-
-	public UUID getUser() {
-		return user;
-	}
-
-	public void setUser(UUID user) {
-		this.user = user;
 	}
 
 	public UUID getEmployee() {
@@ -95,5 +84,12 @@ public class AddReservationForm {
 
 	public void setExecutionDate(String executionDate) {
 		this.executionDate = executionDate;
+	}
+
+	@Override
+	public String toString() {
+		return "AddReservationForm [service=" + service + ", pet=" + pet + ", employee=" + employee
+				+ ", executionTime=" + executionTime + ", executionDate=" + executionDate + ", duration=" + duration
+				+ ", sendReminder=" + sendReminder + "]";
 	}
 }

@@ -81,8 +81,10 @@ public class ReservationController {
 
 	@PostMapping
 	public String createReservation(Model model, @PathVariable UUID uid, @Valid AddReservationForm reservationForm, BindingResult result) {
-		System.out.println("USAO SAM U POST");
+		
 		if (result.hasErrors()) {
+			System.out.println(result);
+			System.out.println(reservationForm);
 			model.addAttribute("reservation", reservationForm);
 			return "newReservation";
 		}

@@ -24,7 +24,7 @@ public class ReservationDetails {
 		this.setReservationId(reservation.getReservationKey());
 		this.pet = reservation.getPet().getName();
 		this.service = reservation.getService().getName(); 
-		this.employee = reservation.getEmployee().getName() + " " + reservation.getEmployee().getSurname();
+		this.employee = reservation.getEmployee() == null ? null :reservation.getEmployee().getName() + " " + reservation.getEmployee().getSurname();
 		this.time = reservation.getReservationTime().toString();
 
 		switch (reservation.getReservationStatus()) {

@@ -15,7 +15,12 @@
 			class="ui large form segment stacked">
 			
 			<div class="field">
-				<input type="text" name="service" id="usluga" placeholder="Usluga">
+				<select name="service" class="ui search dropdown" id="usluga">
+				<option value="">Odaberite uslugu</option>
+					<c:forEach var="service" items="${services}">
+					<option value="${service.id}">${service.name}</option>
+				</c:forEach>
+				</select>
 			</div>
 
 			<div class="field">
@@ -29,12 +34,7 @@
 
 			<div class="field">
 				<label>Unesite datum rezervacije</label>
-				<input type="date" name="executionDate" id="executionDate">
-			</div>
-			<div class="field">
-				<label>Unesite vrijeme rezervacije</label>
-				<input type="time" name="executionTime" id="executionTime"
-				placeholder="Vrijeme rezervacije">
+				<input type="datetime-local" name="executionTime" id="executionTime">
 			</div>
 
 			<div class="field">
@@ -55,11 +55,13 @@
 
 			<div class="field">
 				<div class="ui checked checkbox">
-				<input type="checkbox" name="sendReminder" checked="">
+				<input type="checkbox" name="sendReminder" value="1" checked="checked">
 				<label>Želim dobiti podsjetnik na mail?</label>
 			</div>
 			</div>
-
+			
+			<input type="hidden" value="${userId}" name="owner">
+	
 
 			<div class="ui fluid huge darkred submit button" style="width: 100%">Napravi rezervaciju!</div>
 		</form>

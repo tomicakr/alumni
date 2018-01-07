@@ -8,26 +8,24 @@ import org.springframework.stereotype.Component;
 
 @Component
 public class AddReservationForm {
-	
+
+	@NotNull
+	private UUID owner;
+
 	@NotNull
 	private String service;
-	
+
 	@NotNull
 	private UUID pet;
-	
-	@NotNull
+
 	private UUID employee;
-	
-//	@NotNull
-//	private String executionTime;
-//	
-//	@NotNull
-//	private String executionDate;
-	
+
+	@NotNull
+	private String executionTime;
+
 	@NotNull
 	private String duration;
-		
-	@NotNull
+
 	private String sendReminder;
 
 	public String getService() {
@@ -54,13 +52,13 @@ public class AddReservationForm {
 		this.employee = employee;
 	}
 
-//	public String getExecutionTime() {
-//		return executionTime;
-//	}
-//
-//	public void setExecutionTime(String executionTime) {
-//		this.executionTime = executionTime;
-//	}
+	public String getExecutionTime() {
+		return executionTime;
+	}
+
+	public void setExecutionTime(String executionTime) {
+		this.executionTime = executionTime;
+	}
 
 	public String getDuration() {
 		return duration;
@@ -77,13 +75,19 @@ public class AddReservationForm {
 	public void setSendReminder(String sendReminder) {
 		this.sendReminder = sendReminder;
 	}
-	
-//	public String getExecutionDate() {
-//		return executionDate;
-//	}
-//
-//	public void setExecutionDate(String executionDate) {
-//		this.executionDate = executionDate;
-//	}
+
+	public UUID getOwner() {
+		return owner;
+	}
+
+	public void setOwner(UUID owner) {
+		this.owner = owner;
+	}
+
+	@Override
+	public String toString() {
+		return "AddReservationForm [service=" + service + ", pet=" + pet + ", owner=" + owner + ", employee=" + employee + ", executionTime="
+				+ executionTime + ", duration=" + duration + ", sendReminder=" + sendReminder + "]";
+	}
 
 }

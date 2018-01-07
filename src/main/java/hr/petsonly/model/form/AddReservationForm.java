@@ -27,7 +27,7 @@ public class AddReservationForm {
 	private double duration;
 		
 	@NotNull
-	private String sendReservation;
+	private String sendReminder;
 
 	public String getService() {
 		return service;
@@ -76,12 +76,12 @@ public class AddReservationForm {
 	public void setDuration(double duration) {
 		this.duration = duration;
 	}
-
-	public String getSendReservation() {
-		return sendReservation;
+	
+	public String getSendReminder() {
+		return sendReminder;
 	}
-
-	public void setSendReservation(String sendReservation) {
-		this.sendReservation = sendReservation;
+	
+	public void setSendReminder(String sendReminder) {
+		this.sendReminder = sendReminder;
 	}
 }

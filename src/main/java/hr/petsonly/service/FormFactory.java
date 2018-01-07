@@ -75,7 +75,7 @@ public class FormFactory {
 		r.setReservationTime(LocalDateTime.now());
 		r.setExecutionTime(LocalDateTime.parse(arf.getExecutionTime(), DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm")));
 		r.setDuration(arf.getDuration());
-		r.setSendReminder(arf.getSendReservation().toLowerCase().equals("yes") || arf.getSendReservation().toLowerCase().equals("y"));
+		r.setSendReminder(arf.getSendReminder().toLowerCase().equals("yes") || arf.getSendReminder().toLowerCase().equals("y"));
 		
 		r.setService(sr.findOne(UUID.fromString(arf.getService())));
 		r.setPet(pr.findOne(arf.getPet()));

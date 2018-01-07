@@ -81,7 +81,7 @@ public class PetController {
 	
 	@ResponseBody
 	@RequestMapping(value = "/{petId}", method = RequestMethod.DELETE)
-	public PetDetails deletePet(@PathVariable UUID petId) {
+	public PetDetails deletePet(Model model, @PathVariable UUID petId) {
 		Pet pet = petRepository.findOne(petId);
 		PetDetails petDetails = new PetDetails(pet);
 		petRepository.delete(petId);

@@ -1,5 +1,6 @@
 package hr.petsonly.model;
 
+import java.time.LocalDateTime;
 import java.util.Calendar;
 import java.util.UUID;
 
@@ -47,11 +48,9 @@ public class Reservation {
 	private User employee;
 
 	@Column
-	@Temporal(TemporalType.TIMESTAMP)
-	private Calendar reservationTime;
+	private LocalDateTime reservationTime;
 	@Column
-	@Temporal(TemporalType.TIMESTAMP)
-	private Calendar executionTime;
+	private LocalDateTime executionTime;
 	@Column
 	private double duration;
 	@Column
@@ -112,19 +111,19 @@ public class Reservation {
 		this.employee = employee;
 	}
 
-	public Calendar getReservationTime() {
+	public LocalDateTime getReservationTime() {
 		return reservationTime;
 	}
 
-	public void setReservationTime(Calendar reservationTime) {
+	public void setReservationTime(LocalDateTime reservationTime) {
 		this.reservationTime = reservationTime;
 	}
 
-	public Calendar getExecutionTime() {
+	public LocalDateTime getExecutionTime() {
 		return executionTime;
 	}
 
-	public void setExecutionTime(Calendar executionTime) {
+	public void setExecutionTime(LocalDateTime executionTime) {
 		this.executionTime = executionTime;
 	}
 

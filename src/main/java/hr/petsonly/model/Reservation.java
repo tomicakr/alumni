@@ -1,7 +1,6 @@
 package hr.petsonly.model;
 
 import java.time.LocalDateTime;
-import java.util.Calendar;
 import java.util.UUID;
 
 import javax.persistence.Column;
@@ -13,8 +12,6 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
-import javax.persistence.Temporal;
-import javax.persistence.TemporalType;
 
 import org.hibernate.annotations.Type;
 

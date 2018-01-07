@@ -42,11 +42,19 @@
 					placeholder="Adresa elektroničke pošte">
 			</div>
 			<div class="field">
-				<select name="location" class="ui search dropdown">
-					<c:forEach var="location" items="${locations}">
-						<option value="${location.id}">${location.name}</option>
-					</c:forEach>
-				</select>
+				<div class="ui dropdown selection" tabindex="0">
+					<select name="location" id="gender">
+						<c:forEach var="location" items="${locations}">
+							<option value="${location.id}">${location.name}</option>
+						</c:forEach>
+					</select><i class="dropdown icon"></i>
+					<div class="default text">Grad</div>
+					<div class="menu transition hidden" tabindex="-1">
+						<c:forEach var="location" items="${locations}">
+							<div class="item" data-value="${location.id}">${location.name}</div>
+						</c:forEach>
+					</div>
+				</div>
 			</div>
 			<div class="field">
 				<input type="text" name="address" id="address"

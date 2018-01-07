@@ -3,35 +3,38 @@
 <html>
 <!-- head -->
 <jsp:include page="../partials/head.jsp" flush="true">
-<jsp:param name="title" value="Login" />
-<jsp:param name="view-name" value="login" />
+	<jsp:param name="title" value="Login" />
+	<jsp:param name="view-name" value="login" />
 </jsp:include>
 
 <body>
-	<main class="ui middle aligned center aligned grid">
-		<article>
-
-			<header><h1>Login Here!</h1></header>
-			<h4 style="color: red">${errorMessage}</h4>
-			<form method="post" action="/sessions/">
-				<ul>
-					<li><label>Email</label></li>
-					<input type="text" name="email"/>
-
-					<li><label>Password</label></li>
-					<input type="password" name="password"/>
-
-					<li>
-						<button type="submit" value="Login">Login</button>
-					</li>
-					
-					<li>
-						<h4>Nemate svoj profil? <a class="item" name="Usluge" href="/users/new">Registriraj se!</a> </h4>
-					</li>				
-				</ul>
-			</form>
-		</article>
-	</main>
-	<%@ include file = "../partials/footer.jsp" %>
+<main class="ui middle aligned center aligned grid">
+	<div class="four wide column">
+		<h1 class="ui image massive header">Dobrodošli nazad!</h1>
+		<form method="post" action="/sessions/" class="ui form ">
+			<div class="ui stacked primary  segment">
+				<div class="field">
+					<div class="ui left icon input">
+						<i class="user icon"></i>
+						<input type="text" name="email" placeholder="Adresa elektroničke pošte">
+					</div>
+				</div>
+				<div class="field">
+					<div class="ui left icon input">
+						<i class="lock icon"></i>
+						<input type="password" name="password" id="password" placeholder="Lozinka">
+					</div>
+				</div>
+				<div class="ui fluid large darkred submit button">Login</div>
+			</div>
+			<div class="ui primary message">
+				<h4>Nemate račun? <a class="item" name="Usluge" href="/users/new">Registirajte se</a> </h4>
+			</div>
+			<div class="ui error message"></div>
+		</form>
+	</div>
+</main>
+<script src="../../scripts/login.js"></script>
 </body>
+
 </html>

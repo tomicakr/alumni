@@ -85,6 +85,8 @@ const validationRules = {
 
 $(document)
     .ready(function () {
+        $('.ui.dropdown')
+            .dropdown();
         $('.ui.form').form({
             inline: false,
             fields: validationRules

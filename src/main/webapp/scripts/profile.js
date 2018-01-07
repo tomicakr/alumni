@@ -139,9 +139,7 @@ $(document)
         })
         ;
         $('.ui.dropdown')
-            .dropdown({
-                action: 'activate'
-            })
+            .dropdown()
         ;
     });
 
@@ -160,6 +158,3 @@ function addPet(fields){
         .catch(console.log);
 }
 
-$('.ui.dropdown')
-    .dropdown()
-;

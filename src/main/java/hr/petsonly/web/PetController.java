@@ -16,10 +16,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
-
 import hr.petsonly.model.Pet;
-import hr.petsonly.model.User;
 import hr.petsonly.model.details.PetDetails;
 import hr.petsonly.model.form.PetForm;
 import hr.petsonly.repository.PetRepository;
@@ -64,7 +61,6 @@ public class PetController {
 	@RequestMapping(method = RequestMethod.POST, produces = MediaType.APPLICATION_JSON_VALUE, consumes = MediaType.APPLICATION_JSON_VALUE)
 	public PetDetails addNewPet(@RequestBody PetForm petForm, Model model, @PathVariable UUID id, BindingResult result) {
 		
-		User user = userRepository.findOne(id);
 		if(result.hasErrors()) {
 			System.out.println(result);
 			//model.addAttribute("errorMessage", "Neispravni podaci za živinu: " + result.toString());
@@ -73,9 +69,10 @@ public class PetController {
 		petForm.setOwner(id.toString());
 		Pet pet = formFactory.createPetFromForm(petForm);
 		
-		user.getPets().add(pet);
-		userRepository.save(user);
-		PetDetails petDetails = new PetDetails(pet);
+		petRepository.save(pet);
+		List<Pet> petList = petRepository.findByOwnerAndMicrochip(pet.getOwner(), pet.getMicrochip()); // Treba ovo jer se u bazi postavlja petKey
+		PetDetails petDetails = new PetDetails(petList.get(0));
+		
 		return petDetails;
 	}
 	
@@ -83,6 +80,10 @@ public class PetController {
 	@RequestMapping(value = "/{petId}", method = RequestMethod.DELETE)
 	public PetDetails deletePet(Model model, @PathVariable UUID petId) {
 		Pet pet = petRepository.findOne(petId);
+		if(pet==null) {
+			System.out.println("Ljubimac nije pronađen!");
+			return new PetDetails();
+		}
 		PetDetails petDetails = new PetDetails(pet);
 		petRepository.delete(petId);
 		

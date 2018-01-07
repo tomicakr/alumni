@@ -29,11 +29,13 @@ public class UserDetailsBasic {
 		this.email = user.getEmail();
 		this.mnemonicId = user.getUserMnemonic();
 		this.roles = new ArrayList<>();
-		
+
 		roles = new ArrayList<>();
-		user.getRoles().forEach((role) -> {
-			roles.add(role.getName());
-		});
+		if (user.getRoles().size()>0 && user.getRoles().get(0) != null) {
+			user.getRoles().forEach((role) -> {
+				roles.add(role.getName());
+			});
+		}
 	}
 
 	public String getFirstName() {
@@ -67,7 +69,7 @@ public class UserDetailsBasic {
 	public void setMnemonicId(String mnemonicId) {
 		this.mnemonicId = mnemonicId;
 	}
-	
+
 	public List<String> getRoles() {
 		return roles;
 	}

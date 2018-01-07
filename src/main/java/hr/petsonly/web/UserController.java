@@ -85,7 +85,7 @@ public class UserController {
 		UserDetailsMore userDetails = new UserDetailsMore(user);
 		session.setAttribute("userInSession", userDetails);
 		
-		return "redirect:/users/" + userDetails.getUserId();
+		return "redirect:/users/" + user.getUserId();
 	}
 
 	@GetMapping("/{id}")

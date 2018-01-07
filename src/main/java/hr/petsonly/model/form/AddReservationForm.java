@@ -18,11 +18,11 @@ public class AddReservationForm {
 	@NotNull
 	private UUID employee;
 	
-	@NotNull
-	private String executionTime;
-	
-	@NotNull
-	private String executionDate;
+//	@NotNull
+//	private String executionTime;
+//	
+//	@NotNull
+//	private String executionDate;
 	
 	@NotNull
 	private String duration;
@@ -54,13 +54,13 @@ public class AddReservationForm {
 		this.employee = employee;
 	}
 
-	public String getExecutionTime() {
-		return executionTime;
-	}
-
-	public void setExecutionTime(String executionTime) {
-		this.executionTime = executionTime;
-	}
+//	public String getExecutionTime() {
+//		return executionTime;
+//	}
+//
+//	public void setExecutionTime(String executionTime) {
+//		this.executionTime = executionTime;
+//	}
 
 	public String getDuration() {
 		return duration;
@@ -78,18 +78,12 @@ public class AddReservationForm {
 		this.sendReminder = sendReminder;
 	}
 	
-	public String getExecutionDate() {
-		return executionDate;
-	}
+//	public String getExecutionDate() {
+//		return executionDate;
+//	}
+//
+//	public void setExecutionDate(String executionDate) {
+//		this.executionDate = executionDate;
+//	}
 
-	public void setExecutionDate(String executionDate) {
-		this.executionDate = executionDate;
-	}
-
-	@Override
-	public String toString() {
-		return "AddReservationForm [service=" + service + ", pet=" + pet + ", employee=" + employee
-				+ ", executionTime=" + executionTime + ", executionDate=" + executionDate + ", duration=" + duration
-				+ ", sendReminder=" + sendReminder + "]";
-	}
 }

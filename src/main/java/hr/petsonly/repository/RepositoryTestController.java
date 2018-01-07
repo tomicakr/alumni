@@ -191,4 +191,16 @@ public class RepositoryTestController {
 			pr.save(p);
 		}
 	}
+	
+	@RequestMapping("/repotest/employee")
+	public String findAllEmployees(){
+		String result = "";
+		List<User> list = ur.findAllEmployees();
+		for(User o : list){
+			result += o.getName() + "<br>";
+		}
+		return result;
+	}
+	
+	
 }

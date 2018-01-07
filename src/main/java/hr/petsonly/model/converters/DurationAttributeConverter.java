@@ -20,8 +20,8 @@ public class DurationAttributeConverter implements AttributeConverter<Duration, 
 		}
 		
 		String[] parts = dbData.split(":");
-		Integer hours = Integer.parseInt(parts[0]);
-		Integer minutes = Integer.parseInt(parts[1]);
+		Integer hours = Integer.parseInt(parts[0].trim());
+		Integer minutes = Integer.parseInt(parts[1].trim());
 		return Duration.ofMinutes(hours * 60 + minutes);
 	}
 }

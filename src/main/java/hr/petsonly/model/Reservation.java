@@ -34,14 +34,15 @@ public class Reservation {
 	private Pet pet;
 
 	@ManyToOne(fetch = FetchType.LAZY)
-	@JoinColumn(name = "userId")
+	@JoinColumn(name = "ownerId")
 	private User user;
 
 	@Column
 	private int reservationStatus;
 
+
 	@ManyToOne(fetch = FetchType.LAZY)
-	@JoinColumn(name = "userId", insertable = false, updatable = false)
+	@JoinColumn(name = "employeeId", insertable = false, updatable = false)
 	private User employee;
 
 	@Column

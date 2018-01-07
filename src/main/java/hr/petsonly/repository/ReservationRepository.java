@@ -23,7 +23,7 @@ public interface ReservationRepository extends JpaRepository<Reservation, UUID> 
 	//USER
 	List<Reservation> findAllByUser(User user);
 	
-	@Query(value = "SELECT * FROM reservation r WHERE r.user_id = :user_id", nativeQuery = true)
+	@Query(value = "SELECT * FROM reservation r WHERE r.owner_id = :owner_id", nativeQuery = true)
 	List<Reservation> findAllByUserId(String userId);
 	
 	//RESERVATION_STATUS

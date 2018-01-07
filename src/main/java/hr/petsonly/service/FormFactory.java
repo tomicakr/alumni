@@ -2,6 +2,7 @@ package hr.petsonly.service;
 
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
+import java.util.Arrays;
 import java.util.UUID;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -9,6 +10,7 @@ import org.springframework.stereotype.Service;
 
 import hr.petsonly.model.Location;
 import hr.petsonly.model.Reservation;
+import hr.petsonly.model.Role;
 import hr.petsonly.model.User;
 import hr.petsonly.model.form.AddReservationForm;
 import hr.petsonly.model.form.RegistrationForm;
@@ -40,6 +42,10 @@ public class FormFactory {
 		u.setEmail(rf.getEmail());
 		u.setAddress(rf.getAddress());
 		u.setPassword(rf.getPassword());
+		
+		Role role = new Role();
+		role.setName("admin");
+		u.setRoles(Arrays.asList(role));
 		
 		if(rf.getLocation() != null){
 			Location l = lr.findByZipCode(rf.getLocation());

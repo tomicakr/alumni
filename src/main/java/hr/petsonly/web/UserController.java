@@ -57,7 +57,7 @@ public class UserController {
 	}
 
 	@PostMapping
-	public String createUser(Model model, @Valid RegistrationForm registrationForm, BindingResult result) {
+	public String createUser(Model model, @Valid RegistrationForm registrationForm, BindingResult result, HttpSession session) {
 
 		if (result.hasErrors()) {
 			System.out.println(result);
@@ -67,10 +67,15 @@ public class UserController {
 			return "register";
 		}
 		
-		User u = formFactory.createUserFromForm(registrationForm);
-		userRepository.save(u);
-
-		return "redirect:/users";
+		User user = formFactory.createUserFromForm(registrationForm);
+		userRepository.save(user);
+		
+		user = userRepository.findByEmail(user.getEmail());
+		
+		UserDetailsMore userDetails = new UserDetailsMore(user);
+		session.setAttribute("userInSession", userDetails);
+		
+		return "redirect:/users/" + userDetails.getUserId();
 	}
 
 	@GetMapping("/{id}")

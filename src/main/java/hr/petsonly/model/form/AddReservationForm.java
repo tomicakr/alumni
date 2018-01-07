@@ -24,7 +24,7 @@ public class AddReservationForm {
 	private String executionTime;
 	
 	@NotNull
-	private double duration;
+	private String duration;
 		
 	@NotNull
 	private String sendReminder;
@@ -69,18 +69,18 @@ public class AddReservationForm {
 		this.executionTime = executionTime;
 	}
 
-	public double getDuration() {
+	public String getDuration() {
 		return duration;
 	}
 
-	public void setDuration(double duration) {
+	public void setDuration(String duration) {
 		this.duration = duration;
 	}
-	
+
 	public String getSendReminder() {
 		return sendReminder;
 	}
-	
+
 	public void setSendReminder(String sendReminder) {
 		this.sendReminder = sendReminder;
 	}

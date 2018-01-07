@@ -19,10 +19,13 @@ import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import hr.petsonly.model.Pet;
 import hr.petsonly.model.Reservation;
 import hr.petsonly.model.User;
+import hr.petsonly.model.details.PetDetails;
 import hr.petsonly.model.details.ReservationDetails;
 import hr.petsonly.model.form.AddReservationForm;
+import hr.petsonly.repository.PetRepository;
 import hr.petsonly.repository.ReservationRepository;
 import hr.petsonly.repository.UserRepository;
 import hr.petsonly.service.FormFactory;
@@ -36,6 +39,9 @@ public class ReservationController {
 
 	@Autowired
 	private UserRepository userRepository;
+	
+	@Autowired
+	private PetRepository petRepository;
 
 	@Autowired
 	private FormFactory formFactory;
@@ -57,6 +63,10 @@ public class ReservationController {
 
 	@GetMapping(value = "/new")
 	public String showReservationForm(Model model, @PathVariable UUID uid) {
+		
+		List<Pet> pets = petRepository.findByOwnerId(uid.toString());
+		List<PetDetails> petDetails = new ArrayList<>();
+		pets.forEach(pet -> petDetails.add(new PetDetails(pet)));
 		
 		model.addAttribute("userId", uid);
 		
@@ -90,6 +100,8 @@ public class ReservationController {
 
 	@GetMapping(value = "/{id}/edit")
 	public String showReservationEditForm(Model model, @PathVariable UUID id) {
+		
+		
 		return "reservationEdit";
 	}
 

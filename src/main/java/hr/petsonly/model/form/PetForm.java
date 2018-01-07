@@ -8,7 +8,7 @@ public class PetForm {
 	private String name;
 	
 	@NotNull
-	private String age;
+	private Integer age;
 	
 	@NotNull
 	private String species;
@@ -21,12 +21,18 @@ public class PetForm {
 	
 	@NotNull
 	private String remark;
-
+	
+	@NotNull 
+	private Character sex;
+	
+	@NotNull
+	private String owner;
+	
 	public PetForm() {
 		super();
 	}
 
-	public PetForm(String name, String age, String species, String breed, String microchip, String remark) {
+	public PetForm(String name, Integer age, String species, String breed, String microchip, String remark, Character sex, String owner) {
 		super();
 		this.name = name;
 		this.age = age;
@@ -34,6 +40,8 @@ public class PetForm {
 		this.breed = breed;
 		this.microchip = microchip;
 		this.remark = remark;
+		this.sex = sex;
+		this.owner = owner;
 	}
 
 	public String getName() {
@@ -44,11 +52,11 @@ public class PetForm {
 		this.name = name;
 	}
 
-	public String getAge() {
+	public Integer getAge() {
 		return age;
 	}
 
-	public void setAge(String age) {
+	public void setAge(Integer age) {
 		this.age = age;
 	}
 
@@ -82,6 +90,22 @@ public class PetForm {
 
 	public void setRemark(String remark) {
 		this.remark = remark;
+	}
+	
+	public Character getSex(){
+		return sex;
+	}
+	
+	public void setSex(Character sex){
+		this.sex = sex;
+	}
+	
+	public String getOwner(){
+		return owner;
+	}
+	
+	public void setOwner(String owner){
+		this.owner = owner;
 	}
 	
 

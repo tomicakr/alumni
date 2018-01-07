@@ -1,5 +1,7 @@
 package hr.petsonly.model.form;
 
+import java.util.UUID;
+
 import javax.validation.constraints.NotNull;
 
 public class RegistrationForm {
@@ -21,7 +23,7 @@ public class RegistrationForm {
 	@NotNull
 	private String email;
 	
-	private Integer location;
+	private UUID location;
 	
 	private String address;
 	
@@ -37,7 +39,7 @@ public class RegistrationForm {
 	}
 
 	public RegistrationForm(String name, String surname, String userPid, String mobilePhone, String phone, String email,
-			Integer location, String address, String password, String password2) {
+			UUID location, String address, String password, String password2) {
 		super();
 		this.name = name;
 		this.surname = surname;
@@ -100,11 +102,11 @@ public class RegistrationForm {
 		this.email = email;
 	}
 
-	public Integer getLocation() {
+	public UUID getLocation() {
 		return location;
 	}
 
-	public void setLocation(Integer location) {
+	public void setLocation(UUID location) {
 		this.location = location;
 	}
 

@@ -17,10 +17,13 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
+import hr.petsonly.model.Location;
 import hr.petsonly.model.User;
+import hr.petsonly.model.details.LocationDetails;
 import hr.petsonly.model.details.UserDetailsBasic;
 import hr.petsonly.model.details.UserDetailsMore;
 import hr.petsonly.model.form.RegistrationForm;
+import hr.petsonly.repository.LocationRepository;
 import hr.petsonly.repository.UserRepository;
 import hr.petsonly.service.FormFactory;
 
@@ -33,6 +36,9 @@ public class UserController {
 	
 	@Autowired
 	private FormFactory formFactory;
+	
+	@Autowired
+	private LocationRepository locationRepository;
 	
 	@GetMapping
 	public String showUserList(Model model) {
@@ -51,13 +57,18 @@ public class UserController {
 	@GetMapping("/new")
 	public String showRegistrationForm(Model model, User user) {
 
-		model.addAttribute("user", user);
+		List<Location> locations = locationRepository.findAll();
+		List<LocationDetails> locationDetails = new ArrayList<>();
+		locations.forEach(location -> locationDetails.add(new LocationDetails(location)));
 
+		model.addAttribute("user", user);
+		model.addAttribute("locations", locationDetails);
+		
 		return "register";
 	}
 
 	@PostMapping
-	public String createUser(Model model, @Valid RegistrationForm registrationForm, BindingResult result) {
+	public String createUser(Model model, @Valid RegistrationForm registrationForm, BindingResult result, HttpSession session) {
 
 		if (result.hasErrors()) {
 			System.out.println(result);
@@ -67,10 +78,13 @@ public class UserController {
 			return "register";
 		}
 		
-		User u = formFactory.createUserFromForm(registrationForm);
-		userRepository.save(u);
-
-		return "redirect:/users";
+		User user = formFactory.createUserFromForm(registrationForm);
+		user = userRepository.save(user);
+		
+		UserDetailsMore userDetails = new UserDetailsMore(user);
+		session.setAttribute("userInSession", userDetails);
+		
+		return "redirect:/users/" + userDetails.getUserId();
 	}
 
 	@GetMapping("/{id}")
@@ -107,8 +121,13 @@ public class UserController {
 		}
 
 		User user = userRepository.getOne(id);
+		
+		List<Location> locations = locationRepository.findAll();
+		List<LocationDetails> locationDetails = new ArrayList<>();
+		locations.forEach(location -> locationDetails.add(new LocationDetails(location)));
 
-		model.addAttribute("userForEdit", user);
+		model.addAttribute("locations", locationDetails);
+		model.addAttribute("user", user);
 
 		return "editUser";
 	}

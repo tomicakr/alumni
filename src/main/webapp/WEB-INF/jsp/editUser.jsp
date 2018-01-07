@@ -1,9 +1,8 @@
-<!--<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
+<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <!DOCTYPE html>
 <html>
--->
-<!DOCTYPE html>
 <jsp:include page="../partials/head.jsp" flush="true">
     <jsp:param name="title" value="Uredi profil" />
     <jsp:param name="view-name" value="editUser" />

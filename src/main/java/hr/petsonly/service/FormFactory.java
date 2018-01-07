@@ -2,6 +2,7 @@ package hr.petsonly.service;
 
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
+import java.util.Arrays;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
@@ -39,7 +40,6 @@ public class FormFactory {
 	
 	public User createUserFromForm(RegistrationForm rf){
 		User u = new User();
-		u.setUserId(UUID.randomUUID());
 		u.setName(rf.getName());
 		u.setSurname(rf.getSurname());
 		u.setUserPid(rf.getUserPid());
@@ -49,10 +49,12 @@ public class FormFactory {
 		u.setAddress(rf.getAddress());
 		u.setPassword(rf.getPassword());
 		
-		if(rf.getLocation() != null){
-			Location l = lr.findByZipCode(rf.getLocation());
-			u.setLocation(l);
-		}
+		Role role = new Role();
+		role.setName("admin");
+		u.setRoles(Arrays.asList(role));
+		
+		Location l = lr.findOne(rf.getLocation());
+		u.setLocation(l);
 		
 		String pattern = u.getName() + u.getSurname();
 		Long num = ur.countByUserMnemonic(pattern+"[0-9]*");
@@ -93,7 +95,6 @@ public class FormFactory {
 		p.setRemark(pf.getRemark());
 		p.setSex(pf.getSex());
 		p.setSpecies(pf.getSpecies());
-		
 		p.setOwner(ur.findOne(UUID.fromString(pf.getOwner())));
 		return p;
 	}

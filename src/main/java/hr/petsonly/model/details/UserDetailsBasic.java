@@ -1,5 +1,6 @@
 package hr.petsonly.model.details;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
 
@@ -27,7 +28,9 @@ public class UserDetailsBasic {
 		this.lastName = user.getSurname();
 		this.email = user.getEmail();
 		this.mnemonicId = user.getUserMnemonic();
+		this.roles = new ArrayList<>();
 		
+		roles = new ArrayList<>();
 		user.getRoles().forEach((role) -> {
 			roles.add(role.getName());
 		});

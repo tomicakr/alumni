@@ -51,6 +51,13 @@ INSERT INTO role (name) VALUES ("ROLE_ADMINISTRATOR");
 INSERT INTO role (name) VALUES ("ROLE_ZAPOSLENIK");
 INSERT INTO role (name) VALUES ("ROLE_KORISNIK");
 
+INSERT INTO users_roles (user_id, role_id) VALUES ('fb8f4014-e0b0-4a5e-9079-320c1e1516e8', 1);
+INSERT INTO users_roles (user_id, role_id) VALUES ('49341e99-918c-4214-a2f2-21403bc617aa', 2);
+INSERT INTO users_roles (user_id, role_id) VALUES ('48c2ad9c-c37a-4dbc-a823-11adbbe11769', 3);
+INSERT INTO users_roles (user_id, role_id) VALUES ('0ae3760e-8ce3-4a4e-b678-98d5f6a86c65', 3);
+INSERT INTO users_roles (user_id, role_id) VALUES ('0e070ca1-4950-40ff-a1d7-8f65e6f559bf', 3);
+INSERT INTO users_roles (user_id, role_id) VALUES ('368ec8e2-c7cb-4eaf-b3f1-0077333fbea9', 3);
+
 /*DODATI PRIVILEGES I ROLES_PRIVILEGES I  USERS_ROLES;*/
 
 INSERT INTO service (service_key, description, name, price) VALUES ('9f49e501-c5f9-41b7-a59b-51adad927fc8', "", "Šetnja", 35.0);

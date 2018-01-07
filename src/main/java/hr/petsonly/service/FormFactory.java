@@ -39,7 +39,6 @@ public class FormFactory {
 	
 	public User createUserFromForm(RegistrationForm rf){
 		User u = new User();
-		u.setUserId(UUID.randomUUID());
 		u.setName(rf.getName());
 		u.setSurname(rf.getSurname());
 		u.setUserPid(rf.getUserPid());

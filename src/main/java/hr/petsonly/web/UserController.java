@@ -68,9 +68,9 @@ public class UserController {
 		}
 		
 		User u = formFactory.createUserFromForm(registrationForm);
-		userRepository.save(u);
+		User un = userRepository.save(u);
 
-		return "redirect:/users";
+		return "redirect:/users/" + un.getUserId();
 	}
 
 	@GetMapping("/{id}")

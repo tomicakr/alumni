@@ -71,7 +71,7 @@ public class ReservationController {
 		List<User> employees = userRepository.findAllEmployees();
 		List<UserDetailsBasic> employeeDetails = new ArrayList<>();
 		employees.forEach(employee -> employeeDetails.add(new UserDetailsBasic(employee)));
-		
+
 		model.addAttribute("userId", uid);
 		model.addAttribute("pets", petDetails);
 		model.addAttribute("employees", employeeDetails);

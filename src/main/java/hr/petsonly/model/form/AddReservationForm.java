@@ -24,6 +24,10 @@ public class AddReservationForm {
 	private String executionTime;
 	
 	@NotNull
+	private String executionDate;
+	
+
+	@NotNull
 	private String duration;
 		
 	@NotNull
@@ -83,5 +87,13 @@ public class AddReservationForm {
 
 	public void setSendReminder(String sendReminder) {
 		this.sendReminder = sendReminder;
+	}
+	
+	public String getExecutionDate() {
+		return executionDate;
+	}
+
+	public void setExecutionDate(String executionDate) {
+		this.executionDate = executionDate;
 	}
 }

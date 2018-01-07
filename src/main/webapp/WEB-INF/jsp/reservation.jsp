@@ -11,25 +11,33 @@
 	<h1>Detaljan pregled rezervacije</h1>
 	<main class=" ui middle aligned center  aligned grid">
 		<table class="ui celled table">
-			<thead>
-				<tr>
-					<th>Ime ljubimaca</th>
-					<th>Usluga</th>
-					<th>Zaposlenik</th>
-					<th>Status</th>
-					<th>Vrijeme preuzimanja</th>
-				</tr>
-			</thead>
-			<tbody>
-				<tr>
-					<td>${reservation.pet}</td>
-					<td>${reservation.service}</td>
-					<td>${reservation.employee}</td>
-					<td>${reservation.status}</td>
-					<td>${reservation.time}</td>
-				</tr>
-			</tbody>
+			<tr>
+				<td><strong>Ime ljubimaca</strong></td>
+				<td>${reservation.pet}</td>
+			</tr>
+			<tr>
+				<td><strong>Usluga</strong></td>
+				<td>${reservation.service}</td>
+			</tr>
+			<tr>
+				<td><strong>Zaposlenik</strong></td>
+				<td>${reservation.employee}</td>
+			</tr>
+			<tr>
+				<td><strong>Status</strong></td>
+				<td>${reservation.status}</td>
+			</tr>
+			<tr>
+				<td><strong>Vrijeme preuzimanja</strong></td>
+				<td>${reservation.time}</td>
+			</tr>
+
 		</table>
+
+		<form method="get" action="/users/${reservation.reservationId}">
+			<input type="hidden" name="reservationId" value="${reservation.reservationId}" />
+			<input type="submit" value="Uredi rezevraciju"></input>				
+		</form>
 	</main>
 </body>
 </html>

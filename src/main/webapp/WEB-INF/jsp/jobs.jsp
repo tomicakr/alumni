@@ -25,29 +25,29 @@
 				<c:forEach var="reservation" items="${reservations}">
 				<tr>
 					<td>${reservation.pet}</td>
-					<td>${reservation.reservationId}</td>
+					<td>${reservation.service}</td>
 					<td>
 						<form method="get" action="/jobs/${reservation.reservationId}">
-						<input type="hidden" name="reservationId" value="${reservation.reservationId}" />
-						<input type="submit" value="Detaljno"></input>				
-					</form>
+							<input type="hidden" name="reservationId" value="${reservation.reservationId}" />
+							<input type="submit" value="Detaljno"></input>				
+						</form>
 					</td>
 					<td>
 						<form method="post" action="/jobs/${reservation.reservationId}/accept">
-						<input type="hidden" name="reservationId" value="${reservation.reservationId}" />
-						<input type="submit" value="Prihvati"></input>				
-					</form>
+							<input type="hidden" name="reservationId" value="${reservation.reservationId}" />
+							<input type="submit" value="Prihvati"></input>				
+						</form>
 					</td>
 					<td>
 						<form method="post" action="/jobs/${reservation.reservationId}/confirm">
-						<input type="hidden" name="reservationId" value="${reservation.reservationId}" />
-						<input type="submit" value="Potvrdi"></input>					
-					</form>
+							<input type="hidden" name="reservationId" value="${reservation.reservationId}" />
+							<input type="submit" value="Potvrdi"></input>					
+						</form>
 					</td>				
-			</tr>
-		</c:forEach>
-	</tbody>
-</table>
+				</tr>
+			</c:forEach>
+		</tbody>
+	</table>
 </main>
 </body>
 </html>

@@ -22,6 +22,9 @@ footer.footer {
 body{
 	background: #ecf0f1;
 }
+main {
+	min-height: 500px;
+}
 
 .darkred.button{
 	background: darkred !important;

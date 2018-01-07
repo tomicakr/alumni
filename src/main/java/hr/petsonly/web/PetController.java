@@ -60,7 +60,6 @@ public class PetController {
 		return "addPet";
 	}
 	
-	@JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
 	@ResponseBody
 	@RequestMapping(method = RequestMethod.POST, produces = MediaType.APPLICATION_JSON_VALUE, consumes = MediaType.APPLICATION_JSON_VALUE)
 	public PetDetails addNewPet(@RequestBody PetForm petForm, Model model, @PathVariable UUID id, BindingResult result) {
@@ -71,19 +70,23 @@ public class PetController {
 			//model.addAttribute("errorMessage", "Neispravni podaci za živinu: " + result.toString());
 			return null;
 		}
+		petForm.setOwner(id.toString());
 		Pet pet = formFactory.createPetFromForm(petForm);
+		
 		user.getPets().add(pet);
 		userRepository.save(user);
 		PetDetails petDetails = new PetDetails(pet);
 		return petDetails;
 	}
 	
-	@RequestMapping(value = "/{id}", method = RequestMethod.DELETE)
-	public String showUserList(Model model, @PathVariable UUID id) {
+	@ResponseBody
+	@RequestMapping(value = "/{petId}", method = RequestMethod.DELETE)
+	public PetDetails deletePet(Model model, @PathVariable UUID petId) {
+		Pet pet = petRepository.findOne(petId);
+		PetDetails petDetails = new PetDetails(pet);
+		petRepository.delete(petId);
 		
-		petRepository.delete(id);
-		
-		return "redirect:/";
+		return petDetails;
 	}
 	
 	

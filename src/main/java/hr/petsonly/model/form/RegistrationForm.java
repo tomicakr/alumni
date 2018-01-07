@@ -133,6 +133,13 @@ public class RegistrationForm {
 	public void setPassword2(String password2) {
 		this.password2 = password2;
 	}
+
+	@Override
+	public String toString() {
+		return "RegistrationForm [name=" + name + ", surname=" + surname + ", userPid=" + userPid + ", mobilePhone="
+				+ mobilePhone + ", phone=" + phone + ", email=" + email + ", location=" + location + ", address="
+				+ address + ", password=" + password + ", password2=" + password2 + "]";
+	}
 	
 	
 	

@@ -43,7 +43,7 @@ public class Pet {
 	@Column
 	private String remark;
 	
-	@OneToMany(fetch = FetchType.LAZY, mappedBy = "pet")
+	@OneToMany(fetch = FetchType.LAZY, mappedBy = "pet", cascade = CascadeType.ALL)
 	private List<Reservation> reservations;
 	
 	public Pet() {

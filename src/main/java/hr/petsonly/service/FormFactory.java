@@ -1,5 +1,6 @@
 package hr.petsonly.service;
 
+import java.time.Duration;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.Arrays;
@@ -74,14 +75,18 @@ public class FormFactory {
 		r.setReservationStatus(1); //KAKO SU NUMERIRANI STATUSI?
 		r.setReservationTime(LocalDateTime.now());
 		r.setExecutionTime(LocalDateTime.parse(arf.getExecutionTime(), DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm")));
-		r.setDuration(arf.getDuration());
-		r.setSendReminder(arf.getSendReservation().toLowerCase().equals("yes") || arf.getSendReservation().toLowerCase().equals("y"));
+		r.setSendReminder(arf.getSendReminder().equals("1") );
+		
+		String[] parts = arf.getDuration().split(":");
+		Integer hours = Integer.parseInt(parts[0]);
+		Integer minutes = Integer.parseInt(parts[1]);
+		r.setDuration(Duration.ofMinutes(hours * 60 + minutes));
 		
 		r.setService(sr.findOne(UUID.fromString(arf.getService())));
-		r.setPet(pr.findOne(UUID.fromString(arf.getPet())));
-		r.setUser(ur.findOne(UUID.fromString(arf.getUser())));
+		r.setPet(pr.findOne(arf.getPet()));
+		r.setUser(ur.findOne(arf.getUser()));
 		if(arf.getEmployee() != null){
-			r.setEmployee(ur.findOne(UUID.fromString(arf.getEmployee())));	
+			r.setEmployee(ur.findOne(arf.getEmployee()));	
 		}
 		return r;
 	}

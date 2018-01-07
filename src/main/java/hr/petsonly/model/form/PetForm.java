@@ -2,6 +2,9 @@ package hr.petsonly.model.form;
 
 import javax.validation.constraints.NotNull;
 
+import org.springframework.stereotype.Component;
+
+@Component
 public class PetForm {
 	
 	@NotNull
@@ -9,6 +12,9 @@ public class PetForm {
 	
 	@NotNull
 	private Integer age;
+	
+	@NotNull 
+	private Character sex;
 	
 	@NotNull
 	private String species;
@@ -22,8 +28,7 @@ public class PetForm {
 	@NotNull
 	private String remark;
 	
-	@NotNull 
-	private Character sex;
+	
 	
 	@NotNull
 	private String owner;

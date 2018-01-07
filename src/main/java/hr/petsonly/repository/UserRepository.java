@@ -82,5 +82,9 @@ public interface UserRepository extends JpaRepository<User, UUID> {
 		entity.setUserMnemonic(pattern + num);
 		return this.save(entity);
 	}
+	
+	//FIND_EMPLOYEE
+	@Query(value = "SELECT * FROM users u INNER JOIN users_roles ur ON u.user_id = ur.user_id WHERE role_id = 2", nativeQuery = true)
+	List<User> findAllEmployees();
 
 }

@@ -1,5 +1,6 @@
 package hr.petsonly.model;
 
+import java.time.Duration;
 import java.time.LocalDateTime;
 import java.util.UUID;
 
@@ -50,7 +51,7 @@ public class Reservation {
 	@Column
 	private LocalDateTime executionTime;
 	@Column
-	private double duration;
+	private Duration duration;
 	@Column
 	private double price;
 	@Column
@@ -125,11 +126,11 @@ public class Reservation {
 		this.executionTime = executionTime;
 	}
 
-	public double getDuration() {
+	public Duration getDuration() {
 		return duration;
 	}
 
-	public void setDuration(double duration) {
+	public void setDuration(Duration duration) {
 		this.duration = duration;
 	}
 

@@ -78,10 +78,10 @@ public class FormFactory {
 		r.setSendReminder(arf.getSendReservation().toLowerCase().equals("yes") || arf.getSendReservation().toLowerCase().equals("y"));
 		
 		r.setService(sr.findOne(UUID.fromString(arf.getService())));
-		r.setPet(pr.findOne(UUID.fromString(arf.getPet())));
-		r.setUser(ur.findOne(UUID.fromString(arf.getUser())));
+		r.setPet(pr.findOne(arf.getPet()));
+		r.setUser(ur.findOne(arf.getUser()));
 		if(arf.getEmployee() != null){
-			r.setEmployee(ur.findOne(UUID.fromString(arf.getEmployee())));	
+			r.setEmployee(ur.findOne(arf.getEmployee()));	
 		}
 		return r;
 	}

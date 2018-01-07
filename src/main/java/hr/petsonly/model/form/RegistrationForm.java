@@ -4,6 +4,9 @@ import java.util.UUID;
 
 import javax.validation.constraints.NotNull;
 
+import org.springframework.stereotype.Component;
+
+@Component
 public class RegistrationForm {
 	
 	@NotNull
@@ -32,27 +35,9 @@ public class RegistrationForm {
 	
 	@NotNull
 	private String password2; // Možda passwordReType	
-
 	
 	public RegistrationForm() {
-		super();
 	}
-
-	public RegistrationForm(String name, String surname, String userPid, String mobilePhone, String phone, String email,
-			UUID location, String address, String password, String password2) {
-		super();
-		this.name = name;
-		this.surname = surname;
-		this.userPid = userPid;
-		this.mobilePhone = mobilePhone;
-		this.phone = phone;
-		this.email = email;
-		this.location = location;
-		this.address = address;
-		this.password = password;
-		this.password2 = password2;
-	}
-
 
 	public String getName() {
 		return name;
@@ -140,7 +125,5 @@ public class RegistrationForm {
 				+ mobilePhone + ", phone=" + phone + ", email=" + email + ", location=" + location + ", address="
 				+ address + ", password=" + password + ", password2=" + password2 + "]";
 	}
-	
-	
 	
 }

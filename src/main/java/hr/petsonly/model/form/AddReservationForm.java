@@ -1,19 +1,24 @@
 package hr.petsonly.model.form;
 
+import java.util.UUID;
+
 import javax.validation.constraints.NotNull;
 
+import org.springframework.stereotype.Component;
+
+@Component
 public class AddReservationForm {
 	
 	@NotNull
 	private String service;
 	
 	@NotNull
-	private String pet;
+	private UUID pet;
 	
 	@NotNull
-	private String user;
+	private UUID user;
 	
-	private String employee;
+	private UUID employee;
 	
 	@NotNull
 	private String executionTime;
@@ -24,18 +29,6 @@ public class AddReservationForm {
 	@NotNull
 	private String sendReservation;
 
-	public AddReservationForm(String service, String pet, String user, String employee, String executionTime,
-			double duration, String sendReservation) {
-		super();
-		this.service = service;
-		this.pet = pet;
-		this.user = user;
-		this.employee = employee;
-		this.executionTime = executionTime;
-		this.duration = duration;
-		this.sendReservation = sendReservation;
-	}
-
 	public String getService() {
 		return service;
 	}
@@ -44,27 +37,27 @@ public class AddReservationForm {
 		this.service = service;
 	}
 
-	public String getPet() {
+	public UUID getPet() {
 		return pet;
 	}
 
-	public void setPet(String pet) {
+	public void setPet(UUID pet) {
 		this.pet = pet;
 	}
 
-	public String getUser() {
+	public UUID getUser() {
 		return user;
 	}
 
-	public void setUser(String user) {
+	public void setUser(UUID user) {
 		this.user = user;
 	}
 
-	public String getEmployee() {
+	public UUID getEmployee() {
 		return employee;
 	}
 
-	public void setEmployee(String employee) {
+	public void setEmployee(UUID employee) {
 		this.employee = employee;
 	}
 
@@ -91,6 +84,4 @@ public class AddReservationForm {
 	public void setSendReservation(String sendReservation) {
 		this.sendReservation = sendReservation;
 	}
-	
-	
 }

@@ -8,6 +8,7 @@ import javax.validation.Valid;
 
 import org.hibernate.hql.internal.ast.tree.FromElementFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -24,6 +25,7 @@ import hr.petsonly.model.Reservation;
 import hr.petsonly.model.User;
 import hr.petsonly.model.details.PetDetails;
 import hr.petsonly.model.details.ReservationDetails;
+import hr.petsonly.model.details.UserDetailsBasic;
 import hr.petsonly.model.form.AddReservationForm;
 import hr.petsonly.repository.PetRepository;
 import hr.petsonly.repository.ReservationRepository;
@@ -68,7 +70,13 @@ public class ReservationController {
 		List<PetDetails> petDetails = new ArrayList<>();
 		pets.forEach(pet -> petDetails.add(new PetDetails(pet)));
 		
+		List<User> employees = userRepository.findAllEmployees();
+		List<UserDetailsBasic> employeeDetails = new ArrayList<>();
+		employees.forEach(employee -> employeeDetails.add(new UserDetailsBasic(employee)));
+		
 		model.addAttribute("userId", uid);
+		model.addAttribute("pets", petDetails);
+		model.addAttribute("employees", employeeDetails);
 		
 		return "newReservation";
 	}

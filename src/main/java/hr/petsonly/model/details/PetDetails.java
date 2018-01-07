@@ -4,9 +4,12 @@ import org.springframework.stereotype.Component;
 
 import hr.petsonly.model.Pet;
 
+import java.util.UUID;
+
 @Component
 public class PetDetails {
 
+	private UUID petId;
 	private String name;
 	private int age;
 	private String species;
@@ -19,6 +22,7 @@ public class PetDetails {
 	}
 
 	public PetDetails(Pet pet) {
+		this.petId = pet.getPetKey();
 		this.name = pet.getName();
 		this.age = pet.getAge();
 		this.species = pet.getSpecies();
@@ -85,4 +89,11 @@ public class PetDetails {
 		this.remark = remark;
 	}
 
+	public UUID getPetId() {
+		return petId;
+	}
+
+	public void setPetId(UUID petId) {
+		this.petId = petId;
+	}
 }

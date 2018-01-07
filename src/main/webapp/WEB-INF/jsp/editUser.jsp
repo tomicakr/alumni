@@ -2,21 +2,17 @@
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
-<jsp:include page="../partials/head.jsp" flush="true">
-    <jsp:param name="title" value="Registracija" />
-    <jsp:param name="view-name" value="register" />
-</jsp:include>
 -->
 <!DOCTYPE html>
-<html>
-<head>
-    <title>Edit user</title>
-</head>
+<jsp:include page="../partials/head.jsp" flush="true">
+    <jsp:param name="title" value="Uredi profil" />
+    <jsp:param name="view-name" value="register" />
+</jsp:include>
 <body>
 <main class="ui middle aligned center aligned grid">
     <div class="column">
         <h1 class="ui image massive header">
-            Izradite svoj račun
+            Promijenite svoje podatke
         </h1>
         <form:form action="/users/" method="post" class="ui large form segment stacked" modelAttribute="user">
             <div class="two fields">
@@ -51,7 +47,7 @@
                 <input type="text" name="address" id="address" placeholder="Adresa stavnovanja" disabled>
             </div>
             <div class="field">
-                <input type="old-password" name="old-password" id="old-password" placeholder="Unesite staru lozinku">
+                <input type="password" name="old-password" id="old-password" placeholder="Unesite staru lozinku">
             </div>
             <div class="field">
                 <input type="password" name="password" id="password" placeholder="Unesite novu lozinku">

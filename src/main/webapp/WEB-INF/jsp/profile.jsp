@@ -1,3 +1,4 @@
+<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
@@ -6,14 +7,33 @@
 	<jsp:param name="view-name" value="profile" />
 </jsp:include>
 <body>
-<div class="ui mini modal">
+<div id="delete-user-modal" class="ui small basic test modal transition hidden">
+	<div class="ui icon header">
+		<i class="trash icon"></i>
+		Brisanje profila
+	</div>
+	<div class="content">
+		<p>Jeste li sigurni da želite obrisati profil</p>
+	</div>
+	<div class="actions">
+		<div class="ui green basic cancel inverted button">
+			<i class="remove icon"></i>
+			Ne
+		</div>
+		<div class="ui red ok inverted button">
+			<i class="checkmark icon"></i>
+			Da
+		</div>
+	</div>
+</div>
+<div id="add-pet-modal" class="ui mini modal">
 	<div class="ui loader active"></div>
 	<i class="close icon"></i>
 	<div class="header">
 		Dodaj ljubimca
 	</div>
 	<div class="ui center aligned content">
-		<form:form action="${pageContext.request.contextPath}/users/${user.mnemonicId}" method="post" id="add-pet-form" class="ui large form" modelAttribute="user">
+		<form:form action="${pageContext.request.contextPath}/users/${user.userId}/pets/" method="post" id="add-pet-form" class="ui large form" modelAttribute="user">
 			<div class="field">
 				<input type="text" name="name" id="pet-name" placeholder="Ime">
 			</div>

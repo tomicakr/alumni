@@ -25,7 +25,7 @@
 				<td>${user.lastName}</td>
 				<td>${user.email}</td><!--Sva logika mora biti u kontroleru, ovdje zelimo imati objekt koji je obavio sve i slozio model-->
 				<td>${user.roles[0]}</td>
-				<td><a href="${pageContext.request.contextPath}/users/${user.mnemonicId}/">Detalji</a></td>
+				<td><a href="${pageContext.request.contextPath}/users/${user.userId}/">Detalji</a></td>
 			</tr>
 		</c:forEach>
 		</tbody>

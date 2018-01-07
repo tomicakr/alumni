@@ -27,7 +27,6 @@
 	</div>
 </div>
 <div id="add-pet-modal" class="ui mini modal">
-	<div class="ui loader active"></div>
 	<i class="close icon"></i>
 	<div class="header">
 		Dodaj ljubimca
@@ -66,7 +65,7 @@
 				<input type="text" name="microchip" id="pet-chip" placeholder="Broj mikročipa ljubimca.">
 			</div>
 			<div class="field">
-				<textarea rows="4" placeholder="Napomene..."></textarea>
+				<textarea rows="4" name="remark" id="remark" placeholder="Napomene..."></textarea>
 			</div>
 			<div class="ui fluid huge darkred submit button" style="width: 100%">Dodaj</div>
 		</form:form>

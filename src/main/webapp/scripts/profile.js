@@ -29,6 +29,7 @@ function appendPet(pet) {
     let petMarkup = $(formatTableRow(pet.name, pet.age, pet.species, pet.breed, pet.sex, pet.microchip, pet.remark,deleteButton));
     petMarkup.data('id',pet.petId);
     petsTable.append(petMarkup);
+    $('.btn-pet-delete').click(deletePet);
 }
 
 let getDataOn = entities => $.getJSON(`${userIndex}${entities}/`);
@@ -58,7 +59,6 @@ function updateTable(jsonGetter, appender) {
     return jsonGetter
         .then(entities => {
             entities.forEach(entity => appender(entity))
-            $('.btn-pet-delete').click(deletePet);
         })
         .fail(console.log);
 }
@@ -120,6 +120,9 @@ const petValidation = {
     },
     microchip: {
         identifier: 'pet-chip'
+    },
+    remark:{
+        identifier: 'remark'
     }
 };
 $(document)
@@ -143,8 +146,6 @@ $(document)
     });
 
 function addPet(fields){
-    appendPet(fields);
-    //fields.owner = 'fb8f4014-e0b0-4a5e-9079-320c1e1516e8';
     $.post({
         url: petIndex,
         contentType: "application/json; charset=utf-8",
@@ -152,6 +153,10 @@ function addPet(fields){
         processData:false, //To avoid making query String instead of JSON
         data: JSON.stringify(fields)
     })
+        .then(data =>{
+            console.log(data);
+            appendPet(data);
+        })
         .catch(console.log);
 }
 

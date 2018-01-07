@@ -10,7 +10,6 @@
 <body>
 	<main class="ui middle aligned center aligned grid">
 		<article>
-
 			<header><h1>Login Here!</h1></header>
 			<h4 style="color: red">${errorMessage}</h4>
 			<form method="post" action="/sessions/">

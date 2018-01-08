@@ -37,7 +37,7 @@
 
     <form method="post" action="${pageContext.request.contextPath}/sessions/">
         <input class="item" type="hidden" name="_method" value="DELETE">
-        <input class="item" type="submit" value="Logout">
+        <input class="item" type="submit" value="Odjavi se">
     </form>
 </c:if>
 

@@ -78,7 +78,8 @@ btnDelete.click(function() {
                 $.ajax({
                     type: 'DELETE',
                     url: userIndex
-                });
+                })
+                .then(() => window.location.href= "/");
             }
         })
         .modal('show')

@@ -44,7 +44,8 @@ public class EditUserForm {
 	}
 	
 	public boolean hasChanges(User user) {
-		if(user.getLocation().getLocationId().equals(location) && user.getMobilePhone().equals(mobilePhone)) {
+		if(user.getLocation().getLocationId().equals(location) && user.getMobilePhone().equals(mobilePhone) &&
+				user.getPassword().equals(password)) {
 			return false;
 		}
 		
@@ -75,5 +76,7 @@ public class EditUserForm {
 		this.password2 = password2;
 	}
 	
-	
+	public boolean isValid(User user) {
+		return !mobilePhone.isEmpty()&&user.getPassword().equals(oldPassword)&&!password.isEmpty()&&password.equals(password2);
+	}
 }

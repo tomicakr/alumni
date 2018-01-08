@@ -8,6 +8,7 @@ import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -155,22 +156,15 @@ public class UserController {
 		
 		User user = userRepository.findOne(id);
 		
-		if(!user.getPassword().equals(editUserForm.getOldPassword())) {
-			model.addAttribute("errorMessage", "Neispravna lozinka!");
-			return "customError";
-		}
-		
-		if(editUserForm.getPassword().isEmpty()) {
-			model.addAttribute("errorMessage", "Nova lozinka ne smije biti prazna!");
-			return "customError";
-		}
-		if(!editUserForm.getPassword().equals(editUserForm.getPassword2())) {
-			model.addAttribute("errorMessage", "Nova i ponovljena lozinka nisu iste");
+		if(!editUserForm.isValid(user)) {
+			model.addAttribute("errorMessage", "Podaci nisu ispravni!");
 			return "customError";
 		}
 		
 		if(formFactory.editUserFromForm(user, editUserForm)) {
 			userRepository.save(user);
+			UserDetailsMore userDetails = new UserDetailsMore(user);
+			session.setAttribute("userInSession", userDetails);
 		};
 		
 		return "redirect:/users/" + id.toString();

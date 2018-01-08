@@ -101,10 +101,12 @@ public class ReservationController {
 		}
 
 		User user = userRepository.getOne(uid);
-		user.getReservations().add(formFactory.createReservationFromForm(reservationForm));
+		Reservation reservation = formFactory.createReservationFromForm(reservationForm);
+//		ReservationDetails reservationDetails = new ReservationDetails(reservation);
+		user.getReservations().add(reservation);
 		userRepository.save(user);
 		
-		return String.format("redirect:/users/%s/reservations", uid.toString());
+		return "redirect:/users/" + uid.toString();
 	}
 
 	@GetMapping(value = "/{id}")

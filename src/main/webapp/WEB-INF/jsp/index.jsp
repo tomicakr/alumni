@@ -8,13 +8,20 @@
 </jsp:include>
 
 <body>
-	<%@ include file = "../partials/header.jsp" %>
-
-	<main style="text-align: center;">
-		<h1>Dobrodosli na Pets Only Zg stranicu!</h1>
-			
-	</main>
-	
-	<%@ include file = "../partials/footer.jsp" %>
+	<%@ include file = "../partials/indexHeader.jsp" %>
+	<main>
+		<div id="heading">
+			<h1><i class="fa fa-paw" aria-hidden="true"> </i> Pets Only Zagreb</h1>
+			<button class="ui inverted button" id="btn-order-service">Naruči Uslugu</button>
+		</div>
+</main>
+	<ul class="slideshow">
+		<li></li>
+		<li></li>
+		<li></li>
+		<li></li>
+		<li></li>
+	</ul>
+	<script src="scripts/index.js"></script>
 </body>
 </html>

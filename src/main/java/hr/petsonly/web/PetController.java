@@ -71,9 +71,8 @@ public class PetController {
 		
 		pet = petRepository.save(pet);
 		PetDetails petDetails = new PetDetails(pet);
-		
 		return petDetails;
-	}
+	} 
 	
 	@ResponseBody
 	@RequestMapping(value = "/{petId}", method = RequestMethod.DELETE)
@@ -83,6 +82,7 @@ public class PetController {
 			System.out.println("Ljubimac nije pronađen!");
 			return new PetDetails();
 		}
+		
 		PetDetails petDetails = new PetDetails(pet);
 		petRepository.delete(petId);
 		

@@ -14,31 +14,34 @@
         <a class="item" id="services" name="Usluge">
             Usluge
         </a>
-        <a class="item" id="price-list" name="Cjenik">
-            Cjenik
+        <c:if  test="${userInSession.roles[0].equals(\"ROLE_ZAPOSLENIK\")}">
+        <a  class="item" name="Jobs" href="${pageContext.request.contextPath}/jobs">
+            Poslovi
         </a>
-        <div class="right menu">
-            <c:if test="${empty user.name}">
-                <a  class="item" name="Login" href="${pageContext.request.contextPath}/sessions/new">
-                    Prijava
-                </a>
-                <a  class="item" name="singup" href="${pageContext.request.contextPath}/users/new">
-                    Registracija
-                </a>
-            </c:if>
+         </c:if> 
 
-            <c:if test="${not empty user.name}">
-                <a  class=" item">
-                    Dobrodošli, ${user.name }!
-                </a>
+    <div class="right menu">
+        <c:if test="${empty userInSession.userPid}">
+        <a  class="item" name="Login" href="${pageContext.request.contextPath}/sessions/new">
+            Prijava
+        </a>
+        <a  class="item" name="singup" href="${pageContext.request.contextPath}/users/new">
+            Registracija
+        </a>
+    </c:if>
 
-                <form method="post" action="${pageContext.request.contextPath}/sessions/">
-                    <input class="item" type="hidden" name="_method" value="DELETE">
-                    <input class="item" type="submit" value="Logout">
-                </form>
-            </c:if>
+    <c:if test="${not empty userInSession.firstName}">
+    <a  class=" item" href="${pageContext.request.contextPath}/users/${userInSession.userId}">
+        Dobrodošli, ${userInSession.firstName}!
+    </a>
 
-        </div>
-    </div>
+    <form method="post" action="${pageContext.request.contextPath}/sessions/">
+        <input class="item" type="hidden" name="_method" value="DELETE">
+        <input class="item" type="submit" value="Logout">
+    </form>
+</c:if>
+
+</div>
+</div>
 </nav>
 

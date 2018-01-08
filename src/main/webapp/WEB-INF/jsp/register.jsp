@@ -76,6 +76,7 @@
 			podatke</button>
 	</div>
 	</main>
+	<%@ include file = "../partials/footer.jsp" %>
 	<script src="${pageContext.request.contextPath}/scripts/register.js">
 		
 	</script>

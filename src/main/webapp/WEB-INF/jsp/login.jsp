@@ -34,6 +34,7 @@
 		</form>
 	</div>
 </main>
+<%@ include file = "../partials/footer.jsp" %>
 <script src="../../scripts/login.js"></script>
 </body>
 

@@ -14,7 +14,6 @@
             Promijenite svoje podatke
         </h1>
         <form action="/users/${user.userId}/" method="POST" class="ui large form segment stacked">
-            <input class="item" type="hidden" name="_method" value="PUT">
             <div class="two fields">
                 <div class="field">
                     <input type="text" name="name" id="first-name" disabled placeholder="Ime" value="${user.name}">
@@ -52,7 +51,7 @@
                 </div>
                 <div class="content field">
                     <div class="field">
-                        <input type="password" name="old-password" id="old-password" placeholder="Unesite staru lozinku">
+                        <input type="password" name="oldPassword" id="old-password" placeholder="Unesite staru lozinku">
                     </div>
                     <div class="field">
                         <input type="password" name="password" id="password" placeholder="Unesite novu lozinku">

@@ -3,6 +3,7 @@ package hr.petsonly.web;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -10,7 +11,6 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import hr.petsonly.model.User;
-import hr.petsonly.model.details.UserDetailsBasic;
 import hr.petsonly.model.details.UserDetailsMore;
 import hr.petsonly.repository.UserRepository;
 
@@ -22,15 +22,19 @@ public class SessionController {
 	private UserRepository userRepository;
 
 	@RequestMapping(value = "/new", method = RequestMethod.GET)
-	public String showLoginPage() {
-		
+	public String showLoginPage(HttpSession httpSession) {
+		final UserDetailsMore userInSession = (UserDetailsMore) httpSession.getAttribute("userInSession");
+		if (userInSession!=null) {
+			return "redirect:/users/" + userInSession.getUserId().toString(); 
+		}
 		return "login";
 	}
 
 	@RequestMapping(value = "/", method = RequestMethod.POST)
 	public String loginUser(Model model, HttpSession httpSession, @RequestParam String email,
 			@RequestParam String password) {
-
+		
+		
 		User user = userRepository.findByEmail(email);
 
 		if (user == null) {

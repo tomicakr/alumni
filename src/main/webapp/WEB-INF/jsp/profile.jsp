@@ -7,6 +7,9 @@
 	<jsp:param name="view-name" value="profile" />
 </jsp:include>
 <body>
+	<%@ include file = "../partials/indexHeader.jsp" %>
+<main>
+	
 <div id="delete-user-modal" class="ui small basic test modal transition hidden">
 	<div class="ui icon header">
 		<i class="trash icon"></i>
@@ -124,6 +127,12 @@
 		<button id="btn-pets" class="ui darkred button">Dohvati ljubimce</button>
 		<table class="ui celled table"></table>
 	</section>
+		
+
+</main>
+
+
+		<%@ include file = "../partials/footer.jsp" %>
 	<script src="${pageContext.request.contextPath}/scripts/profile.js"></script>
 </body>
 </html>

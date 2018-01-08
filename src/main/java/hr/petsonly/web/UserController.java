@@ -138,7 +138,7 @@ public class UserController {
 		return "editUser";
 	}
 
-	@RequestMapping(value = "/{id}", method = RequestMethod.PUT)
+	@RequestMapping(value = "/{id}", method = RequestMethod.POST)
 	public String updateUser(Model model, @PathVariable UUID id, HttpSession session, @Valid EditUserForm editUserForm, BindingResult result) {
 
 		UserDetailsMore userInSession = (UserDetailsMore) session.getAttribute("userInSession");

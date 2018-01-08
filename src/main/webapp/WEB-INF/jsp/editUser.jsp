@@ -13,7 +13,7 @@
         <h1 class="ui image massive header">
             Promijenite svoje podatke
         </h1>
-        <form:form action="/users/" method="post" class="ui large form segment stacked" modelAttribute="user">
+        <form action="/users/${user.userId}/" method="POST" class="ui large form segment stacked">
             <div class="two fields">
                 <div class="field">
                     <input type="text" name="name" id="first-name" disabled placeholder="Ime" value="${user.name}">
@@ -37,7 +37,7 @@
             <div class="field">
                 <select name="location" title="">
                     <c:forEach var="location" items="${locations}">
-                        <option value="${location.id}" selected>${location.name}</option>
+                        <option value="${location.id}">${location.name}</option>
                     </c:forEach>
                 </select>
             </div>
@@ -51,7 +51,7 @@
                 </div>
                 <div class="content field">
                     <div class="field">
-                        <input type="password" name="old-password" id="old-password" placeholder="Unesite staru lozinku">
+                        <input type="password" name="oldPassword" id="old-password" placeholder="Unesite staru lozinku">
                     </div>
                     <div class="field">
                         <input type="password" name="password" id="password" placeholder="Unesite novu lozinku">
@@ -62,7 +62,7 @@
                 </div>
             </div>
             <div class="ui fluid huge darkred submit button" style="width: 100%">Spremi promjene</div>
-        </form:form>
+        </form>
     </div>
 </main>
 <script src="${pageContext.request.contextPath}/scripts/editUser.js">

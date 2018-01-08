@@ -226,7 +226,7 @@ public class RepositoryTestController {
 	@RequestMapping("/repotest/send")
 	public String sendMail(){
 		String result = "";
-		esi.sendSimpleMessage("tomislav.kravarscan@fer.hr", "TOMICA", "Iz aplikacije si dobio");
+		esi.sendSimpleMessage("mate.paulinovic@fer.hr", "PROBA", "Poslano iz aplikacije");
 		return result;
 	}
 	

@@ -62,7 +62,7 @@ INSERT INTO users_roles (user_id, role_id) VALUES ('368ec8e2-c7cb-4eaf-b3f1-0077
 
 INSERT INTO service (service_key, description, name, price) VALUES ('9f49e501-c5f9-41b7-a59b-51adad927fc8', "", "Šetnja", 35.0);
 INSERT INTO service (service_key, description, name, price) VALUES ('64ec5189-c400-451e-a986-97f06978aa5e', "", "Odlazak veterinaru", 20.0);
-INSERT INTO service (service_key, description, name, price) VALUES ('45fe9664-4ab7-4fea-915f-0c3607ea2120', "", "Rezanje nokata", 30.0);
+INSERT INTO service (service_key, description, name, price) VALUES ('45fe9664-4ab7-4fea-915f-0c3607ea2120', "", "Rezanje noktiju", 30.0);
 INSERT INTO service (service_key, description, name, price) VALUES ('4a63f218-3d3d-4f3a-a7c6-9e71c3e3dd6b', "", "Kupanje", 40.0);
 INSERT INTO service (service_key, description, name, price) VALUES ('a64f3c62-f811-46db-a135-700be2f60211', "", "Čuvanje", 35.0);
 

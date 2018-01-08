@@ -5,6 +5,8 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.UUID;
 
+import javax.validation.Valid;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
 import org.springframework.stereotype.Controller;
@@ -59,7 +61,7 @@ public class PetController {
 	
 	@ResponseBody
 	@RequestMapping(method = RequestMethod.POST, produces = MediaType.APPLICATION_JSON_VALUE, consumes = MediaType.APPLICATION_JSON_VALUE)
-	public PetDetails addNewPet(@RequestBody PetForm petForm, Model model, @PathVariable UUID id, BindingResult result) {
+	public PetDetails addNewPet(@RequestBody @Valid PetForm petForm, BindingResult result, Model model, @PathVariable UUID id) {
 		
 		if(result.hasErrors()) {
 			System.out.println(result);

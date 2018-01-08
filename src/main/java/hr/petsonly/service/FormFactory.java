@@ -110,9 +110,13 @@ public class FormFactory {
 		if(ef.hasChanges(user)) {
 			return false;
 		}
-		
-		user.setMobilePhone(ef.getMobilePhone());
+		if(!ef.getMobilePhone().isEmpty()) {
+			user.setMobilePhone(ef.getMobilePhone());
+		}
 		user.setLocation(lr.findOne(ef.getLocation()));
+		
+		user.setPassword(ef.getPassword());
+			
 		return true;
 	}
 

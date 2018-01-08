@@ -9,7 +9,7 @@
 <nav>
     <div class="ui massive secondary menu" id="customMenu">
         <a class="item" id="home" name="Home" href="/">
-            Kontakt
+            Naslovnica
         </a>
         <a class="item" id="services" name="Usluge">
             Usluge

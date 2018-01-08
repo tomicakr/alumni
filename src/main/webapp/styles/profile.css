@@ -1,3 +1,7 @@
 .ui.selection.dropdown{
-    min-width: 0em;
+	min-width: 0em;
+}
+
+a, a:hover{
+	color: white;	
 }

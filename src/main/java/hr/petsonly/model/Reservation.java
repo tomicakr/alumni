@@ -44,7 +44,7 @@ public class Reservation {
 
 
 	@ManyToOne(fetch = FetchType.LAZY)
-	@JoinColumn(name = "employeeId", insertable = false, updatable = false)
+	@JoinColumn(name = "employeeId")
 	private User employee;
 
 	@Column

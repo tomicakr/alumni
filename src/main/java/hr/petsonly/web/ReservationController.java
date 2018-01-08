@@ -101,8 +101,10 @@ public class ReservationController {
 		}
 
 		User user = userRepository.getOne(uid);
+		System.out.println(reservationForm);
 		Reservation reservation = formFactory.createReservationFromForm(reservationForm);
 //		ReservationDetails reservationDetails = new ReservationDetails(reservation);
+		System.out.println(reservation.getEmployee());
 		user.getReservations().add(reservation);
 		userRepository.save(user);
 		

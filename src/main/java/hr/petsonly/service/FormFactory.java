@@ -86,7 +86,7 @@ public class FormFactory {
 		r.setUser(ur.findOne(arf.getOwner()));
 		r.setService(sr.findOne(UUID.fromString(arf.getService())));
 		r.setPet(pr.findOne(arf.getPet()));
-		if(arf.getEmployee() != null){
+		if(arf.getEmployee() != null){ 
 			r.setEmployee(ur.findOne(arf.getEmployee()));	
 		}
 		return r;

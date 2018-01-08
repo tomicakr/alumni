@@ -20,6 +20,7 @@ public class AddReservationForm {
 	@NotNull
 	private UUID pet;
 
+	@NotNull
 	private UUID employee;
 
 	@NotNull
@@ -84,12 +85,6 @@ public class AddReservationForm {
 
 	public void setOwner(UUID owner) {
 		this.owner = owner;
-	}
-
-	@Override
-	public String toString() {
-		return "AddReservationForm [service=" + service + ", pet=" + pet + ", owner=" + owner + ", employee=" + employee + ", executionTime="
-				+ executionTime + ", duration=" + duration + ", sendReminder=" + sendReminder + "]";
 	}
 
 	public boolean hasChanges(Reservation res) {

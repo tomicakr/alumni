@@ -43,7 +43,7 @@
                 </select>
             </div>
             <div class="field">
-                <input type="text" name="address" id="address" placeholder="Adresa stavnovanja" disabled value="${user.address}">
+                <input type="text" name="address" id="address" placeholder="Adresa stanovanja" disabled value="${user.address}">
             </div>
             <div class="ui accordion field">
                 <div class="ui left floated title">

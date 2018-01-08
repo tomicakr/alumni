@@ -155,6 +155,20 @@ public class UserController {
 		
 		User user = userRepository.findOne(id);
 		
+		if(!user.getPassword().equals(editUserForm.getOldPassword())) {
+			model.addAttribute("errorMessage", "Neispravna lozinka!");
+			return "customError";
+		}
+		
+		if(editUserForm.getPassword().isEmpty()) {
+			model.addAttribute("errorMessage", "Nova lozinka ne smije biti prazna!");
+			return "customError";
+		}
+		if(!editUserForm.getPassword().equals(editUserForm.getPassword2())) {
+			model.addAttribute("errorMessage", "Nova i ponovljena lozinka nisu iste");
+			return "customError";
+		}
+		
 		if(formFactory.editUserFromForm(user, editUserForm)) {
 			userRepository.save(user);
 		};

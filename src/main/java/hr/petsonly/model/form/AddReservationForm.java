@@ -6,6 +6,8 @@ import javax.validation.constraints.NotNull;
 
 import org.springframework.stereotype.Component;
 
+import hr.petsonly.model.Reservation;
+
 @Component
 public class AddReservationForm {
 
@@ -88,6 +90,11 @@ public class AddReservationForm {
 	public String toString() {
 		return "AddReservationForm [service=" + service + ", pet=" + pet + ", owner=" + owner + ", employee=" + employee + ", executionTime="
 				+ executionTime + ", duration=" + duration + ", sendReminder=" + sendReminder + "]";
+	}
+
+	public boolean hasChanges(Reservation res) {
+		// TODO Auto-generated method stub
+		return false;
 	}
 
 }

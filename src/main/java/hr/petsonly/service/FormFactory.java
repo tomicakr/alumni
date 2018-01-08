@@ -115,4 +115,14 @@ public class FormFactory {
 		user.setLocation(lr.findOne(ef.getLocation()));
 		return true;
 	}
+
+	public boolean editReservationFromForm(Reservation res, AddReservationForm rf) {
+		if(rf.hasChanges(res)) {
+			return false;
+		}
+		
+		// TODO: implementacija
+		return true;
+	}
+
 }

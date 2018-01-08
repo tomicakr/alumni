@@ -127,24 +127,26 @@ public class ReservationController {
 	}
 
 	@PutMapping(value = "/{id}")
-	public String saveReservation(@PathVariable UUID uid, @Valid Reservation reservatioin, BindingResult result) {
+	public String saveReservation(Model model, @PathVariable UUID uid,@PathVariable UUID id, @Valid AddReservationForm reservation, BindingResult result) {
 
 		if (result.hasErrors()) {
+			
+			model.addAttribute("errorMessage", result.toString());
 			return "reservationEdit";
 		}
 
-		// ovo naravno treba drugacije --------
 
 		User user = userRepository.getOne(uid);
+		
+		Reservation res = reservationRepository.findOne(id);
 
-		List<Reservation> usersReservations = user.getReservations();
-		usersReservations.removeIf(res -> res.getReservationKey().equals(reservatioin.getReservationKey()));
-
-		usersReservations.add(reservatioin);
-
+		if(formFactory.editReservationFromForm(res, reservation)) {
+			model.addAttribute("errorMessage", "Nema promjena.");
+			return String.format("redirect:/users/%s/reservations", uid.toString());
+		}
+		
 		userRepository.save(user);
 
-		// ------------------------------------
 		return String.format("redirect:/users/%s/reservations", uid.toString());
 	}
 

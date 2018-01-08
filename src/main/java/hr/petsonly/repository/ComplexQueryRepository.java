@@ -11,7 +11,7 @@ import hr.petsonly.model.User;
 public interface ComplexQueryRepository extends JpaRepository<User, UUID>{
 	
 	@Query(value = "SELECT u.name AS uname, u.surname AS usurname, p.name AS pname FROM users u INNER JOIN pet p ON u.user_id = p.user_id", nativeQuery = true)
-	List<Object[]> findAllUsersAndPets();
+	public List<Object[]> findAllUsersAndPets();
 	
 	
 }

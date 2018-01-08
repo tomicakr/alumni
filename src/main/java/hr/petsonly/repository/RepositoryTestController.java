@@ -213,4 +213,10 @@ public class RepositoryTestController {
 		return result;
 	}
 	
+	@RequestMapping("/repotest/hire")
+	public String hire(){
+		String result = "";
+		ur.hireUser("0e070ca1-4950-40ff-a1d7-8f65e6f559bf");
+		return result;
+	}
 }

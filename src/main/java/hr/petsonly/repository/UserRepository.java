@@ -4,9 +4,11 @@ import java.util.List;
 import java.util.UUID;
 
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import hr.petsonly.model.Location;
 import hr.petsonly.model.User;
@@ -87,4 +89,9 @@ public interface UserRepository extends JpaRepository<User, UUID> {
 	@Query(value = "SELECT * FROM users u INNER JOIN users_roles ur ON u.user_id = ur.user_id WHERE role_id = 2", nativeQuery = true)
 	List<User> findAllEmployees();
 
+	//ELEVATE_USER_TO_EMPLOYEE
+	@Transactional
+	@Modifying(clearAutomatically=true)
+	@Query(value = "UPDATE users_roles ur SET ur.role_id = 2 WHERE ur.user_id = :user_id", nativeQuery = true)
+	void hireUser(@Param("user_id") String userId);
 }

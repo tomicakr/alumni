@@ -20,13 +20,16 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import hr.petsonly.model.Pet;
 import hr.petsonly.model.Reservation;
+import hr.petsonly.model.Service;
 import hr.petsonly.model.User;
 import hr.petsonly.model.details.PetDetails;
 import hr.petsonly.model.details.ReservationDetails;
+import hr.petsonly.model.details.ServiceDetails;
 import hr.petsonly.model.details.UserDetailsBasic;
 import hr.petsonly.model.form.AddReservationForm;
 import hr.petsonly.repository.PetRepository;
 import hr.petsonly.repository.ReservationRepository;
+import hr.petsonly.repository.ServiceRepository;
 import hr.petsonly.repository.UserRepository;
 import hr.petsonly.service.FormFactory;
 
@@ -42,6 +45,9 @@ public class ReservationController {
 	
 	@Autowired
 	private PetRepository petRepository;
+	
+	@Autowired
+	private ServiceRepository serviceRepository;
 
 	@Autowired
 	private FormFactory formFactory;
@@ -71,18 +77,25 @@ public class ReservationController {
 		List<User> employees = userRepository.findAllEmployees();
 		List<UserDetailsBasic> employeeDetails = new ArrayList<>();
 		employees.forEach(employee -> employeeDetails.add(new UserDetailsBasic(employee)));
-
+		
+		List<Service> services = serviceRepository.findAll();
+		List<ServiceDetails> serviceDetails = new ArrayList<>();
+		services.forEach(service -> serviceDetails.add(new ServiceDetails(service)));
+		
 		model.addAttribute("userId", uid);
 		model.addAttribute("pets", petDetails);
 		model.addAttribute("employees", employeeDetails);
+		model.addAttribute("services", serviceDetails);
 		
 		return "newReservation";
 	}
 
 	@PostMapping
 	public String createReservation(Model model, @PathVariable UUID uid, @Valid AddReservationForm reservationForm, BindingResult result) {
-		System.out.println("USAO SAM U POST");
+		
 		if (result.hasErrors()) {
+			System.out.println(result);
+			System.out.println(reservationForm);
 			model.addAttribute("reservation", reservationForm);
 			return "newReservation";
 		}

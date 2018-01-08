@@ -8,29 +8,24 @@ import org.springframework.stereotype.Component;
 
 @Component
 public class AddReservationForm {
-	
+
+	@NotNull
+	private UUID owner;
+
 	@NotNull
 	private String service;
-	
+
 	@NotNull
 	private UUID pet;
-	
-	@NotNull
-	private UUID user;
-	
+
 	private UUID employee;
-	
+
 	@NotNull
 	private String executionTime;
-	
-	@NotNull
-	private String executionDate;
-	
 
 	@NotNull
 	private String duration;
-		
-	@NotNull
+
 	private String sendReminder;
 
 	public String getService() {
@@ -47,14 +42,6 @@ public class AddReservationForm {
 
 	public void setPet(UUID pet) {
 		this.pet = pet;
-	}
-
-	public UUID getUser() {
-		return user;
-	}
-
-	public void setUser(UUID user) {
-		this.user = user;
 	}
 
 	public UUID getEmployee() {
@@ -88,12 +75,19 @@ public class AddReservationForm {
 	public void setSendReminder(String sendReminder) {
 		this.sendReminder = sendReminder;
 	}
-	
-	public String getExecutionDate() {
-		return executionDate;
+
+	public UUID getOwner() {
+		return owner;
 	}
 
-	public void setExecutionDate(String executionDate) {
-		this.executionDate = executionDate;
+	public void setOwner(UUID owner) {
+		this.owner = owner;
 	}
+
+	@Override
+	public String toString() {
+		return "AddReservationForm [service=" + service + ", pet=" + pet + ", owner=" + owner + ", employee=" + employee + ", executionTime="
+				+ executionTime + ", duration=" + duration + ", sendReminder=" + sendReminder + "]";
+	}
+
 }

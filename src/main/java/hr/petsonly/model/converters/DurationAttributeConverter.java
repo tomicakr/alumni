@@ -10,7 +10,7 @@ public class DurationAttributeConverter implements AttributeConverter<Duration, 
 
 	@Override
 	public String convertToDatabaseColumn(Duration duration) {
-		return duration == null ? null : String.format("%2d:%2d", duration.getSeconds() / 3600, (duration.getSeconds() % 3600) / 60);
+		return duration == null ? null : String.format("%02d:%02d", duration.getSeconds() / 3600, (duration.getSeconds() % 3600) / 60);
 	}
 
 	@Override

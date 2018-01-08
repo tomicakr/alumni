@@ -70,21 +70,22 @@ public class FormFactory {
 	}
 
 	public Reservation createReservationFromForm(AddReservationForm arf){
+		System.out.println(arf.toString());
 		Reservation r = new Reservation();
 		r.setReservationKey(UUID.randomUUID());
 		r.setReservationStatus(1); //KAKO SU NUMERIRANI STATUSI?
 		r.setReservationTime(LocalDateTime.now());
-		r.setExecutionTime(LocalDateTime.parse(arf.getExecutionTime(), DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm")));
-		r.setSendReminder(arf.getSendReminder().equals("1") );
+		r.setExecutionTime(LocalDateTime.parse(arf.getExecutionTime(), DateTimeFormatter.ofPattern("yyyy-MM-dd'T'HH:mm")));
+		r.setSendReminder(arf.getSendReminder() != null);
 		
 		String[] parts = arf.getDuration().split(":");
 		Integer hours = Integer.parseInt(parts[0]);
 		Integer minutes = Integer.parseInt(parts[1]);
 		r.setDuration(Duration.ofMinutes(hours * 60 + minutes));
 		
+		r.setUser(ur.findOne(arf.getOwner()));
 		r.setService(sr.findOne(UUID.fromString(arf.getService())));
 		r.setPet(pr.findOne(arf.getPet()));
-		r.setUser(ur.findOne(arf.getUser()));
 		if(arf.getEmployee() != null){
 			r.setEmployee(ur.findOne(arf.getEmployee()));	
 		}

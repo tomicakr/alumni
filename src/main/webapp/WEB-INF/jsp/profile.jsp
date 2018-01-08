@@ -36,7 +36,6 @@
 			<h2>Korisnički račun uspješno obrisan</h2>
 			<div class="actions">
 				<div class="ui red ok inverted button">
-					<i class="checkmark icon"></i>
 					U redu
 				</div>
 			</div>
@@ -131,7 +130,7 @@
 	<center>
 		<button id="btn-edit"  class="ui button yellow" >Uredi</button>
 		<button id="btn-delete" class="ui button red">Obriši</button>
-		
+
 
 	</center>
 

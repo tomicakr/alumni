@@ -72,8 +72,7 @@
 			<div class="ui fluid huge darkred submit button" style="width: 100%">Registriraj
 				se!</div>
 		</form>
-		<button class="ui huge button" id="komba">Skombaj mi sve
-			podatke</button>
+		<button class="ui huge button" id="komba">Automatski popuni</button>
 	</div>
 	</main>
 	<%@ include file = "../partials/footer.jsp" %>

@@ -7,8 +7,8 @@
 	<jsp:param name="view-name" value="users" />
 </jsp:include>
 <body>
-	<%@ include file = "../partials/header.jsp" %>
-	<main class="ui two column center aligned grid">
+	<%@ include file = "../partials/indexHeader.jsp" %>
+		<main class="ui two column center aligned grid">
 		<div class="column">
 			<h1 class="ui image massive header">Korisnici aplikacije</h1>
 			<table class="ui very padded table">
@@ -49,6 +49,7 @@
 		</tbody>
 	</table>
 </div>
-</main>
+</main> 	
+<%@ include file = "../partials/footer.jsp" %>
 </body>
 </html>

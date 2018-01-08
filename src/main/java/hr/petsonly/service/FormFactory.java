@@ -107,7 +107,7 @@ public class FormFactory {
 	}
 	
 	public boolean editUserFromForm(User user, EditUserForm ef) {
-		if(ef.hasChanges(user)) {
+		if(!ef.hasChanges(user)) {
 			return false;
 		}
 		if(!ef.getMobilePhone().isEmpty()) {

@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.RestController;
 import hr.petsonly.model.Location;
 import hr.petsonly.model.Pet;
 import hr.petsonly.model.User;
+import hr.petsonly.service.EmailServiceImpl;
 
 @RestController
 public class RepositoryTestController {
@@ -209,7 +210,7 @@ public class RepositoryTestController {
 	public String deletep(){
 		String result = "";
 		//prir.delete((long) 1);
-		pr.delete(UUID.fromString("33ef54cf-b2e2-4839-bd7f-866d51e7e571"));
+		pr.delete(UUID.fromString("4234a45d-9220-4576-8e94-0d3b0e2c6eaf"));
 		return result;
 	}
 	
@@ -219,4 +220,15 @@ public class RepositoryTestController {
 		ur.hireUser("0e070ca1-4950-40ff-a1d7-8f65e6f559bf");
 		return result;
 	}
+	
+	@Autowired
+	EmailServiceImpl esi;
+	@RequestMapping("/repotest/send")
+	public String sendMail(){
+		String result = "";
+		esi.sendSimpleMessage("tomislav.kravarscan@fer.hr", "TOMICA", "Iz aplikacije si dobio");
+		return result;
+	}
+	
+	
 }

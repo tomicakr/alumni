@@ -27,9 +27,28 @@ public class JobController {
 	public String showAllReservations(Model model) {
 		
 		List<Reservation> allReservations = reservationRepository.findAll();
-		List<ReservationDetails> reservationDetailsAll = new ArrayList<>();
-		allReservations.forEach(res -> reservationDetailsAll.add(new ReservationDetails(res)));
-		model.addAttribute("reservations", reservationDetailsAll);
+		List<ReservationDetails> open = new ArrayList<>();
+		List<ReservationDetails> accepted = new ArrayList<>();
+		List<ReservationDetails> confirmed = new ArrayList<>();
+
+		for (Reservation res : allReservations) {
+			switch (res.getReservationStatus()) {
+			case 1:
+				open.add(new ReservationDetails(res));
+				break;
+			case 2:
+				accepted.add(new ReservationDetails(res));
+				break;
+			case 3:
+				confirmed.add(new ReservationDetails(res));
+				break;
+			}
+		}
+			
+		model.addAttribute("open", open);
+		model.addAttribute("accepted", accepted);
+		model.addAttribute("confirmed", confirmed);
+		
 		
 		return "jobs";
 	}

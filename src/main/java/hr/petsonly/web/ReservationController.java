@@ -91,20 +91,23 @@ public class ReservationController {
 	}
 
 	@PostMapping
-	public String createReservation(Model model, @PathVariable UUID uid, @Valid AddReservationForm reservationForm, BindingResult result) {
+	@ResponseBody
+	public ReservationDetails createReservation(Model model, @PathVariable UUID uid, @Valid AddReservationForm reservationForm, BindingResult result) {
 		
 		if (result.hasErrors()) {
 			System.out.println(result);
 			System.out.println(reservationForm);
 			model.addAttribute("reservation", reservationForm);
-			return "newReservation";
+			return null;
 		}
 
 		User user = userRepository.getOne(uid);
-		user.getReservations().add(formFactory.createReservationFromForm(reservationForm));
+		Reservation reservation = formFactory.createReservationFromForm(reservationForm);
+		ReservationDetails reservationDetails = new ReservationDetails(reservation);
+		user.getReservations().add(reservation);
 		userRepository.save(user);
 		
-		return String.format("redirect:/users/%s/reservations", uid.toString());
+		return reservationDetails;
 	}
 
 	@GetMapping(value = "/{id}")

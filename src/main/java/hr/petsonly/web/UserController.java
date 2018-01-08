@@ -8,7 +8,6 @@ import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -17,6 +16,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import hr.petsonly.model.Location;
 import hr.petsonly.model.User;
@@ -170,6 +170,7 @@ public class UserController {
 		return "redirect:/users/" + id.toString();
 	}
 
+	@ResponseBody
 	@RequestMapping(value = "/{id}", method = RequestMethod.DELETE)
 	public String deleteUser(Model model, @PathVariable UUID id, HttpSession session) {
 
@@ -181,8 +182,8 @@ public class UserController {
 		}
 		
 		userRepository.delete(userRepository.findOne(id));
-		
-		return "redirect:/index";
+		session.invalidate();
+		return "nijeUspjelo";
 	}
 
 }

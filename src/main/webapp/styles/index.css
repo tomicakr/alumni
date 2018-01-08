@@ -20,6 +20,14 @@ main{
     min-height: 80%;
 }
 
+.ui.secondary.menu form input{
+    outline: none;
+}
+
+.ui.secondary.menu form input{
+    cursor:pointer;
+}
+
 .ui.secondary.menu .item, #heading button{
     transition: all .2s ease-in-out !important;
 }

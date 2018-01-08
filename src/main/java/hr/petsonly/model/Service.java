@@ -21,7 +21,7 @@ public class Service {
 	@Column
 	private String description;
 
-	@OneToMany(fetch = FetchType.LAZY, mappedBy = "service")
+	@OneToMany(fetch = FetchType.LAZY, mappedBy = "service", cascade=CascadeType.ALL, orphanRemoval = true)
 	private List<Reservation> reservations;
 
 	public Service() {

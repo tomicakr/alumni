@@ -12,7 +12,7 @@ public class Privilege {
 
 	private String name;
 
-	@ManyToMany(mappedBy = "privileges", cascade = CascadeType.ALL)
+	@ManyToMany(mappedBy = "privileges")
 	private List<Role> roles;
 
 	public Long getId() {

@@ -202,5 +202,15 @@ public class RepositoryTestController {
 		return result;
 	}
 	
+	@Autowired
+	PrivilegeRepository prir;
+	
+	@RequestMapping("/repotest/deletep")
+	public String deletep(){
+		String result = "";
+		//prir.delete((long) 1);
+		pr.delete(UUID.fromString("33ef54cf-b2e2-4839-bd7f-866d51e7e571"));
+		return result;
+	}
 	
 }

@@ -11,10 +11,10 @@ public class Role {
 	private Long id;
 
 	private String name;
-	@ManyToMany(mappedBy = "roles", cascade = CascadeType.ALL)
+	@ManyToMany(mappedBy = "roles")
 	private List<User> users;
 
-	@ManyToMany(cascade = CascadeType.ALL)
+	@ManyToMany()
 	@JoinTable(name = "roles_privileges", joinColumns = @JoinColumn(name = "role_id", referencedColumnName = "id"), inverseJoinColumns = @JoinColumn(name = "privilege_id", referencedColumnName = "id"))
 	private List<Privilege> privileges;
 

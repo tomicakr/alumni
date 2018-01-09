@@ -148,7 +148,11 @@ public class UserController {
 			BindingResult result) {
 
 		UserDetailsMore userInSession = (UserDetailsMore) session.getAttribute("userInSession");
-
+		
+		List<Location> locations = locationRepository.findAll();
+		List<LocationDetails> locationDetails = new ArrayList<>();
+		locations.forEach(location -> locationDetails.add(new LocationDetails(location)));
+		
 		if (userInSession == null || !userInSession.getUserId().equals(id)) {
 			model.addAttribute("errorMessage", "Nemaš ovlasti za to!");
 			return "customError";
@@ -163,12 +167,16 @@ public class UserController {
 
 		if (editUserForm.getMobilePhone().isEmpty()) {
 			model.addAttribute("errorMessage", "Broj mobitela ne smije biti prazan!");
-			return "redirect:/users/" + id + "/edit";
+			model.addAttribute("user", user);
+			model.addAttribute("locations", locationDetails);
+			return "editUser";
 		}
 
 		if (!user.getPassword().equals(editUserForm.getOldPassword())) {
 			model.addAttribute("errorMessage", "Lozinka nije ispravna!");
-			return "redirect:/users/" + id + "/edit";
+			model.addAttribute("user", user);
+			model.addAttribute("locations", locationDetails);
+			return "editUser";
 		}
 
 		if (formFactory.editUserFromForm(user, editUserForm)) {

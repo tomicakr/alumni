@@ -37,6 +37,13 @@ INSERT INTO users (user_id, name, surname, user_pid, user_mnemonic,
 			VALUES('48c2ad9c-c37a-4dbc-a823-11adbbe11769', "Maja", "Krmpotić-Đurđević", "41391200191", "mk0",
 				   "maja.krmpi@gmail.com", "0913264547", "3212132", 'bdd93cdb-a85f-4182-b051-c3d061eb583a', "maja123",
                    "pazinska 13", 1, "simpa");
+
+INSERT INTO users (user_id, name, surname, user_pid, user_mnemonic,
+				   email, mobile_phone, phone, location_id, password,
+                   address, notification_setting, remark)
+			VALUES('368ec8e2-c7cb-4eaf-b3f1-0077333fbe55', "Antun", "Modrušan", "98486854147", "am0",
+				   "antun.mod@gmail.com", "0998190467", "4834563", '292dd5ea-5f28-4794-8eec-94adb19e46c2', "antun123",
+                   "vladimira nazora 59a", 2, "onak");
                    
 INSERT INTO users (user_id, name, surname, user_pid, user_mnemonic,
 				   email, mobile_phone, phone, location_id, password,

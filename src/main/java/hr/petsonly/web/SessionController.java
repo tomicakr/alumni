@@ -40,7 +40,7 @@ public class SessionController {
 		User user = userRepository.findByEmail(email);
 
 		if (user == null) {
-			model.addAttribute("errorMessage", "Korisnik sa e-mail adresom ' " + email + " ' ne postoji!");
+			model.addAttribute("errorMessage", "Korisnik sa unesenom e-mail adresom ne postoji!");
 			return "login";
 		}
 

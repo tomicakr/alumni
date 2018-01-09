@@ -12,10 +12,13 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import hr.petsonly.model.Location;
@@ -35,13 +38,13 @@ public class UserController {
 
 	@Autowired
 	private UserRepository userRepository;
-	
+
 	@Autowired
 	private FormFactory formFactory;
-	
+
 	@Autowired
 	private LocationRepository locationRepository;
-	
+
 	@GetMapping
 	public String showUserList(Model model) {
 
@@ -64,12 +67,13 @@ public class UserController {
 		locations.forEach(location -> locationDetails.add(new LocationDetails(location)));
 
 		model.addAttribute("locations", locationDetails);
-		
+
 		return "register";
 	}
 
 	@PostMapping
-	public String createUser(Model model, @Valid RegistrationForm registrationForm, BindingResult result, HttpSession session) {
+	public String createUser(Model model, @Valid RegistrationForm registrationForm, BindingResult result,
+			HttpSession session) {
 
 		System.out.println(result);
 		System.out.println(registrationForm);
@@ -79,13 +83,13 @@ public class UserController {
 			model.addAttribute("errorMessage", "Registracija nije valjana");
 			return "register";
 		}
-		
+
 		User user = formFactory.createUserFromForm(registrationForm);
 		user = userRepository.save(user);
-		
+
 		UserDetailsMore userDetails = new UserDetailsMore(user);
 		session.setAttribute("userInSession", userDetails);
-		
+
 		return "redirect:/users/" + user.getUserId();
 	}
 
@@ -123,12 +127,12 @@ public class UserController {
 		}
 
 		User user = userRepository.getOne(id);
-		
-		if(user == null) {
+
+		if (user == null) {
 			model.addAttribute("errorMessage", "Taj korisnik ne postoji!");
 			return "customError";
 		}
-		
+
 		List<Location> locations = locationRepository.findAll();
 		List<LocationDetails> locationDetails = new ArrayList<>();
 		locations.forEach(location -> locationDetails.add(new LocationDetails(location)));
@@ -140,7 +144,8 @@ public class UserController {
 	}
 
 	@RequestMapping(value = "/{id}", method = RequestMethod.POST)
-	public String updateUser(Model model, @PathVariable UUID id, HttpSession session, @Valid EditUserForm editUserForm, BindingResult result) {
+	public String updateUser(Model model, @PathVariable UUID id, HttpSession session, @Valid EditUserForm editUserForm,
+			BindingResult result) {
 
 		UserDetailsMore userInSession = (UserDetailsMore) session.getAttribute("userInSession");
 
@@ -148,25 +153,31 @@ public class UserController {
 			model.addAttribute("errorMessage", "Nemaš ovlasti za to!");
 			return "customError";
 		}
-		
-		if(result.hasErrors()) {
-			model.addAttribute("errorMessage", result.toString());
+
+		if (result.hasErrors()) {
+			model.addAttribute("errorMessage", "");
 			return "editUser";
 		}
-		
+
 		User user = userRepository.findOne(id);
-		
-		if(!editUserForm.isValid(user)) {
-			model.addAttribute("errorMessage", "Podaci nisu ispravni!");
-			return "customError";
+
+		if (editUserForm.getMobilePhone().isEmpty()) {
+			model.addAttribute("errorMessage", "Broj mobitela ne smije biti prazan!");
+			return "redirect:/users/" + id + "/edit";
 		}
-		
-		if(formFactory.editUserFromForm(user, editUserForm)) {
+
+		if (!user.getPassword().equals(editUserForm.getOldPassword())) {
+			model.addAttribute("errorMessage", "Lozinka nije ispravna!");
+			return "redirect:/users/" + id + "/edit";
+		}
+
+		if (formFactory.editUserFromForm(user, editUserForm)) {
 			userRepository.save(user);
 			UserDetailsMore userDetails = new UserDetailsMore(user);
 			session.setAttribute("userInSession", userDetails);
-		};
-		
+		}
+		;
+
 		return "redirect:/users/" + id.toString();
 	}
 
@@ -176,11 +187,11 @@ public class UserController {
 
 		UserDetailsMore userInSession = (UserDetailsMore) session.getAttribute("userInSession");
 
-		if(userInSession == null || !userInSession.getUserId().equals(id)) {
+		if (userInSession == null || !userInSession.getUserId().equals(id)) {
 			model.addAttribute("errorMessage", "Nemaš ovlasti za to!");
 			return "customError";
 		}
-		
+
 		userRepository.delete(userRepository.findOne(id));
 		session.invalidate();
 		return "nijeUspjelo";

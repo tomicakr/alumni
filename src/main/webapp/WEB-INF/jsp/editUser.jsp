@@ -13,8 +13,7 @@
         <h1 class="ui image massive header">
             Promijenite svoje podatke
         </h1>
-        <form action="/users/${user.userId}/" method="POST" class="ui large form segment stacked">
-            <input class="item" type="hidden" name="_method" value="PUT"/>
+        <form action="/users/${user.userId}/" method="post" class="ui large form segment stacked">
             <div class="two fields">
                 <div class="field">
                     <input type="text" name="name" id="first-name" disabled placeholder="Ime" value="${user.name}">

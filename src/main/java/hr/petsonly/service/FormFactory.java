@@ -115,7 +115,10 @@ public class FormFactory {
 		}
 		user.setLocation(lr.findOne(ef.getLocation()));
 		
-		user.setPassword(ef.getPassword());
+		if(!ef.getPassword().equals("")){
+			user.setPassword(ef.getPassword());
+		}
+		
 			
 		return true;
 	}

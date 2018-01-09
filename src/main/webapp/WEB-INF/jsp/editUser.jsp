@@ -36,6 +36,7 @@
             </div>
             <div class="field">
                 <select name="location" title="">
+                        <option value="${user.location.locationId}">${user.location.locationName}</option>
                     <c:forEach var="location" items="${locations}">
                         <option value="${location.id}">${location.name}</option>
                     </c:forEach>

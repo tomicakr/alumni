@@ -137,6 +137,7 @@ public class UserController {
 		}
 
 		List<Location> locations = locationRepository.findAll();
+		locations.remove(user.getLocation());
 		List<LocationDetails> locationDetails = new ArrayList<>();
 		locations.forEach(location -> locationDetails.add(new LocationDetails(location)));
 
@@ -175,7 +176,9 @@ public class UserController {
 			return "editUser";
 		}
 
-		if (!user.getPassword().equals(editUserForm.getOldPassword())) {
+		//moglo bi se pomisliti da ce user machat dva nova possworda ali ce za pravi unijeti "" te ce proci ovaj if
+		//no js ga nece pustit ako duzina tog pass nije veca od 0
+		if (!user.getPassword().equals(editUserForm.getOldPassword()) && !editUserForm.getOldPassword().equals("")) {
 			model.addAttribute("errorMessage", "Lozinka nije ispravna!");
 			model.addAttribute("user", user);
 			model.addAttribute("locations", locationDetails);

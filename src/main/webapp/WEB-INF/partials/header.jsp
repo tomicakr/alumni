@@ -2,6 +2,7 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn"%>
 <header>
+	
 	<div class="ui centered grid" style="margin-top: 10px">
 		<img src="${pageContext.request.contextPath}/images/logo1.png" height="100px" width="350px">
 	</div>

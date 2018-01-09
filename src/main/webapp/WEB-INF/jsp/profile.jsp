@@ -6,6 +6,7 @@
 <jsp:param name="title" value="Detalji korisnika" />
 <jsp:param name="view-name" value="profile" />
 </jsp:include>
+
 <body>
 	<%@ include file = "../partials/indexHeader.jsp" %>
 	<main>
@@ -131,7 +132,7 @@
 	<center>
 		<button id="btn-edit"  class="ui button yellow" >Uredi</button>
 		<button id="btn-delete" class="ui button red">Obriši</button>
-		
+
 
 	</center>
 

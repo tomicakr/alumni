@@ -1,6 +1,6 @@
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <footer>
-	<div class="ui inverted vertical footer segment" style="background-color: darkred">
+	<div class="ui inverted vertical footer segment" style="background-color: darkred; margin-top: 170px">
 		<div class="ui center aligned container">
 			<div class="ui stackable inverted divided grid">
 

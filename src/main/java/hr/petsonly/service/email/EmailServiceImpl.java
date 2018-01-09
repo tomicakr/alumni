@@ -38,7 +38,7 @@ public class EmailServiceImpl {
 
 	public void sendReservationOffer(Reservation reservation) {
 		try {
-			MimeMessagePreparator prep = this.getContentWtihAttachementMessagePreparator(reservation);
+			MimeMessagePreparator prep = this.prepareReservationOfferEmail(reservation);
 			mailSender.send(prep);
 		} catch (MailException exception) {
 			exception.printStackTrace();
@@ -48,7 +48,7 @@ public class EmailServiceImpl {
 		}
 	}
 
-	private MimeMessagePreparator getContentWtihAttachementMessagePreparator(final Reservation reservation) {
+	private MimeMessagePreparator prepareReservationOfferEmail(final Reservation reservation) {
 
 		MimeMessagePreparator preparator = new MimeMessagePreparator() {
 
@@ -57,14 +57,14 @@ public class EmailServiceImpl {
 		
 				helper.setSubject("PetsOnlyZg rezervacija");
 				helper.setFrom("fau53t7zss@gmail.com");
-				helper.setTo("filip.sodic@fer.hr"); //reservation.getUser().getEmail();
+				helper.setTo(reservation.getUser().getEmail());
 				String content = "Dear " + reservation.getUser().getName() 
 						+ ",\nthank you for your reservation. Your reservation id is " + reservation.getReservationKey() + ".";
 
 				helper.setText(content);
 				// Add a resource as an attachment	
 			
-				helper.addAttachment("Ponuda.pdf", Paths.get("./src/main/resources/templates/Informacije_o_projektnom_zadatku.pdf").toFile());
+				helper.addAttachment("Ponuda.pdf", Paths.get("./src/main/resources/turtle.html").toFile());
 				
 			}
 		};

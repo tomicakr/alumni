@@ -5,6 +5,7 @@
     <!--<div class="ui centered grid" style="margin-top: 10px">
 		<img src="${pageContext.request.contextPath}/images/logo1.png" height="100px" width="350px">
 	</div>-->
+    
 </header>
 <nav>
     <div class="ui massive secondary menu" id="customMenu">

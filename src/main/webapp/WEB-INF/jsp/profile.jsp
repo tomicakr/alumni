@@ -6,6 +6,7 @@
 <jsp:param name="title" value="Detalji korisnika" />
 <jsp:param name="view-name" value="profile" />
 </jsp:include>
+
 <body>
 	<%@ include file = "../partials/indexHeader.jsp" %>
 	<main>

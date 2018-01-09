@@ -8,6 +8,7 @@
 </jsp:include>
 </head>
 <body>
+	
 	<%@ include file = "../partials/indexHeader.jsp" %>
 	<h1 align="center">Pregled svih rezervacija: </h1>
 

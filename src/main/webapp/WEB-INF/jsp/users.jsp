@@ -6,6 +6,7 @@
 	<jsp:param name="title" value="Korisnici" />
 	<jsp:param name="view-name" value="users" />
 </jsp:include>
+
 <body>
 	<%@ include file = "../partials/indexHeader.jsp" %>
 		<main class="ui two column center aligned grid">

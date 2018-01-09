@@ -1,3 +1,4 @@
+
 $(document)
     .ready(function() {
         $('.ui.form')
@@ -21,8 +22,12 @@ $(document)
                             }
                         ]
                     }
-                }
+                },
+                onSuccess: () => $('.submit.button').addClass('loading')
             })
         ;
+        if($('.error.message').text().length()>0){
+            $('.error.message').show();
+        }
     })
 ;

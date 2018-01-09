@@ -1,3 +1,4 @@
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
@@ -30,7 +31,9 @@
 				<div class="ui primary message">
 					<h4>Nemate račun? <a class="item" name="Usluge" href="/users/new">Registirajte se</a> </h4>
 				</div>
-				<div class="ui error message"></div>
+					<c:if test="${not empty errorMessage}">
+						<div class="ui error message visible">${errorMessage}</div>
+					</c:if>
 				</form>
 			</div>
 		</div>

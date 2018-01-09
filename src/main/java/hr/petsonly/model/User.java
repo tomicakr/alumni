@@ -94,6 +94,9 @@ public class User {
 
 	@OneToMany(fetch = FetchType.LAZY, mappedBy = "employee" , cascade = CascadeType.ALL)
 	private List<Reservation> tasks;
+	
+	@OneToMany(fetch = FetchType.LAZY, mappedBy = "preferedEmployee" , cascade = CascadeType.ALL)
+	private List<Reservation> tasksWherePrefered;
 
 	@ManyToMany()
 	@JoinTable(name = "users_roles", joinColumns = @JoinColumn(name = "user_id", referencedColumnName = "userId"), inverseJoinColumns = @JoinColumn(name = "role_id", referencedColumnName = "id"))
@@ -254,6 +257,15 @@ public class User {
 
 	public void setRoles(List<Role> roles) {
 		this.roles = roles;
+	}
+	
+
+	public List<Reservation> getTasksWherePrefered() {
+		return tasksWherePrefered;
+	}
+
+	public void setTasksWherePrefered(List<Reservation> tasksWherePrefered) {
+		this.tasksWherePrefered = tasksWherePrefered;
 	}
 
 	@Override

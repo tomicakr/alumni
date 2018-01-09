@@ -14,6 +14,7 @@
             Promijenite svoje podatke
         </h1>
         <form action="/users/${user.userId}/" method="POST" class="ui large form segment stacked">
+            <input class="item" type="hidden" name="_method" value="PUT"/>
             <div class="two fields">
                 <div class="field">
                     <input type="text" name="name" id="first-name" disabled placeholder="Ime" value="${user.name}">
@@ -63,9 +64,12 @@
             </div>
             <div class="ui fluid huge darkred submit button" style="width: 100%">Spremi promjene</div>
         </form>
+        <c:if test="${not empty errorMessage}">
+            <div class="ui error message visible">${errorMessage}</div>
+        </c:if>
     </div>
 </main>
-<script src="${pageContext.request.contextPath}/scripts/editUser.js">
-</script>
+<script src="../../scripts/forms.js" type="module"></script>
+<script src="../../scripts/editUser.js" type="module"></script>
 </body>
 </html>

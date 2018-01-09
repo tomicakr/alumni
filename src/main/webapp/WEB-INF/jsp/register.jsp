@@ -12,9 +12,11 @@
 
 
 <body>
+
 	<main class="ui middle aligned center aligned grid">
 	<div class="column">
 		<h1 class="ui image massive header">Izradite svoj račun</h1>
+
 		<form action="/users" method="post"
 			class="ui large form segment stacked">
 			<div class="two fields">
@@ -72,12 +74,15 @@
 			<div class="ui fluid huge darkred submit button" style="width: 100%">Registriraj
 				se!</div>
 		</form>
+		<c:if test="${not empty errorMessage}">
+			<div class="ui error message visible">${errorMessage}</div>
+		</c:if>
 		<button class="ui huge button" id="komba">Automatski popuni</button>
 	</div>
 	</main>
 	<%@ include file = "../partials/footer.jsp" %>
-	<script src="${pageContext.request.contextPath}/scripts/register.js">
-		
+	<script src="../../scripts/forms.js" type="module"></script>t
+	<script src="../../scripts/register.js" type="module">
 	</script>
 </body>
 </html>

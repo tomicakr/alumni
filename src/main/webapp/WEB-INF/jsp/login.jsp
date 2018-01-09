@@ -38,7 +38,8 @@
 			</div>
 		</div>
 		<%@ include file = "../partials/footer.jsp" %>
-<script src="../../scripts/login.js"></script>
+		<script src="../../scripts/forms.js" type="module"></script>t
+		<script src="../../scripts/login.js" type="module"></script>
 </body>
 
 </html>

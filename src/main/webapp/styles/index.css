@@ -3,6 +3,11 @@ body,html{
     height: 100%;
     overflow-y: hidden;
 }
+
+.ui.menu{
+    font-family: Coda, sans-serif;
+}
+
 nav {
     position: relative;
     z-index: 1;

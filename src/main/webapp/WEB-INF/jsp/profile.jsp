@@ -13,10 +13,10 @@
 		<div id="delete-user-modal" class="ui small basic test modal transition hidden">
 			<div class="ui icon header">
 				<i class="trash icon"></i>
-				Brisanje profila
+				Brisanje korisničkog računa
 			</div>
 			<div class="content">
-				<p>Jeste li sigurni da želite obrisati profil</p>
+				<p>Jeste li sigurni da želite obrisati korisnički račun?</p>
 			</div>
 			<div class="actions">
 				<div class="ui green basic cancel inverted button">
@@ -33,7 +33,8 @@
 			<div class="ui icon header">
 				<i class="green checkmark icon"></i>
 			</div>
-			<h2>Korisnički račun uspješno obrisan</h2>
+			<h2>Korisnički račun uspješno obrisan.</h2>
+			<i class="checkmark icon"></i>
 			<div class="actions">
 				<div class="ui red ok inverted button">
 					U redu

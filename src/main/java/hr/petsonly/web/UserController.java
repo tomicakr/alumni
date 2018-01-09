@@ -7,18 +7,16 @@ import java.util.UUID;
 import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
 
+import org.apache.commons.validator.routines.EmailValidator;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import hr.petsonly.model.Location;
@@ -83,8 +81,13 @@ public class UserController {
 			model.addAttribute("errorMessage", "Registracija nije valjana");
 			return "register";
 		}
-
+		
 		User user = formFactory.createUserFromForm(registrationForm);
+		if(!EmailValidator.getInstance().isValid(registrationForm.getEmail())) {
+			model.addAttribute("registrationForm", registrationForm);
+			model.addAttribute("errorMessage", "Neispravna e-mail adresa");
+			return "register";
+		}
 		user = userRepository.save(user);
 
 		UserDetailsMore userDetails = new UserDetailsMore(user);

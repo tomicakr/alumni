@@ -8,37 +8,24 @@
 	<jsp:param name="view-name" value="" />
 </jsp:include>
 </head>
+<style>
+	.ui .segments{
+		background: white;
+	}
+	.three.column.grid#main-grid{
+		background: #ecf0f1 !important;
+	}
+	#main-div{
+		background: #ecf0f1 !important;
+	}
+</style>
 <body>
-	<div class="ui top attached demo menu">
-		<a class="item">
-			<i class="sidebar icon"></i>
-			Izbornik
-		</a>
-	</div>
-	<div class="ui bottom attached segment pushable">
-		<div class="ui inverted labeled icon left inline vertical sidebar menu uncover visible" style="">
-			<a class="item">
-				<i class="home icon"></i>
-				Home
-			</a>
-			<a class="item">
-				<i class="block layout icon"></i>
-				Topics
-			</a>
-			<a class="item">
-				<i class="smile icon"></i>
-				Friends
-			</a>
-			<a class="item">
-				<i class="calendar icon"></i>
-				History
-			</a>
-		</div>
-		<main class="pusher dimmed">
+
+	<div id="main-div" class="ui segment">
+
+		<main>
 		<h1 align="center">Pregled svih rezervacija: </h1>
-
-
-			<div class="ui stackable three column grid">
+			<div id="main-grid" class="ui stackable three column grid">
 				<!-- prva kolona -->
 				<div class="column">
 					<div class="ui segments">

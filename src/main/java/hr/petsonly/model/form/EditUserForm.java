@@ -76,7 +76,4 @@ public class EditUserForm {
 		this.password2 = password2;
 	}
 	
-	public boolean isValid(User user) {
-		return !mobilePhone.isEmpty()&&user.getPassword().equals(oldPassword)&&!password.isEmpty()&&password.equals(password2);
-	}
 }

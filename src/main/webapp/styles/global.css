@@ -1,0 +1,51 @@
+@import url(https://fonts.googleapis.com/css?family=Raleway|Varela+Round|Coda);
+footer.footer {
+	text-align: center;
+	margin-top: 70px;
+	border-top: 1px solid #E5E5E5;
+	background: darkred;
+	opacity: 0;
+}
+
+body{
+	background-color:black;
+}
+
+.ui.footer.segment {
+	margin: 5em 0em 0em;
+	padding: 5em 0em;
+	background: darkred;
+}
+
+
+.ui.secondary.pointing.menu a.item:hover,
+.ui.inverted.menu .dropdown.item:hover,
+.ui.inverted.menu .link.item:hover,
+.ui.inverted.menu a.item:hover,
+.ui.link.inverted.menu .item:hover {
+	 opacity: 0.8;
+}
+
+body{
+	background: #ecf0f1;
+}
+main {
+	min-height: 80%;
+}
+
+.darkred.button{
+	background: darkred !important;
+	color: white !important;
+}
+
+h1, h2{
+	font-family: Coda, sans-serif !important;
+}
+
+#customMenu{
+	margin-top: 10px;
+	margin-left: 100px;
+	margin-right: 100px;
+	border-radius: 5px;
+	z-index: 1;
+}

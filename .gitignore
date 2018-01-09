@@ -8,7 +8,7 @@ target/
 .project
 .settings
 .springBeans
-
+.properties
 ### IntelliJ IDEA ###
 .idea
 *.iws
@@ -29,3 +29,4 @@ nbdist/
 .project
 bin/
 spring-*/src/main/java/META-INF/MANIFEST.MF
+

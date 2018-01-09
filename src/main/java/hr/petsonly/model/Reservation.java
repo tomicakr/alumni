@@ -4,7 +4,6 @@ import java.time.Duration;
 import java.time.LocalDateTime;
 import java.util.UUID;
 
-import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
@@ -44,7 +43,7 @@ public class Reservation {
 
 
 	@ManyToOne(fetch = FetchType.LAZY)
-	@JoinColumn(name = "employeeId", insertable = false, updatable = false)
+	@JoinColumn(name = "employeeId")
 	private User employee;
 
 	@Column

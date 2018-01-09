@@ -78,6 +78,13 @@ btnDelete.click(function() {
                 $.ajax({
                     type: 'DELETE',
                     url: userIndex
+                })
+                .then(() => {
+                    $('#delete-user-modal').modal('hide');
+                    $('#delete-user-success')
+                        .modal({
+                            onApprove: () => window.location.href= "/"
+                        }).modal('show');
                 });
             }
         })
@@ -157,4 +164,3 @@ function addPet(fields){
         })
         .catch(console.log);
 }
-

@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import hr.petsonly.model.Location;
 import hr.petsonly.model.User;
@@ -138,7 +139,7 @@ public class UserController {
 		return "editUser";
 	}
 
-	@RequestMapping(value = "/{id}", method = RequestMethod.PUT)
+	@RequestMapping(value = "/{id}", method = RequestMethod.POST)
 	public String updateUser(Model model, @PathVariable UUID id, HttpSession session, @Valid EditUserForm editUserForm, BindingResult result) {
 
 		UserDetailsMore userInSession = (UserDetailsMore) session.getAttribute("userInSession");
@@ -155,13 +156,21 @@ public class UserController {
 		
 		User user = userRepository.findOne(id);
 		
+		if(!editUserForm.isValid(user)) {
+			model.addAttribute("errorMessage", "Podaci nisu ispravni!");
+			return "customError";
+		}
+		
 		if(formFactory.editUserFromForm(user, editUserForm)) {
 			userRepository.save(user);
+			UserDetailsMore userDetails = new UserDetailsMore(user);
+			session.setAttribute("userInSession", userDetails);
 		};
 		
 		return "redirect:/users/" + id.toString();
 	}
 
+	@ResponseBody
 	@RequestMapping(value = "/{id}", method = RequestMethod.DELETE)
 	public String deleteUser(Model model, @PathVariable UUID id, HttpSession session) {
 
@@ -173,8 +182,8 @@ public class UserController {
 		}
 		
 		userRepository.delete(userRepository.findOne(id));
-		
-		return "redirect:/index";
+		session.invalidate();
+		return "nijeUspjelo";
 	}
 
 }

@@ -28,9 +28,6 @@ public class PetForm {
 	@NotNull
 	private String remark;
 	
-	
-	
-	@NotNull
 	private String owner;
 	
 	public PetForm() {

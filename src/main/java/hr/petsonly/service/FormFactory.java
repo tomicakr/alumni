@@ -86,7 +86,7 @@ public class FormFactory {
 		r.setUser(ur.findOne(arf.getOwner()));
 		r.setService(sr.findOne(UUID.fromString(arf.getService())));
 		r.setPet(pr.findOne(arf.getPet()));
-		if(arf.getEmployee() != null){
+		if(arf.getEmployee() != null){ 
 			r.setEmployee(ur.findOne(arf.getEmployee()));	
 		}
 		return r;
@@ -107,12 +107,26 @@ public class FormFactory {
 	}
 	
 	public boolean editUserFromForm(User user, EditUserForm ef) {
-		if(ef.hasChanges(user)) {
+		if(!ef.hasChanges(user)) {
+			return false;
+		}
+		if(!ef.getMobilePhone().isEmpty()) {
+			user.setMobilePhone(ef.getMobilePhone());
+		}
+		user.setLocation(lr.findOne(ef.getLocation()));
+		
+		user.setPassword(ef.getPassword());
+			
+		return true;
+	}
+
+	public boolean editReservationFromForm(Reservation res, AddReservationForm rf) {
+		if(rf.hasChanges(res)) {
 			return false;
 		}
 		
-		user.setMobilePhone(ef.getMobilePhone());
-		user.setLocation(lr.findOne(ef.getLocation()));
+		// TODO: implementacija
 		return true;
 	}
+
 }

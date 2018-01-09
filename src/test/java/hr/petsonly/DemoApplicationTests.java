@@ -9,8 +9,8 @@ import org.springframework.test.context.junit4.SpringRunner;
 @SpringBootTest
 public class DemoApplicationTests {
 
-	/* loooool @Test
+	@Test
 	public void contextLoads() {
-	}*/
+	}
 
 }

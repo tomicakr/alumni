@@ -1,0 +1,44 @@
+#sidebarHeader{
+	text-align: center;
+	color: white;
+	padding-top: 10px;
+}
+
+#heading {
+	z-index:1;
+	position:relative;
+	text-align:center;
+	padding-top:30vh;
+	font-size: 80%;
+
+}
+#heading h1{
+	font-size: 7em !important;
+}
+
+
+#heading button{
+	font-size: 2em !important;
+}
+
+#heading button a{
+	color: inherit;
+}
+
+
+#lowerMain{
+	min-height: 350px;
+}
+
+#mainContent, #lowerMain{
+	background-color: #f44242;
+}
+#logoutBtn:hover {
+	background-color: #f7f7f7;
+
+}
+#logoutBtn{
+	border: none;
+}
+
+

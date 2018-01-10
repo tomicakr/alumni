@@ -6,6 +6,7 @@
 	<div class="ui centered grid" style="margin-top: 10px">
 		<img src="${pageContext.request.contextPath}/images/logo1.png" height="100px" width="350px">
 	</div>
+
 </header>
 <nav>
 	<div class="ui secondary pointing menu" id="customMenu">
@@ -38,7 +39,7 @@
 			
 			<form method="post" action="${pageContext.request.contextPath}/sessions/">
 			<input class="item" type="hidden" name="_method" value="DELETE">
-			<input class="item" type="submit" value="Logout">
+			<input class="item" type="submit" value="Logouta">
 			</form>
 			</c:if>
 

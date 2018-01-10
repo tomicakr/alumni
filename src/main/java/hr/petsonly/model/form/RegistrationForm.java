@@ -10,8 +10,6 @@ import org.springframework.stereotype.Component;
 import hr.petsonly.model.form.validation.PasswordMatches;
 import hr.petsonly.model.form.validation.ValidEmail;
 import lombok.Data;
-import lombok.Getter;
-import lombok.Setter;
 
 @Component
 @PasswordMatches

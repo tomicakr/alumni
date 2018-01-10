@@ -3,19 +3,18 @@ package hr.petsonly.model.form;
 import java.util.UUID;
 
 import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
 
 import org.hibernate.validator.constraints.NotEmpty;
 import org.springframework.stereotype.Component;
 
 import hr.petsonly.model.User;
 import hr.petsonly.model.form.validation.PasswordMatches;
-import lombok.Getter;
-import lombok.Setter;
+import lombok.Data;
 
 @Component
 @PasswordMatches
-@Getter
-@Setter
+@Data
 public class EditUserForm {
 
 	@NotNull
@@ -31,6 +30,7 @@ public class EditUserForm {
 
 	@NotNull
 	@NotEmpty
+	@Size(min = 6, max = 30)
 	private String password;
 
 	@NotNull

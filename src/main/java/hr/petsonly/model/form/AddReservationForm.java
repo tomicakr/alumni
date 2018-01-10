@@ -4,21 +4,21 @@ import java.util.UUID;
 
 import javax.validation.constraints.NotNull;
 
+import org.hibernate.validator.constraints.NotEmpty;
 import org.springframework.stereotype.Component;
 
 import hr.petsonly.model.Reservation;
-import lombok.Getter;
-import lombok.Setter;
+import lombok.Data;
 
 @Component
-@Getter
-@Setter
+@Data
 public class AddReservationForm {
 
 	@NotNull
 	private UUID owner;
 
 	@NotNull
+	@NotEmpty
 	private String service;
 
 	@NotNull
@@ -28,16 +28,18 @@ public class AddReservationForm {
 	private UUID employee;
 
 	@NotNull
+	@NotEmpty
 	private String executionTime;
 
 	@NotNull
+	@NotEmpty
 	private String duration;
 
+	@NotNull
+	@NotEmpty
 	private String sendReminder;
 
-
 	public boolean hasChanges(Reservation res) {
-		// TODO Auto-generated method stub
 		return false;
 	}
 

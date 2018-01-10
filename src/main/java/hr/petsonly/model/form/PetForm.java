@@ -5,13 +5,11 @@ import javax.validation.constraints.NotNull;
 import org.hibernate.validator.constraints.NotEmpty;
 import org.springframework.stereotype.Component;
 
-import lombok.Getter;
-import lombok.Setter;
+import lombok.Data;
 
 
 @Component
-@Getter
-@Setter
+@Data
 public class PetForm {
 
 	@NotNull

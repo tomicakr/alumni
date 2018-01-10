@@ -1,4 +1,5 @@
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
+<%@ taglib prefix="spring" uri="http://www.springframework.org/tags"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <!DOCTYPE html>
@@ -64,9 +65,14 @@
             </div>
             <div class="ui fluid huge darkred submit button" style="width: 100%">Spremi promjene</div>
         </form>
-        <c:if test="${not empty errorMessage}">
-            <div class="ui error message visible">${errorMessage}</div>
-        </c:if>
+       	
+       	<spring:hasBindErrors name="registrationForm">
+			<c:forEach var="error" items="${errors.allErrors}">
+				<div class="ui error message visible"><spring:message message="${error}" /></div>
+				<br />
+			</c:forEach>
+		</spring:hasBindErrors>
+		
     </div>
 </main>
 <script src="../../scripts/forms.js" type="module"></script>

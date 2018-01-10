@@ -1,13 +1,11 @@
 package hr.petsonly.web;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
 
 import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
 
-import org.apache.commons.validator.routines.EmailValidator;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -19,15 +17,14 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-import hr.petsonly.model.Location;
 import hr.petsonly.model.User;
 import hr.petsonly.model.details.LocationDetails;
 import hr.petsonly.model.details.UserDetailsBasic;
 import hr.petsonly.model.details.UserDetailsMore;
 import hr.petsonly.model.form.EditUserForm;
 import hr.petsonly.model.form.RegistrationForm;
-import hr.petsonly.repository.LocationRepository;
 import hr.petsonly.repository.UserRepository;
+import hr.petsonly.service.CommonServices;
 import hr.petsonly.service.FormFactory;
 
 @Controller
@@ -41,30 +38,25 @@ public class UserController {
 	private FormFactory formFactory;
 
 	@Autowired
-	private LocationRepository locationRepository;
+	private CommonServices services;
 
 	@GetMapping
 	public String showUserList(Model model) {
 
-		List<User> allUsersFull = userRepository.findAll();
-		List<UserDetailsBasic> allUsers = new ArrayList<>();
-
-		allUsersFull.forEach((user) -> {
-			allUsers.add(new UserDetailsBasic(user));
-		});
+		List<UserDetailsBasic> allUsers = services.getAllUsersBasicDetails();
 
 		model.addAttribute("users", allUsers);
+
 		return "users";
 	}
 
 	@GetMapping("/new")
 	public String showRegistrationForm(Model model) {
 
-		List<Location> locations = locationRepository.findAll();
-		List<LocationDetails> locationDetails = new ArrayList<>();
-		locations.forEach(location -> locationDetails.add(new LocationDetails(location)));
+		List<LocationDetails> locationDetails = services.getAllLocationDetails();
 
 		model.addAttribute("locations", locationDetails);
+		model.addAttribute("registrationForm", new RegistrationForm());
 
 		return "register";
 	}
@@ -73,21 +65,14 @@ public class UserController {
 	public String createUser(Model model, @Valid RegistrationForm registrationForm, BindingResult result,
 			HttpSession session) {
 
-		System.out.println(result);
-		System.out.println(registrationForm);
-
 		if (result.hasErrors()) {
 			model.addAttribute("registrationForm", registrationForm);
-			model.addAttribute("errorMessage", "Registracija nije valjana");
+			model.addAttribute("locations", services.getAllLocationDetails());
+
 			return "register";
 		}
-		
+
 		User user = formFactory.createUserFromForm(registrationForm);
-		if(!EmailValidator.getInstance().isValid(registrationForm.getEmail())) {
-			model.addAttribute("registrationForm", registrationForm);
-			model.addAttribute("errorMessage", "Neispravna e-mail adresa");
-			return "register";
-		}
 		user = userRepository.save(user);
 
 		UserDetailsMore userDetails = new UserDetailsMore(user);
@@ -136,13 +121,10 @@ public class UserController {
 			return "customError";
 		}
 
-		List<Location> locations = locationRepository.findAll();
-		locations.remove(user.getLocation());
-		List<LocationDetails> locationDetails = new ArrayList<>();
-		locations.forEach(location -> locationDetails.add(new LocationDetails(location)));
+		List<LocationDetails> locationDetails = services.getAllLocationDetails(user.getLocation());
 
 		model.addAttribute("locations", locationDetails);
-		model.addAttribute("user", user);
+		model.addAttribute("user", new UserDetailsMore(user));
 
 		return "editUser";
 	}
@@ -152,45 +134,25 @@ public class UserController {
 			BindingResult result) {
 
 		UserDetailsMore userInSession = (UserDetailsMore) session.getAttribute("userInSession");
-		
-		List<Location> locations = locationRepository.findAll();
-		List<LocationDetails> locationDetails = new ArrayList<>();
-		locations.forEach(location -> locationDetails.add(new LocationDetails(location)));
-		
+
+		List<LocationDetails> locationDetails = services.getAllLocationDetails();
+
 		if (userInSession == null || !userInSession.getUserId().equals(id)) {
 			model.addAttribute("errorMessage", "Nemaš ovlasti za to!");
 			return "customError";
 		}
 
 		if (result.hasErrors()) {
-			model.addAttribute("errorMessage", "");
+			model.addAttribute("locations", locationDetails);
 			return "editUser";
 		}
 
 		User user = userRepository.findOne(id);
 
-		if (editUserForm.getMobilePhone().isEmpty()) {
-			model.addAttribute("errorMessage", "Broj mobitela ne smije biti prazan!");
-			model.addAttribute("user", user);
-			model.addAttribute("locations", locationDetails);
-			return "editUser";
-		}
-
-		//moglo bi se pomisliti da ce user machat dva nova possworda ali ce za pravi unijeti "" te ce proci ovaj if
-		//no js ga nece pustit ako duzina tog pass nije veca od 0
-		if (!user.getPassword().equals(editUserForm.getOldPassword()) && !editUserForm.getOldPassword().equals("")) {
-			model.addAttribute("errorMessage", "Lozinka nije ispravna!");
-			model.addAttribute("user", user);
-			model.addAttribute("locations", locationDetails);
-			return "editUser";
-		}
-
 		if (formFactory.editUserFromForm(user, editUserForm)) {
 			userRepository.save(user);
-			UserDetailsMore userDetails = new UserDetailsMore(user);
-			session.setAttribute("userInSession", userDetails);
+			session.setAttribute("userInSession", new UserDetailsMore(user));
 		}
-		;
 
 		return "redirect:/users/" + id.toString();
 	}
@@ -208,6 +170,7 @@ public class UserController {
 
 		userRepository.delete(userRepository.findOne(id));
 		session.invalidate();
+
 		return "nijeUspjelo";
 	}
 

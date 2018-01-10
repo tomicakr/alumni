@@ -7,8 +7,12 @@ import javax.validation.constraints.NotNull;
 import org.springframework.stereotype.Component;
 
 import hr.petsonly.model.Reservation;
+import lombok.Getter;
+import lombok.Setter;
 
 @Component
+@Getter
+@Setter
 public class AddReservationForm {
 
 	@NotNull
@@ -31,61 +35,6 @@ public class AddReservationForm {
 
 	private String sendReminder;
 
-	public String getService() {
-		return service;
-	}
-
-	public void setService(String service) {
-		this.service = service;
-	}
-
-	public UUID getPet() {
-		return pet;
-	}
-
-	public void setPet(UUID pet) {
-		this.pet = pet;
-	}
-
-	public UUID getEmployee() {
-		return employee;
-	}
-
-	public void setEmployee(UUID employee) {
-		this.employee = employee;
-	}
-
-	public String getExecutionTime() {
-		return executionTime;
-	}
-
-	public void setExecutionTime(String executionTime) {
-		this.executionTime = executionTime;
-	}
-
-	public String getDuration() {
-		return duration;
-	}
-
-	public void setDuration(String duration) {
-		this.duration = duration;
-	}
-
-	public String getSendReminder() {
-		return sendReminder;
-	}
-
-	public void setSendReminder(String sendReminder) {
-		this.sendReminder = sendReminder;
-	}
-
-	public UUID getOwner() {
-		return owner;
-	}
-
-	public void setOwner(UUID owner) {
-		this.owner = owner;
-	}
 
 	public boolean hasChanges(Reservation res) {
 		// TODO Auto-generated method stub

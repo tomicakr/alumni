@@ -1,18 +1,21 @@
-const userIndex = window.location.href + (window.location.href.endsWith('/') ? '' : '/');
-const petIndex = `${userIndex}pets/`;
-const reservationIndex=`${userIndex}reservations/`;
+const userIndex           = window.location.href + (window.location.href.endsWith('/') ? '' : '/');
+const petIndex            = `${userIndex}pets/`;
+const reservationIndex    =`${userIndex}reservations/`;
 
-const reservationsTable = $('#reservations').find('tbody');
-const petsTable = $('#pets').find('tbody');
+const reservationsTable   = $('#reservations').find('tbody');
+const petsTable           = $('#pets'        ).find('tbody');
 
-const btnPets = $('#btn-pets');
-const btnReservations = $('#btn-reservations');
-const btnEdit = $('#btn-edit');
-const btnDelete = $('#btn-delete');
-const btnAddPet = $('#btn-add-pet');
-const btnAddReservation = $('#btn-add-reservation');
+const petsPlaceholder     = $('#pet-placeholder');
+const resPlaceholder      = $('#reservations-placeholder');
 
-const addPetModal = $('#add-pet-modal');
+const btnPets             = $('#btn-pets'           );
+const btnReservations     = $('#btn-reservations'   );
+const btnEdit             = $('#btn-edit'           );
+const btnDelete           = $('#btn-delete'         );
+const btnAddPet           = $('#btn-add-pet'        );
+const btnAddReservation   = $('#btn-add-reservation');
+
+const addPetModal         = $('#add-pet-modal');
 const addReservationModal = $('#add-reservation-modal');
 
 const petValidation = {
@@ -111,12 +114,12 @@ function appendPet(pet) {
 
 function updateReservatoins() {
     reservationsTable.empty();
-    updateTable($('#reservations-table'),$.getJSON(reservationIndex), appendReservation,()=> $('#reservations-table-container h2').text('Nemate prijavljenih rezervacija'))
+    updateTable($('#reservations-table'),resPlaceholder,$.getJSON(reservationIndex),appendReservation)
 
 }
 function updatePets() {
     petsTable.empty();
-    updateTable($('#pets-table'), $.getJSON(petIndex), appendPet, ()=> $('#pets-table-container h2').text('Nemate prijavljenih ljubimaca'))
+    updateTable($('#pets-table'),petsPlaceholder, $.getJSON(petIndex), appendPet)
 
 }
 function deletePet(){
@@ -127,17 +130,24 @@ function deletePet(){
         url: deletePetURL,
         type: 'DELETE',
     })
-        .then(data => petRow.remove());
+        .then(data => {
+            petRow.remove();
+            if($('#pets-table').find('tbody tr').length===0){
+                $('#pets-table').hide();
+                petsPlaceholder.show();
+            }
+        });
 }
 
-function updateTable(table,jsonGetter, appender, noneFound) {
+function updateTable(table, placeholder, jsonGetter, appender) {
     return jsonGetter
         .then(entities => {
             if(entities.length===0){
                 table.hide();
-                noneFound();
+                placeholder.show();
                 return;
             }
+            placeholder.hide();
             table.show();
             entities.forEach(entity => appender(entity));
 
@@ -145,9 +155,6 @@ function updateTable(table,jsonGetter, appender, noneFound) {
         .fail(console.log);
 
 }
-
-
-
 
 btnPets.click(updatePets);
 
@@ -204,7 +211,7 @@ $(document)
         modalInit(addPetModal,petValidation,
             (fields) => addEntity(
                 petIndex,
-                appendPet,
+                (pet) => {appendPet(pet);petsPlaceholder.hide();$('#pets-table').show();},
                 console.log,
                 fields,
             ));

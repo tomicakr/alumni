@@ -149,6 +149,7 @@
 				</div>
 				<div class="ui hidden divider"></div>
 				<div id="pets-table-container">
+					<h2 id="pet-placeholder" class="ui centered aligned header">Nema prijavljenih ljubimaca</h2>
 					<table class="ui celled table" id="pets-table">
 						<thead>
 						<tr>
@@ -180,8 +181,9 @@
 						<i id="btn-add-reservation" class="plus icon" title="Nova rezervacija"></i>
 					</h4>
 				</div>
+				<div class="ui hidden divider"></div>
 				<div id="reservations-table-container">
-					<h2 class="ui centered aligned header"></h2>
+					<h2 id="reservations-placeholder" class="ui centered aligned header">Nema aktivnih rezervacija</h2>
 					<table class="ui celled table" id="reservations-table">
 						<thead>
 						<tr>

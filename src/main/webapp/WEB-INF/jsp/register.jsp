@@ -1,4 +1,5 @@
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
+<%@ taglib prefix="spring" uri="http://www.springframework.org/tags"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
@@ -74,14 +75,20 @@
 			<div class="ui fluid huge darkred submit button" style="width: 100%">Registriraj
 				se!</div>
 		</form>
-		<c:if test="${not empty errorMessage}">
-			<div class="ui error message visible">${errorMessage}</div>
-		</c:if>
+		
+		<spring:hasBindErrors name="registrationForm">
+			<c:forEach var="error" items="${errors.allErrors}">
+				<b><spring:message message="${error}" /></b>
+				<br />
+			</c:forEach>
+		</spring:hasBindErrors>
+		
 		<button class="ui huge button" id="komba">Automatski popuni</button>
 	</div>
 	</main>
-	<%@ include file = "../partials/footer.jsp" %>
-	<script src="../../scripts/forms.js" type="module"></script>t
+	<%@ include file="../partials/footer.jsp"%>
+	<script src="../../scripts/forms.js" type="module"></script>
+	t
 	<script src="../../scripts/register.js" type="module">
 	</script>
 </body>

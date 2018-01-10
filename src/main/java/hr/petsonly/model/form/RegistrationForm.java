@@ -6,6 +6,8 @@ import javax.validation.constraints.NotNull;
 
 import org.springframework.stereotype.Component;
 
+import hr.petsonly.model.form.validation.ValidEmail;
+
 @Component
 public class RegistrationForm {
 	
@@ -24,6 +26,7 @@ public class RegistrationForm {
 	private String phone;
 	
 	@NotNull
+	@ValidEmail
 	private String email;
 	
 	private UUID location;

@@ -18,4 +18,9 @@
 	<!-- css -->
 	<link rel = "stylesheet" type = "text/css" href = "${pageContext.request.contextPath}/styles/global.css" />
 	<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/styles/<%=request.getParameter("view-name")%>.css">
+	<script>
+        if (screen.width <= 800) {
+            window.location = "m.index.com";
+        }
+	</script>
 </head>

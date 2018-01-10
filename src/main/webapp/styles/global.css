@@ -7,9 +7,6 @@ footer.footer {
 	opacity: 0;
 }
 
-body{
-	background-color:black;
-}
 
 .ui.footer.segment {
 	margin: 5em 0em 0em;
@@ -38,8 +35,21 @@ main {
 	color: white !important;
 }
 
+
+.darkred.icon{
+	color: darkred !important;
+}
+
 h1, h2{
 	font-family: Coda, sans-serif !important;
+}
+
+.ui.darkred.header{
+	color: darkred !important;
+}
+
+.ui.celled.table thead tr th{
+	color:darkred
 }
 
 #customMenu{

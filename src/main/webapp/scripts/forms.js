@@ -8,9 +8,11 @@ export  function initialize(fields){
                 })
             ;
             $('.ui.dropdown')
-                .dropdown();
+                .dropdown()
+            ;
             $('.ui.accordion.field')
-                .accordion();
+                .accordion()
+            ;
         })
     ;
 }

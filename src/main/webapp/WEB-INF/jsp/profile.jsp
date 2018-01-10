@@ -8,47 +8,45 @@
 </jsp:include>
 
 <body>
-	<%@ include file = "../partials/indexHeader.jsp" %>
-	<main>
-
-		<div id="delete-user-modal" class="ui small basic test modal transition hidden">
-			<div class="ui icon header">
-				<i class="trash icon"></i>
-				Brisanje korisničkog računa
+	<%@ include file = "../partials/header.jsp" %>
+	<div id="delete-user-modal" class="ui small basic test modal transition hidden">
+		<div class="ui icon header">
+			<i class="trash icon"></i>
+			Brisanje korisničkog računa
+		</div>
+		<div class="content">
+			<p>Jeste li sigurni da želite obrisati korisnički račun?</p>
+		</div>
+		<div class="actions">
+			<div class="ui green basic cancel inverted button">
+				<i class="remove icon"></i>
+				Ne
 			</div>
-			<div class="content">
-				<p>Jeste li sigurni da želite obrisati korisnički račun?</p>
-			</div>
-			<div class="actions">
-				<div class="ui green basic cancel inverted button">
-					<i class="remove icon"></i>
-					Ne
-				</div>
-				<div class="ui red ok inverted button">
-					<i class="checkmark icon"></i>
-					Da
-				</div>
+			<div class="ui red ok inverted button">
+				<i class="checkmark icon"></i>
+				Da
 			</div>
 		</div>
-		<div id="delete-user-success" class="ui small basic test modal transition hidden">
-			<div class="ui icon header">
-				<i class="green checkmark icon"></i>
-			</div>
-			<h2>Korisnički račun uspješno obrisan.</h2>
-			<i class="checkmark icon"></i>
-			<div class="actions">
-				<div class="ui red ok inverted button">
-					U redu
-				</div>
+	</div>
+	<div id="delete-user-success" class="ui small basic test modal transition hidden">
+		<div class="ui icon header">
+			<i class="green checkmark icon"></i>
+		</div>
+		<h2>Korisnički račun uspješno obrisan.</h2>
+		<i class="checkmark icon"></i>
+		<div class="actions">
+			<div class="ui red ok inverted button">
+				U redu
 			</div>
 		</div>
-		<div id="add-pet-modal" class="ui mini modal">
-			<i class="close icon"></i>
-			<div class="header">
-				Dodaj ljubimca
-			</div>
-			<div class="ui center aligned content">
-				<form:form action="${pageContext.request.contextPath}/users/${user.userId}/pets/" method="post" id="add-pet-form" class="ui large form" modelAttribute="user">
+	</div>
+	<div id="add-pet-modal" class="ui mini modal">
+		<i class="close icon"></i>
+		<div class="header">
+			Dodaj ljubimca
+		</div>
+		<div class="ui center aligned content">
+			<form:form action="${pageContext.request.contextPath}/users/${user.userId}/pets/" method="post" id="add-pet-form" class="ui large form" modelAttribute="user">
 				<div class="field">
 					<input type="text" name="name" id="pet-name" placeholder="Ime">
 				</div>
@@ -87,91 +85,122 @@
 			</form:form>
 		</div>
 	</div>
-</div>
-<section id="user-info">
-	<table class="ui celled table" style="margin:auto; width: 50%">
-		<center>
-			<h2>Profil korisnika</h2>
-		</center>
-		
-		<tr>
-			<td><strong>Ime</strong></td>
-			<td>${userInSession.firstName}</td>
-		</tr>
-		<tr>
-			<td><strong>Prezime</strong></td>
-			<td>${userInSession.lastName}</td>
-		</tr>
-		<tr>
-			<td><strong>E-mail</strong></td>
-			<td>${userInSession.email}</td>
-		</tr>
-		<tr>
-			<td><strong>Grad</strong></td>
-			<td>${userInSession.city}</td>
-		</tr>
-		<tr>
-			<td><strong>Adresa</strong></td>
-			<td>${userInSession.address}</td>
-		</tr>
-		<tr>
-			<td><strong>OIB</strong></td>
-			<td>${userInSession.userPid}</td>
-		</tr>
-		<tr>
-			<td><strong>Broj mobitela</strong></td>
-			<td>${userInSession.mobilePhone}</td>
-		</tr>
-		<tr>
-			<td><strong>Broj telefona</strong></td>
-			<td>${userInSession.telephone}</td>
-		</tr>
-	</table>
-</section>
-<div style="margin: 15px 0">
-	<center>
-		<button id="btn-edit"  class="ui button yellow" >Uredi</button>
-		<button id="btn-delete" class="ui button red">Obriši</button>
 
-
-	</center>
-
-</div>
-
-<center>
-	<div class="ui two column grid">
-		<div class="column">
-			<div class="ui segment">
-				<section id="reservations">
-					<h2>Rezervacije</h2>
-					<button id="btn-add-reservation" class="ui button darkred" ><a href="${pageContext.request.contextPath}/users/${userInSession.userId}/reservations/new">Dodaj rezervaciju</a></button>
-					<button id="btn-reservations" class="ui darkred button">Dohvati rezervacije</button>
-					<table class="ui celled table"></table>
-				</section>
+	<main class="ui container">
+			<div class="ui top attached huge tabular menu">
+				<a class="item active"  data-tab="first">
+					Detalji
+				</a>
+				<a class="item"  data-tab="second">
+					Ljubmici
+				</a>
+				<a class="item"  data-tab="third">
+					Rezervacije
+				</a>
 			</div>
-		</div>
-		<div class="column">
-			<div class="ui segment">
-				<section id="pets" >
-					<h2>Ljubimci</h2>
-					<button id="btn-add-pet" class="ui button darkred">Dodaj ljubimca</button>
-					<button id="btn-pets" class="ui darkred button">Dohvati ljubimce</button>
-					<table class="ui celled table"></table>
-				</section>
-			</div>
-		</div>
-	</div>
+			<section id="user-info" class="ui bottom attached tab segment transition fade in active" data-tab="first">
+				<h2 class="ui darkred left floated header">Detalji korisnika</h2>
+				<table class="ui celled table" >
 
+					<tr>
+						<td><strong>Ime</strong></td>
+						<td>${userInSession.firstName}</td>
+					</tr>
+					<tr>
+						<td><strong>Prezime</strong></td>
+						<td>${userInSession.lastName}</td>
+					</tr>
+					<tr>
+						<td><strong>E-mail</strong></td>
+						<td>${userInSession.email}</td>
+					</tr>
+					<tr>
+						<td><strong>Grad</strong></td>
+						<td>${userInSession.city}</td>
+					</tr>
+					<tr>
+						<td><strong>Adresa</strong></td>
+						<td>${userInSession.address}</td>
+					</tr>
+					<tr>
+						<td><strong>OIB</strong></td>
+						<td>${userInSession.userPid}</td>
+					</tr>
+					<tr>
+						<td><strong>Broj mobitela</strong></td>
+						<td>${userInSession.mobilePhone}</td>
+					</tr>
+					<tr>
+						<td><strong>Broj telefona</strong></td>
+						<td>${userInSession.telephone}</td>
+					</tr>
+				</table>
+			</section>
 
-</center>
+			<section  id="pets" class="ui bottom attached tab segment transition fade in" data-tab="second">
+				<div>
+					<h2 class="ui darkred left floated header">
+						Ljubimci
+					</h2>
+					<h4 class="ui right floated header">
+						<i id="btn-pets" class="refresh icon" title="Osvježi podatke"></i>
+							<i id="btn-add-pet" class="plus icon" title="Dodaj novog ljubimca"></i>
+					</h4>
+				</div>
+				<div class="ui hidden divider"></div>
+				<div id="pets-table-container">
+					<table class="ui celled table" id="pets-table">
+						<thead>
+						<tr>
+							<th>Ime</th>
+							<th>Starost</th>
+							<th>Vrsta</th>
+							<th>Pasmina</th>
+							<th>Spol</th>
+							<th>Mikročip</th>
+							<th>Napomena</th>
+							<th></th>
+						</tr>
+						</thead>
+						<tbody>
 
-</main>
+						</tbody>
+					</table>
+				</div>
 
+			</section>
 
-<%@ include file = "../partials/footer.jsp" %>	
+			<section id="reservations" class="ui bottom attached tab segment transition fade in" data-tab="third">
+				<div>
+					<h2 class="ui darkred left floated header">
+						Rezervacije
+					</h2>
+					<h4 class="ui right floated header">
+						<i id="btn-reservations" class="refresh icon" title="Osvježi rezervacije"></i>
+						<i id="btn-add-reservation" class="plus icon" title="Nova rezervacija"></i>
+					</h4>
+				</div>
+				<div id="reservations-table-container">
+					<h2 class="ui centered aligned header"></h2>
+					<table class="ui celled table" id="reservations-table">
+						<thead>
+						<tr>
+							<th>Ljubimac</th>
+							<th>Usluga</th>
+							<th>Zaposlenik</th>
+							<th>Status</th>
+							<th>Termin</th>
+						</tr>
+						</thead>
+						<tbody>
 
+						</tbody>
+					</table>
+				</div>
+			</section>
+	</main>
 
-
+	<%@ include file = "../partials/footer.jsp" %>
 
 <script src="${pageContext.request.contextPath}/scripts/profile.js"></script>
 </body>

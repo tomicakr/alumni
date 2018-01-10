@@ -8,7 +8,7 @@
 </jsp:include>
 
 <body>
-	<%@ include file = "../partials/indexHeader.jsp" %>
+	<%@ include file = "../partials/header.jsp" %>
 		<main class="ui two column center aligned grid">
 		<div class="column">
 			<h1 class="ui image massive header">Korisnici aplikacije</h1>

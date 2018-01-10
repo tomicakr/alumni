@@ -5,3 +5,32 @@
 a, a:hover{
 	color: white;	
 }
+
+.refresh.icon, .plus.icon{
+	padding: 0 10px;
+}
+
+.refresh.icon:hover, .plus.icon:hover{
+	cursor: pointer;
+	color: darkred;
+}
+
+.remove.icon:hover{
+	cursor: pointer;
+}
+
+.ui.bottom.attached.tab.segment{
+	min-height: 30em !important;
+}
+
+#reservations-table, #pets-table{
+	display: none;
+}
+
+#reservations-table-container, #pets-table-container{
+	margin-top: 7em;
+}
+.ui.container{
+	padding-top: 20vh;
+}
+

@@ -55,9 +55,7 @@ public class FormFactory {
 		u.setAddress(rf.getAddress());
 		u.setPassword(rf.getPassword());
 		
-		Role role = new Role();
-		role.setName("admin");
-		u.setRoles(Arrays.asList(role));
+		u.setRoles(Arrays.asList(rr.findByName("ROLE_KORISNIK")));
 		
 		Location l = lr.findOne(rf.getLocation());
 		u.setLocation(l);

@@ -60,7 +60,7 @@ public class AppConfig extends WebMvcConfigurerAdapter{
 	}
 
 	@Bean
-	public PropertyPlaceholderConfigurer properties() {
+	public static PropertyPlaceholderConfigurer properties() {
 		final PropertyPlaceholderConfigurer ppc = new PropertyPlaceholderConfigurer();
 		// ppc.setIgnoreUnresolvablePlaceholders(true);
 		ppc.setIgnoreResourceNotFound(true);
@@ -73,4 +73,5 @@ public class AppConfig extends WebMvcConfigurerAdapter{
 
 		return ppc;
 	}
+	
 }

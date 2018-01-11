@@ -26,6 +26,7 @@ import hr.petsonly.model.form.RegistrationForm;
 import hr.petsonly.repository.UserRepository;
 import hr.petsonly.service.CommonServices;
 import hr.petsonly.service.FormFactory;
+import hr.petsonly.service.UserService;
 
 @Controller
 @RequestMapping("/users")
@@ -39,6 +40,9 @@ public class UserController {
 
 	@Autowired
 	private CommonServices services;
+	
+	@Autowired
+	private UserService userService;
 
 	@GetMapping
 	public String showUserList(Model model) {
@@ -72,8 +76,7 @@ public class UserController {
 			return "register";
 		}
 
-		User user = formFactory.createUserFromForm(registrationForm);
-		user = userRepository.save(user);
+		User user = userService.registerNewUserAccount(registrationForm);
 
 		UserDetailsMore userDetails = new UserDetailsMore(user);
 		session.setAttribute("userInSession", userDetails);

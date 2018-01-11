@@ -104,35 +104,35 @@
 
 					<tr>
 						<td><strong>Ime</strong></td>
-						<td>${userInSession.firstName}</td>
+						<td>${user.firstName}</td>
 					</tr>
 					<tr>
 						<td><strong>Prezime</strong></td>
-						<td>${userInSession.lastName}</td>
+						<td>${user.lastName}</td>
 					</tr>
 					<tr>
 						<td><strong>E-mail</strong></td>
-						<td>${userInSession.email}</td>
+						<td>${user.email}</td>
 					</tr>
 					<tr>
 						<td><strong>Grad</strong></td>
-						<td>${userInSession.city}</td>
+						<td>${user.city}</td>
 					</tr>
 					<tr>
 						<td><strong>Adresa</strong></td>
-						<td>${userInSession.address}</td>
+						<td>${user.address}</td>
 					</tr>
 					<tr>
 						<td><strong>OIB</strong></td>
-						<td>${userInSession.userPid}</td>
+						<td>${user.userPid}</td>
 					</tr>
 					<tr>
 						<td><strong>Broj mobitela</strong></td>
-						<td>${userInSession.mobilePhone}</td>
+						<td>${user.mobilePhone}</td>
 					</tr>
 					<tr>
 						<td><strong>Broj telefona</strong></td>
-						<td>${userInSession.telephone}</td>
+						<td>${user.telephone}</td>
 					</tr>
 				</table>
 			</section>

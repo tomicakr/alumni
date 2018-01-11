@@ -7,6 +7,7 @@ import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -18,6 +19,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import hr.petsonly.model.User;
+import hr.petsonly.model.details.CustomUserDetails;
 import hr.petsonly.model.details.LocationDetails;
 import hr.petsonly.model.details.UserDetailsBasic;
 import hr.petsonly.model.details.UserDetailsMore;
@@ -87,9 +89,9 @@ public class UserController {
 	@GetMapping("/{id}")
 	public String showUserProfile(Model model, @PathVariable UUID id, HttpSession session) {
 
-		UserDetailsMore userInSession = (UserDetailsMore) session.getAttribute("userInSession");
+		CustomUserDetails userInSession = (CustomUserDetails) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
 
-		if (userInSession == null || !userInSession.getUserId().equals(id)) {
+		if (userInSession == null || !userInSession.getUserId().equals(id.toString())) {
 			model.addAttribute("errorMessage", "Nemaš ovlasti za to!");
 			return "customError";
 		}

@@ -20,7 +20,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 		http.formLogin().loginPage("/sessions/new").loginProcessingUrl("/loginProcessing").failureUrl("/sessions/new?error=1");
 		
 		
-		http.authorizeRequests().antMatchers("/jobs/**").hasRole("VIEW_ALL_RESERVATIONS");
+		http.authorizeRequests().antMatchers("/users").hasRole("VIEW_ALL_USERS");
 		
 		
 		http.csrf().disable();

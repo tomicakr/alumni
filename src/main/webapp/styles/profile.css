@@ -6,17 +6,13 @@ a, a:hover{
 	color: white;	
 }
 
-.refresh.icon, .plus.icon{
-	padding: 0 10px;
-}
-
-.refresh.icon:hover, .plus.icon:hover{
+.icon:hover{
 	cursor: pointer;
 	color: darkred;
 }
 
-.remove.icon:hover{
-	cursor: pointer;
+.refresh.icon, .plus.icon, .trash.icon, .edit.icon{
+	padding: 0 10px;
 }
 
 .ui.bottom.attached.tab.segment{
@@ -31,6 +27,6 @@ a, a:hover{
 	margin-top: 7em;
 }
 .ui.container{
-	padding-top: 20vh;
+	padding-top: 10vh;
 }
 

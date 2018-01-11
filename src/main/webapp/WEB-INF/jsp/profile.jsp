@@ -99,7 +99,16 @@
 				</a>
 			</div>
 			<section id="user-info" class="ui bottom attached tab segment transition fade in active" data-tab="first">
-				<h2 class="ui darkred left floated header">Detalji korisnika</h2>
+				<div>
+					<h2 class="ui darkred left floated header">
+						Detalji korisnika
+					</h2>
+					<h4 class="ui right floated header">
+						<i id="btn-edit-user" class="edit icon" title="Uredi"></i>
+						<i id="btn-delete-user" class="trash icon" title="Obriši"></i>
+					</h4>
+				</div>
+				<div class="ui hidden divider"></div>
 				<table class="ui celled table" >
 
 					<tr>

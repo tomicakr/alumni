@@ -16,12 +16,11 @@
 		
 		<div id="heading">
 			<h1><i class="fa fa-paw" aria-hidden="true"> </i> Pets Only Zagreb</h1>
-			<c:if test="${empty user.userId}">
-
+			<c:if test="${empty userInSession.userId}">
                <button class="ui inverted button" ><a href="${pageContext.request.contextPath}/sessions/new" >Naruči Uslugu</a></button>
             </c:if>
             
-            <c:if test="${not empty user.firstName}">
+            <c:if test="${not empty userInSession.firstName}">
                 <button class="ui inverted button"><a href="${pageContext.request.contextPath}/users/${userInSession.userId}/reservations/new">Naruči Uslugu</a></button>
             </c:if>
             

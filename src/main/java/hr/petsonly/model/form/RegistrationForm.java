@@ -9,11 +9,9 @@ import org.springframework.stereotype.Component;
 
 import hr.petsonly.model.form.validation.PasswordMatches;
 import hr.petsonly.model.form.validation.ValidEmail;
-import lombok.Data;
 
 @Component
 @PasswordMatches
-@Data
 public class RegistrationForm {
 
 	@NotNull
@@ -54,5 +52,85 @@ public class RegistrationForm {
 	@NotNull
 	@NotEmpty(message = "{rform.password2.empty}")
 	private String password2;
+
+	public String getName() {
+		return name;
+	}
+
+	public void setName(String name) {
+		this.name = name;
+	}
+
+	public String getSurname() {
+		return surname;
+	}
+
+	public void setSurname(String surname) {
+		this.surname = surname;
+	}
+
+	public String getUserPid() {
+		return userPid;
+	}
+
+	public void setUserPid(String userPid) {
+		this.userPid = userPid;
+	}
+
+	public String getMobilePhone() {
+		return mobilePhone;
+	}
+
+	public void setMobilePhone(String mobilePhone) {
+		this.mobilePhone = mobilePhone;
+	}
+
+	public String getPhone() {
+		return phone;
+	}
+
+	public void setPhone(String phone) {
+		this.phone = phone;
+	}
+
+	public String getEmail() {
+		return email;
+	}
+
+	public void setEmail(String email) {
+		this.email = email;
+	}
+
+	public UUID getLocation() {
+		return location;
+	}
+
+	public void setLocation(UUID location) {
+		this.location = location;
+	}
+
+	public String getAddress() {
+		return address;
+	}
+
+	public void setAddress(String address) {
+		this.address = address;
+	}
+
+	public String getPassword() {
+		return password;
+	}
+
+	public void setPassword(String password) {
+		this.password = password;
+	}
+
+	public String getPassword2() {
+		return password2;
+	}
+
+	public void setPassword2(String password2) {
+		this.password2 = password2;
+	}
 
 }

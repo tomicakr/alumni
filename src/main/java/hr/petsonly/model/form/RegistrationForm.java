@@ -17,42 +17,42 @@ import lombok.Data;
 public class RegistrationForm {
 
 	@NotNull
-	@NotEmpty
+	@NotEmpty(message = "{rform.firstname.empty}")
 	private String name;
 
 	@NotNull
-	@NotEmpty
+	@NotEmpty(message = "{rform.lastname.empty}")
 	private String surname;
 
 	@NotNull
-	@NotEmpty
+	@NotEmpty(message = "{rform.oib.empty}")
 	private String userPid;
 
 	@NotNull
-	@NotEmpty
+	@NotEmpty(message = "{rform.mobilephone.empty}")
 	private String mobilePhone;
 
 	@NotNull
-	@NotEmpty
+	@NotEmpty(message = "{rform.phone.empty}")
 	private String phone;
 
 	@NotNull
-	@ValidEmail
+	@ValidEmail(message = "{rform.email.invalid}")
 	private String email;
 
 	@NotNull
 	private UUID location;
 
 	@NotNull
-	@NotEmpty
+	@NotEmpty(message = "{rform.address.empty}")
 	private String address;
 
 	@NotNull
-	@NotEmpty
+	@NotEmpty(message = "{rform.password.empty}")
 	private String password;
 
 	@NotNull
-	@NotEmpty
+	@NotEmpty(message = "{rform.password2.empty}")
 	private String password2;
 
 }

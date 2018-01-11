@@ -18,23 +18,23 @@ import lombok.Data;
 public class EditUserForm {
 
 	@NotNull
-	@NotEmpty
+	@NotEmpty(message = "{euform.mobilephone.empty}")
 	private String mobilePhone;
 
 	@NotNull
 	private UUID location;
 
 	@NotNull
-	@NotEmpty
+	@NotEmpty(message = "{euform.oldpassword.empty}")
 	private String oldPassword;
 
 	@NotNull
-	@NotEmpty
-	@Size(min = 6, max = 30)
+	@NotEmpty(message = "{euform.password.empty}")
+	@Size(min = 6, max = 30, message = "{euform.password.invalid}")
 	private String password;
 
 	@NotNull
-	@NotEmpty
+	@NotEmpty(message = "{euform.password2.empty}")
 	private String password2;
 
 	public boolean hasChanges(User user) {

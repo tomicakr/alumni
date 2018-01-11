@@ -13,35 +13,35 @@ import lombok.Data;
 public class PetForm {
 
 	@NotNull
-	@NotEmpty
+	@NotEmpty(message = "{pform.name.empty}")
 	private String name;
 
 	@NotNull
-	@NotEmpty
+	@NotEmpty(message = "{pform.age.empty}")
 	private Integer age;
 
 	@NotNull
-	@NotEmpty
+	@NotEmpty(message = "{pform.sex.empty}")
 	private Character sex;
 
 	@NotNull
-	@NotEmpty
+	@NotEmpty(message = "{pform.species.empty}")
 	private String species;
 
 	@NotNull
-	@NotEmpty
+	@NotEmpty(message = "{pform.breed.empty}")
 	private String breed;
 
 	@NotNull
-	@NotEmpty
+	@NotEmpty(message = "{pform.microchip.empty}")
 	private String microchip;
 
 	@NotNull
-	@NotEmpty
+	@NotEmpty(message = "{pform.remark.empty}")
 	private String remark;
 
 	@NotNull
-	@NotEmpty
+	@NotEmpty(message = "{pform.owner.empty}")
 	private String owner;
 
 }

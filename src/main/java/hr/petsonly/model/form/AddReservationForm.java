@@ -18,7 +18,7 @@ public class AddReservationForm {
 	private UUID owner;
 
 	@NotNull
-	@NotEmpty
+	@NotEmpty(message = "{arform.service.empty}")
 	private String service;
 
 	@NotNull
@@ -28,15 +28,14 @@ public class AddReservationForm {
 	private UUID employee;
 
 	@NotNull
-	@NotEmpty
+	@NotEmpty(message = "{arform.executiontime.empty}")
 	private String executionTime;
-
+	
 	@NotNull
-	@NotEmpty
 	private String duration;
 
 	@NotNull
-	@NotEmpty
+	@NotEmpty(message = "{arform.sendreminder.empty}")
 	private String sendReminder;
 
 	public boolean hasChanges(Reservation res) {

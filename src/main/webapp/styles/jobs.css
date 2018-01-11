@@ -1,0 +1,18 @@
+.ui .segments{
+	background: white;
+}
+.three.column.grid#main-grid{
+	background: #ecf0f1 !important;
+}
+#main-div{
+	background: #ecf0f1 !important;
+}
+#scrolling{
+	max-height: 650px;
+	overflow: scroll;
+	overflow-x: hidden;
+}
+
+.card{
+	min-width: 97.4%;
+}

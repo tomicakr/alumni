@@ -99,7 +99,16 @@
 				</a>
 			</div>
 			<section id="user-info" class="ui bottom attached tab segment transition fade in active" data-tab="first">
-				<h2 class="ui darkred left floated header">Detalji korisnika</h2>
+				<div>
+					<h2 class="ui darkred left floated header">
+						Detalji korisnika
+					</h2>
+					<h4 class="ui right floated header">
+						<i id="btn-edit-user" class="edit icon" title="Uredi"></i>
+						<i id="btn-delete-user" class="trash icon" title="Obriši"></i>
+					</h4>
+				</div>
+				<div class="ui hidden divider"></div>
 				<table class="ui celled table" >
 
 					<tr>
@@ -149,6 +158,7 @@
 				</div>
 				<div class="ui hidden divider"></div>
 				<div id="pets-table-container">
+					<h2 id="pet-placeholder" class="ui centered aligned header">Nema prijavljenih ljubimaca</h2>
 					<table class="ui celled table" id="pets-table">
 						<thead>
 						<tr>
@@ -180,8 +190,9 @@
 						<i id="btn-add-reservation" class="plus icon" title="Nova rezervacija"></i>
 					</h4>
 				</div>
+				<div class="ui hidden divider"></div>
 				<div id="reservations-table-container">
-					<h2 class="ui centered aligned header"></h2>
+					<h2 id="reservations-placeholder" class="ui centered aligned header">Nema aktivnih rezervacija</h2>
 					<table class="ui celled table" id="reservations-table">
 						<thead>
 						<tr>

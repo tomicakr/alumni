@@ -15,6 +15,7 @@
 </header>
 <nav>
 	<div class="ui massive stackable secondary menu" id="customMenu">
+		<div class="left menu">
 		<a class="item" id="home" name="Home" href="/"> Naslovnica </a> <a
 			class="item" id="services" name="Usluge"> Usluge </a>
 		<sec:authorize access="isAuthenticated()">
@@ -29,7 +30,7 @@
 					href="${pageContext.request.contextPath}/users"> Korisnici </a>
 			</c:if>
 		</sec:authorize>
-
+		</div>
 		<div class="right menu">
 			<sec:authorize access="isAnonymous()">
 				<a class="item" name="Login"

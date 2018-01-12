@@ -1,6 +1,6 @@
 <%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags" %>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
-            
+
 <!DOCTYPE html>
 <html>
 <!-- head -->
@@ -17,21 +17,21 @@
 		<div id="heading">
 			<h1><i class="fa fa-paw" aria-hidden="true"> </i> Pets Only Zagreb</h1>
 			<sec:authorize access="isAnonymous()">
-               <button class="ui inverted button" ><a href="${pageContext.request.contextPath}/sessions/new" >Naruči Uslugu</a></button>
-           </sec:authorize>
-            
-            <sec:authorize access="isAuthenticated()">
-                <button class="ui inverted button"><a href="${pageContext.request.contextPath}/users/${userInSession.userId}/reservations/new">Naruči Uslugu</a></button>
-            </sec:authorize>
-		</div>
-	</main>
-	<ul class="slideshow">
-		<li></li>
-		<li></li>
-		<li></li>
-		<li></li>
-		<li></li>
-	</ul>
-	<script src="scripts/index.js"></script>
+			<button class="ui inverted button" ><a href="${pageContext.request.contextPath}/sessions/new" >Naruči Uslugu</a></button>
+		</sec:authorize>
+
+		<sec:authorize access="isAuthenticated()">
+		<button class="ui inverted button"><a href="${pageContext.request.contextPath}/users/${userInSession.userId}/reservations/new">Naruči Uslugu</a></button>
+	</sec:authorize>
+</div>
+</main>
+<ul class="slideshow">
+	<li></li>
+	<li></li>
+	<li></li>
+	<li></li>
+	<li></li>
+</ul>
+<script src="scripts/index.js"></script>
 </body>
 </html>

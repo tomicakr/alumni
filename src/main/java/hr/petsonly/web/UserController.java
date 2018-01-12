@@ -3,11 +3,16 @@ package hr.petsonly.web;
 import java.util.List;
 import java.util.UUID;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.authentication.AuthenticationManager;
+import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
+import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.web.authentication.WebAuthenticationDetails;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -45,6 +50,9 @@ public class UserController {
 	
 	@Autowired
 	private UserService userService;
+	
+	@Autowired
+    protected AuthenticationManager authenticationManager;
 
 	@GetMapping
 	public String showUserList(Model model) {
@@ -67,9 +75,9 @@ public class UserController {
 		return "register";
 	}
 
-	@PostMapping
+	@PostMapping("/new")
 	public String createUser(Model model, @Valid RegistrationForm registrationForm, BindingResult result,
-			HttpSession session) {
+			HttpSession session, HttpServletRequest request) {
 
 		if (result.hasErrors()) {
 			model.addAttribute("registrationForm", registrationForm);
@@ -80,8 +88,7 @@ public class UserController {
 
 		User user = userService.registerNewUserAccount(registrationForm);
 
-		UserDetailsMore userDetails = new UserDetailsMore(user);
-		session.setAttribute("userInSession", userDetails);
+        authenticateUserAndSetSession(registrationForm, request);
 
 		return "redirect:/users/" + user.getUserId();
 	}
@@ -178,5 +185,19 @@ public class UserController {
 
 		return "nijeUspjelo";
 	}
+	
+	private void authenticateUserAndSetSession(RegistrationForm rform, HttpServletRequest request) {
+        String username = rform.getEmail();
+        String password = rform.getPassword();
+        UsernamePasswordAuthenticationToken token = new UsernamePasswordAuthenticationToken(username, password);
+
+        // generate session if one doesn't exist
+        request.getSession();
+
+        token.setDetails(new WebAuthenticationDetails(request));
+        Authentication authenticatedUser = authenticationManager.authenticate(token);
+
+        SecurityContextHolder.getContext().setAuthentication(authenticatedUser);
+    }
 
 }

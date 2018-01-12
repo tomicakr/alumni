@@ -12,12 +12,10 @@ public class PetForm {
 	@NotEmpty(message = "{pform.name.empty}")
 	private String name;
 
-	@NotNull
-	@NotEmpty(message = "{pform.age.empty}")
+	@NotNull(message = "{pform.age.null}")
 	private Integer age;
 
-	@NotNull
-	@NotEmpty(message = "{pform.sex.empty}")
+	@NotNull(message = "{pform.sex.null}")
 	private Character sex;
 
 	@NotNull
@@ -32,12 +30,8 @@ public class PetForm {
 	@NotEmpty(message = "{pform.microchip.empty}")
 	private String microchip;
 
-	@NotNull
-	@NotEmpty(message = "{pform.remark.empty}")
 	private String remark;
 
-	@NotNull
-	@NotEmpty(message = "{pform.owner.empty}")
 	private String owner;
 
 	public String getName() {

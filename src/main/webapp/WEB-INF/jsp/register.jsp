@@ -18,7 +18,7 @@
 	<div class="column">
 		<h1 class="ui image massive header">Izradite svoj račun</h1>
 
-		<form action="/users" method="post"
+		<form action="/users/new" method="post"
 			class="ui large form segment stacked">
 			<div class="two fields">
 				<div class="field">

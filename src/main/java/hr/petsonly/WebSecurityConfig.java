@@ -11,22 +11,27 @@ import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 
+import hr.petsonly.config.specific.CustomAuthenticationSuccesHandler;
+
 @Configuration
 @EnableWebSecurity
 public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 	
 	@Autowired
 	private UserDetailsService userDetailsService;
+	
+	@Autowired
+	private CustomAuthenticationSuccesHandler sucessHandler;
 
 	@Override
 	protected void configure(HttpSecurity http) throws Exception {
-		http.formLogin().loginPage("/sessions/new").loginProcessingUrl("/loginProcessing").failureUrl("/sessions/new?error=1");
+		http.formLogin().loginPage("/sessions/new").loginProcessingUrl("/loginProcessing").failureUrl("/sessions/new?error=1").successHandler(sucessHandler);
 		
 		
 		http.authorizeRequests().antMatchers("/users").hasRole("ADMINISTRATOR").antMatchers("/jobs").hasAnyRole("ZAPOSLENIK", "ADMINISTRATOR");
 		
-		
 		http.csrf().disable();
+		
 	}
 
 	@Autowired

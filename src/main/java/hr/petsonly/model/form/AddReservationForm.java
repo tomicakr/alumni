@@ -22,7 +22,6 @@ public class AddReservationForm {
 	@NotNull
 	private UUID pet;
 
-	@NotNull
 	private UUID employee;
 
 	@NotNull

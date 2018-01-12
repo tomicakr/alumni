@@ -30,6 +30,25 @@
 			</div>
 		</div>
 	</div>
+	<div id="delete-pet-modal" class="ui small basic test modal transition hidden">
+		<div class="ui icon header">
+			<i class="trash icon"></i>
+			Brisanje ljubimca
+		</div>
+		<div class="content">
+			<p>Brisanje ljubimca uzrokovat će otkazivanje svih njegovih rezervacija, neovisno o razini. Jeste li sigurni da želite nastaviti?</p>
+		</div>
+		<div class="actions">
+			<div class="ui green basic cancel inverted button">
+				<i class="remove icon"></i>
+				Ne
+			</div>
+			<div class="ui red ok inverted button">
+				<i class="checkmark icon"></i>
+				Da
+			</div>
+		</div>
+	</div>
 	<div id="delete-user-success" class="ui small basic test modal transition hidden">
 		<div class="ui icon header">
 			<i class="green checkmark icon"></i>

@@ -12,11 +12,12 @@ const btnAddReservation   = $('#btn-add-reservation');
 const addPetModal         = $('#add-pet-modal');
 const addReservationModal = $('#add-reservation-modal');
 
-let Table= function(indexUrl, table, tableBody, placeholder){
+let Table= function(indexUrl, table, tableBody, placeholder, deleteModal){
     this.indexUrl = indexUrl;
     this.table = table;
     this.tableBody = tableBody;
     this.placeholder = placeholder;
+    this.deleteModal = deleteModal;
 };
 
 
@@ -39,18 +40,23 @@ Table.prototype = {
 
     remove: function(row){
         const deleteUrl = `${this.indexUrl}${row.data('id')}/`;
-
-        $.ajax({
-            url: deleteUrl,
-            type: 'DELETE',
+        this.deleteModal
+            .modal({
+            onApprove: () => {
+                $.ajax({
+                    url: deleteUrl,
+                    type: 'DELETE',
+                }).then(() => {
+                    row.remove();
+                    if (this.isEmpty()) {
+                        this.table.hide();
+                        this.placeholder.show();
+                    }
+                })
+            }
         })
-            .then(data => {
-                row.remove();
-                if(this.isEmpty()){
-                    this.table.hide();
-                    this.placeholder.show();
-                }
-            });
+            .modal('show');
+
     },
 
     update: function(){
@@ -92,15 +98,18 @@ let petTable = new Table(
     petIndex,
     $('#pets-table'),
     $('#pets').find('tbody'),
-    $('#pet-placeholder')
+    $('#pet-placeholder'),
+    $('#delete-pet-modal')
 );
 
 let appendPet = function(pet){
     let deleteButton = '<i class="big red remove icon" title="Obriši ljubimca"></i>';
     let petMarkup = $(this.formatTableRow(pet.name, pet.age, pet.species, pet.breed, pet.sex, pet.microchip, pet.remark,deleteButton));
+
     petMarkup.data('id',pet.petId);
     petTable.tableBody.append(petMarkup);
-    petMarkup.find('.remove.icon').click(this.remove.bind(this,petMarkup));
+    petMarkup.find('.remove.icon').click(petTable.remove.bind(petTable,petMarkup));
+
     this.placeholder.hide();
     this.table.show();
 };

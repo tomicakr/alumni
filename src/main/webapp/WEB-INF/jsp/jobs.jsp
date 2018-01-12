@@ -13,7 +13,7 @@
 <main>
 	<div id="main-div" class="ui segment">
 
-		<main>
+
 			<h1 align="center">Pregled svih rezervacija: </h1>
 			<div id="main-grid" class="ui stackable three column grid">
 				
@@ -163,12 +163,10 @@
 
 	</div>
 
-
 </div>
-
 </div>
-
 </main>
+
 <%@ include file = "../partials/footer.jsp" %>
 <script src="${pageContext.request.contextPath}/scripts/jobs.js"></script>
 </body>

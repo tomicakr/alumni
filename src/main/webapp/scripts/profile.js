@@ -270,3 +270,6 @@ $(document)
         ;
     });
 
+
+$('.plus.icon, .trash.icon, .refresh.icon, .edit.icon')
+  .popup();

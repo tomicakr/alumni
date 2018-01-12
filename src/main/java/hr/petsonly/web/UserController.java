@@ -91,7 +91,7 @@ public class UserController {
 
 		CustomUserDetails userInSession = (CustomUserDetails) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
 
-		if (userInSession == null || !userInSession.getUserId().equals(id.toString())) {
+		if (userInSession == null || !(userInSession.getUserId().equals(id) || userInSession.getRoles().contains("ROLE_ADMINISTRATOR"))) {
 			model.addAttribute("errorMessage", "Nemaš ovlasti za to!");
 			return "customError";
 		}
@@ -114,7 +114,7 @@ public class UserController {
 
 		CustomUserDetails userInSession = (CustomUserDetails) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
 
-		if (userInSession == null || !userInSession.getUserId().equals(id.toString())) {
+		if (userInSession == null || !(userInSession.getUserId().equals(id) || userInSession.getRoles().contains("ROLE_ADMINISTRATOR"))) {
 			model.addAttribute("errorMessage", "Nemaš ovlasti za to!");
 			return "customError";
 		}
@@ -138,11 +138,11 @@ public class UserController {
 	public String updateUser(Model model, @PathVariable UUID id, HttpSession session, @Valid EditUserForm editUserForm,
 			BindingResult result) {
 
-		UserDetailsMore userInSession = (UserDetailsMore) session.getAttribute("userInSession");
+		CustomUserDetails userInSession = (CustomUserDetails) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
 
 		List<LocationDetails> locationDetails = services.getAllLocationDetails();
 
-		if (userInSession == null || !userInSession.getUserId().equals(id)) {
+		if (userInSession == null || !(userInSession.getUserId().equals(id) || userInSession.getRoles().contains("ROLE_ADMINISTRATOR"))) {
 			model.addAttribute("errorMessage", "Nemaš ovlasti za to!");
 			return "customError";
 		}
@@ -166,9 +166,9 @@ public class UserController {
 	@RequestMapping(value = "/{id}", method = RequestMethod.DELETE)
 	public String deleteUser(Model model, @PathVariable UUID id, HttpSession session) {
 
-		UserDetailsMore userInSession = (UserDetailsMore) session.getAttribute("userInSession");
+		CustomUserDetails userInSession = (CustomUserDetails) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
 
-		if (userInSession == null || !userInSession.getUserId().equals(id)) {
+		if (userInSession == null || !(userInSession.getUserId().equals(id) || userInSession.getRoles().contains("ROLE_ADMINISTRATOR"))) {
 			model.addAttribute("errorMessage", "Nemaš ovlasti za to!");
 			return "customError";
 		}

@@ -47,7 +47,7 @@ public class UserDetailsServiceImpl implements UserDetailsService {
 
 		return new CustomUserDetails(user.getEmail(), user.getPassword(), enabeled, accountNonExpired,
 				credentialsNonExpired, accountNonLocked, getAuthorities(userRoles), user.getName(),
-				user.getUserId().toString(), user.getRoles().stream().map(new Function<Role, String>() {
+				user.getUserId(), user.getRoles().stream().map(new Function<Role, String>() {
 
 					@Override
 					public String apply(Role t) {

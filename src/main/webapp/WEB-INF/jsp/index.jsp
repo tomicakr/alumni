@@ -25,7 +25,7 @@
 	</sec:authorize>
 </div>
 </main>
-<ul class="slideshow">
+<ul class="slideshow preload">
 	<li></li>
 	<li></li>
 	<li></li>

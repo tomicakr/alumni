@@ -17,10 +17,10 @@
         <form action="/users/${user.userId}/" method="post" class="ui large form segment stacked">
             <div class="two fields">
                 <div class="field">
-                    <input type="text" name="name" id="first-name" disabled placeholder="Ime" value="${user.name}">
+                    <input type="text" name="name" id="first-name" disabled placeholder="Ime" value="${user.firstName}">
                 </div>
                 <div class="field">
-                    <input type="text" name="surname" id="last-name" disabled placeholder="Prezime" value="${user.surname}">
+                    <input type="text" name="surname" id="last-name" disabled placeholder="Prezime" value="${user.lastName}">
                 </div>
             </div>
             <div class="field">
@@ -30,7 +30,7 @@
                 <input type="tel" name="mobilePhone" id="mobile-phone" placeholder="Broj mobitel" value="${user.mobilePhone}">
             </div>
             <div class="field">
-                <input type="tel" name="phone" id="telephone" placeholder="Broj telefona" disabled value="${user.phone}">
+                <input type="tel" name="phone" id="telephone" placeholder="Broj telefona" disabled value="${user.telephone}">
             </div>
             <div class="field">
                 <input type="email" name="email" id="email" placeholder="Adresa elektroničke pošte" disabled value="${user.email}">

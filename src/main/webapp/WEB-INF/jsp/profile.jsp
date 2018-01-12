@@ -1,4 +1,6 @@
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
+<%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags" %>
+
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
@@ -142,6 +144,10 @@
 					<tr>
 						<td><strong>Broj telefona</strong></td>
 						<td>${user.telephone}</td>
+					</tr>
+					<tr>
+						<td><strong>Ovlasti</strong></td>
+						<td><sec:authentication property="principal.authorities"/></td>
 					</tr>
 				</table>
 			</section>

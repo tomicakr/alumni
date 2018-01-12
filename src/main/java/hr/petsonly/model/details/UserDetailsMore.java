@@ -16,6 +16,7 @@ public class UserDetailsMore extends UserDetailsBasic{
 	private String userPid;
 	private String mobilePhone;
 	private String telephone;
+	private Location location;
 
 	@Autowired
 	private LocationRepository locationRepository;
@@ -34,6 +35,7 @@ public class UserDetailsMore extends UserDetailsBasic{
 		this.mobilePhone = user.getMobilePhone();
 		this.telephone = user.getPhone();
 		this.city = location.getLocationName();
+		this.location = user.getLocation();
 
 	}
 
@@ -83,6 +85,14 @@ public class UserDetailsMore extends UserDetailsBasic{
 
 	public void setLocationRepository(LocationRepository locationRepository) {
 		this.locationRepository = locationRepository;
+	}
+
+	public Location getLocation() {
+		return location;
+	}
+
+	public void setLocation(Location location) {
+		this.location = location;
 	}
 
 }

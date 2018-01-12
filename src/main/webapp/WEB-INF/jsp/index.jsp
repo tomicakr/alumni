@@ -1,5 +1,5 @@
-<%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags" %>
+<%@page contentType="text/html" pageEncoding="UTF-8"%>
             
 <!DOCTYPE html>
 <html>
@@ -9,21 +9,20 @@
 <jsp:param name="view-name" value="index"/>
 </jsp:include>
 
+<sec:authentication var="userInSession" property="principal" />
 <body>
 	<%@ include file = "../partials/indexHeader.jsp" %>
 	<main>
-		<sec:authentication var="userInSession" property="principal" />
 		
 		<div id="heading">
 			<h1><i class="fa fa-paw" aria-hidden="true"> </i> Pets Only Zagreb</h1>
-			<c:if test="${empty userInSession.userId}">
+			<sec:authorize access="isAnonymous()">
                <button class="ui inverted button" ><a href="${pageContext.request.contextPath}/sessions/new" >Naruči Uslugu</a></button>
-            </c:if>
+           </sec:authorize>
             
-            <c:if test="${not empty userInSession.firstName}">
+            <sec:authorize access="isAuthenticated()">
                 <button class="ui inverted button"><a href="${pageContext.request.contextPath}/users/${userInSession.userId}/reservations/new">Naruči Uslugu</a></button>
-            </c:if>
-            
+            </sec:authorize>
 		</div>
 	</main>
 	<ul class="slideshow">

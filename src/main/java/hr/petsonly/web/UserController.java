@@ -112,9 +112,9 @@ public class UserController {
 	@RequestMapping(value = "/{id}/edit", method = RequestMethod.GET)
 	public String editUser(Model model, @PathVariable UUID id, HttpSession session) {
 
-		UserDetailsMore userInSession = (UserDetailsMore) session.getAttribute("userInSession");
+		CustomUserDetails userInSession = (CustomUserDetails) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
 
-		if (userInSession == null || !userInSession.getUserId().equals(id)) {
+		if (userInSession == null || !userInSession.getUserId().equals(id.toString())) {
 			model.addAttribute("errorMessage", "Nemaš ovlasti za to!");
 			return "customError";
 		}

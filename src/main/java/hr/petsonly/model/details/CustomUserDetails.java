@@ -1,6 +1,7 @@
 package hr.petsonly.model.details;
 
 import java.util.Collection;
+import java.util.List;
 
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.User;
@@ -11,13 +12,15 @@ public class CustomUserDetails extends User{
 
 	private String userId;
 	private String firstName;
+	private List<String> roles;
 	
 	public CustomUserDetails(String username, String password, boolean enabled, boolean accountNonExpired,
 			boolean credentialsNonExpired, boolean accountNonLocked,
-			Collection<? extends GrantedAuthority> authorities, String firstName, String userId) {
+			Collection<? extends GrantedAuthority> authorities, String firstName, String userId, List<String> roles) {
 		super(username, password, enabled, accountNonExpired, credentialsNonExpired, accountNonLocked, authorities);
 		this.setFirstName(firstName);
 		this.setUserId(userId);
+		this.setRoles(roles);
 	}
 
 	public String getFirstName() {
@@ -34,6 +37,14 @@ public class CustomUserDetails extends User{
 
 	public void setUserId(String userId) {
 		this.userId = userId;
+	}
+
+	public List<String> getRoles() {
+		return roles;
+	}
+
+	public void setRoles(List<String> roles) {
+		this.roles = roles;
 	}
 
 	

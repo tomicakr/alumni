@@ -3,6 +3,8 @@ package hr.petsonly.service;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
+import java.util.function.Function;
+import java.util.stream.Collectors;
 
 import javax.transaction.Transactional;
 
@@ -45,7 +47,13 @@ public class UserDetailsServiceImpl implements UserDetailsService {
 
 		return new CustomUserDetails(user.getEmail(), user.getPassword(), enabeled, accountNonExpired,
 				credentialsNonExpired, accountNonLocked, getAuthorities(userRoles), user.getName(),
-				user.getUserId().toString());
+				user.getUserId().toString(), user.getRoles().stream().map(new Function<Role, String>() {
+
+					@Override
+					public String apply(Role t) {
+						return t.getName();
+					}
+				}).collect(Collectors.toList()));
 	}
 
 	private Collection<? extends GrantedAuthority> getAuthorities(Collection<Role> roles) {
@@ -59,6 +67,7 @@ public class UserDetailsServiceImpl implements UserDetailsService {
 		List<Privilege> collection = new ArrayList<>();
 		for (Role role : roles) {
 			collection.addAll(role.getPrivileges());
+			privileges.add(role.getName());
 		}
 		for (Privilege item : collection) {
 			privileges.add(item.getName());

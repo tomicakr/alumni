@@ -20,8 +20,12 @@
 	<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/styles/<%=request.getParameter("view-name")%>.css">
 	<script>
 
-        if (screen.width <= 800) {
+		if(window.location.pathname == "${pageContext.request.contextPath}"+"/"){
+
+			if (screen.width <= 800  || $(window).width() <= 800) {
             window.location.href="${pageContext.request.contextPath}/mobile"; 
-        }
+       		}
+		}
+        
 	</script>
 </head>

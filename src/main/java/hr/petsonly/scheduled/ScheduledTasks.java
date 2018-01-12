@@ -10,15 +10,15 @@ import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Component;
 
 import hr.petsonly.model.Reservation;
-import hr.petsonly.model.User;
 import hr.petsonly.repository.ReservationRepository;
 import hr.petsonly.service.email.EmailServiceImpl;
 
 @Component
 public class ScheduledTasks {
 	
-	final Integer CONFIRMED_RESERVATION_STATUS = 3;
-	final Integer CONFIRMED_RESERVATION_REMINDER_TIME = 5;
+	final long CONFIRMED_RESERVATION_REMINDER_TIME = 5;
+	final long CONFIRMED_RESERVATION_INTERVAL_MINUTES = 15;
+	final long MILISECONDS_IN_A_MINUTE = 60000;
 	final String DEFAULT_REMINDER_EMAIL_SUBJECT = "Podsjetnik na rezervaciju";
 	
 	@Autowired
@@ -28,11 +28,11 @@ public class ScheduledTasks {
 	ReservationRepository reservationRepository;
 	
 	@Transactional
-	@Scheduled(fixedRate = 3600000)
+	@Scheduled(fixedRate = CONFIRMED_RESERVATION_INTERVAL_MINUTES * MILISECONDS_IN_A_MINUTE)
 	public void sendReservationReminder() {
 		
-		List<Reservation> reservationList = reservationRepository.findAllByStatusAndWithinNHours(CONFIRMED_RESERVATION_STATUS,
-															CONFIRMED_RESERVATION_REMINDER_TIME);
+		List<Reservation> reservationList = reservationRepository.findAllConfirmedWithinNHours(CONFIRMED_RESERVATION_REMINDER_TIME,
+															CONFIRMED_RESERVATION_INTERVAL_MINUTES);
 		for(Reservation reservation : reservationList) {
 			StringBuilder stringBuilder = new StringBuilder();
 			String userName = reservation.getUser().getName();

@@ -1,4 +1,5 @@
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
+
 <footer>
 	<div class="ui inverted vertical footer segment" style="background-color: darkred;">
 		<div class="ui center aligned container">
@@ -41,4 +42,5 @@
 		</div>
 	</div>
 </footer>
+
 	<script type="text/javascript" src="${pageContext.request.contextPath}/scripts/main.js"></script>

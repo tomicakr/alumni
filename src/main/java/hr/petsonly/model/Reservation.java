@@ -13,10 +13,12 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
+import javax.transaction.Transactional;
 
 import org.hibernate.annotations.Type;
 
 @Entity
+@Transactional
 @Table(name = "reservation")
 public class Reservation {
 

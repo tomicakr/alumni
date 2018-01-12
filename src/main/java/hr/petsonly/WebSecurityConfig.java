@@ -26,8 +26,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 	@Override
 	protected void configure(HttpSecurity http) throws Exception {
 		http.formLogin().loginPage("/sessions/new").loginProcessingUrl("/loginProcessing").failureUrl("/sessions/new?error=1").successHandler(sucessHandler);
-		
-		
+				
 		http.authorizeRequests().antMatchers("/users").hasRole("ADMINISTRATOR").antMatchers("/jobs").hasAnyRole("ZAPOSLENIK", "ADMINISTRATOR");
 		
 		http.csrf().disable();
@@ -36,12 +35,13 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 
 	@Autowired
 	public void configureGlobal(AuthenticationManagerBuilder auth) throws Exception {
-		// auth.inMemoryAuthentication().withUser("admin").password("password").roles("ADMIN");
+		auth.inMemoryAuthentication().withUser("admin").password("password").roles("ADMIN");
+		//auth.userDetailsService(userDetailsService).passwordEncoder(passwordEncoder());
 	}
 
 	@Override
 	public void configure(AuthenticationManagerBuilder builder) throws Exception {
-		builder.userDetailsService(userDetailsService);
+		builder.userDetailsService(userDetailsService).passwordEncoder(passwordEncoder());
 	}
 	
 	@Bean

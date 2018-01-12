@@ -30,8 +30,6 @@ public class PetForm {
 	@NotEmpty(message = "{pform.microchip.empty}")
 	private String microchip;
 
-	@NotNull
-	@NotEmpty(message = "{pform.remark.empty}")
 	private String remark;
 
 	private String owner;

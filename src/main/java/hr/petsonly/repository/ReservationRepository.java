@@ -1,5 +1,6 @@
 package hr.petsonly.repository;
 
+import java.time.LocalDateTime;
 import java.time.LocalTime;
 import java.util.List;
 import java.util.UUID;
@@ -59,10 +60,16 @@ public interface ReservationRepository extends JpaRepository<Reservation, UUID> 
 	List<Reservation> findAllByDocumentPath(String documentPath);
 	
 	List<Reservation> findAllByDocumentPathLike(String documentPath);
-	
+
 	@Transactional
-	@Query(value = "SELECT * FROM reservation r WHERE r.reservation_status = 3 AND r.execution_time >= now() AND r.execution_time <= date_add(now(), INTERVAL :hour HOUR)", nativeQuery = true)
-	List<Reservation> findAllConfirmedWithinNHours(@Param("hour") Integer hour);
+	@Query("SELECT r FROM Reservation r WHERE r.sendReminder = TRUE AND r.reservationStatus = 3 AND r.executionTime BETWEEN :start AND :end")
+	List<Reservation> findAllConfirmedWithinNHoursHelper(@Param("start") LocalDateTime start, @Param("end") LocalDateTime end);
+	
+	default List<Reservation> findAllConfirmedWithinNHours(Long hours, Long minutes){
+		LocalDateTime start = LocalDateTime.now().plusHours(hours);
+		LocalDateTime end = start.plusHours(hours).plusMinutes(minutes);
+		return findAllConfirmedWithinNHoursHelper(start, end);
+	}
 	
 	@Transactional
 	@Query(value = "SELECT * FROM reservation r WHERE r.reservation_status = :status AND r.execution_time >= now() AND r.execution_time <= date_add(now(), INTERVAL :hour HOUR)", nativeQuery = true)

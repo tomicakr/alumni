@@ -62,9 +62,9 @@ Table.prototype = {
                     this.placeholder.show();
                     return;
                 }
+                entities.forEach(entity => this.append(entity));
                 this.placeholder.hide();
                 this.table.show();
-                entities.forEach(entity => this.append(entity));
 
             })
             .fail(console.log);
@@ -78,8 +78,11 @@ Table.prototype = {
             processData: false, //To avoid making query String instead of JSON
             data: JSON.stringify(fields)
         })
-            .then(this.append)
-            .catch(console.log);
+            .then(data => {
+                console.log(data);
+                this.append(data);
+            })
+            .catch(() => console.log("tu sam"));
     }
 };
 

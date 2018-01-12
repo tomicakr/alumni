@@ -1,6 +1,8 @@
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn"%>
+<%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags" %>
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -22,6 +24,8 @@
 
 </head>
 
+<sec:authentication var="userInSession" property="principal" />
+
 <body>
 
 	<div class="ui basic icon top fixed menu">
@@ -31,16 +35,16 @@
 		</div>
 		<div class="right menu">
 			
-			<c:if test="${empty userInSession.userPid}">
+			<sec:authorize access="isAnonymous()">
 			<a  class="item" name="Login" href="${pageContext.request.contextPath}/sessions/new">
 				Prijava
 			</a>
 			<a  class="item" name="singup" href="${pageContext.request.contextPath}/users/new">
 				Registracija
 			</a>
-			</c:if>
+           </sec:authorize>
 
-			<c:if test="${not empty userInSession.firstName}">
+            <sec:authorize access="isAuthenticated()">
 				<a  class=" item" href="${pageContext.request.contextPath}/users/${userInSession.userId}">
 					Dobrodošli, ${userInSession.firstName}!
 				</a>
@@ -49,7 +53,7 @@
 					<input type="hidden" name="_method" value="DELETE">
 					<input class="item" type="submit" value="Odjavi se" id="logoutBtn">
 				</form>
-			</c:if>
+            </sec:authorize>
 		</div>
 	</div>
 

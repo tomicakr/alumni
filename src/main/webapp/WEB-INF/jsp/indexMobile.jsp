@@ -137,6 +137,5 @@
 			$('.ui.sidebar').sidebar('toggle');
 		});
 	</script>
-
 </body>
 </html>

@@ -236,7 +236,7 @@ public class RepositoryTestController {
 	@RequestMapping("/repotest/reservations")
 	public String findReservationsWithinTime(){
 		String result = "";
-		List<Reservation> rs = rr.findAllConfirmedWithinNHours(5);
+		List<Reservation> rs = rr.findAllConfirmedWithinNHours((long) 5);
 		for(Reservation r : rs){
 			result += r.getPet().getName() + " " + r.getExecutionTime() + "<br>";
 		}

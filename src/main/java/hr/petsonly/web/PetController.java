@@ -22,7 +22,6 @@ import hr.petsonly.model.Pet;
 import hr.petsonly.model.details.PetDetails;
 import hr.petsonly.model.form.PetForm;
 import hr.petsonly.repository.PetRepository;
-import hr.petsonly.repository.UserRepository;
 import hr.petsonly.service.FormFactory;
 
 @Controller
@@ -34,9 +33,6 @@ public class PetController {
 	
 	@Autowired
 	private PetRepository petRepository;
-	
-	@Autowired
-	private UserRepository userRepository;
 	
 	@RequestMapping(method = RequestMethod.GET)
 	@ResponseBody

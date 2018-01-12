@@ -10,6 +10,7 @@ import java.util.UUID;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import hr.petsonly.model.Location;
@@ -40,7 +41,9 @@ public class FormFactory {
 	private PetRepository pr;
 	@Autowired 
 	private RoleRepository rr;
-	
+	@Autowired
+	private PasswordEncoder pe;
+
 	@Value("${default.reservation.duration}")
 	private String DEFAULT_DURATION;
 	
@@ -53,7 +56,7 @@ public class FormFactory {
 		u.setPhone(rf.getPhone());
 		u.setEmail(rf.getEmail());
 		u.setAddress(rf.getAddress());
-		u.setPassword(rf.getPassword());
+		u.setPassword(pe.encode(rf.getPassword()));
 		
 		u.setRoles(Arrays.asList(rr.findByName("ROLE_KORISNIK")));
 		

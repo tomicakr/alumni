@@ -57,14 +57,14 @@ public class EmailServiceImpl {
 		
 				helper.setSubject("PetsOnlyZg rezervacija");
 				helper.setFrom("fau53t7zss@gmail.com");
-				helper.setTo(reservation.getUser().getEmail());
+				helper.setTo("mate.paulinovic@fer.hr");//reservation.getUser().getEmail());
 				String content = "Dear " + reservation.getUser().getName() 
 						+ ",\nthank you for your reservation. Your reservation id is " + reservation.getReservationKey() + ".";
 
 				helper.setText(content);
 				// Add a resource as an attachment	
 			
-				helper.addAttachment("Ponuda.pdf", Paths.get("./src/main/resources/turtle.html").toFile());
+				helper.addAttachment("Ponuda.pdf", Paths.get("./src/main/resources/templates/turtle.html").toFile());
 				
 			}
 		};

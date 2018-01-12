@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import hr.petsonly.model.Location;
 import hr.petsonly.model.Pet;
+import hr.petsonly.model.Reservation;
 import hr.petsonly.model.User;
 import hr.petsonly.service.email.EmailServiceImpl;
 
@@ -232,5 +233,14 @@ public class RepositoryTestController {
 		return result;
 	}
 	
+	@RequestMapping("/repotest/reservations")
+	public String findReservationsWithinTime(){
+		String result = "";
+		List<Reservation> rs = rr.findAllConfirmedWithinNHours(5);
+		for(Reservation r : rs){
+			result += r.getPet().getName() + " " + r.getExecutionTime() + "<br>";
+		}
+		return result;
+	}
 	
 }

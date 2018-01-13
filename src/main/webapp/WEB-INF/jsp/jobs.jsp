@@ -11,6 +11,7 @@
 
 <body>
 <main>
+	<%@ include file = "../partials/header.jsp" %>
 	<div id="main-div" class="ui segment">
 
 
@@ -48,7 +49,7 @@
 									</div>
 									<form method="post" action="/jobs/${reservation.reservationId}/accept">
 										<input type="hidden" name="reservationId" value="${reservation.reservationId}" />
-										<button class="ui bottom fluid attached submit button" tabindex="0">
+										<button class="ui darkred bottom fluid attached submit button" tabindex="0">
 											<i class="level up icon"></i>
 											Prihvati
 										</button>
@@ -96,7 +97,7 @@
 								</div>
 								<form method="post" action="/jobs/${reservation.reservationId}/confirm">
 									<input type="hidden" name="reservationId" value="${reservation.reservationId}" />
-									<button class="ui bottom fluid attached submit button" tabindex="0">
+									<button class="ui darkred bottom fluid attached submit button" tabindex="0">
 										<i class="checkmark icon"></i>
 										Potvrdi
 									</button>
@@ -144,7 +145,7 @@
 							</div>
 							<form method="post" action="">
 								<input type="hidden" name="reservationId" value="${reservation.reservationId}" />
-								<button class="ui bottom fluid attached submit disabled button" tabindex="0">
+								<button class="ui darkred bottom fluid attached submit disabled button" tabindex="0">
 									<i class="thumbs up icon"></i>
 									Završi
 								</button>

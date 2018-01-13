@@ -24,7 +24,10 @@ footer.footer {
 }
 
 body{
-	background: #ecf0f1;
+	background: #ecf0f1  no-repeat;
+	background-image: url(https://thetomatos.com/wp-content/uploads/2016/02/best-cat-clipart.png);
+	background-position: bottom right;
+	background-size: 300px;
 }
 main {
 	min-height: 80%;
@@ -35,6 +38,9 @@ main {
 	color: white !important;
 }
 
+.darkred.button:hover{
+	background:#6b0000 !important;
+}
 
 .darkred.icon{
 	color: darkred !important;

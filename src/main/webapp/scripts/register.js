@@ -1,4 +1,4 @@
-import {initialize} from './forms.js';
+// import {initialize} from './forms.js';
 
 const firstName   = $('#first-name'  );
 const lastName    = $('#last-name'   );
@@ -132,7 +132,7 @@ let generateOib = () => {
     return oib;
 };
 
-$('#komba').click(function () {
+let skombaj = function () {
     let oibgen = generateOib();
     oib.val(oibgen);
     $.getJSON('https://uinames.com/api/?region=england')
@@ -149,5 +149,5 @@ $('#komba').click(function () {
         .fail(function () {
             alert('Morat ces sam, ne radi API');
         });
-});
+};
 

@@ -22,7 +22,7 @@
 			class="ui large form segment stacked">
 			<div class="two fields">
 				<div class="field">
-					<input type="text" name="name" id="first-name" placeholder="Ime" value="${registrationForm.name}">
+					<input type="text" name="name" id="first-name" placeholder="Ime" value="${registrationForm.name}" autofocus>
 				</div>
 				<div class="field">
 					<input type="text" name="surname" id="last-name"
@@ -82,14 +82,10 @@
 				<br />
 			</c:forEach>
 		</spring:hasBindErrors>
-		
-		<button class="ui huge button" id="komba">Automatski popuni</button>
 	</div>
 	</main>
 	<%@ include file="../partials/footer.jsp"%>
-	<script src="../../scripts/forms.js" type="module"></script>
-	t
-	<script src="../../scripts/register.js" type="module">
-	</script>
+	<script src="../../scripts/forms.js"></script>
+	<script src="../../scripts/register.js"></script>
 </body>
 </html>

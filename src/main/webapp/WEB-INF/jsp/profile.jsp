@@ -24,7 +24,7 @@
 				<i class="remove icon"></i>
 				Ne
 			</div>
-			<div class="ui red ok inverted button">
+			<div class="ui red basic ok inverted button">
 				<i class="checkmark icon"></i>
 				Da
 			</div>
@@ -43,7 +43,7 @@
 				<i class="remove icon"></i>
 				Ne
 			</div>
-			<div class="ui red ok inverted button">
+			<div class="ui red basic ok inverted button">
 				<i class="checkmark icon"></i>
 				Da
 			</div>

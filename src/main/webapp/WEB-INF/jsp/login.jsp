@@ -17,7 +17,7 @@
 						<div class="field">
 						<div class="ui left icon input">
 							<i class="user icon"></i>
-							<input type="text" name="username" placeholder="Adresa elektroničke pošte">
+							<input type="text" name="username" placeholder="Adresa elektroničke pošte" autofocus>
 						</div>
 					</div>
 					<div class="field">
@@ -38,8 +38,8 @@
 			</div>
 		</div>
 		<%@ include file = "../partials/footer.jsp" %>
-		<script src="../../scripts/forms.js" type="module"></script>t
-		<script src="../../scripts/login.js" type="module"></script>
+		<script src="../../scripts/forms.js"></script>t
+		<script src="../../scripts/login.js"></script>
 </body>
 
 </html>

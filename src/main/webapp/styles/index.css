@@ -7,7 +7,7 @@ body,html{
     font-family: Coda, sans-serif;
 }
 
-nav {
+nav {.
     position: relative;
     z-index: 1;
 }
@@ -149,6 +149,11 @@ body{
 #heading {
     /* This section calls the slideInFromLeft animation we defined above */
     animation: 1s ease-out 0s 1 popIn;
+}
+
+#customMenu .menu{
+    position: relative;
+    z-index: 1;
 }
 
 #customMenu .right.menu{

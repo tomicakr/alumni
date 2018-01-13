@@ -6,11 +6,38 @@ const btnPets             = $('#btn-pets'           );
 const btnReservations     = $('#btn-reservations'   );
 const btnEdit             = $('#btn-edit-user'      );
 const btnDelete           = $('#btn-delete-user'    );
+const btnEmploy           = $('#btn-employ-user'    );
+const btnFire             = $('#btn-fire-user'      );
 const btnAddPet           = $('#btn-add-pet'        );
 const btnAddReservation   = $('#btn-add-reservation');
 
 const addPetModal         = $('#add-pet-modal');
 const addReservationModal = $('#add-reservation-modal');
+
+function sendPatch(data,onSuccess, onFail){
+    $.ajax({
+        url: userIndex,
+        type: 'PATCH',
+        contentType: "application/json; charset=utf-8",
+        cache: false,
+        processData: false,
+        data: JSON.stringify(data)
+    })
+        .then(onSuccess)
+        .catch(onFail)
+}
+
+const employOperation = {
+    "op": "replace",
+    "path": "/status",
+    "value": "employee"
+};
+
+const fireOperation = {
+    "op": "replace",
+    "path": "/status",
+    "value": "client"
+};
 
 let Table= function(indexUrl, table, tableBody, placeholder, deleteModal){
     this.indexUrl = indexUrl;
@@ -235,7 +262,27 @@ btnDelete.click(function() {
     ;
 });
 
-btnEdit.click(() => window.location.href = `${userIndex}edit`);
+btnEdit.click(
+    () => window.location.href = `${userIndex}edit`
+);
+
+
+btnEmploy.click(() => {
+    sendPatch(
+        [employOperation],
+        () => console.log('Kaze kontroler da je uspjelo'),
+        () => console.log(`Ovo se poslalo: "${JSON.stringify([employOperation])}", ali nista od toga`),
+    );
+});
+
+btnFire.click(() => {
+    sendPatch(
+        [fireOperation],
+        () => console.log('Kaze kontroler da je uspjelo'),
+        () => console.log(`Ovo se poslalo: "${JSON.stringify([fireOperation])}", ali nista od toga`),
+    );
+});
+
 
 function modalInit(modal, formFields, handler){
     modal.form({
@@ -246,12 +293,10 @@ function modalInit(modal, formFields, handler){
             handler(fields);
             modal.modal('hide');
         }
-    })
-    ;
+    });
 
     $('.ui.dropdown')
-        .dropdown()
-    ;
+        .dropdown();
 }
 
 $(document)
@@ -283,5 +328,5 @@ $(document)
     });
 
 
-$('.plus.icon, .trash.icon, .refresh.icon, .edit.icon')
+$('.action.icon')
   .popup();

@@ -209,7 +209,7 @@ public class RepositoryTestController {
 	
 	@RequestMapping("/repotest/deletep")
 	public String deletep(){
-		String result = "";
+		String result = ""; 
 		//prir.delete((long) 1);
 		pr.delete(UUID.fromString("4234a45d-9220-4576-8e94-0d3b0e2c6eaf"));
 		return result;
@@ -236,7 +236,7 @@ public class RepositoryTestController {
 	@RequestMapping("/repotest/reservations")
 	public String findReservationsWithinTime(){
 		String result = "";
-		List<Reservation> rs = rr.findAllConfirmedWithinNHours(5);
+		List<Reservation> rs = rr.findAllConfirmedWithinNHours((long) 5, (long) 15);
 		for(Reservation r : rs){
 			result += r.getPet().getName() + " " + r.getExecutionTime() + "<br>";
 		}

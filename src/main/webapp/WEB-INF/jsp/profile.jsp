@@ -125,8 +125,10 @@
 						Detalji korisnika
 					</h2>
 					<h4 class="ui right floated header">
-						<i id="btn-edit-user" class="edit icon" title="Uredi profil"></i>
-						<i id="btn-delete-user" class="trash icon" title="Obriši profil"></i>
+						<i id="btn-employ-user" class="add user action icon" title = "Zaposli"></i>
+						<i id="btn-fire-user" class="delete user action icon" title = "Otpusti"></i>
+						<i id="btn-edit-user" class="edit action icon" title="Uredi profil"></i>
+						<i id="btn-delete-user" class="trash action icon" title="Obriši profil"></i>
 					</h4>
 				</div>
 				<div class="ui hidden divider"></div>
@@ -177,8 +179,8 @@
 						Ljubimci
 					</h2>
 					<h4 class="ui right floated header">
-						<i id="btn-pets" class="refresh icon" title="Osvježi podatke"></i>
-							<i id="btn-add-pet" class="plus icon" title="Dodaj novog ljubimca"></i>
+						<i id="btn-pets" class="refresh action icon" title="Osvježi podatke"></i>
+							<i id="btn-add-pet" class="plus action icon" title="Dodaj novog ljubimca"></i>
 					</h4>
 				</div>
 				<div class="ui hidden divider"></div>
@@ -211,8 +213,8 @@
 						Rezervacije
 					</h2>
 					<h4 class="ui right floated header">
-						<i id="btn-reservations" class="refresh icon" title="Osvježi rezervacije"></i>
-						<i id="btn-add-reservation" class="plus icon" title="Nova rezervacija"></i>
+						<i id="btn-reservations" class="refresh action icon" title="Osvježi rezervacije"></i>
+						<i id="btn-add-reservation" class="plus action icon" title="Nova rezervacija"></i>
 					</h4>
 				</div>
 				<div class="ui hidden divider"></div>

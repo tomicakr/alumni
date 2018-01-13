@@ -6,13 +6,13 @@ a, a:hover{
 	color: white;	
 }
 
-.icon:hover{
-	cursor: pointer;
-	color: darkred;
+.action.icon{
+	padding: 0 10px;
 }
 
-.refresh.icon, .plus.icon, .trash.icon, .edit.icon{
-	padding: 0 10px;
+.action.icon:hover{
+	cursor: pointer;
+	color: darkred;
 }
 
 .ui.bottom.attached.tab.segment{

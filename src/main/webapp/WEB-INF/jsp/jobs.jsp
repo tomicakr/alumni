@@ -13,6 +13,7 @@
 </head>
 
 <body>
+	<%@ include file = "../partials/header.jsp" %>
 	<%@ include file = "../partials/headerMobile.jsp" %>
 
 	<div id="main-div" class="ui segment">

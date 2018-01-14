@@ -151,16 +151,16 @@ body{
     animation: 1s ease-out 0s 1 popIn;
 }
 
-#customMenu .menu{
+#index-menu .menu{
     position: relative;
     z-index: 1;
 }
 
-#customMenu .right.menu{
+#index-menu .right.menu{
     animation: 1s ease-out 0s 1 slideInFromLeft;
 }
 
-#customMenu .left.menu{
+#index-menu .left.menu{
     animation: 1s ease-out 0s 1 slideInFromRight;
 }
 

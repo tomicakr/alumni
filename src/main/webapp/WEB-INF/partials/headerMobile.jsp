@@ -4,7 +4,7 @@
 <%@ taglib prefix="sec"	uri="http://www.springframework.org/security/tags"%>
 
 <sec:authentication var="userInSession" property="principal" />
-	<div class="ui basic inverted icon top fixed menu">
+	<div id="sidebar-top" class="ui basic icon top fixed menu">
 
 		<div class="item" id="toggle">
 			<i class="sidebar icon"></i>
@@ -36,7 +36,7 @@
 
 
 	<aside>
-		<div class="ui inverted sidebar vertical left menu">
+		<div id="sidebar-menu" class="ui sidebar vertical left menu">
 			<h2 id="sidebarHeader">PetsOnlyZg</h2>
 
 			<a class="item" id="home" name="Home" href="/"> <i

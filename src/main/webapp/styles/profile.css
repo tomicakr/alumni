@@ -50,3 +50,27 @@ a, a:hover{
 	border: none;
 }
 
+#sidebar-menu{
+	display: none;
+}
+
+#sidebar-top{
+	display: none;
+}
+
+
+@media screen and (max-width: 1000px) {
+
+	#customMenu{
+		display:none !important;
+	}
+
+	#sidebar-menu{
+		display: block;
+	}
+
+	#sidebar-top{
+		display: flex;
+	}
+
+}

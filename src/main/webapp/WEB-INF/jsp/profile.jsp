@@ -13,6 +13,7 @@
 </jsp:include>
 
 <body>
+	<%@ include file = "../partials/header.jsp" %>
 	<%@ include file = "../partials/headerMobile.jsp" %>
 	<div id="delete-user-modal" class="ui small basic test modal transition hidden">
 		<div class="ui icon header">

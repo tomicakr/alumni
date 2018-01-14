@@ -20,7 +20,7 @@
 
 </header>
 <nav>
-	<div class="ui massive stackable secondary menu" id="customMenu">
+	<div class="ui massive stackable secondary menu" id="top-menu">
 		<a class="item" id="home" name="Home" href="/"> Naslovnica </a> <a
 			class="item" id="services" name="Usluge"> Usluge </a>
 

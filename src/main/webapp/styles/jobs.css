@@ -5,9 +5,10 @@
 
 #main-div{
 	padding-top: 35px;
-	background-color: #ffa64d;
+	background-color: #ecf0f1;
 	min-height: 810px;
 	margin-bottom: -8px;
+	border: none !important;
 }
 
 #scrolling{
@@ -34,7 +35,7 @@
 
 
 #col1,#col2,#col3{
-	background-color: #ffa64d;
+	background-color: #ecf0f1;
 
 }
 
@@ -50,9 +51,8 @@
 
 
 
-.ui.cards>.card{
+.ui.cards .card{
 	margin-bottom: -5px;
-	background-color: #ffe6cc;
 
 }
 

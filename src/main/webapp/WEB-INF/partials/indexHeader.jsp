@@ -8,7 +8,7 @@ uri="http://www.springframework.org/security/tags"%>
 <sec:authentication var="userInSession" property="principal" />
 
 <nav>
-	<div class="ui massive stackable secondary menu" id="customMenu">
+	<div class="ui massive stackable secondary menu" id="index-menu">
 		<div class="left menu">
 			<a class="item" id="home" name="Home" href="/"> Naslovnica </a> <a
 			class="item" id="services" name="Usluge"> Usluge </a>

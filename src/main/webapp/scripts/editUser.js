@@ -1,48 +1,6 @@
-const validationRules = {
-    city: {
-            identifier: 'location',
-            rules: [{
-                type: 'empty',
-                prompt: 'Molimo odaberite grad'
-            }]
-        },
-    oldPassword: {
-        identifier: 'old-password',
-        rules: [{
-            type: 'empty',
-            prompt: 'Molimo odaberite lozinku'
-        },
-            {
-                type: 'length[6]',
-                prompt: 'Lozinka mora biti dugačka barem 6 znakova'
-            }
-        ]
-    },
-        password: {
-            identifier: 'password',
-            rules: [{
-                type: 'empty',
-                prompt: 'Molimo odaberite lozinku'
-            },
-                {
-                    type: 'length[6]',
-                    prompt: 'Lozinka mora biti dugačka barem 6 znakova'
-                }
-            ]
-        },
-        password2: {
-            identifier: 'password2',
-            rules: [{
-                type: 'empty',
-                prompt: 'Molimo ponovite lozinku'
-            }, {
-                type: 'passwordMatch',
-                prompt: 'Lozinke se ne podudaraju'
-            }]
-        }
-    }
-;
+//import {initialize} from './forms.js';
 
+const passOld = $('#old-password');
 const pass = $('#password');
 const passCheck = $('#password2');
 
@@ -51,15 +9,45 @@ $.fn.form.settings.rules.passwordMatch = () => {
 };
 
 
-$(document)
-    .ready(function () {
-        $('.ui.dropdown')
-            .dropdown();
-        $('.ui.accordion.field')
-            .accordion();
-        $('.ui.form').form({
-            inline: false,
-            fields: validationRules
-        });
-    });
+$.fn.form.settings.rules.passwordMatch = () => {
+    return (passCheck.val() === pass.val() && pass.val().toString().length > 6 ) || isEmpty();
+};
 
+$.fn.form.settings.rules.firstAreaFilled = () => {
+  return   passOld.val().toString().length > 6 ||  isEmpty();
+};
+
+$.fn.form.settings.rules.secondAreaFilled = () => {
+  return pass.val().toString().length > 6 ||  isEmpty();
+};
+
+
+function isEmpty(){
+    return (passOld.val().toString().length + pass.val().toString().length + passCheck.val().toString().length) === 0;
+
+};
+
+
+initialize({
+    oldPassword: {
+        identifier: 'oldPassword',
+        rules: [{
+            type: 'firstAreaFilled',
+            prompt: 'Neispravan unos! Broj znakova mora biti veći od 6'
+        }]
+    },
+    password: {
+        identifier: 'password',
+        rules: [{
+            type: 'secondAreaFilled',
+            prompt: 'Neispravan unos! Broj znakova mora biti veći od 6'
+        }]
+    },
+    password2: {
+        identifier: 'password2',
+        rules: [ {
+            type: 'passwordMatch',
+            prompt: 'Lozinke se ne podudaraju!'
+        }]
+    }
+});

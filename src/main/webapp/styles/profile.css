@@ -5,3 +5,64 @@
 a, a:hover{
 	color: white;	
 }
+
+.action.icon{
+	padding: 0 10px;
+}
+
+.action.icon:hover{
+	cursor: pointer;
+	color: darkred;
+}
+
+.ui.bottom.attached.tab.segment{
+	min-height: 30em !important;
+}
+
+#reservations-table, #pets-table{
+	display: none;
+}
+
+#reservations-table-container, #pets-table-container{
+	margin-top: 7em;
+}
+.ui.container{
+	padding-top: 10vh;
+}
+
+#profileContent{
+	margin-bottom: 20vh;
+}
+
+
+
+#sidebarHeader{
+	text-align: center;
+	color: white;
+	padding-top: 10px;
+}
+
+#sidebar-menu{
+	display: none;
+}
+
+#sidebar-top{
+	display: none;
+}
+
+
+@media screen and (max-width: 1000px) {
+
+	#customMenu{
+		display:none !important;
+	}
+
+	#sidebar-menu{
+		display: block;
+	}
+
+	#sidebar-top{
+		display: flex;
+	}
+
+}

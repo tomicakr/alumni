@@ -1,0 +1,14 @@
+#sidebarHeader{
+	text-align: center;
+	color: white;
+	padding-top: 10px;
+}
+
+.ui.two.column.center.aligned.grid{
+	padding-top: 65px;
+	margin-bottom:  160px;
+}
+
+.ui.very.padded.table{
+	margin: 4.5em auto;
+}

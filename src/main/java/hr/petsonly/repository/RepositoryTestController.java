@@ -9,7 +9,9 @@ import org.springframework.web.bind.annotation.RestController;
 
 import hr.petsonly.model.Location;
 import hr.petsonly.model.Pet;
+import hr.petsonly.model.Reservation;
 import hr.petsonly.model.User;
+import hr.petsonly.service.email.EmailServiceImpl;
 
 @RestController
 public class RepositoryTestController {
@@ -207,9 +209,9 @@ public class RepositoryTestController {
 	
 	@RequestMapping("/repotest/deletep")
 	public String deletep(){
-		String result = "";
+		String result = ""; 
 		//prir.delete((long) 1);
-		pr.delete(UUID.fromString("33ef54cf-b2e2-4839-bd7f-866d51e7e571"));
+		pr.delete(UUID.fromString("4234a45d-9220-4576-8e94-0d3b0e2c6eaf"));
 		return result;
 	}
 	
@@ -219,4 +221,26 @@ public class RepositoryTestController {
 		ur.hireUser("0e070ca1-4950-40ff-a1d7-8f65e6f559bf");
 		return result;
 	}
+	@Autowired
+	ReservationRepository rr;
+	@Autowired
+	EmailServiceImpl esi;
+	@RequestMapping("/repotest/send")
+	public String sendMail(){
+		String result = "";
+		//esi.sendSimpleMessage("mate.paulinovic@fer.hr", "PROBA", "Poslano iz aplikacije");
+		esi.sendReservationOffer(rr.getOne(UUID.fromString("372110c8-7141-432c-bc2f-95c6af824b3d")));
+		return result;
+	}
+	
+	@RequestMapping("/repotest/reservations")
+	public String findReservationsWithinTime(){
+		String result = "";
+		List<Reservation> rs = rr.findAllConfirmedWithinNHours((long) 5, (long) 15);
+		for(Reservation r : rs){
+			result += r.getPet().getName() + " " + r.getExecutionTime() + "<br>";
+		}
+		return result;
+	}
+	
 }

@@ -9,6 +9,7 @@ import java.util.List;
 import java.util.UUID;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 
 import hr.petsonly.model.Location;
@@ -40,6 +41,9 @@ public class FormFactory {
 	@Autowired 
 	private RoleRepository rr;
 	
+	@Value("${default.reservation.duration}")
+	private String DEFAULT_DURATION;
+	
 	public User createUserFromForm(RegistrationForm rf){
 		User u = new User();
 		u.setName(rf.getName());
@@ -51,9 +55,7 @@ public class FormFactory {
 		u.setAddress(rf.getAddress());
 		u.setPassword(rf.getPassword());
 		
-		Role role = new Role();
-		role.setName("admin");
-		u.setRoles(Arrays.asList(role));
+		u.setRoles(Arrays.asList(rr.findByName("ROLE_KORISNIK")));
 		
 		Location l = lr.findOne(rf.getLocation());
 		u.setLocation(l);
@@ -78,7 +80,14 @@ public class FormFactory {
 		r.setExecutionTime(LocalDateTime.parse(arf.getExecutionTime(), DateTimeFormatter.ofPattern("yyyy-MM-dd'T'HH:mm")));
 		r.setSendReminder(arf.getSendReminder() != null);
 		
-		String[] parts = arf.getDuration().split(":");
+		String[] parts = null;
+
+		if(arf.getDuration().trim().isEmpty()) {
+			parts = DEFAULT_DURATION.split(":");
+		} else {
+			parts = arf.getDuration().split(":");
+		}
+		
 		Integer hours = Integer.parseInt(parts[0]);
 		Integer minutes = Integer.parseInt(parts[1]);
 		r.setDuration(Duration.ofMinutes(hours * 60 + minutes));
@@ -115,7 +124,10 @@ public class FormFactory {
 		}
 		user.setLocation(lr.findOne(ef.getLocation()));
 		
-		user.setPassword(ef.getPassword());
+		if(!ef.getPassword().equals("")){
+			user.setPassword(ef.getPassword());
+		}
+		
 			
 		return true;
 	}

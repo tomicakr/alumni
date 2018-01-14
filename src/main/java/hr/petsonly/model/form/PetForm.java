@@ -2,49 +2,35 @@ package hr.petsonly.model.form;
 
 import javax.validation.constraints.NotNull;
 
+import org.hibernate.validator.constraints.NotEmpty;
 import org.springframework.stereotype.Component;
 
 @Component
 public class PetForm {
-	
+
 	@NotNull
+	@NotEmpty(message = "{pform.name.empty}")
 	private String name;
-	
-	@NotNull
+
+	@NotNull(message = "{pform.age.null}")
 	private Integer age;
-	
-	@NotNull 
+
+	@NotNull(message = "{pform.sex.null}")
 	private Character sex;
-	
+
 	@NotNull
+	@NotEmpty(message = "{pform.species.empty}")
 	private String species;
-	
+
 	@NotNull
 	private String breed;
-	
+
 	@NotNull
 	private String microchip;
-	
-	@NotNull
-	private String remark;
-	
-	private String owner;
-	
-	public PetForm() {
-		super();
-	}
 
-	public PetForm(String name, Integer age, String species, String breed, String microchip, String remark, Character sex, String owner) {
-		super();
-		this.name = name;
-		this.age = age;
-		this.species = species;
-		this.breed = breed;
-		this.microchip = microchip;
-		this.remark = remark;
-		this.sex = sex;
-		this.owner = owner;
-	}
+	private String remark;
+
+	private String owner;
 
 	public String getName() {
 		return name;
@@ -60,6 +46,14 @@ public class PetForm {
 
 	public void setAge(Integer age) {
 		this.age = age;
+	}
+
+	public Character getSex() {
+		return sex;
+	}
+
+	public void setSex(Character sex) {
+		this.sex = sex;
 	}
 
 	public String getSpecies() {
@@ -93,22 +87,13 @@ public class PetForm {
 	public void setRemark(String remark) {
 		this.remark = remark;
 	}
-	
-	public Character getSex(){
-		return sex;
-	}
-	
-	public void setSex(Character sex){
-		this.sex = sex;
-	}
-	
-	public String getOwner(){
+
+	public String getOwner() {
 		return owner;
 	}
-	
-	public void setOwner(String owner){
+
+	public void setOwner(String owner) {
 		this.owner = owner;
 	}
-	
 
 }

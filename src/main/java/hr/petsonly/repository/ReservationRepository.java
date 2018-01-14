@@ -1,16 +1,21 @@
 package hr.petsonly.repository;
 
+import java.time.LocalDateTime;
 import java.time.LocalTime;
 import java.util.List;
 import java.util.UUID;
 
+import javax.transaction.Transactional;
+
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
+import org.springframework.data.repository.query.Param;
 
 import hr.petsonly.model.Pet;
 import hr.petsonly.model.Reservation;
 import hr.petsonly.model.Service;
 import hr.petsonly.model.User;
+
 
 public interface ReservationRepository extends JpaRepository<Reservation, UUID> {
 	
@@ -24,7 +29,7 @@ public interface ReservationRepository extends JpaRepository<Reservation, UUID> 
 	List<Reservation> findAllByUser(User user);
 	
 	@Query(value = "SELECT * FROM reservation r WHERE r.owner_id = :owner_id", nativeQuery = true)
-	List<Reservation> findAllByUserId(String userId);
+	List<Reservation> findAllByUserId(@Param("owner_id")String userId);
 	
 	//RESERVATION_STATUS
 	List<Reservation> findAllByReservationStatus(int reservationStatus);
@@ -55,4 +60,18 @@ public interface ReservationRepository extends JpaRepository<Reservation, UUID> 
 	List<Reservation> findAllByDocumentPath(String documentPath);
 	
 	List<Reservation> findAllByDocumentPathLike(String documentPath);
+
+	@Transactional
+	@Query("SELECT r FROM Reservation r WHERE r.sendReminder = TRUE AND r.reservationStatus = 3 AND r.executionTime BETWEEN :start AND :end")
+	List<Reservation> findAllConfirmedWithinNHoursHelper(@Param("start") LocalDateTime start, @Param("end") LocalDateTime end);
+	
+	default List<Reservation> findAllConfirmedWithinNHours(Long hours, Long minutes){
+		LocalDateTime start = LocalDateTime.now().plusHours(hours);
+		LocalDateTime end = start.plusHours(hours).plusMinutes(minutes);
+		return findAllConfirmedWithinNHoursHelper(start, end);
+	}
+	
+	@Transactional
+	@Query(value = "SELECT * FROM reservation r WHERE r.reservation_status = :status AND r.execution_time >= now() AND r.execution_time <= date_add(now(), INTERVAL :hour HOUR)", nativeQuery = true)
+	List<Reservation> findAllByStatusAndWithinNHours(@Param("status") Integer status, @Param("hour") Integer hour);
 }

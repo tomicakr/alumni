@@ -1,4 +1,3 @@
-
 body,html{
     height: 100%;
     overflow-y: hidden;
@@ -8,13 +7,14 @@ body,html{
     font-family: Coda, sans-serif;
 }
 
-nav {
+nav {.
     position: relative;
     z-index: 1;
 }
+
 nav .item{
     color:white !important;
-    font-size: 2em !important;
+    font-size: 1.25em !important;
     font-weight: bold !important;
     text-shadow:0px 4px 3px rgba(0,0,0,1),0px 8px 13px rgba(0,0,0,0.1),0 18px 23px rgba(0,0,0,0.1);
 }
@@ -52,25 +52,25 @@ body{
     background: black;
 }
 
-
 #heading {
     z-index:1;
     position:relative;
     text-align:center;
-    padding-top:30vh;
+    padding-top:35vh;
     color: white;
 }
 
 #heading h1{
-    font-size: 7em !important;
+    font-size: 5em !important;
 }
 
 #heading button{
-    font-size: 2em !important;
+    font-size: 1.5em !important;
 }
 
 #heading button a{
    color: inherit;
+    font-family: Coda, sans-serif;
 }
 
 .slideshow{
@@ -83,6 +83,14 @@ body{
     list-style-type: none;
     margin:0;
     padding:0;
+}
+
+.preload *{
+    animation: none !important;
+    -webkit-transition: none !important;
+    -moz-transition: none !important;
+    -ms-transition: none !important;
+    -o-transition: none !important;
 }
 
 .slideshow li{
@@ -136,4 +144,70 @@ body{
 /* Older browser support - .no-cssanimations class added by modernizr */
 .no-cssanimations .slideshow li {
     opacity: 1;
+}
+
+#heading {
+    /* This section calls the slideInFromLeft animation we defined above */
+    animation: 1s ease-out 0s 1 popIn;
+}
+
+#index-menu .menu{
+    position: relative;
+    z-index: 1;
+}
+
+#index-menu .right.menu{
+    animation: 1s ease-out 0s 1 slideInFromLeft;
+}
+
+#index-menu .left.menu{
+    animation: 1s ease-out 0s 1 slideInFromRight;
+}
+
+@keyframes popIn {
+    0% {
+        opacity: 0;
+        transform:  scale(.9);
+    }
+    50% {
+        opacity: 0.5;
+        transform: scale(1.1);
+    }
+    100% {
+        opacity: 1;
+        transform: scale(1);
+    }
+}
+
+@keyframes slideInFromAbove {
+    0% {
+        transform: translateY(-100%);
+    }
+    100% {
+        transform: translateY(0);
+    }
+}
+@keyframes slideInFromLeft {
+    0% {
+        transform: translateX(150%);
+    }
+    80%{
+        transform: translateX(-10%);
+    }
+    100% {
+        transform: translateX(0);
+    }
+}
+
+
+@keyframes slideInFromRight {
+    0% {
+        transform: translateX(-150%);
+    }
+    80%{
+        transform: translateX(10%);
+    }
+    100% {
+        transform: translateX(0);
+    }
 }

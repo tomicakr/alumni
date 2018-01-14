@@ -13,6 +13,12 @@ public class CommonPathsController {
 		return "index";
 	}
 	
+	@RequestMapping(value = "/mobile", method = RequestMethod.GET)
+	public String indexMobile() {
+		
+		return "indexMobile";
+	}
+	
 	@RequestMapping(value = "/profile", method = RequestMethod.GET)
 	public String profile() {
 

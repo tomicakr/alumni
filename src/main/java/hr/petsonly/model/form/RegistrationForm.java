@@ -4,45 +4,59 @@ import java.util.UUID;
 
 import javax.validation.constraints.NotNull;
 
+import org.hibernate.validator.constraints.NotEmpty;
 import org.springframework.stereotype.Component;
 
+import hr.petsonly.model.form.validation.PasswordMatches;
+import hr.petsonly.model.form.validation.ValidEmail;
+
 @Component
+@PasswordMatches
 public class RegistrationForm {
-	
+
 	@NotNull
+	@NotEmpty(message = "{rform.firstname.empty}")
 	private String name;
-	
+
 	@NotNull
+	@NotEmpty(message = "{rform.lastname.empty}")
 	private String surname;
-	
+
 	@NotNull
+	@NotEmpty(message = "{rform.oib.empty}")
 	private String userPid;
 
+	@NotNull
+	@NotEmpty(message = "{rform.mobilephone.empty}")
 	private String mobilePhone;
-	
+
 	@NotNull
+	@NotEmpty(message = "{rform.phone.empty}")
 	private String phone;
-	
+
 	@NotNull
+	@ValidEmail(message = "{rform.email.invalid}")
 	private String email;
-	
+
+	@NotNull
 	private UUID location;
-	
+
+	@NotNull
+	@NotEmpty(message = "{rform.address.empty}")
 	private String address;
-	
+
 	@NotNull
+	@NotEmpty(message = "{rform.password.empty}")
 	private String password;
-	
+
 	@NotNull
-	private String password2; // Možda passwordReType	
-	
-	public RegistrationForm() {
-	}
+	@NotEmpty(message = "{rform.password2.empty}")
+	private String password2;
 
 	public String getName() {
 		return name;
 	}
-	
+
 	public void setName(String name) {
 		this.name = name;
 	}
@@ -119,11 +133,4 @@ public class RegistrationForm {
 		this.password2 = password2;
 	}
 
-	@Override
-	public String toString() {
-		return "RegistrationForm [name=" + name + ", surname=" + surname + ", userPid=" + userPid + ", mobilePhone="
-				+ mobilePhone + ", phone=" + phone + ", email=" + email + ", location=" + location + ", address="
-				+ address + ", password=" + password + ", password2=" + password2 + "]";
-	}
-	
 }

@@ -1,97 +1,160 @@
-const userIndex = window.location.href + (window.location.href.endsWith('/') ? '' : '/');
-const petIndex = `${userIndex}pets/`;
-const reservationIndex=`${userIndex}reservations/`;
-const reservationsTable = $('#reservations').find('table');
-const petsTable = $('#pets').find('table');
-const btnPets = $('#btn-pets');
-const btnReservations = $('#btn-reservations');
-const btnEdit = $('#btn-edit');
-const btnDelete = $('#btn-delete');
-const btnAddPet = $('#btn-add-pet');
-const btnAddReservation = $('#btn-add-reservation');
+const userIndex           = window.location.href + (window.location.href.endsWith('/') ? '' : '/');
+const petIndex            = `${userIndex}pets/`;
+const reservationIndex    =`${userIndex}reservations/`;
 
+const btnPets             = $('#btn-pets'           );
+const btnReservations     = $('#btn-reservations'   );
+const btnEdit             = $('#btn-edit-user'      );
+const btnDelete           = $('#btn-delete-user'    );
+const btnEmploy           = $('#btn-employ-user'    );
+const btnFire             = $('#btn-fire-user'      );
+const btnAddPet           = $('#btn-add-pet'        );
+const btnAddReservation   = $('#btn-add-reservation');
 
-function formatTableRow(...cells) {
-    let result = '<tr>';
-    result += cells.map(cell => `<td>${cell}</td>`).join('');
-    result += '</tr>';
-    return result;
-}
+const addPetModal         = $('#add-pet-modal');
+const addReservationModal = $('#add-reservation-modal');
 
-function appendReservation(res) {
-    let resMarkup = $(formatTableRow(res.pet, res.service, res.employee, res.status, res.time));
-    resMarkup.data('id',resMarkup.reservationId);
-    reservationsTable.append(resMarkup);
-}
-
-function appendPet(pet) {
-    let deleteButton = '<div class="ui red button btn-pet-delete">Obriši</div>';
-    let petMarkup = $(formatTableRow(pet.name, pet.age, pet.species, pet.breed, pet.sex, pet.microchip, pet.remark,deleteButton));
-    petMarkup.data('id',pet.petId);
-    petsTable.append(petMarkup);
-    $('.btn-pet-delete').click(deletePet);
-}
-
-let getDataOn = entities => $.getJSON(`${userIndex}${entities}/`);
-
-function updateReservatoins() {
-    reservationsTable.empty();
-    updateTable(getDataOn('reservations'), appendReservation)
-}
-
-function updatePets() {
-    petsTable.empty();
-    updateTable(getDataOn('pets'), appendPet)
-}
-
-function deletePet(){
-    const petRow = $(this).parent().parent();
-    const deletePetURL = `${petIndex}${petRow.data('id')}/`;
+function sendPatch(data,onSuccess, onFail){
     $.ajax({
-        url: deletePetURL,
-        type: 'DELETE',
+        url: userIndex,
+        type: 'PATCH',
+        contentType: "application/json; charset=utf-8",
+        cache: false,
+        processData: false,
+        data: JSON.stringify(data)
     })
-        .then(data => petRow.remove());
-
+        .then(onSuccess)
+        .catch(onFail)
 }
 
-function updateTable(jsonGetter, appender) {
-    return jsonGetter
-        .then(entities => {
-            entities.forEach(entity => appender(entity))
-        })
-        .fail(console.log);
-}
+const employOperation = {
+    "op": "replace",
+    "path": "/status",
+    "value": "employee"
+};
 
-btnPets.click(updatePets);
+const fireOperation = {
+    "op": "replace",
+    "path": "/status",
+    "value": "client"
+};
 
-btnAddPet.click(function() {
-    $('#add-pet-modal')
-        .modal('show');
-});
-btnReservations.click(updateReservatoins);
-btnDelete.click(function() {
-    $('#delete-user-modal')
-        .modal({
-            closable  : false,
-            onApprove : () => {
+let Table= function(indexUrl, table, tableBody, placeholder, deleteModal){
+    this.indexUrl = indexUrl;
+    this.table = table;
+    this.tableBody = tableBody;
+    this.placeholder = placeholder;
+    this.deleteModal = deleteModal;
+};
+
+
+Table.prototype = {
+    isEmpty:function(){
+        return this.table.find('tbody tr').length === 0;
+    },
+
+    formatTableRow: function(...cells) {
+        let result = '<tr>';
+        result += cells.map(cell => `<td>${cell}</td>`).join('');
+        result += '</tr>';
+        return result;
+
+    },
+
+    getData: function(){
+        return $.getJSON(this.indexUrl);
+    },
+
+    remove: function(row){
+        const deleteUrl = `${this.indexUrl}${row.data('id')}/`;
+        this.deleteModal
+            .modal({
+            onApprove: () => {
                 $.ajax({
+                    url: deleteUrl,
                     type: 'DELETE',
-                    url: userIndex
+                }).then(() => {
+                    row.remove();
+                    if (this.isEmpty()) {
+                        this.table.hide();
+                        this.placeholder.show();
+                    }
                 })
-                .then(() => {
-                    $('#delete-user-modal').modal('hide');
-                    $('#delete-user-success')
-                        .modal({
-                            onApprove: () => window.location.href= "/"
-                        }).modal('show');
-                });
             }
         })
-        .modal('show')
-    ;
-});
-btnEdit.click(() => window.location.href = `${userIndex}edit`);
+            .modal('show');
+
+    },
+
+    update: function(){
+        this.tableBody.empty();
+        this.getData()
+            .then(entities => {
+                if(entities.length===0){
+                    this.table.hide();
+                    this.placeholder.show();
+                    return;
+                }
+                entities.forEach(entity => this.append(entity));
+                this.placeholder.hide();
+                this.table.show();
+
+            })
+            .fail(console.log);
+    },
+
+    save: function(fields) {
+        $.post({
+            url: this.indexUrl,
+            contentType: "application/json; charset=utf-8",
+            cache: false,    //This will force requested pages not to be cached by the browser
+            processData: false, //To avoid making query String instead of JSON
+            data: JSON.stringify(fields)
+        })
+            .then(data => {
+                console.log(data);
+                this.append(data);
+            })
+            .catch(() => console.log("tu sam"));
+    }
+};
+
+
+
+let petTable = new Table(
+    petIndex,
+    $('#pets-table'),
+    $('#pets').find('tbody'),
+    $('#pet-placeholder'),
+    $('#delete-pet-modal')
+);
+
+let appendPet = function(pet){
+    let deleteButton = '<i class="trash big remove action icon" title="Obriši ljubimca"></i>';
+    let petMarkup = $(this.formatTableRow(pet.name, pet.age, pet.species, pet.breed, pet.sex, pet.microchip, pet.remark,deleteButton));
+
+    petMarkup.data('id',pet.petId);
+    petTable.tableBody.append(petMarkup);
+    petMarkup.find('.remove.icon').click(petTable.remove.bind(petTable,petMarkup));
+
+    this.placeholder.hide();
+    this.table.show();
+};
+
+petTable.append = appendPet.bind(petTable);
+
+let resTable = new Table(
+    reservationIndex,
+    $('#reservations-table'),
+    $('#reservations').find('tbody'),
+    $('#reservations-placeholder')
+);
+
+resTable.append = (function(res){
+    let resMarkup = $(this.formatTableRow(res.pet, res.service, res.employee, res.status, res.time));
+    resMarkup.data('id',resMarkup.reservationId);
+    resTable.tableBody.append(resMarkup);
+}).bind(resTable);
 
 const petValidation = {
     name: {
@@ -132,35 +195,139 @@ const petValidation = {
         identifier: 'remark'
     }
 };
-$(document)
-    .ready(function() {
-        $('.ui.form').form({
-            inline: false,
-            fields: petValidation,
-            onSuccess: (event,fields) => {
-                event.preventDefault();
-                addPet(fields);
-                $('#add-pet-modal')
-                    .modal('hide');
+
+const reservationValidation = {
+    service: {
+        identifier: 'usluga',
+        rules: [{
+            type: 'empty',
+            prompt: 'Molimo unesite opis usluge'
+        }]
+    },
+    pet: {
+        identifier: 'pet',
+        rules: [{
+            type: 'empty',
+            prompt: 'Molimo odaberite svog ljubimca'
+        }]
+    },
+    executionTime: {
+        identifier: 'executionTime',
+        rules: [{
+            type: 'empty',
+            prompt: 'Molimo unesite željeno vrijeme usluge'
+        }]
+    },
+
+    duration: {
+        identifier: 'duration',
+        rules: [{
+            type: 'empty',
+            prompt: 'Molimo unesite trajanje usluge'
+        }]
+    },
+};
+
+
+btnPets.click(petTable.update.bind(petTable));
+
+btnAddPet.click(
+    () => addPetModal.modal('show')
+);
+
+btnAddReservation.click(
+    () => window.location.href=reservationIndex+'new'
+    //() => addReservationModal.modal('show')
+);
+
+btnReservations.click(resTable.update.bind(resTable));
+
+btnDelete.click(function() {
+    $('#delete-user-modal')
+        .modal({
+            closable  : false,
+            onApprove : () => {
+                $.ajax({
+                    type: 'DELETE',
+                    url: userIndex.substring(0,userIndex.length-1)
+                })
+                    .then(function() {
+                            window.location.replace("/");
+                        }
+                    )
+                    .catch(console.log);
             }
         })
-        ;
-        $('.ui.dropdown')
-            .dropdown()
+        .modal('show')
+    ;
+});
+
+btnEdit.click(
+    () => window.location.href = `${userIndex}edit`
+);
+
+
+btnEmploy.click(() => {
+    sendPatch(
+        [employOperation],
+        () => console.log('Kaze kontroler da je uspjelo'),
+        () => console.log(`Ovo se poslalo: "${JSON.stringify([employOperation])}", ali nista od toga`),
+    );
+});
+
+btnFire.click(() => {
+    sendPatch(
+        [fireOperation],
+        () => console.log('Kaze kontroler da je uspjelo'),
+        () => console.log(`Ovo se poslalo: "${JSON.stringify([fireOperation])}", ali nista od toga`),
+    );
+});
+
+
+function modalInit(modal, formFields, handler){
+    modal.form({
+        inline: false,
+        fields: formFields,
+        onSuccess: (event,fields) => {
+            event.preventDefault();
+            handler(fields);
+            modal.modal('hide');
+        }
+    });
+
+    $('.ui.dropdown')
+        .dropdown();
+}
+
+$(document)
+    .ready(function() {
+        modalInit(addPetModal,petValidation,petTable.save.bind(petTable));
+
+        modalInit(addReservationModal,reservationValidation,
+            (fields) => addEntity(
+                reservationIndex,
+                appendReservation,
+                console.log,
+                fields,
+            ));
+
+        $('.menu .item')
+            .tab({'onVisible':function(tabpath){
+                if(tabpath==='first'){
+                    return;
+                }
+                if(tabpath === 'second'){
+                    petTable.update();
+                    return;
+                }
+                if(tabpath === 'third'){
+                    resTable.update();
+                }
+            }})
         ;
     });
 
-function addPet(fields){
-    $.post({
-        url: petIndex,
-        contentType: "application/json; charset=utf-8",
-        cache: false,    //This will force requested pages not to be cached by the browser
-        processData:false, //To avoid making query String instead of JSON
-        data: JSON.stringify(fields)
-    })
-        .then(data =>{
-            console.log(data);
-            appendPet(data);
-        })
-        .catch(console.log);
-}
+
+$('.action.icon')
+  .popup();
+

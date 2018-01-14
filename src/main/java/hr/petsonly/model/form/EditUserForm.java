@@ -2,30 +2,38 @@ package hr.petsonly.model.form;
 
 import java.util.UUID;
 
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
+
+import org.hibernate.validator.constraints.NotEmpty;
 import org.springframework.stereotype.Component;
 
 import hr.petsonly.model.User;
+import hr.petsonly.model.form.validation.PasswordMatches;
 
 @Component
+@PasswordMatches
 public class EditUserForm {
-	
-	private String mobilePhone;
-	private UUID location;
-	private String oldPassword;
-	private String password;
-	private String password2;
-	
-	public EditUserForm(String mobilePhone, UUID location, String oldPassword, String password, String password2) {
-		super();
-		this.mobilePhone = mobilePhone;
-		this.location = location;
-		this.oldPassword = oldPassword;
-		this.password = password;
-		this.password2 = password2;
-	}
 
-	public EditUserForm() {
-	}
+	@NotNull
+	@NotEmpty(message = "{euform.mobilephone.empty}")
+	private String mobilePhone;
+
+	@NotNull
+	private UUID location;
+
+	@NotNull
+	@NotEmpty(message = "{euform.oldpassword.empty}")
+	private String oldPassword;
+
+	@NotNull
+	@NotEmpty(message = "{euform.password.empty}")
+	@Size(min = 6, max = 30, message = "{euform.password.invalid}")
+	private String password;
+
+	@NotNull
+	@NotEmpty(message = "{euform.password2.empty}")
+	private String password2;
 
 	public String getMobilePhone() {
 		return mobilePhone;
@@ -41,15 +49,6 @@ public class EditUserForm {
 
 	public void setLocation(UUID location) {
 		this.location = location;
-	}
-	
-	public boolean hasChanges(User user) {
-		if(user.getLocation().getLocationId().equals(location) && user.getMobilePhone().equals(mobilePhone) &&
-				user.getPassword().equals(password)) {
-			return false;
-		}
-		
-		return true;
 	}
 
 	public String getOldPassword() {
@@ -75,8 +74,13 @@ public class EditUserForm {
 	public void setPassword2(String password2) {
 		this.password2 = password2;
 	}
-	
-	public boolean isValid(User user) {
-		return !mobilePhone.isEmpty()&&user.getPassword().equals(oldPassword)&&!password.isEmpty()&&password.equals(password2);
+
+	public boolean hasChanges(User user) {
+		if (user.getLocation().getLocationId().equals(location) && user.getMobilePhone().equals(mobilePhone)
+				&& user.getPassword().equals(password)) {
+			return false;
+		}
+
+		return true;
 	}
 }

@@ -1,4 +1,43 @@
-const validationRules = {
+// import {initialize} from './forms.js';
+
+const firstName   = $('#first-name'  );
+const lastName    = $('#last-name'   );
+const mobilePhone = $('#mobile-phone');
+const telephone   = $('#telephone'   );
+const email       = $('#email'       );
+const address     = $('#address'     );
+const pass        = $('#password'    );
+const oib         = $('#oib'         );
+const passCheck   = $('#password2'   );
+
+function oibCheck(oib) {
+    oib = oib.toString();
+    if (oib.length !== 11) return false;
+
+    let b = parseInt(oib, 10);
+    if (isNaN(b)) return false;
+
+    let a = 10;
+    for (let i = 0; i < 10; i++) {
+        a = a + parseInt(oib.substr(i, 1), 10);
+        a = a % 10;
+        if (a === 0) a = 10;
+        a *= 2;
+        a = a % 11;
+    }
+    let control = 11 - a;
+    if (control === 10) control = 0;
+
+    return control === parseInt(oib.substr(10, 1));
+}
+
+$.fn.form.settings.rules.passwordMatch = () => {
+    return passCheck.val() === pass.val();
+};
+
+$.fn.form.settings.rules.oibCheck = oibCheck;
+
+initialize({
     firstName: {
         identifier: 'first-name',
         rules: [{
@@ -79,70 +118,23 @@ const validationRules = {
             prompt: 'Lozinke se ne podudaraju'
         }]
     }
-}
-;
-
-
-$(document)
-    .ready(function () {
-        $('.ui.dropdown')
-            .dropdown();
-        $('.ui.form').form({
-            inline: false,
-            fields: validationRules
-        });
-    });
-
-const matchIcon = $('#pass-match');
-const firstName = $('#first-name');
-const lastName = $('#last-name');
-const mobilePhone = $('#mobile-phone');
-const telephone = $('#telephone');
-const email = $('#email');
-const address = $('#address');
-const pass = $('#password');
-const oib = $('#oib');
-const passCheck = $('#password2');
-
-
-$.fn.form.settings.rules.passwordMatch = () => {
-    return passCheck.val() === pass.val();
-};
-
-function oibCheck(oib) {
-    oib = oib.toString();
-    if (oib.length !== 11) return false;
-
-    let b = parseInt(oib, 10);
-    if (isNaN(b)) return false;
-
-    let a = 10;
-    for (let i = 0; i < 10; i++) {
-        a = a + parseInt(oib.substr(i, 1), 10);
-        a = a % 10;
-        if (a === 0) a = 10;
-        a *= 2;
-        a = a % 11;
-    }
-    let control = 11 - a;
-    if (control === 10) control = 0;
-
-    return control === parseInt(oib.substr(10, 1));
-}
-
-$.fn.form.settings.rules.oibCheck = oibCheck;
-
-passCheck.focusout(() => {
-    if (passCheck.val() === pass.val()) {
-        matchIcon.removeClass('fa-times-circle-o').addClass('fa-check-circle-o');
-    } else {
-        matchIcon.removeClass('fa-check-circle-o').addClass('fa-times-circle-o');
-    }
 });
 
-$('#komba').click(function () {
+let generateOib = () => {
+    Math.floor(Math.random() * 1000000000);
+    let first10 = Math.floor(Math.random() * 1000000000).toString();
+    let last = 0;
+    let oib;
+    do {
+        oib = first10 + last.toString();
+        last++;
+    } while (!oibCheck(oib));
+    return oib;
+};
+
+let skombaj = function () {
     let oibgen = generateOib();
-    oib.val(oibgen)
+    oib.val(oibgen);
     $.getJSON('https://uinames.com/api/?region=england')
         .done(function (data) {
             firstName.val(data.name);
@@ -155,18 +147,7 @@ $('#komba').click(function () {
             email.val(`${data.name.toLowerCase()}.${data.surname.toLowerCase()}@gmail.com`);
         })
         .fail(function () {
-            alert('morat ces sam, ne radi API');
+            alert('Morat ces sam, ne radi API');
         });
-});
-generateOib = () => {
-    Math.floor(Math.random() * 1000000000);
-    let first10 = Math.floor(Math.random() * 1000000000).toString();
-    let last = 0;
-    let oib;
-    do {
-        oib = first10 + last.toString();
-        last++;
-    } while (!oibCheck(oib));
-    return oib;
 };
 

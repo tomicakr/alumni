@@ -13,10 +13,12 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
+import javax.transaction.Transactional;
 
 import org.hibernate.annotations.Type;
 
 @Entity
+@Transactional
 @Table(name = "reservation")
 public class Reservation {
 
@@ -45,6 +47,11 @@ public class Reservation {
 	@ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name = "employeeId")
 	private User employee;
+	
+	@ManyToOne(fetch = FetchType.LAZY)
+	@JoinColumn(name = "preferedEmployeeId")
+	private User preferedEmployee;
+
 
 	@Column
 	private LocalDateTime reservationTime;
@@ -158,4 +165,12 @@ public class Reservation {
 		this.documentPath = documentPath;
 	}
 
+	public User getPreferedEmployee() {
+		return preferedEmployee;
+	}
+
+	public void setPreferedEmployee(User preferedEmployee) {
+		this.preferedEmployee = preferedEmployee;
+	}
+	
 }

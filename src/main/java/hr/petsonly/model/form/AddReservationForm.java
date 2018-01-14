@@ -4,6 +4,7 @@ import java.util.UUID;
 
 import javax.validation.constraints.NotNull;
 
+import org.hibernate.validator.constraints.NotEmpty;
 import org.springframework.stereotype.Component;
 
 import hr.petsonly.model.Reservation;
@@ -15,21 +16,32 @@ public class AddReservationForm {
 	private UUID owner;
 
 	@NotNull
+	@NotEmpty(message = "{arform.service.empty}")
 	private String service;
 
 	@NotNull
 	private UUID pet;
 
-	@NotNull
 	private UUID employee;
 
 	@NotNull
+	@NotEmpty(message = "{arform.executiontime.empty}")
 	private String executionTime;
 
 	@NotNull
 	private String duration;
 
+	@NotNull
+	@NotEmpty(message = "{arform.sendreminder.empty}")
 	private String sendReminder;
+
+	public UUID getOwner() {
+		return owner;
+	}
+
+	public void setOwner(UUID owner) {
+		this.owner = owner;
+	}
 
 	public String getService() {
 		return service;
@@ -79,16 +91,7 @@ public class AddReservationForm {
 		this.sendReminder = sendReminder;
 	}
 
-	public UUID getOwner() {
-		return owner;
-	}
-
-	public void setOwner(UUID owner) {
-		this.owner = owner;
-	}
-
 	public boolean hasChanges(Reservation res) {
-		// TODO Auto-generated method stub
 		return false;
 	}
 

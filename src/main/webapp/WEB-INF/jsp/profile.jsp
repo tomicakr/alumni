@@ -1,7 +1,10 @@
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 <%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags" %>
-
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn"%>
+
+
 <!DOCTYPE html>
 <html>
 <jsp:include page="../partials/head.jsp" flush="true">
@@ -125,10 +128,26 @@
 						Detalji korisnika
 					</h2>
 					<h4 class="ui right floated header">
-						<i id="btn-employ-user" class="add user action icon" title = "Zaposli"></i>
-						<i id="btn-fire-user" class="delete user action icon" title = "Otpusti"></i>
-						<i id="btn-edit-user" class="edit action icon" title="Uredi profil"></i>
-						<i id="btn-delete-user" class="trash action icon" title="Obriši profil"></i>
+						<sec:authorize access="hasRole('KORISNIK')">
+							<i id="btn-edit-user" class="edit action icon" title="Uredi profil"></i>
+							<i id="btn-delete-user" class="trash action icon" title="Obriši profil"></i>
+						</sec:authorize>
+
+						<sec:authorize access="hasRole('ZAPOSLENIK')">
+							<i id="btn-edit-user" class="edit action icon" title="Uredi profil"></i>
+							<i id="btn-delete-user" class="trash action icon" title="Obriši profil"></i>
+						</sec:authorize>
+
+						<sec:authorize access="hasRole('ADMINISTRATOR')">
+							<sec:authorize access="hasAuthority('ELEVATE_USER_TO_EMPLOYEE')">
+								<i id="btn-employ-user" class="add user action icon" title = "Zaposli"></i>
+								<i id="btn-fire-user" class="delete user action icon" title = "Otpusti"></i>
+							</sec:authorize>
+
+							<i id="btn-edit-user" class="edit action icon" title="Uredi profil"></i>
+							<i id="btn-delete-user" class="trash action icon" title="Obriši profil"></i>
+						</sec:authorize>
+						
 					</h4>
 				</div>
 				<div class="ui hidden divider"></div>

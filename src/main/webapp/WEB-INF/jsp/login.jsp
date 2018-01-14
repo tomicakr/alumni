@@ -11,7 +11,7 @@
 <body>
 		<div class="ui middle aligned center aligned grid">
 			<div class="column">
-				<form method="post" action="/loginProcessing" class="ui large form ">
+				<form method="post" action="/sessions/" class="ui large form ">
 					<h1 class="ui massive image header">Dobrodošli nazad!</h1>
 					<div class="ui stacked primary  segment">
 						<div class="field">

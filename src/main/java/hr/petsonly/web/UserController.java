@@ -88,6 +88,14 @@ public class UserController {
 
 		User user = userService.registerNewUserAccount(registrationForm);
 
+		if(user == null) {
+			model.addAttribute("registrationForm", registrationForm);
+			model.addAttribute("locations", services.getAllLocationDetails());
+			
+			result.rejectValue("email", "email.already.exists");
+			return "register";
+		}
+		
         authenticateUserAndSetSession(registrationForm, request);
 
 		return "redirect:/users/" + user.getUserId();
@@ -185,7 +193,7 @@ public class UserController {
 
 		return "nijeUspjelo";
 	}
-	
+
 	private void authenticateUserAndSetSession(RegistrationForm rform, HttpServletRequest request) {
         String username = rform.getEmail();
         String password = rform.getPassword();
@@ -199,5 +207,5 @@ public class UserController {
 
         SecurityContextHolder.getContext().setAuthentication(authenticatedUser);
     }
-
+	
 }

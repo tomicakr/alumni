@@ -331,6 +331,3 @@ $(document)
 $('.action.icon')
   .popup();
 
-$('#toggle').click(function() {
-     $('.ui.sidebar').sidebar('toggle');
- });

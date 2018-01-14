@@ -14,7 +14,11 @@
 
 <body>
 	<%@ include file = "../partials/header.jsp" %>
-	<%@ include file = "../partials/headerMobile.jsp" %>
+	<%@ include file = "../partials/sidebar.jsp" %>
+	
+<div class="pusher" id="main-content">
+	<%@ include file = "../partials/topFixedMobileMenu.jsp" %>
+
 	<div id="delete-user-modal" class="ui small basic test modal transition hidden">
 		<div class="ui icon header">
 			<i class="trash icon"></i>
@@ -260,6 +264,10 @@
 
 	<%@ include file = "../partials/footer.jsp" %>
 
+<!-- pusher close div -->
+</div>
+
+<script src="${pageContext.request.contextPath}/scripts/global.js"></script>
 <script src="${pageContext.request.contextPath}/scripts/profile.js"></script>
 </body>
 </html>

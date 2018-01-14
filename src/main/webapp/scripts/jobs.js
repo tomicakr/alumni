@@ -1,10 +1,3 @@
-// $('.ui.sidebar')
-// .sidebar({
-//   context: $('.bottom.segment')
-// })
-// .sidebar('attach events', '.menu .item')
-// ;
-
 
 $('.trigger.example .accordion')
 .accordion({
@@ -17,7 +10,3 @@ $('.trigger.example .accordion')
 $('.ui.accordion')
 .accordion()
 ;
-
-$('#toggle').click(function() {
-  $('.ui.sidebar').sidebar('toggle');
-});

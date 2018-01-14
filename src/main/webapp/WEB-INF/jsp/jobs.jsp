@@ -14,7 +14,10 @@
 
 <body>
 	<%@ include file = "../partials/header.jsp" %>
-	<%@ include file = "../partials/headerMobile.jsp" %>
+		<%@ include file = "../partials/sidebar.jsp" %>
+	
+<div class="pusher" id="main-content">
+	<%@ include file = "../partials/topFixedMobileMenu.jsp" %>
 
 	<div id="main-div" class="ui segment">
 
@@ -175,9 +178,13 @@
 </div>
 </div>
 
+<!-- pusher close tag -->
+</div>
+
 
 <%@ include file = "../partials/footer.jsp" %>
 <script src="${pageContext.request.contextPath}/scripts/jobs.js"></script>
+<script src="${pageContext.request.contextPath}/scripts/global.js"></script>
 </body>
 </html>
 

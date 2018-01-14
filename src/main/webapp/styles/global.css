@@ -103,3 +103,16 @@ h1, h2{
 	}
 
 }
+
+#logout-bt-mobile{
+	border: none;
+}
+
+#logout-bt-mobile:hover{
+	background-color: #f7f7f7;
+}
+
+#sidebar-header{
+	text-align: center;
+	padding-top: 10px;
+}

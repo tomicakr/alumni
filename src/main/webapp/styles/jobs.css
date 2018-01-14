@@ -2,27 +2,37 @@
 	background: white;
 }
 
-.three.column.grid#main-grid{
-	background: #ecf0f1 !important;
-}
 #main-div{
-	background: #ecf0f1 !important;
+	background-color: #ecf0f1;
 	min-height: 810px;
+	margin-bottom: -8px;
+	border: none !important;
 }
-#scrolling{
-	min-height: 650px;
-	overflow: scroll;
+
+.ui.segments.card-holder{
+	min-height: 625px;
+	max-height: 625px;
 	overflow-x: hidden;
+	overflow-y: auto;
+
+}
+
+.ui.fluid.accordion{
+	margin-top: -10px;
+	margin-bottom: -10px;
+}
+
+.ui.fluid.accordion .content{
+	margin-top: -10px;
+	margin-bottom: 3px;
 }
 
 .card{
-	min-width: 97.1%;
-	
+	min-width: 100%;
 }
 
-.ui.stackable.three.column.grid, .column{
-	border: none;
-	border-color: green;
+#col1,#col2,#col3{
+	background-color: #ecf0f1;
 
 }
 
@@ -31,18 +41,17 @@
 }
 
 .ui.bottom.fluid.attached.submit.button{
-	background-color: #1f88be;
-}
-.ui.bottom.fluid.attached.submit.button{
-	color: white;
-}
-.ui.bottom.fluid.attached.submit.button:hover{
-	color:	#e0e1e2;
-	background-color: #11648e;
+
+	max-width: 97%;
 }
 
-.ui.cards>.card{
+.ui.cards .card{
 	margin-bottom: -5px;
-	background-color: #e0e1e2;
 
+}
+
+#sidebarHeader{
+	text-align: center;
+	color: white;
+	padding-top: 10px;
 }

@@ -78,7 +78,7 @@ public class PetController {
 	} 
 	
 	@ResponseBody
-	@DeleteMapping
+	@DeleteMapping("/{petId}")
 	public ResponseEntity<PetDetails> deletePet(Model model, @PathVariable UUID petId) {
 		
 		Pet pet = petRepository.findOne(petId);

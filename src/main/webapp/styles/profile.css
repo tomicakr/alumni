@@ -33,3 +33,36 @@ a, a:hover{
 #profileContent{
 	margin-bottom: 20vh;
 }
+
+
+
+#sidebarHeader{
+	text-align: center;
+	color: white;
+	padding-top: 10px;
+}
+
+#sidebar-menu{
+	display: none;
+}
+
+#sidebar-top{
+	display: none;
+}
+
+
+@media screen and (max-width: 1000px) {
+
+	#customMenu{
+		display:none !important;
+	}
+
+	#sidebar-menu{
+		display: block;
+	}
+
+	#sidebar-top{
+		display: flex;
+	}
+
+}

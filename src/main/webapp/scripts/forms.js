@@ -1,4 +1,4 @@
-export  function initialize(fields){
+ function initialize(fields){
     $(document)
         .ready(function() {
             $('.ui.form')

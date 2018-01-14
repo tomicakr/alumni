@@ -130,7 +130,7 @@ let petTable = new Table(
 );
 
 let appendPet = function(pet){
-    let deleteButton = '<i class="big red remove icon" title="Obriši ljubimca"></i>';
+    let deleteButton = '<i class="trash big remove action icon" title="Obriši ljubimca"></i>';
     let petMarkup = $(this.formatTableRow(pet.name, pet.age, pet.species, pet.breed, pet.sex, pet.microchip, pet.remark,deleteButton));
 
     petMarkup.data('id',pet.petId);
@@ -330,3 +330,4 @@ $(document)
 
 $('.action.icon')
   .popup();
+

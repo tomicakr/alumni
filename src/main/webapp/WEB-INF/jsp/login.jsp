@@ -17,7 +17,7 @@
 						<div class="field">
 						<div class="ui left icon input">
 							<i class="user icon"></i>
-							<input type="text" name="username" placeholder="Adresa elektroničke pošte">
+							<input type="text" name="username" placeholder="Adresa elektroničke pošte" autofocus>
 						</div>
 					</div>
 					<div class="field">
@@ -29,7 +29,7 @@
 					<div class="ui fluid large darkred submit button">Login</div>
 				</div>
 				<div class="ui primary message">
-					<h4>Nemate račun? <a class="item" name="Usluge" href="/users/new">Registirajte se</a> </h4>
+					<h4>Nemate račun? <a class="item" name="Usluge" href="${pageContext.request.contextPath}/users/new">Registirajte se</a> </h4>
 				</div>
 					<c:if test="${not empty errorMessage}">
 						<div class="ui error message visible">${errorMessage}</div>
@@ -38,8 +38,8 @@
 			</div>
 		</div>
 		<%@ include file = "../partials/footer.jsp" %>
-		<script src="../../scripts/forms.js" type="module"></script>t
-		<script src="../../scripts/login.js" type="module"></script>
+		<script src="../../scripts/forms.js"></script>t
+		<script src="../../scripts/login.js"></script>
 </body>
 
 </html>

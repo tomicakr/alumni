@@ -29,7 +29,7 @@
 					<div class="ui fluid large darkred submit button">Login</div>
 				</div>
 				<div class="ui primary message">
-					<h4>Nemate račun? <a class="item" name="Usluge" href="/users/new">Registirajte se</a> </h4>
+					<h4>Nemate račun? <a class="item" name="Usluge" href="${pageContext.request.contextPath}/users/new">Registirajte se</a> </h4>
 				</div>
 					<c:if test="${not empty errorMessage}">
 						<div class="ui error message visible">${errorMessage}</div>

@@ -8,14 +8,10 @@
 </jsp:include>
 
 <body>
+<%@ include file = "../partials/sidebarBegin.jsp" %>
 <%@ include file="../partials/header.jsp" %>
-<%@ include file = "../partials/sidebar.jsp" %>
-	
-<div class="pusher" id="main-content">
-	<%@ include file = "../partials/topFixedMobileMenu.jsp" %>
-
-	<main class="ui two column center aligned grid">
-	    <div class="ui container">
+<main class="ui two column center aligned grid">
+	<div class="ui container">
 	        <h1 class   ="ui massive center aligned header">Korisnici aplikacije</h1>
 	        <table class="ui very padded table">
 	            <thead>
@@ -56,9 +52,9 @@
 	        </table>
 	    </div>
 	</main>
-<!-- sidebar close tag -->
-</div>
 <%@ include file="../partials/footer.jsp" %>
+<%@ include file="../partials/sidebarEnd.jsp" %>
+
 <script src="${pageContext.request.contextPath}/scripts/global.js"></script>
 </body>
 </html>

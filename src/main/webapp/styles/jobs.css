@@ -2,33 +2,34 @@
 	background: white;
 }
 
-
 #main-div{
-	margin-top: -20px;
 	background-color: #ecf0f1;
 	min-height: 810px;
 	margin-bottom: -8px;
 	border: none !important;
 }
 
-#scrolling{
+.ui.segments.card-holder{
 	min-height: 625px;
 	max-height: 625px;
-	overflow: scroll;
 	overflow-x: hidden;
+	overflow-y: auto;
 
 }
-
 
 .ui.fluid.accordion{
 	margin-top: -10px;
 	margin-bottom: -10px;
 }
+
 .ui.fluid.accordion .content{
 	margin-top: -10px;
 	margin-bottom: 3px;
 }
 
+.card{
+	min-width: 100%;
+}
 
 #col1,#col2,#col3{
 	background-color: #ecf0f1;
@@ -46,5 +47,11 @@
 
 .ui.cards .card{
 	margin-bottom: -5px;
-	min-width: 100%;
+
+}
+
+#sidebarHeader{
+	text-align: center;
+	color: white;
+	padding-top: 10px;
 }

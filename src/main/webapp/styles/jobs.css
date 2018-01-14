@@ -2,47 +2,71 @@
 	background: white;
 }
 
-.three.column.grid#main-grid{
-	background: #ecf0f1 !important;
-}
+
 #main-div{
-	background: #ecf0f1 !important;
+	padding-top: 35px;
+	background-color: #ffa64d;
 	min-height: 810px;
+	margin-bottom: -8px;
 }
+
 #scrolling{
-	min-height: 650px;
+	min-height: 625px;
+	max-height: 625px;
 	overflow: scroll;
 	overflow-x: hidden;
+
+}
+
+
+.ui.fluid.accordion{
+	margin-top: -10px;
+	margin-bottom: -10px;
+}
+.ui.fluid.accordion .content{
+	margin-top: -10px;
+	margin-bottom: 3px;
 }
 
 .card{
-	min-width: 97.1%;
-	
+	min-width: 100%;
 }
 
-.ui.stackable.three.column.grid, .column{
-	border: none;
-	border-color: green;
+
+#col1,#col2,#col3{
+	background-color: #ffa64d;
 
 }
+
 
 .ui.inverted.vertical.footer.segment{
 	margin-top: 0px;
 }
 
 .ui.bottom.fluid.attached.submit.button{
-	background-color: #1f88be;
+
+	max-width: 97%;
 }
-.ui.bottom.fluid.attached.submit.button{
-	color: white;
-}
-.ui.bottom.fluid.attached.submit.button:hover{
-	color:	#e0e1e2;
-	background-color: #11648e;
-}
+
+
 
 .ui.cards>.card{
 	margin-bottom: -5px;
-	background-color: #e0e1e2;
+	background-color: #ffe6cc;
 
+}
+
+
+#sidebarHeader{
+	text-align: center;
+	color: white;
+	padding-top: 10px;
+}
+
+#logoutBtn:hover {
+	background-color: #2d2e2f;
+
+}
+#logoutBtn{
+	border: none;
 }

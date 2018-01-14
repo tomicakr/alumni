@@ -33,3 +33,20 @@ a, a:hover{
 #profileContent{
 	margin-bottom: 20vh;
 }
+
+
+
+#sidebarHeader{
+	text-align: center;
+	color: white;
+	padding-top: 10px;
+}
+
+#logoutBtn:hover {
+	background-color: #2d2e2f;
+
+}
+#logoutBtn{
+	border: none;
+}
+

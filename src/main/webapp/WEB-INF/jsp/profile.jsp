@@ -10,7 +10,7 @@
 </jsp:include>
 
 <body>
-	<%@ include file = "../partials/header.jsp" %>
+	<%@ include file = "../partials/headerMobile.jsp" %>
 	<div id="delete-user-modal" class="ui small basic test modal transition hidden">
 		<div class="ui icon header">
 			<i class="trash icon"></i>
@@ -196,7 +196,7 @@
 							<th>Spol</th>
 							<th>Mikročip</th>
 							<th>Napomena</th>
-							<th></th>
+							<th>Akcije</th>
 						</tr>
 						</thead>
 						<tbody>

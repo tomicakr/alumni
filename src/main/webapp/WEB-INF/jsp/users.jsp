@@ -8,7 +8,7 @@
 </jsp:include>
 
 <body>
-	<%@ include file = "../partials/header.jsp" %>
+	<%@ include file = "../partials/headerMobile.jsp" %>
 		<main class="ui two column center aligned grid">
 		<div class="column">
 			<h1 class="ui image massive header">Korisnici aplikacije</h1>
@@ -52,5 +52,10 @@
 </div>
 </main> 	
 <%@ include file = "../partials/footer.jsp" %>
+<script type="text/javascript">
+	$('#toggle').click(function() {
+     $('.ui.sidebar').sidebar('toggle');
+ });
+</script>
 </body>
 </html>

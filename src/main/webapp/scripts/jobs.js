@@ -1,19 +1,23 @@
-$('.ui.sidebar')
-    .sidebar({
-        context: $('.bottom.segment')
-    })
-    .sidebar('attach events', '.menu .item')
-;
+// $('.ui.sidebar')
+// .sidebar({
+//   context: $('.bottom.segment')
+// })
+// .sidebar('attach events', '.menu .item')
+// ;
 
 
 $('.trigger.example .accordion')
-  .accordion({
-    selector: {
-      trigger: '.title .icon'
-    }
-  })
+.accordion({
+  selector: {
+    trigger: '.title .icon'
+  }
+})
 ;
 
 $('.ui.accordion')
-  .accordion()
+.accordion()
 ;
+
+$('#toggle').click(function() {
+  $('.ui.sidebar').sidebar('toggle');
+});

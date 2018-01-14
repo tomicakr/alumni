@@ -261,9 +261,9 @@
         </div>
     </section>
 </main>
-
-<%@ include file="../partials/footer.jsp" %>
 <%@ include file="../partials/sidebarEnd.jsp" %>
+<%@ include file="../partials/footer.jsp" %>
+
 
 <script src="${pageContext.request.contextPath}/scripts/profile.js"></script>
 </body>

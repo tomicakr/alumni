@@ -13,10 +13,9 @@
 
 <body>
 
-	<%@ include file = "../partials/sidebar.jsp" %>
-	<%@ include file = "../partials/topFixedMobileMenu.jsp" %>
+<%@ include file = "../partials/sidebarBegin.jsp" %>
+<%@ include file="../partials/header.jsp" %>
 
-	<div class="pusher" id="main-content">
 
 	<div class=" ui container">
 		<div id="heading">
@@ -43,6 +42,6 @@
 
 	<div id="lower-main"></div>
 
-		<%@ include file = "../partials/sidebarEnd.jsp" %>
+	<%@ include file = "../partials/sidebarEnd.jsp" %>
 </body>
 </html>

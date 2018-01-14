@@ -10,7 +10,7 @@
 <body>
 <%@ include file = "../partials/sidebarBegin.jsp" %>
 <%@ include file="../partials/header.jsp" %>
-<main class="ui two column center aligned grid">
+<main>
 	<div class="ui container">
 	        <h1 class   ="ui massive center aligned header">Korisnici aplikacije</h1>
 	        <table class="ui very padded table">

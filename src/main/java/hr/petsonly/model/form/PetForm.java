@@ -23,11 +23,9 @@ public class PetForm {
 	private String species;
 
 	@NotNull
-	@NotEmpty(message = "{pform.breed.empty}")
 	private String breed;
 
 	@NotNull
-	@NotEmpty(message = "{pform.microchip.empty}")
 	private String microchip;
 
 	private String remark;

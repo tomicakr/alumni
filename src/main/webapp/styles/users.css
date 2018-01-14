@@ -4,15 +4,11 @@
 	padding-top: 10px;
 }
 
-#logoutBtn:hover {
-	background-color: #2d2e2f;
-
-}
-#logoutBtn{
-	border: none;
-}
-
 .ui.two.column.center.aligned.grid{
 	padding-top: 65px;
 	margin-bottom:  160px;
+}
+
+.ui.very.padded.table{
+	margin: 4.5em auto;
 }

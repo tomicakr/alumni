@@ -42,14 +42,6 @@ a, a:hover{
 	padding-top: 10px;
 }
 
-#logoutBtn:hover {
-	background-color: #2d2e2f;
-
-}
-#logoutBtn{
-	border: none;
-}
-
 #sidebar-menu{
 	display: none;
 }

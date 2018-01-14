@@ -37,11 +37,3 @@
 #mainContent, #lowerMain{
 	background-color: #ffa64d;
 }
-#logoutBtn:hover {
-	background-color: #2d2e2f;
-
-}
-#logoutBtn{
-	border: none;
-}
-

@@ -3,7 +3,6 @@ package hr.petsonly.model.form;
 import java.util.UUID;
 
 import javax.validation.constraints.NotNull;
-import javax.validation.constraints.Size;
 
 import org.hibernate.validator.constraints.NotEmpty;
 import org.springframework.stereotype.Component;
@@ -22,17 +21,10 @@ public class EditUserForm {
 	@NotNull
 	private UUID location;
 
-	@NotNull
-	@NotEmpty(message = "{euform.oldpassword.empty}")
 	private String oldPassword;
 
-	@NotNull
-	@NotEmpty(message = "{euform.password.empty}")
-	@Size(min = 6, max = 30, message = "{euform.password.invalid}")
 	private String password;
 
-	@NotNull
-	@NotEmpty(message = "{euform.password2.empty}")
 	private String password2;
 
 	public String getMobilePhone() {

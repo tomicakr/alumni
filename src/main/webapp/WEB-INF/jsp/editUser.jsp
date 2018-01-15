@@ -66,7 +66,7 @@
             <div class="ui fluid huge darkred submit button" style="width: 100%">Spremi promjene</div>
         </form>
        	
-       	<spring:hasBindErrors name="registrationForm">
+       	<spring:hasBindErrors name="editUserForm">
 			<c:forEach var="error" items="${errors.allErrors}">
 				<div class="ui error message visible"><spring:message message="${error}" /></div>
 				<br />

@@ -93,6 +93,8 @@ public class UserController {
 			model.addAttribute("locations", services.getAllLocationDetails());
 			
 			result.rejectValue("email", "email.already.exists");
+			
+			System.out.println(result);
 			return "register";
 		}
 		
@@ -153,6 +155,7 @@ public class UserController {
 	public String updateUser(Model model, @PathVariable UUID id, HttpSession session, @Valid EditUserForm editUserForm,
 			BindingResult result) {
 
+		
 		CustomUserDetails userInSession = (CustomUserDetails) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
 
 		List<LocationDetails> locationDetails = services.getAllLocationDetails();
@@ -162,12 +165,24 @@ public class UserController {
 			return "customError";
 		}
 
+		User user = userRepository.getOne(id);
 		if (result.hasErrors()) {
+			model.addAttribute("user", new UserDetailsMore(user));
+			model.addAttribute("editUserForm", editUserForm);
 			model.addAttribute("locations", locationDetails);
+			
 			return "editUser";
 		}
 
-		User user = userRepository.findOne(id);
+		if(editUserForm.getOldPassword() != null && !user.getPassword().equals(editUserForm.getOldPassword())) {
+			model.addAttribute("user", new UserDetailsMore(user));
+			model.addAttribute("editUserForm", editUserForm);
+			model.addAttribute("locations", locationDetails);
+			
+			result.rejectValue("oldPassword", "oldPassword.wrong");
+			
+			return "editUser";
+		}
 
 		if (formFactory.editUserFromForm(user, editUserForm)) {
 			userRepository.save(user);

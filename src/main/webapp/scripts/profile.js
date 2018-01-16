@@ -45,8 +45,8 @@ let Table= function(indexUrl, table, tableBody, placeholder, deleteModal){
     this.tableBody = tableBody;
     this.placeholder = placeholder;
     this.deleteModal = deleteModal;
+    this.isUpdating = false;
 };
-
 
 Table.prototype = {
     isEmpty:function(){
@@ -87,6 +87,10 @@ Table.prototype = {
     },
 
     update: function(){
+        if(this.isUpdating){
+            return;
+        }
+        this.isUpdating = true;
         this.tableBody.empty();
         this.getData()
             .then(entities => {
@@ -100,7 +104,10 @@ Table.prototype = {
                 this.table.show();
 
             })
-            .fail(console.log);
+            .fail(console.log)
+            .always(
+                () => this.isUpdating = false
+            );
     },
 
     save: function(fields) {

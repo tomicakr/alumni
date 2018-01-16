@@ -127,11 +127,10 @@ public class FormFactory {
 		}
 		user.setLocation(lr.findOne(ef.getLocation()));
 		
-		if(!ef.getPassword().equals("")){
+		if(ef.getPassword() != null && !ef.getPassword().equals("")){
 			user.setPassword(ef.getPassword());
 		}
 		
-			
 		return true;
 	}
 

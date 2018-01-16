@@ -1,17 +1,12 @@
-#sidebarHeader{
-	text-align: center;
-	color: white;
-	padding-top: 10px;
-}
-
 #heading {
 	z-index:1;
 	position:relative;
 	text-align:center;
-	padding-top:30vh;
+	padding-top:20vh;
 	font-size: 80%;
 
 }
+
 #heading h1{
 	font-size: 7em !important;
 }
@@ -26,19 +21,19 @@
 }
 
 
-#lowerMain{
-	min-height: 350px;
+#lower-main{
+	min-height: 500px;
+	background-image: url(https://pre00.deviantart.net/d996/th/pre/i/2013/294/3/1/kitty_cat__by_randomrobskii-d6rcahg.png);
+	background-repeat: no-repeat;
+	background-position: top;
+	background-size: 300px;
 }
 
-#mainContent, #lowerMain{
-	background-color: #f44242;
-}
-#logoutBtn:hover {
-	background-color: #f7f7f7;
-
-}
-#logoutBtn{
-	border: none;
+#lower-main{
+	background-color: #ffa64d;
 }
 
 
+.pusher.dimmed, body.pushable>.pusher{
+	background-color: #ffa64d;
+}

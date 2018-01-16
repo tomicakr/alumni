@@ -88,6 +88,16 @@ public class UserController {
 
 		User user = userService.registerNewUserAccount(registrationForm);
 
+		if(user == null) {
+			model.addAttribute("registrationForm", registrationForm);
+			model.addAttribute("locations", services.getAllLocationDetails());
+			
+			result.rejectValue("email", "email.already.exists");
+			
+			System.out.println(result);
+			return "register";
+		}
+		
         authenticateUserAndSetSession(registrationForm, request);
 
 		return "redirect:/users/" + user.getUserId();
@@ -145,6 +155,7 @@ public class UserController {
 	public String updateUser(Model model, @PathVariable UUID id, HttpSession session, @Valid EditUserForm editUserForm,
 			BindingResult result) {
 
+		
 		CustomUserDetails userInSession = (CustomUserDetails) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
 
 		List<LocationDetails> locationDetails = services.getAllLocationDetails();
@@ -154,12 +165,24 @@ public class UserController {
 			return "customError";
 		}
 
+		User user = userRepository.getOne(id);
 		if (result.hasErrors()) {
+			model.addAttribute("user", new UserDetailsMore(user));
+			model.addAttribute("editUserForm", editUserForm);
 			model.addAttribute("locations", locationDetails);
+			
 			return "editUser";
 		}
 
-		User user = userRepository.findOne(id);
+		if(editUserForm.getOldPassword() != null && !user.getPassword().equals(editUserForm.getOldPassword())) {
+			model.addAttribute("user", new UserDetailsMore(user));
+			model.addAttribute("editUserForm", editUserForm);
+			model.addAttribute("locations", locationDetails);
+			
+			result.rejectValue("oldPassword", "oldPassword.wrong");
+			
+			return "editUser";
+		}
 
 		if (formFactory.editUserFromForm(user, editUserForm)) {
 			userRepository.save(user);
@@ -185,7 +208,7 @@ public class UserController {
 
 		return "nijeUspjelo";
 	}
-	
+
 	private void authenticateUserAndSetSession(RegistrationForm rform, HttpServletRequest request) {
         String username = rform.getEmail();
         String password = rform.getPassword();
@@ -199,5 +222,5 @@ public class UserController {
 
         SecurityContextHolder.getContext().setAuthentication(authenticatedUser);
     }
-
+	
 }

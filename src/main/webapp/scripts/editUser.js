@@ -1,4 +1,4 @@
-import {initialize} from './forms.js';
+//import {initialize} from './forms.js';
 
 const passOld = $('#old-password');
 const pass = $('#password');

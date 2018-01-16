@@ -25,8 +25,9 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 
 	@Override
 	protected void configure(HttpSecurity http) throws Exception {
-		http.formLogin().loginPage("/sessions/new").loginProcessingUrl("/loginProcessing").failureUrl("/sessions/new?error=1").successHandler(sucessHandler);
-				
+		http.formLogin().loginPage("/sessions/new").loginProcessingUrl("/sessions/").failureUrl("/sessions/new?error=1").successHandler(sucessHandler);
+		
+		
 		http.authorizeRequests().antMatchers("/users").hasRole("ADMINISTRATOR").antMatchers("/jobs").hasAnyRole("ZAPOSLENIK", "ADMINISTRATOR");
 		
 		http.csrf().disable();

@@ -27,7 +27,7 @@
                 <input type="text" name="userPid" id="oib" placeholder="OIB" disabled value="${user.userPid}">
             </div>
             <div class="field">
-                <input type="tel" name="mobilePhone" id="mobile-phone" placeholder="Broj mobitel" value="${user.mobilePhone}">
+                <input type="tel" name="mobilePhone" id="mobile-phone" placeholder="Broj mobitela" autofocus value="${user.mobilePhone}">
             </div>
             <div class="field">
                 <input type="tel" name="phone" id="telephone" placeholder="Broj telefona" disabled value="${user.telephone}">
@@ -66,7 +66,7 @@
             <div class="ui fluid huge darkred submit button" style="width: 100%">Spremi promjene</div>
         </form>
        	
-       	<spring:hasBindErrors name="registrationForm">
+       	<spring:hasBindErrors name="editUserForm">
 			<c:forEach var="error" items="${errors.allErrors}">
 				<div class="ui error message visible"><spring:message message="${error}" /></div>
 				<br />
@@ -75,7 +75,7 @@
 		
     </div>
 </main>
-<script src="../../scripts/forms.js" type="module"></script>
-<script src="../../scripts/editUser.js" type="module"></script>
+<script src="../../scripts/forms.js" ></script>
+<script src="../../scripts/editUser.js"></script>
 </body>
 </html>

@@ -6,11 +6,38 @@ const btnPets             = $('#btn-pets'           );
 const btnReservations     = $('#btn-reservations'   );
 const btnEdit             = $('#btn-edit-user'      );
 const btnDelete           = $('#btn-delete-user'    );
+const btnEmploy           = $('#btn-employ-user'    );
+const btnFire             = $('#btn-fire-user'      );
 const btnAddPet           = $('#btn-add-pet'        );
 const btnAddReservation   = $('#btn-add-reservation');
 
 const addPetModal         = $('#add-pet-modal');
 const addReservationModal = $('#add-reservation-modal');
+
+function sendPatch(data,onSuccess, onFail){
+    $.ajax({
+        url: userIndex,
+        type: 'PATCH',
+        contentType: "application/json; charset=utf-8",
+        cache: false,
+        processData: false,
+        data: JSON.stringify(data)
+    })
+        .then(onSuccess)
+        .catch(onFail)
+}
+
+const employOperation = {
+    "op": "replace",
+    "path": "/status",
+    "value": "employee"
+};
+
+const fireOperation = {
+    "op": "replace",
+    "path": "/status",
+    "value": "client"
+};
 
 let Table= function(indexUrl, table, tableBody, placeholder, deleteModal){
     this.indexUrl = indexUrl;
@@ -18,8 +45,8 @@ let Table= function(indexUrl, table, tableBody, placeholder, deleteModal){
     this.tableBody = tableBody;
     this.placeholder = placeholder;
     this.deleteModal = deleteModal;
+    this.isUpdating = false;
 };
-
 
 Table.prototype = {
     isEmpty:function(){
@@ -60,6 +87,10 @@ Table.prototype = {
     },
 
     update: function(){
+        if(this.isUpdating){
+            return;
+        }
+        this.isUpdating = true;
         this.tableBody.empty();
         this.getData()
             .then(entities => {
@@ -73,7 +104,10 @@ Table.prototype = {
                 this.table.show();
 
             })
-            .fail(console.log);
+            .fail(console.log)
+            .always(
+                () => this.isUpdating = false
+            );
     },
 
     save: function(fields) {
@@ -103,7 +137,7 @@ let petTable = new Table(
 );
 
 let appendPet = function(pet){
-    let deleteButton = '<i class="big red remove icon" title="Obriši ljubimca"></i>';
+    let deleteButton = '<i class="trash big remove action icon" title="Obriši ljubimca"></i>';
     let petMarkup = $(this.formatTableRow(pet.name, pet.age, pet.species, pet.breed, pet.sex, pet.microchip, pet.remark,deleteButton));
 
     petMarkup.data('id',pet.petId);
@@ -235,7 +269,27 @@ btnDelete.click(function() {
     ;
 });
 
-btnEdit.click(() => window.location.href = `${userIndex}edit`);
+btnEdit.click(
+    () => window.location.href = `${userIndex}edit`
+);
+
+
+btnEmploy.click(() => {
+    sendPatch(
+        [employOperation],
+        () => console.log('Kaze kontroler da je uspjelo'),
+        () => console.log(`Ovo se poslalo: "${JSON.stringify([employOperation])}", ali nista od toga`),
+    );
+});
+
+btnFire.click(() => {
+    sendPatch(
+        [fireOperation],
+        () => console.log('Kaze kontroler da je uspjelo'),
+        () => console.log(`Ovo se poslalo: "${JSON.stringify([fireOperation])}", ali nista od toga`),
+    );
+});
+
 
 function modalInit(modal, formFields, handler){
     modal.form({
@@ -246,12 +300,10 @@ function modalInit(modal, formFields, handler){
             handler(fields);
             modal.modal('hide');
         }
-    })
-    ;
+    });
 
     $('.ui.dropdown')
-        .dropdown()
-    ;
+        .dropdown();
 }
 
 $(document)
@@ -283,5 +335,6 @@ $(document)
     });
 
 
-$('.plus.icon, .trash.icon, .refresh.icon, .edit.icon')
+$('.action.icon')
   .popup();
+

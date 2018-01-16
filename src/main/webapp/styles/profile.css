@@ -6,13 +6,13 @@ a, a:hover{
 	color: white;	
 }
 
-.icon:hover{
-	cursor: pointer;
-	color: darkred;
+.action.icon{
+	padding: 0 10px;
 }
 
-.refresh.icon, .plus.icon, .trash.icon, .edit.icon{
-	padding: 0 10px;
+.action.icon:hover{
+	cursor: pointer;
+	color: darkred;
 }
 
 .ui.bottom.attached.tab.segment{
@@ -31,5 +31,38 @@ a, a:hover{
 }
 
 #profileContent{
-	margin-bottom: 20vh;
+	margin-bottom: 30vh;
+}
+
+
+
+#sidebarHeader{
+	text-align: center;
+	color: white;
+	padding-top: 10px;
+}
+
+#sidebar-menu{
+	display: none;
+}
+
+#sidebar-top{
+	display: none;
+}
+
+
+@media screen and (max-width: 1000px) {
+
+	#customMenu{
+		display:none !important;
+	}
+
+	#sidebar-menu{
+		display: block;
+	}
+
+	#sidebar-top{
+		display: flex;
+	}
+
 }

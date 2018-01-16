@@ -23,7 +23,6 @@ public class PetForm {
 	private String species;
 
 	@NotNull
-	@NotEmpty(message = "{pform.breed.empty}")
 	private String breed;
 
 	@NotNull

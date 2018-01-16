@@ -73,21 +73,26 @@ INSERT INTO service (service_key, description, name, price) VALUES ('45fe9664-4a
 INSERT INTO service (service_key, description, name, price) VALUES ('4a63f218-3d3d-4f3a-a7c6-9e71c3e3dd6b', "", "Kupanje", 40.0);
 INSERT INTO service (service_key, description, name, price) VALUES ('a64f3c62-f811-46db-a135-700be2f60211', "", "Čuvanje", 35.0);
 
-INSERT INTO pet 	(pet_key, name, age, breed, species,
+INSERT INTO species (id, name) VALUES ('20998bee-089d-491c-9c49-1289daf90242', "Pas");
+INSERT INTO species (id, name) VALUES ('600d9442-bc5c-4905-9f08-81635cb8be1a', "Mačka");
+INSERT INTO species (id, name) VALUES ('8ae74ccf-30f9-4ff4-a980-ffe600070a3f', "Papiga");
+INSERT INTO species (id, name) VALUES ('b6c22a3e-ea8a-4b05-b518-bfcae6fb6f37', "Gušter");
+
+INSERT INTO pet 	(pet_key, name, age, species_id,
 					 sex, user_id, microchip, remark)
-			VALUES ('f00e094f-53ef-4b26-a05c-4b6d6a722fca', "rex", 2, "Njemacki ovčar", "Pas",
+			VALUES ('f00e094f-53ef-4b26-a05c-4b6d6a722fca', "rex", 2, '20998bee-089d-491c-9c49-1289daf90242',
 					'm', '368ec8e2-c7cb-4eaf-b3f1-0077333fbea9', "y", "");
-INSERT INTO pet 	(pet_key, name, age, breed, species,
+INSERT INTO pet 	(pet_key, name, age, species_id,
 					 sex, user_id, microchip, remark)
-			VALUES ('0e5ec5ff-48a3-403d-a4ac-dd9176d6a082', "jazavac", 2, "Hijacintna ara", "Papiga",
+			VALUES ('0e5ec5ff-48a3-403d-a4ac-dd9176d6a082', "jazavac", 2, '8ae74ccf-30f9-4ff4-a980-ffe600070a3f',
 					'f', 'fb8f4014-e0b0-4a5e-9079-320c1e1516e8', "y", "");
-INSERT INTO pet 	(pet_key, name, age, breed, species,
+INSERT INTO pet 	(pet_key, name, age, species_id,
 					 sex, user_id, microchip, remark)
-			VALUES ('4234a45d-9220-4576-8e94-0d3b0e2c6eaf', "Spaner", 2, "Crna mačka", "Mačka",
+			VALUES ('4234a45d-9220-4576-8e94-0d3b0e2c6eaf', "Spaner", 2,  '600d9442-bc5c-4905-9f08-81635cb8be1a',
 					'm', '0e070ca1-4950-40ff-a1d7-8f65e6f559bf', "y", "");
-INSERT INTO pet 	(pet_key, name, age, breed, species,
+INSERT INTO pet 	(pet_key, name, age, species_id,
 					 sex, user_id, microchip, remark)
-			VALUES ('33ef54cf-b2e2-4839-bd7f-866d51e7e571', "Šnaucer", 1, "njemacki ovcar", "Pas", 
+			VALUES ('33ef54cf-b2e2-4839-bd7f-866d51e7e571', "Šnaucer", 1, '20998bee-089d-491c-9c49-1289daf90242', 
 					'm', 'fb8f4014-e0b0-4a5e-9079-320c1e1516e8', "y", "");
 					
 					

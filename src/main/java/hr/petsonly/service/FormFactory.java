@@ -26,6 +26,7 @@ import hr.petsonly.repository.LocationRepository;
 import hr.petsonly.repository.PetRepository;
 import hr.petsonly.repository.RoleRepository;
 import hr.petsonly.repository.ServiceRepository;
+import hr.petsonly.repository.SpeciesRepository;
 import hr.petsonly.repository.UserRepository;
 
 @Service
@@ -43,6 +44,8 @@ public class FormFactory {
 	private RoleRepository rr;
 	@Autowired
 	private PasswordEncoder pe;
+	@Autowired
+	private SpeciesRepository specr;
 
 	@Value("${default.reservation.duration}")
 	private String DEFAULT_DURATION;
@@ -109,11 +112,10 @@ public class FormFactory {
 		p.setPetKey(UUID.randomUUID());
 		p.setName(pf.getName());
 		p.setAge(pf.getAge());
-		p.setBreed(pf.getBreed());
 		p.setMicrochip(pf.getMicrochip());
 		p.setRemark(pf.getRemark());
 		p.setSex(pf.getSex());
-		p.setSpecies(pf.getSpecies());
+		p.setSpecies(specr.findByName(pf.getSpecies()));
 		p.setOwner(ur.findOne(UUID.fromString(pf.getOwner())));
 		return p;
 	}

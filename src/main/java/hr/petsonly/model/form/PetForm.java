@@ -5,6 +5,8 @@ import javax.validation.constraints.NotNull;
 import org.hibernate.validator.constraints.NotEmpty;
 import org.springframework.stereotype.Component;
 
+import hr.petsonly.model.form.validation.ValidSpecies;
+
 @Component
 public class PetForm {
 
@@ -20,10 +22,8 @@ public class PetForm {
 
 	@NotNull
 	@NotEmpty(message = "{pform.species.empty}")
+	@ValidSpecies
 	private String species;
-
-	@NotNull
-	private String breed;
 
 	@NotNull
 	private String microchip;
@@ -62,14 +62,6 @@ public class PetForm {
 
 	public void setSpecies(String species) {
 		this.species = species;
-	}
-
-	public String getBreed() {
-		return breed;
-	}
-
-	public void setBreed(String breed) {
-		this.breed = breed;
 	}
 
 	public String getMicrochip() {

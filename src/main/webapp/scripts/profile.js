@@ -112,7 +112,7 @@ Table.prototype = {
     },
 
     save: function(fields) {
-    	console.log(fields)
+    	console.log(JSON.stringify(fields))
         $.post({
             url: this.indexUrl,
             contentType: "application/json; charset=utf-8",

@@ -86,6 +86,10 @@ public class UserController {
 			return "register";
 		}
 
+		if(registrationForm.getAddress().isEmpty()) {
+			
+		}
+		
 		User user = userService.registerNewUserAccount(registrationForm);
 
 		if(user == null) {

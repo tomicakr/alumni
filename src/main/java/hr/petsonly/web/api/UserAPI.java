@@ -12,7 +12,7 @@ import hr.petsonly.model.details.UserDetailsBasic;
 import hr.petsonly.repository.UserRepository;
 
 @RestController
-public class UserApi {
+public class UserAPI {
 
 	@Autowired
 	private UserRepository userRepository;

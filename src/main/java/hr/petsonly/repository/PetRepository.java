@@ -45,6 +45,7 @@ public interface PetRepository extends JpaRepository<Pet, UUID>{
 	List<Pet> findByOwnerAndAge(User owner, int age);
 	
 	//SPECIES
+	/*
 	List<Pet> findBySpecies(String species);
 	
 	List<Pet> findBySpeciesIgnoreCase(String species);
@@ -52,16 +53,7 @@ public interface PetRepository extends JpaRepository<Pet, UUID>{
 	List<Pet> findByOwnerAndSpecies(User owner, String species);
 	
 	List<Pet> findByOwnerAndSpeciesIgnoreCase(User owner, String species);
-	
-	//BREED
-	List<Pet> findByBreed(String breed);
-	
-	List<Pet> findByBreedIgnoreCase(String breed);
-	
-	List<Pet> findByOwnerAndBreed(User owner, String breed);
-	
-	List<Pet> findByOwnerAndBreedIgnoreCase(User owner, String breed);
-	
+	*/
 	//SEX
 	List<Pet> findBySex(char sex);
 	

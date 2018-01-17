@@ -10,6 +10,7 @@ import java.util.UUID;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import hr.petsonly.model.Location;
@@ -25,6 +26,7 @@ import hr.petsonly.repository.LocationRepository;
 import hr.petsonly.repository.PetRepository;
 import hr.petsonly.repository.RoleRepository;
 import hr.petsonly.repository.ServiceRepository;
+import hr.petsonly.repository.SpeciesRepository;
 import hr.petsonly.repository.UserRepository;
 
 @Service
@@ -40,7 +42,11 @@ public class FormFactory {
 	private PetRepository pr;
 	@Autowired 
 	private RoleRepository rr;
-	
+	@Autowired
+	private PasswordEncoder pe;
+	@Autowired
+	private SpeciesRepository specr;
+
 	@Value("${default.reservation.duration}")
 	private String DEFAULT_DURATION;
 	
@@ -53,7 +59,7 @@ public class FormFactory {
 		u.setPhone(rf.getPhone());
 		u.setEmail(rf.getEmail());
 		u.setAddress(rf.getAddress());
-		u.setPassword(rf.getPassword());
+		u.setPassword(pe.encode(rf.getPassword()));
 		
 		u.setRoles(Arrays.asList(rr.findByName("ROLE_KORISNIK")));
 		
@@ -106,11 +112,10 @@ public class FormFactory {
 		p.setPetKey(UUID.randomUUID());
 		p.setName(pf.getName());
 		p.setAge(pf.getAge());
-		p.setBreed(pf.getBreed());
 		p.setMicrochip(pf.getMicrochip());
 		p.setRemark(pf.getRemark());
 		p.setSex(pf.getSex());
-		p.setSpecies(pf.getSpecies());
+		p.setSpecies(specr.getOne(pf.getSpecies()));
 		p.setOwner(ur.findOne(UUID.fromString(pf.getOwner())));
 		return p;
 	}

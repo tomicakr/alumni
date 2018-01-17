@@ -111,6 +111,7 @@ Table.prototype = {
     },
 
     save: function(fields) {
+    	console.log(fields)
         $.post({
             url: this.indexUrl,
             contentType: "application/json; charset=utf-8",

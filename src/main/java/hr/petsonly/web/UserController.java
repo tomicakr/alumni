@@ -208,7 +208,6 @@ public class UserController {
 		}
 
 		userRepository.delete(userRepository.findOne(id));
-		session.invalidate();
 
 		return "nijeUspjelo";
 	}

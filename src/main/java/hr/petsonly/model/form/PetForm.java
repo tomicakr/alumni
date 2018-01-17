@@ -7,6 +7,8 @@ import org.springframework.stereotype.Component;
 
 import hr.petsonly.model.form.validation.ValidSpecies;
 
+import java.util.UUID;
+
 @Component
 public class PetForm {
 
@@ -21,9 +23,7 @@ public class PetForm {
 	private Character sex;
 
 	@NotNull
-	@NotEmpty(message = "{pform.species.empty}")
-	@ValidSpecies
-	private String species;
+	private UUID species;
 
 	@NotNull
 	private String microchip;
@@ -56,11 +56,11 @@ public class PetForm {
 		this.sex = sex;
 	}
 
-	public String getSpecies() {
+	public UUID getSpecies() {
 		return species;
 	}
 
-	public void setSpecies(String species) {
+	public void setSpecies(UUID species) {
 		this.species = species;
 	}
 

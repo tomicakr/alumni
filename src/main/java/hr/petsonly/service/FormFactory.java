@@ -115,7 +115,7 @@ public class FormFactory {
 		p.setMicrochip(pf.getMicrochip());
 		p.setRemark(pf.getRemark());
 		p.setSex(pf.getSex());
-		p.setSpecies(specr.findByName(pf.getSpecies()));
+		p.setSpecies(specr.getOne(pf.getSpecies()));
 		p.setOwner(ur.findOne(UUID.fromString(pf.getOwner())));
 		return p;
 	}

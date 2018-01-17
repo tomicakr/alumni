@@ -27,7 +27,7 @@ public class SpeciesValidator implements ConstraintValidator<ValidSpecies, Strin
 	private boolean validateSpecies(String species) {
 		List<Species> allSpecies = sr.findAll();
 		for(Species s : allSpecies){
-			if(s.getName().equals(species)){
+			if(s.getId().toString().equals(species)){
 				return true;
 			}
 		}

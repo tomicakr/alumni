@@ -4,7 +4,9 @@ import java.util.UUID;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.http.HttpMethod;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
+import org.springframework.security.config.annotation.method.configuration.EnableGlobalMethodSecurity;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
@@ -16,6 +18,7 @@ import hr.petsonly.model.details.CustomUserDetails;
 
 @Configuration
 @EnableWebSecurity
+@EnableGlobalMethodSecurity(prePostEnabled = true)
 public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 	
 	@Autowired
@@ -29,9 +32,13 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 		http.formLogin().loginPage("/sessions/new").loginProcessingUrl("/sessions/").failureUrl("/sessions/new?error=1").successHandler(sucessHandler);
 		
 		
-		http.authorizeRequests().antMatchers("/users").hasRole("ADMINISTRATOR").antMatchers("/jobs").hasAnyRole("ZAPOSLENIK", "ADMINISTRATOR");
+		http.authorizeRequests().antMatchers(HttpMethod.GET, "/users").hasRole("ADMINISTRATOR").antMatchers("/jobs").hasAnyRole("ZAPOSLENIK", "ADMINISTRATOR");
 		
-		http.authorizeRequests().antMatchers("/users/{id}").access("@webSecurityConfig.checkUserId(authentication, #id)");
+		http.authorizeRequests().antMatchers(HttpMethod.GET, "/users/{id}").access("@webSecurityConfig.checkUserId(authentication, #id)");
+		
+//		http.authorizeRequests().antMatchers(HttpMethod.POST, "/jobs/{id}/confirm").hasRole("ADMINISTRATOR").antMatchers(method, antPatterns);
+		
+		
 		
 		http.csrf().disable();
 		
@@ -49,6 +56,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 	
 	public boolean checkUserId(Authentication auth, UUID id) {
 		Object o = auth.getPrincipal();
+		System.out.println(auth.getName() + " aaaaaaaaaaaaaaaaaaaaaaaaaa " + id.toString());
 		if (!(o instanceof CustomUserDetails)) return false;
 		
 		CustomUserDetails user = (CustomUserDetails) o;

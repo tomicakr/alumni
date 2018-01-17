@@ -28,11 +28,9 @@ public class Pet {
 	@Column
 	private int age;
 	
-	@Column
-	private String species;
-	
-	@Column
-	private String breed;
+	@ManyToOne(fetch = FetchType.LAZY)
+	@JoinColumn(name = "species_id", nullable = false)
+	private Species species;
 	
 	@Column
 	private char sex;
@@ -82,20 +80,12 @@ public class Pet {
 		this.age = age;
 	}
 
-	public String getSpecies() {
+	public Species getSpecies() {
 		return species;
 	}
 
-	public void setSpecies(String species) {
+	public void setSpecies(Species species) {
 		this.species = species;
-	}
-
-	public String getBreed() {
-		return breed;
-	}
-
-	public void setBreed(String breed) {
-		this.breed = breed;
 	}
 
 	public char getSex() {

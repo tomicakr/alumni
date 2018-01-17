@@ -1,6 +1,7 @@
 const userIndex           = window.location.href + (window.location.href.endsWith('/') ? '' : '/');
 const petIndex            = `${userIndex}pets/`;
 const reservationIndex    =`${userIndex}reservations/`;
+const getSpeciesAPI          = '/api/species';
 
 const btnPets             = $('#btn-pets'           );
 const btnReservations     = $('#btn-reservations'   );
@@ -111,7 +112,7 @@ Table.prototype = {
     },
 
     save: function(fields) {
-    	console.log(fields)
+    	console.log(JSON.stringify(fields))
         $.post({
             url: this.indexUrl,
             contentType: "application/json; charset=utf-8",
@@ -120,7 +121,6 @@ Table.prototype = {
             data: JSON.stringify(fields)
         })
             .then(data => {
-                console.log(data);
                 this.append(data);
             })
             .catch(() => console.log("tu sam"));
@@ -239,8 +239,26 @@ const reservationValidation = {
 
 btnPets.click(petTable.update.bind(petTable));
 
-btnAddPet.click(
-    () => addPetModal.modal('show')
+let petSpecies = $('#pet-species');
+btnAddPet.click(() => {
+        addPetModal.modal('show');
+        $.getJSON(getSpeciesAPI)
+            .then(
+                data => {
+                    petSpecies.empty();
+                    let options = [];
+                    data.forEach(x => {
+                        options.push({
+                            value: x.id,
+                            text: x.name,
+                            name: x.name
+                        });
+                        petSpecies.append($('<option>', {value:x.id, text:x.name}));
+                    });
+                    petSpecies.dropdown('setup menu', {values: options});
+                }
+            );
+    }
 );
 
 btnAddReservation.click(

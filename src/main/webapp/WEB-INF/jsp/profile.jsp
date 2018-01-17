@@ -99,10 +99,10 @@
                 </div>
             </div>
             <div class="field">
-                <input type="text" name="species" id="pet-species" placeholder="Vrsta">
-            </div>
-            <div class="field">
-                <input type="text" name="breed" id="pet-breed" placeholder="Pasmina">
+                <div class="required field">
+                    <select name="species" class="ui dropdown" id="pet-species">
+                    </select>
+                </div>
             </div>
             <div class="field">
                 <input type="text" name="microchip" id="pet-chip" placeholder="Broj mikročipa ljubimca.">

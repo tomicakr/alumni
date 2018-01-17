@@ -3,6 +3,7 @@ package hr.petsonly.model.form;
 import java.util.UUID;
 
 import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
 
 import org.hibernate.validator.constraints.NotEmpty;
 import org.springframework.stereotype.Component;
@@ -45,10 +46,12 @@ public class RegistrationForm {
 	@NotEmpty(message = "{rform.address.empty}")
 	private String address;
 
+	@Size(min = 8, max = 30)
 	@NotNull
 	@NotEmpty(message = "{rform.password.empty}")
 	private String password;
-
+	
+	@Size(min = 8, max = 30)
 	@NotNull
 	@NotEmpty(message = "{rform.password2.empty}")
 	private String password2;

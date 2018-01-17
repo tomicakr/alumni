@@ -59,8 +59,7 @@ public class User {
 	@Column(unique = true)
 	private String email;
 
-	@Size(min = 6, max = 30)
-	@Column
+	@Column(length = 60)
 	private String password;
 
 	@Column

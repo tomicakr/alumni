@@ -13,7 +13,6 @@ public class PetDetails {
 	private String name;
 	private int age;
 	private String species;
-	private String breed;
 	private char sex;
 	private String microchip;
 	private String remark;
@@ -25,8 +24,7 @@ public class PetDetails {
 		this.petId = pet.getPetKey();
 		this.name = pet.getName();
 		this.age = pet.getAge();
-		this.species = pet.getSpecies();
-		this.breed = pet.getBreed();
+		this.species = pet.getSpecies().getName();
 		this.sex = pet.getSex();
 		this.microchip = pet.getMicrochip();
 		this.remark = pet.getRemark();
@@ -57,13 +55,6 @@ public class PetDetails {
 		this.species = species;
 	}
 
-	public String getBreed() {
-		return breed;
-	}
-
-	public void setBreed(String breed) {
-		this.breed = breed;
-	}
 
 	public char getSex() {
 		return sex;

@@ -3,6 +3,7 @@ package hr.petsonly;
 import java.util.UUID;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.http.HttpMethod;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
@@ -12,6 +13,8 @@ import org.springframework.security.config.annotation.web.configuration.EnableWe
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.userdetails.UserDetailsService;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.security.crypto.password.PasswordEncoder;
 
 import hr.petsonly.config.specific.CustomAuthenticationSuccesHandler;
 import hr.petsonly.model.details.CustomUserDetails;
@@ -46,12 +49,18 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 
 	@Autowired
 	public void configureGlobal(AuthenticationManagerBuilder auth) throws Exception {
-		// auth.inMemoryAuthentication().withUser("admin").password("password").roles("ADMIN");
+		auth.inMemoryAuthentication().withUser("admin").password("password").roles("ADMIN");
+		//auth.userDetailsService(userDetailsService).passwordEncoder(passwordEncoder());
 	}
 
 	@Override
 	public void configure(AuthenticationManagerBuilder builder) throws Exception {
-		builder.userDetailsService(userDetailsService);
+		builder.userDetailsService(userDetailsService).passwordEncoder(passwordEncoder());
+	}
+	
+	@Bean
+	public PasswordEncoder passwordEncoder(){
+		return new BCryptPasswordEncoder(11);
 	}
 	
 	public boolean checkUserId(Authentication auth, UUID id) {

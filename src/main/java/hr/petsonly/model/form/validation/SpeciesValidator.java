@@ -1,0 +1,36 @@
+package hr.petsonly.model.form.validation;
+
+import java.util.List;
+
+import javax.validation.ConstraintValidator;
+import javax.validation.ConstraintValidatorContext;
+
+import org.springframework.beans.factory.annotation.Autowired;
+
+import hr.petsonly.model.Species;
+import hr.petsonly.repository.SpeciesRepository;
+
+public class SpeciesValidator implements ConstraintValidator<ValidSpecies, String>{
+
+	@Autowired
+	SpeciesRepository sr;
+	
+	@Override
+	public void initialize(ValidSpecies constraintAnnotation) {
+	}
+
+	@Override
+	public boolean isValid(String species, ConstraintValidatorContext context) {
+		return (validateSpecies(species));
+	}
+	
+	private boolean validateSpecies(String species) {
+		List<Species> allSpecies = sr.findAll();
+		for(Species s : allSpecies){
+			if(s.getId().toString().equals(species)){
+				return true;
+			}
+		}
+		return false;
+	}
+}

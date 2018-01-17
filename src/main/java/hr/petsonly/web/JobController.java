@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import hr.petsonly.model.Reservation;
 import hr.petsonly.model.details.ReservationDetails;
 import hr.petsonly.repository.ReservationRepository;
+import hr.petsonly.service.email.EmailServiceImpl;
 
 @Controller
 @RequestMapping(value = "/jobs")
@@ -23,6 +24,9 @@ public class JobController {
 	@Autowired
 	private ReservationRepository reservationRepository;
 
+	@Autowired
+    private EmailServiceImpl mailService;
+	
 	@GetMapping
 	public String showAllReservations(Model model) {
 		
@@ -60,6 +64,7 @@ public class JobController {
 		model.addAttribute("reservation", reservationDetails);
 		
 		return "reservation";
+		
 	}
 	
 	@PostMapping("/{reservationId}/accept")
@@ -78,7 +83,9 @@ public class JobController {
 		Reservation reservation = reservationRepository.findOne(reservationId);
 		reservation.setReservationStatus(3); //confirmed TODO: ovo treba pomocu enuma, ne samo broj
 		reservationRepository.save(reservation);
+		mailService.sendReservationOffer(reservation);
 		
 		return "redirect:/jobs";
+	
 	}
 }

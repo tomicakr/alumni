@@ -124,11 +124,15 @@ public class FormFactory {
 		if(!ef.hasChanges(user)) {
 			return false;
 		}
-		if(!ef.getMobilePhone().isEmpty()) {
-			user.setMobilePhone(ef.getMobilePhone());
-		}
+
+		user.setName(ef.getName());
+		user.setSurname(ef.getSurname());
+		user.setMobilePhone(ef.getMobilePhone());
+		user.setPhone(ef.getPhone());
+		user.setEmail(ef.getEmail());
 		user.setLocation(lr.findOne(ef.getLocation()));
-		
+		user.setAddress(ef.getAddress());
+
 		if(ef.getPassword() != null && !ef.getPassword().equals("")){
 			user.setPassword(ef.getPassword());
 		}

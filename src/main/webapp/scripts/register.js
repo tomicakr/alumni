@@ -103,7 +103,7 @@ initialize({
             prompt: 'Molimo odaberite lozinku'
         },
             {
-                type: 'length[6]',
+                type: 'length[8]',
                 prompt: 'Lozinka mora biti dugačka barem 6 znakova'
             }
         ]
@@ -142,8 +142,8 @@ let skombaj = function () {
             address.val(`${data.region} ${Math.floor(Math.random() * 100)}`);
             mobilePhone.val(oibgen);
             telephone.val(oibgen);
-            pass.val(data.name.toLowerCase() + "123");
-            passCheck.val(data.name.toLowerCase() + "123");
+            pass.val(data.name.toLowerCase() + "12345");
+            passCheck.val(data.name.toLowerCase() + "12345");
             email.val(`${data.name.toLowerCase()}.${data.surname.toLowerCase()}@gmail.com`);
         })
         .fail(function () {

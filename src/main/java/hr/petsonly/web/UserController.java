@@ -158,7 +158,6 @@ public class UserController {
 	@RequestMapping(value = "/{id}", method = RequestMethod.POST)
 	public String updateUser(Model model, @PathVariable UUID id, HttpSession session, @Valid EditUserForm editUserForm,
 			BindingResult result) {
-
 		
 		CustomUserDetails userInSession = (CustomUserDetails) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
 
@@ -177,20 +176,10 @@ public class UserController {
 			
 			return "editUser";
 		}
-
-		if(editUserForm.getOldPassword() != null && !user.getPassword().equals(editUserForm.getOldPassword())) {
-			model.addAttribute("user", new UserDetailsMore(user));
-			model.addAttribute("editUserForm", editUserForm);
-			model.addAttribute("locations", locationDetails);
-			
-			result.rejectValue("oldPassword", "oldPassword.wrong");
-			
-			return "editUser";
-		}
-
+		System.out.println("Tu jesmo");
 		if (formFactory.editUserFromForm(user, editUserForm)) {
+			System.out.println("Tu smo");
 			userRepository.save(user);
-			session.setAttribute("userInSession", new UserDetailsMore(user));
 		}
 
 		return "redirect:/users/" + id.toString();

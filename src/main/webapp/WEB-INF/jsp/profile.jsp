@@ -216,7 +216,6 @@
                     <th>Ime</th>
                     <th>Starost</th>
                     <th>Vrsta</th>
-                    <th>Pasmina</th>
                     <th>Spol</th>
                     <th>Mikročip</th>
                     <th>Napomena</th>

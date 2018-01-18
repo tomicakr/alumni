@@ -17,7 +17,11 @@ public class SessionController {
 		if(error != null) {
 			model.addAttribute("errorMessage", "Pogrešna kombinacija elektroničke pošte i lozinke.");
 		}
-		
+		System.out.println("asdfasdf");
+		System.out.println("asdfasdf");
+		System.out.println("asdfasdf");
+		System.out.println("asdfasdf");
+		System.out.println("asdfasdf");
 		return "login";
 	}
 

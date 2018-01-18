@@ -112,7 +112,6 @@ Table.prototype = {
     },
 
     save: function(fields) {
-    	console.log(JSON.stringify(fields))
         $.post({
             url: this.indexUrl,
             contentType: "application/json; charset=utf-8",
@@ -139,7 +138,7 @@ let petTable = new Table(
 
 let appendPet = function(pet){
     let deleteButton = '<i class="trash big remove action icon" title="Obriši ljubimca"></i>';
-    let petMarkup = $(this.formatTableRow(pet.name, pet.age, pet.species, pet.breed, pet.sex, pet.microchip, pet.remark,deleteButton));
+    let petMarkup = $(this.formatTableRow(pet.name, pet.age, pet.species,pet.sex, pet.microchip, pet.remark,deleteButton));
 
     petMarkup.data('id',pet.petId);
     petTable.tableBody.append(petMarkup);

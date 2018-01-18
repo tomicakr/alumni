@@ -34,7 +34,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 		
 		http.authorizeRequests().antMatchers("/users").hasRole("ADMINISTRATOR").antMatchers("/jobs").hasAnyRole("ZAPOSLENIK", "ADMINISTRATOR");
 		
-		http.authorizeRequests().antMatchers("/users/{id}").access("@webSecurityConfig.checkUserId(authentication, #id)");
+		//http.authorizeRequests().antMatchers("/users/{id}").access("@webSecurityConfig.checkUserId(authentication, #id)");
 		
 		http.csrf().disable();
 		

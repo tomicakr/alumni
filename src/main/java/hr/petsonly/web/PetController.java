@@ -11,6 +11,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -29,6 +30,7 @@ import hr.petsonly.repository.PetRepository;
 import hr.petsonly.service.FormFactory;
 
 @Controller
+@PreAuthorize("@webSecurityConfig.checkUserId(authentication, #id)")
 @RequestMapping("/users/{id}/pets")
 public class PetController {
 
@@ -61,8 +63,8 @@ public class PetController {
 
 	@ResponseBody
 	@PostMapping(consumes = MediaType.APPLICATION_JSON_VALUE)
-	public ResponseEntity<PetDetails> addNewPet(@RequestBody @Valid PetForm petForm, 
-			BindingResult result, Model model,@PathVariable UUID id) {
+	public ResponseEntity<PetDetails> addNewPet(@RequestBody @Valid PetForm petForm, BindingResult result, Model model,
+			@PathVariable UUID id) {
 		if (result.hasErrors()) {
 			System.out.println(result);
 			return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
@@ -79,7 +81,7 @@ public class PetController {
 
 	@ResponseBody
 	@DeleteMapping("/{petId}")
-	public ResponseEntity<PetDetails> deletePet(Model model, @PathVariable UUID petId) {
+	public ResponseEntity<PetDetails> deletePet(Model model, @PathVariable UUID petId, @PathVariable UUID id) {
 
 		Pet pet = petRepository.findOne(petId);
 		if (pet == null) {

@@ -140,6 +140,7 @@ public class UserController {
 	}
 
 	@RequestMapping(value = "/{id}/edit", method = RequestMethod.GET)
+	@PreAuthorize("@webSecurityConfig.checkUserId(authentication, #id)")
 	public String editUser(Model model, @PathVariable UUID id, HttpSession session) {
 
 		CustomUserDetails userInSession = (CustomUserDetails) SecurityContextHolder.getContext().getAuthentication()
@@ -167,6 +168,7 @@ public class UserController {
 	}
 
 	@RequestMapping(value = "/{id}", method = RequestMethod.POST)
+	@PreAuthorize("@webSecurityConfig.checkUserId(authentication, #id)")
 	public String updateUser(Model model, @PathVariable UUID id, HttpSession session, @Valid EditUserForm editUserForm,
 			BindingResult result) {
 
@@ -199,6 +201,7 @@ public class UserController {
 
 	@ResponseBody
 	@RequestMapping(value = "/{id}", method = RequestMethod.DELETE)
+	@PreAuthorize("@webSecurityConfig.checkUserId(authentication, #id)")
 	public String deleteUser(Model model, @PathVariable UUID id, HttpSession session) {
 		CustomUserDetails userInSession = (CustomUserDetails) SecurityContextHolder.getContext().getAuthentication()
 				.getPrincipal();

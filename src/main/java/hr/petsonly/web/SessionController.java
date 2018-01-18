@@ -25,30 +25,6 @@ public class SessionController {
 		return "login";
 	}
 
-//	@RequestMapping(value = "/", method = RequestMethod.POST)
-//	public String loginUser(Model model, HttpSession httpSession, @RequestParam String email,
-//			@RequestParam String password) {
-//		
-//		
-//		User user = userRepository.findByEmail(email);
-//
-//		if (user == null) {
-//			model.addAttribute("errorMessage", "Korisnik sa unesenom e-mail adresom ne postoji!");
-//			return "login";
-//		}
-//
-//		if (!user.getPassword().equals(password)) {
-//			model.addAttribute("errorMessage", "Pogrešna lozinka!");
-//			return "login";
-//		}
-//
-//		UserDetailsMore userDetails = new UserDetailsMore(user);
-//		
-//		httpSession.setAttribute("userInSession", userDetails);
-//
-//		return "redirect:/users/" + user.getUserId().toString();
-//	}
-
 	@RequestMapping(value = "/", method = RequestMethod.DELETE)
 	public String logoutUser(Model model, HttpSession httpSession) {
 		

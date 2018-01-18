@@ -1,13 +1,11 @@
 package hr.petsonly.model.form;
 
+import java.util.UUID;
+
 import javax.validation.constraints.NotNull;
 
 import org.hibernate.validator.constraints.NotEmpty;
 import org.springframework.stereotype.Component;
-
-import hr.petsonly.model.form.validation.ValidSpecies;
-
-import java.util.UUID;
 
 @Component
 public class PetForm {

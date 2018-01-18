@@ -8,6 +8,7 @@ import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
@@ -55,6 +56,7 @@ public class UserController {
     protected AuthenticationManager authenticationManager;
 
 	@GetMapping
+	@PreAuthorize("hasRole('ADMINISTRATOR')")
 	public String showUserList(Model model) {
 
 		List<UserDetailsBasic> allUsers = services.getAllUsersBasicDetails();
@@ -75,7 +77,7 @@ public class UserController {
 		return "register";
 	}
 
-	@PostMapping("/new")
+	@PostMapping
 	public String createUser(Model model, @Valid RegistrationForm registrationForm, BindingResult result,
 			HttpSession session, HttpServletRequest request) {
 
@@ -108,8 +110,9 @@ public class UserController {
 	}
 
 	@GetMapping("/{id}")
+	@PreAuthorize("@webSecurityConfig.checkUserId(authentication, #id)")
 	public String showUserProfile(Model model, @PathVariable UUID id, HttpSession session) {
-
+		System.out.println("zahtjeeeeeeeeeeecv");
 		CustomUserDetails userInSession = (CustomUserDetails) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
 
 		if (userInSession == null || !(userInSession.getUserId().equals(id) || userInSession.getRoles().contains("ROLE_ADMINISTRATOR"))) {
@@ -188,7 +191,6 @@ public class UserController {
 	@ResponseBody
 	@RequestMapping(value = "/{id}", method = RequestMethod.DELETE)
 	public String deleteUser(Model model, @PathVariable UUID id, HttpSession session) {
-
 		CustomUserDetails userInSession = (CustomUserDetails) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
 
 		if (userInSession == null || !(userInSession.getUserId().equals(id) || userInSession.getRoles().contains("ROLE_ADMINISTRATOR"))) {
@@ -211,7 +213,6 @@ public class UserController {
 
         token.setDetails(new WebAuthenticationDetails(request));
         Authentication authenticatedUser = authenticationManager.authenticate(token);
-
         SecurityContextHolder.getContext().setAuthentication(authenticatedUser);
     }
 	

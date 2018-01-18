@@ -4,20 +4,23 @@
 <head>
     <meta charset="utf-8">
     <title>Plan za kontrolere</title>
-    <style type="text/css">
+    <style>
         body {
             font-family: Helvetica, Arial, sans-serif;
-            font-size: 1.2em;
+            font-size: 1.1em;
             color: white;
             background: #333
         }
 
         a {
-            font-style: none;
             color: white;
         }
 
-        acronym {
+        tr.deprecated{
+            color:darkgrey;
+        }
+
+        abbr {
             cursor: help;
             text-decoration: none;
         }
@@ -57,6 +60,11 @@
             background: white;
         }
 
+        caption{
+            color: white;
+            margin-bottom: 20px;
+        }
+
         table,
         td,
         tr,
@@ -76,6 +84,7 @@
 
         section {
             width: 50%;
+            min-width: 800px;
             margin: 5% auto;
             text-align: center;
         }
@@ -85,14 +94,25 @@
             margin: 20px auto;
         }
 
-        dl * {
-            display: inline-block;
-            margin: 10px 5px;
-        }
 
         dt {
             width: 25px;
             clear: both;
+        }
+
+        dl {
+            margin-bottom:50px;
+        }
+
+        dl dt {
+            float:left;
+            margin-right:15px;
+            padding:2px;
+        }
+
+        dl dd {
+            margin:15px 0;
+            padding:5px 0;
         }
 
         .legend {
@@ -133,20 +153,16 @@
 <body>
 <header>
     <div id="crud-legend">
-        <h2><acronym title="Create, Read, Update, Delete">CRUD</acronym> funkcionalnosti:</h2>
+        <h2><abbr title="Create, Read, Update, Delete">CRUD</abbr> funkcionalnosti:</h2>
         <dl>
             <dt class="create legend">&nbsp;</dt>
             <dd>Stvaranje</dd>
-            <br>
             <dt class="show legend">&nbsp;</dt>
             <dd>Čitanje</dd>
-            <br>
             <dt class="update legend">&nbsp;</dt>
             <dd>Uređivanje</dd>
-            <br>
             <dt class="destroy legend">&nbsp;</dt>
             <dd>Brisanje</dd>
-            <br>
             <dt class="bended legend">&nbsp;</dt>
             <dd>Specifično za nas</dd>
         </dl>
@@ -166,15 +182,16 @@
     <section>
         <h2><code>SessionController</code></h2>
         <table>
-            <thead>Sve rute podrazumijevaju putanju<q>/sessions</q></thead>
-            <tr>
+            <caption>Sve rute podrazumijevaju putanju "/sessions" </caption>
+            <thead><tr>
                 <th>ime REST rute</th>
                 <th>Funkcionalnost</th>
                 <th>Ruta</th>
                 <th>HTTP Metoda</th>
-                <th>Povratna vrijednost</th>
+                <th>Povratna stranica</th>
                 <th>Ime viewa</th>
-            </tr>
+                <th>Prava</th>
+            </tr></thead>
             <tr class="create">
                 <td>New</td>
                 <td>Prikazuje stranicu s formularom za prijavu</td>
@@ -182,6 +199,7 @@
                 <td>GET</td>
                 <td>View</td>
                 <td>login</td>
+                <td>Neprijavljeni korisnici</td>
             </tr>
             <tr class="create">
                 <td>Create</td>
@@ -189,7 +207,9 @@
                 <td>"/"</td>
                 <td>POST</td>
                 <td>Redirect</td>
-                <td>profile</td>
+                <td>profil</td>
+                <td>Neprijavljeni korisnici</td>
+
             </tr>
             <tr class="destroy">
                 <td>Destroy</td>
@@ -198,6 +218,8 @@
                 <td>DELETE</td>
                 <td>Redirect</td>
                 <td>index</td>
+                <td>Prijavljeni korisnici</td>
+
             </tr>
         </table>
     </section>
@@ -205,15 +227,16 @@
     <section>
         <h2><code>UserController</code></h2>
         <table>
-            <thead>Sve rute podrazumijevaju putanju<q>/users</q></thead>
-            <tr>
+            <caption>Sve rute podrazumijevaju putanju "/users"</caption>
+            <thead><tr>
                 <th>ime REST rute</th>
                 <th>Funkcionalnost</th>
                 <th>Ruta</th>
                 <th>HTTP Metoda</th>
                 <th>Povratna vrijednost</th>
-                <th>Ime viewa</th>
-            </tr>
+                <th>Povratna stranica</th>
+                <th>Pristup</th>
+            </tr></thead>
             <tr class="index">
                 <td>Index</td>
                 <td>prikazuje listu korisnika</td>
@@ -221,6 +244,7 @@
                 <td>GET</td>
                 <td>View</td>
                 <td>users</td>
+                <td>Administrator</td>
             </tr>
             <tr class="create">
                 <td>New</td>
@@ -229,6 +253,7 @@
                 <td>GET</td>
                 <td>View</td>
                 <td>register</td>
+                <td>Neprijavljeni korisnici</td>
             </tr>
             <tr class="create">
                 <td>Create</td>
@@ -236,7 +261,8 @@
                 <td>"/"</td>
                 <td>POST</td>
                 <td>Redirect</td>
-                <td>profile</td>
+                <td>profil</td>
+                <td>Neprijavljeni korisnici</td>
             </tr>
             <tr class="show">
                 <td>Show</td>
@@ -244,7 +270,8 @@
                 <td>"/:id"</td>
                 <td>GET</td>
                 <td>View</td>
-                <td>profile</td>
+                <td>profil</td>
+                <td>Korisnik čiji je profil, administrator</td>
             </tr>
             <tr class="update">
                 <td>Edit</td>
@@ -253,6 +280,7 @@
                 <td>GET</td>
                 <td>View</td>
                 <td class="maybe-modal">editUser</td>
+                <td>Korisnik čiji je profil, administrator</td>
             </tr>
             <tr class="update">
                 <td>Update</td>
@@ -260,7 +288,8 @@
                 <td>"/:id"</td>
                 <td>PUT</td>
                 <td>Redirect</td>
-                <td>profile</td>
+                <td>profil</td>
+                <td>Korisnik čiji je profil, administrator</td>
             </tr>
             <tr class="destroy">
                 <td>Destroy</td>
@@ -269,6 +298,7 @@
                 <td>DELETE</td>
                 <td>Redirect</td>
                 <td>admin -> users, drugi -> index</td>
+                <td>Korisnik čiji je profil, administrator</td>
             </tr>
         </table>
     </section>
@@ -276,15 +306,16 @@
     <section>
         <h2><code>PetController</code></h2>
         <table>
-            <thead>Sve rute podrzumjevaju putanju<q>users/:id/pets</q></thead>
-            <tr>
+            <caption>Sve rute podrzumjevaju putanju "users/:id/pets"</caption>
+            <thead><tr>
                 <th>ime REST rute</th>
                 <th>Funkcionalnost</th>
                 <th>Ruta</th>
                 <th>HTTP Metoda</th>
                 <th>Povratna vrijednost</th>
-                <th>Ime viewa</th>
-            </tr>
+                <th>Povratna stranica</th>
+                <th>Pristup</th>
+            </tr></thead>
             <tr class="index">
                 <td>Index</td>
                 <td>prikazuje popis ljubimaca</td>
@@ -292,14 +323,16 @@
                 <td>GET</td>
                 <td>JSON</td>
                 <td>-</td>
+                <td>Korisnik čiji je profil, administrator</td>
             </tr>
-            <tr class="create">
+            <tr class="create deprecated">
                 <td>New</td>
                 <td>prikazuje formular za dodavanje ljubimca</td>
                 <td>"/new"</td>
                 <td>GET</td>
                 <td>View</td>
                 <td>addPet</td>
+                <td>-</td>
             </tr>
             <tr class="create">
                 <td>Create</td>
@@ -308,6 +341,7 @@
                 <td>POST</td>
                 <td>JSON</td>
                 <td>-</td>
+                <td>Korisnik čiji je profil, administrator</td>
             </tr>
             <tr class="destroy">
                 <td>Destroy</td>
@@ -316,6 +350,7 @@
                 <td>DELETE</td>
                 <td>JSON</td>
                 <td>-</td>
+                <td>Korisnik čiji je profil, administrator</td>
             </tr>
         </table>
     </section>
@@ -323,15 +358,16 @@
     <section>
         <h2><code>ReservationController</code></h2>
         <table>
-            <thead>Sve rute podrazumijevaju putanju<q>users/:id/reservations</q></thead>
-            <tr>
+            <caption>Sve rute podrazumijevaju putanju "users/:id/reservations"</caption>
+            <thead><tr>
                 <th>ime REST rute</th>
                 <th>Funkcionalnost</th>
                 <th>Ruta</th>
                 <th>HTTP Metoda</th>
                 <th>Povratna vrijednost</th>
-                <th>Ime viewa/json</th>
-            </tr>
+                <th>Povratna stranica</th>
+                <th>Pristup</th>
+            </tr></thead>
             <tr class="index">
                 <td>Index</td>
                 <td>prikazuje sve rezervacije za klijenta</td>
@@ -339,6 +375,7 @@
                 <td>GET</td>
                 <td>JSON</td>
                 <td>-</td>
+                <td>Korisnik čiji je profil, administrator</td>
             </tr>
             <tr class="create">
                 <td>New</td>
@@ -347,6 +384,7 @@
                 <td>GET</td>
                 <td>View</td>
                 <td class="maybe-modal">newReservation</td>
+                <td>Korisnik čiji je profil, administrator</td>
             </tr>
             <tr class="create">
                 <td>Create</td>
@@ -355,14 +393,16 @@
                 <td>POST</td>
                 <td>JSON</td>
                 <td>-</td>
+                <td>Korisnik čiji je profil, administrator</td>
             </tr>
-            <tr class="show">
+            <tr class="show deprecated">
                 <td>Show</td>
                 <td>prikazuje rezervaciju detaljno</td>
                 <td>"/:id"</td>
                 <td>GET</td>
                 <td>View</td>
                 <td>reservation</td>
+                <td>-</td>
             </tr>
             <tr class="update">
                 <td>Edit</td>
@@ -371,6 +411,7 @@
                 <td>GET</td>
                 <td>View</td>
                 <td>reservationEdit</td>
+                <td>Korisnik čiji je profil, administrator</td>
             </tr>
             <tr class="update">
                 <td>Update</td>
@@ -379,6 +420,7 @@
                 <td>PUT</td>
                 <td>JSON</td>
                 <td>-</td>
+                <td>Korisnik čiji je profil, administrator</td>
             </tr>
             <tr class="destroy">
                 <td>Destroy</td>
@@ -387,6 +429,7 @@
                 <td>DELETE</td>
                 <td>JSON</td>
                 <td>-</td>
+                <td>Korisnik čiji je profil, administrator</td>
             </tr>
         </table>
     </section>
@@ -394,15 +437,16 @@
     <section>
         <h2><code>JobController</code></h2>
         <table>
-            <thead>Sve rute podrazumijevaju putanju<q>/jobs</q></thead>
-            <tr>
+            <caption>Sve rute podrazumijevaju putanju "/jobs"</caption>
+            <thead><tr>
                 <th>ime REST rute</th>
                 <th>Funkcionalnost</th>
                 <th>Ruta</th>
                 <th>HTTP Metoda</th>
                 <th>Povratna vrijednost</th>
-                <th>Ime viewa</th>
-            </tr>
+                <th>Povratna stranica</th>
+                <th>Pristup</th>
+            </tr></thead>
             <tr class="index">
                 <td>Index</td>
                 <td>prikazuje pregled rezervacija</td>
@@ -410,14 +454,16 @@
                 <td>GET</td>
                 <td>View</td>
                 <td>jobs</td>
+                <td>Zaposlenik, administrator</td>
             </tr>
-            <tr class="show strikeout">
+            <tr class="show strikeout deprecated">
                 <td>Show</td>
                 <td>prikazuje rezervaciju detaljno</td>
                 <td>"/:id"</td>
                 <td>GET</td>
                 <td>View</td>
                 <td class="maybe-modal">reservation</td>
+                <td class="maybe-modal">-</td>
             </tr>
             <tr class="bended">
                 <td>Custom</td>
@@ -426,6 +472,7 @@
                 <td>POST</td>
                 <td>Redirect</td>
                 <td>jobs</td>
+                <td>Zaposlenik, Adnimistrator</td>
             </tr>
             <tr class="bended">
                 <td>Custom</td>
@@ -434,6 +481,7 @@
                 <td>POST</td>
                 <td>Redirect</td>
                 <td>jobs</td>
+                <td>Administrator</td>
             </tr>
         </table>
     </section>

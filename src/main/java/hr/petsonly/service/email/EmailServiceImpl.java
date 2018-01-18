@@ -32,6 +32,8 @@ import hr.petsonly.model.Reservation;
 @Component
 public class EmailServiceImpl {
 
+	private static final String messageText = "Poštovani,\n\nzahvaljujemo na Vašoj rezervaciji. Vaša ponuda nalazi se u privitku.\n\nLijep pozdrav,\nVaš PetsOnlyZg";
+	
 	@Autowired
 	JavaMailSender mailSender;
 
@@ -114,9 +116,7 @@ public class EmailServiceImpl {
 				helper.setSubject("PetsOnlyZg rezervacija");
 				helper.setFrom("fau53t7zss@gmail.com");
 				helper.setTo("mate.paulinovic@fer.hr"); //reservation.getUser().getEmail());
-				String content = "Dear " + reservation.getUser().getName()
-						+ ",\nthank you for your reservation. Your reservation id is " + reservation.getReservationKey()
-						+ ".";
+				String content = messageText;
 				// helper.setText(content);
 				// Add a resource as an attachment
 				MimeBodyPart textBodyPart = new MimeBodyPart();

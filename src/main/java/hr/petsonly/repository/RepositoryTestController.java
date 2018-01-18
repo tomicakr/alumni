@@ -185,12 +185,12 @@ public class RepositoryTestController {
 		p.setRemark("");
 		p.setSex('f');
 		
-		if(false){
-			owner.getPets().add(p);
-			ur.save(owner);
-		} else {
-			pr.save(p);
-		}
+//		if(false){
+//			owner.getPets().add(p);
+//			ur.save(owner);
+//		} else {
+//			pr.save(p);
+//		}
 	}
 	
 	@RequestMapping("/repotest/employee")

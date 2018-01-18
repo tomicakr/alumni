@@ -31,66 +31,65 @@ import hr.petsonly.service.FormFactory;
 @Controller
 @RequestMapping("/users/{id}/pets")
 public class PetController {
-	
+
 	@Autowired
 	private FormFactory formFactory;
-	
+
 	@Autowired
 	private PetRepository petRepository;
-	
+
 	@ResponseBody
 	@GetMapping
 	public List<PetDetails> showPetList(Model model, @PathVariable UUID id) {
-		
+
 		List<Pet> petList = petRepository.findByOwnerId(id.toString());
 		System.out.println(Arrays.toString(petList.toArray()));
-		
+
 		List<PetDetails> petDetails = new ArrayList<>();
-		
+
 		petList.forEach(pet -> {
 			petDetails.add(new PetDetails(pet));
 		});
-		
+
 		return petDetails;
 	}
-	
+
 	@GetMapping("/new")
 	public String showNewPetForm() {
 		return "addPet";
 	}
-	
+
 	@ResponseBody
 	@PostMapping(consumes = MediaType.APPLICATION_JSON_VALUE)
-	public ResponseEntity<PetDetails> addNewPet(@RequestBody @Valid PetForm petForm, BindingResult result, Model model, @PathVariable UUID id) {
-	
-		if(result.hasErrors()) {
+	public ResponseEntity<PetDetails> addNewPet(@RequestBody @Valid PetForm petForm, 
+			BindingResult result, Model model,@PathVariable UUID id) {
+		if (result.hasErrors()) {
 			System.out.println(result);
 			return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
 		}
-		
+
 		petForm.setOwner(id.toString());
 		Pet pet = formFactory.createPetFromForm(petForm);
-		
+
 		pet = petRepository.save(pet);
 		PetDetails petDetails = new PetDetails(pet);
-		
+
 		return new ResponseEntity<>(petDetails, HttpStatus.OK);
-	} 
-	
+	}
+
 	@ResponseBody
 	@DeleteMapping("/{petId}")
 	public ResponseEntity<PetDetails> deletePet(Model model, @PathVariable UUID petId) {
-		
+
 		Pet pet = petRepository.findOne(petId);
-		if(pet==null) {
+		if (pet == null) {
 			System.out.println("Ljubimac nije pronađen!");
 			return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
 		}
-		
+
 		PetDetails petDetails = new PetDetails(pet);
 		petRepository.delete(petId);
-		
+
 		return new ResponseEntity<>(petDetails, HttpStatus.OK);
 	}
-	
 }

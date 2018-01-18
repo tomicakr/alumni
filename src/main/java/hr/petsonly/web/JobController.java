@@ -53,7 +53,6 @@ public class JobController {
 		model.addAttribute("accepted", accepted);
 		model.addAttribute("confirmed", confirmed);
 		
-		
 		return "jobs";
 	}
 	
@@ -81,11 +80,10 @@ public class JobController {
 	public String confirmReservation(@PathVariable UUID reservationId) {
 		
 		Reservation reservation = reservationRepository.findOne(reservationId);
-		reservation.setReservationStatus(3); //confirmed TODO: ovo treba pomocu enuma, ne samo broj
+		reservation.setReservationStatus(3);
 		reservationRepository.save(reservation);
 		mailService.sendReservationOffer(reservation);
 		
 		return "redirect:/jobs";
-	
 	}
 }

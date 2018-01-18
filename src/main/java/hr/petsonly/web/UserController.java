@@ -8,6 +8,9 @@ import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.MediaType;
+import org.springframework.http.ResponseEntity;
+import org.springframework.http.ResponseEntity.BodyBuilder;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
@@ -20,6 +23,7 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -30,6 +34,7 @@ import hr.petsonly.model.details.LocationDetails;
 import hr.petsonly.model.details.UserDetailsBasic;
 import hr.petsonly.model.details.UserDetailsMore;
 import hr.petsonly.model.form.EditUserForm;
+import hr.petsonly.model.form.PatchForm;
 import hr.petsonly.model.form.RegistrationForm;
 import hr.petsonly.repository.UserRepository;
 import hr.petsonly.service.CommonServices;
@@ -48,12 +53,12 @@ public class UserController {
 
 	@Autowired
 	private CommonServices services;
-	
+
 	@Autowired
 	private UserService userService;
-	
+
 	@Autowired
-    protected AuthenticationManager authenticationManager;
+	protected AuthenticationManager authenticationManager;
 
 	@GetMapping
 	@PreAuthorize("hasRole('ADMINISTRATOR')")
@@ -88,23 +93,23 @@ public class UserController {
 			return "register";
 		}
 
-		if(registrationForm.getAddress().isEmpty()) {
-			
+		if (registrationForm.getAddress().isEmpty()) {
+
 		}
-		
+
 		User user = userService.registerNewUserAccount(registrationForm);
 
-		if(user == null) {
+		if (user == null) {
 			model.addAttribute("registrationForm", registrationForm);
 			model.addAttribute("locations", services.getAllLocationDetails());
-			
+
 			result.rejectValue("email", "email.already.exists");
-			
+
 			System.out.println(result);
 			return "register";
 		}
-		
-        authenticateUserAndSetSession(registrationForm, request);
+
+		authenticateUserAndSetSession(registrationForm, request);
 
 		return "redirect:/users/" + user.getUserId();
 	}
@@ -112,10 +117,11 @@ public class UserController {
 	@GetMapping("/{id}")
 	@PreAuthorize("@webSecurityConfig.checkUserId(authentication, #id)")
 	public String showUserProfile(Model model, @PathVariable UUID id, HttpSession session) {
-		System.out.println("zahtjeeeeeeeeeeecv");
-		CustomUserDetails userInSession = (CustomUserDetails) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+		CustomUserDetails userInSession = (CustomUserDetails) SecurityContextHolder.getContext().getAuthentication()
+				.getPrincipal();
 
-		if (userInSession == null || !(userInSession.getUserId().equals(id) || userInSession.getRoles().contains("ROLE_ADMINISTRATOR"))) {
+		if (userInSession == null
+				|| !(userInSession.getUserId().equals(id) || userInSession.getRoles().contains("ROLE_ADMINISTRATOR"))) {
 			model.addAttribute("errorMessage", "Nemaš ovlasti za to!");
 			return "customError";
 		}
@@ -136,9 +142,11 @@ public class UserController {
 	@RequestMapping(value = "/{id}/edit", method = RequestMethod.GET)
 	public String editUser(Model model, @PathVariable UUID id, HttpSession session) {
 
-		CustomUserDetails userInSession = (CustomUserDetails) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+		CustomUserDetails userInSession = (CustomUserDetails) SecurityContextHolder.getContext().getAuthentication()
+				.getPrincipal();
 
-		if (userInSession == null || !(userInSession.getUserId().equals(id) || userInSession.getRoles().contains("ROLE_ADMINISTRATOR"))) {
+		if (userInSession == null
+				|| !(userInSession.getUserId().equals(id) || userInSession.getRoles().contains("ROLE_ADMINISTRATOR"))) {
 			model.addAttribute("errorMessage", "Nemaš ovlasti za to!");
 			return "customError";
 		}
@@ -161,12 +169,14 @@ public class UserController {
 	@RequestMapping(value = "/{id}", method = RequestMethod.POST)
 	public String updateUser(Model model, @PathVariable UUID id, HttpSession session, @Valid EditUserForm editUserForm,
 			BindingResult result) {
-		
-		CustomUserDetails userInSession = (CustomUserDetails) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+
+		CustomUserDetails userInSession = (CustomUserDetails) SecurityContextHolder.getContext().getAuthentication()
+				.getPrincipal();
 
 		List<LocationDetails> locationDetails = services.getAllLocationDetails();
 
-		if (userInSession == null || !(userInSession.getUserId().equals(id) || userInSession.getRoles().contains("ROLE_ADMINISTRATOR"))) {
+		if (userInSession == null
+				|| !(userInSession.getUserId().equals(id) || userInSession.getRoles().contains("ROLE_ADMINISTRATOR"))) {
 			model.addAttribute("errorMessage", "Nemaš ovlasti za to!");
 			return "customError";
 		}
@@ -176,12 +186,11 @@ public class UserController {
 			model.addAttribute("user", new UserDetailsMore(user));
 			model.addAttribute("editUserForm", editUserForm);
 			model.addAttribute("locations", locationDetails);
-			
+
 			return "editUser";
 		}
-		System.out.println("Tu jesmo");
+		
 		if (formFactory.editUserFromForm(user, editUserForm)) {
-			System.out.println("Tu smo");
 			userRepository.save(user);
 		}
 
@@ -191,9 +200,11 @@ public class UserController {
 	@ResponseBody
 	@RequestMapping(value = "/{id}", method = RequestMethod.DELETE)
 	public String deleteUser(Model model, @PathVariable UUID id, HttpSession session) {
-		CustomUserDetails userInSession = (CustomUserDetails) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+		CustomUserDetails userInSession = (CustomUserDetails) SecurityContextHolder.getContext().getAuthentication()
+				.getPrincipal();
 
-		if (userInSession == null || !(userInSession.getUserId().equals(id) || userInSession.getRoles().contains("ROLE_ADMINISTRATOR"))) {
+		if (userInSession == null
+				|| !(userInSession.getUserId().equals(id) || userInSession.getRoles().contains("ROLE_ADMINISTRATOR"))) {
 			model.addAttribute("errorMessage", "Nemaš ovlasti za to!");
 			return "customError";
 		}
@@ -203,17 +214,26 @@ public class UserController {
 		return "nijeUspjelo";
 	}
 
+	@RequestMapping(value = "/{id}", method = RequestMethod.PATCH, consumes = MediaType.APPLICATION_JSON_VALUE)
+	public BodyBuilder updateUser(@RequestBody List<PatchForm> patchForms,
+			@PathVariable UUID id) {
+
+		patchForms.forEach(patch -> userService.updateUser(id, patch.getOp(), patch.getPath(), patch.getValue()));
+
+		return ResponseEntity.ok();
+	}
+
 	private void authenticateUserAndSetSession(RegistrationForm rform, HttpServletRequest request) {
-        String username = rform.getEmail();
-        String password = rform.getPassword();
-        UsernamePasswordAuthenticationToken token = new UsernamePasswordAuthenticationToken(username, password);
+		String username = rform.getEmail();
+		String password = rform.getPassword();
+		UsernamePasswordAuthenticationToken token = new UsernamePasswordAuthenticationToken(username, password);
 
-        // generate session if one doesn't exist
-        request.getSession();
+		// generate session if one doesn't exist
+		request.getSession();
 
-        token.setDetails(new WebAuthenticationDetails(request));
-        Authentication authenticatedUser = authenticationManager.authenticate(token);
-        SecurityContextHolder.getContext().setAuthentication(authenticatedUser);
-    }
-	
+		token.setDetails(new WebAuthenticationDetails(request));
+		Authentication authenticatedUser = authenticationManager.authenticate(token);
+		SecurityContextHolder.getContext().setAuthentication(authenticatedUser);
+	}
+
 }

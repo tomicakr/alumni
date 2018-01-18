@@ -28,36 +28,35 @@ public class UserService {
 		}
 
 		User user = formFactory.createUserFromForm(rf);
-		
+
 		return repository.save(user);
 	}
-	
+
 	@Transactional
 	public List<Role> findUsersRoles(User user) {
 		return user.getRoles();
 	}
-	
+
 	public boolean hireUser(UUID userId) {
 		User user = repository.findOne(userId);
-		
-		if(user == null) {
+		if (user == null) {
 			return false;
 		}
 		
 		repository.hireUser(userId.toString());
-		
+
 		return true;
 	}
-	
+
 	public boolean fireUser(UUID userId) {
 		User user = repository.findOne(userId);
-		
-		if(user == null) {
+
+		if (user == null) {
 			return false;
 		}
-		
+
 		repository.fireUser(userId.toString());
-		
+
 		return true;
 	}
 
@@ -65,6 +64,31 @@ public class UserService {
 		User user = repository.findByEmail(email);
 		if (user != null) {
 			return true;
+		}
+
+		return false;
+	}
+
+	public boolean updateUser(UUID userId, String operation, String path, String newValue) {
+
+		switch (operation) {
+		case "replace":
+
+			switch (path) {
+			case "/status":
+
+				if (newValue.equals("employee")) {
+					hireUser(userId);
+					return true;
+				} else if (newValue.equals("client")) {
+					fireUser(userId);
+					return true;
+				}
+
+				return false;
+			default:
+				return false;
+			}
 		}
 		
 		return false;

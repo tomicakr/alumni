@@ -79,6 +79,6 @@ public interface UserRepository extends JpaRepository<User, UUID> {
 	
 	@Transactional
 	@Modifying(clearAutomatically = true)
-	@Query(value = "UPDATE users_roles ur SET ur.role_id = 1 WHERE ur.user_id = :user_id", nativeQuery = true)
+	@Query(value = "UPDATE users_roles ur SET ur.role_id = 3 WHERE ur.user_id = :user_id", nativeQuery = true)
 	void fireUser(@Param("user_id") String userId);
 }

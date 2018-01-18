@@ -1,6 +1,7 @@
 package hr.petsonly.service;
 
 import java.util.List;
+import java.util.UUID;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -34,6 +35,30 @@ public class UserService {
 	@Transactional
 	public List<Role> findUsersRoles(User user) {
 		return user.getRoles();
+	}
+	
+	public boolean hireUser(UUID userId) {
+		User user = repository.findOne(userId);
+		
+		if(user == null) {
+			return false;
+		}
+		
+		repository.hireUser(userId.toString());
+		
+		return true;
+	}
+	
+	public boolean fireUser(UUID userId) {
+		User user = repository.findOne(userId);
+		
+		if(user == null) {
+			return false;
+		}
+		
+		repository.fireUser(userId.toString());
+		
+		return true;
 	}
 
 	private boolean emailExist(String email) {

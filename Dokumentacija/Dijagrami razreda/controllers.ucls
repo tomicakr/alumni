@@ -21,7 +21,7 @@
   </class>  
   <class id="3" language="java" name="hr.petsonly.web.SessionController" project="pets-only-zg" 
     file="/pets-only-zg/src/main/java/hr/petsonly/web/SessionController.java" binary="false" corner="BOTTOM_RIGHT">    
-    <position height="113" width="209" x="761" y="-101"/>    
+    <position height="-1" width="-1" x="422" y="167"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
       <attributes public="true" package="true" protected="true" private="true" static="true"/>      
@@ -30,7 +30,7 @@
   </class>  
   <class id="4" language="java" name="hr.petsonly.web.UserController" project="pets-only-zg" 
     file="/pets-only-zg/src/main/java/hr/petsonly/web/UserController.java" binary="false" corner="BOTTOM_RIGHT">    
-    <position height="311" width="465" x="1010" y="-101"/>    
+    <position height="-1" width="-1" x="102" y="397"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
       <attributes public="true" package="true" protected="true" private="true" static="true"/>      
@@ -39,7 +39,7 @@
   </class>  
   <class id="5" language="java" name="hr.petsonly.web.JobController" project="pets-only-zg" 
     file="/pets-only-zg/src/main/java/hr/petsonly/web/JobController.java" binary="false" corner="BOTTOM_RIGHT">    
-    <position height="185" width="252" x="1515" y="-101"/>    
+    <position height="-1" width="-1" x="540" y="361"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
       <attributes public="true" package="true" protected="true" private="true" static="true"/>      

@@ -11,7 +11,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
-import org.springframework.http.ResponseEntity.BodyBuilder;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
@@ -21,7 +20,13 @@ import org.springframework.security.web.authentication.WebAuthenticationDetails;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import hr.petsonly.model.User;
 import hr.petsonly.model.details.CustomUserDetails;
@@ -213,10 +218,18 @@ public class UserController {
 	}
 
 	@RequestMapping(value = "/{id}", method = RequestMethod.PATCH, consumes = MediaType.APPLICATION_JSON_VALUE)
-	@ResponseStatus(value = HttpStatus.NO_CONTENT)
-	public void updateUser(@RequestBody List<PatchForm> patchForms,
+	@ResponseBody
+	@PreAuthorize("hasRole('ADMINISTRATOR')")
+	public ResponseEntity<?> updateUser(@RequestBody List<PatchForm> patchForms,
 			@PathVariable UUID id) {
+		Boolean valid = true;
+		
+		patchForms.forEach(patchForm -> userService.validatePatchForm(patchForm, valid));
+		
+		if(!valid) return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+		
 		patchForms.forEach(patch -> userService.updateUser(id, patch.getOp(), patch.getPath(), patch.getValue()));
+		return new ResponseEntity<>(HttpStatus.NO_CONTENT);
 	}
 
 	private void authenticateUserAndSetSession(RegistrationForm rform, HttpServletRequest request) {

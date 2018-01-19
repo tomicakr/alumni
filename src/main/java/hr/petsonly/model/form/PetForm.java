@@ -1,11 +1,10 @@
 package hr.petsonly.model.form;
 
-import java.util.UUID;
-
-import javax.validation.constraints.NotNull;
-
 import org.hibernate.validator.constraints.NotEmpty;
 import org.springframework.stereotype.Component;
+
+import javax.validation.constraints.NotNull;
+import java.util.UUID;
 
 @Component
 public class PetForm {
@@ -28,7 +27,7 @@ public class PetForm {
 
 	private String remark;
 
-	private String owner;
+	private UUID owner;
 
 	public String getName() {
 		return name;
@@ -78,11 +77,11 @@ public class PetForm {
 		this.remark = remark;
 	}
 
-	public String getOwner() {
+	public UUID getOwner() {
 		return owner;
 	}
 
-	public void setOwner(String owner) {
+	public void setOwner(UUID owner) {
 		this.owner = owner;
 	}
 

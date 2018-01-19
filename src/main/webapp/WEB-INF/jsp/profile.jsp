@@ -71,8 +71,7 @@
 		<div class="ui center aligned content">
 			<form:form
 				action="${pageContext.request.contextPath}/users/${user.userId}/pets/"
-				method="post" id="add-pet-form" class="ui large form"
-				modelAttribute="user">
+				method="post" id="add-pet-form" class="ui large form">
 				<div class="field">
 					<input type="text" name="name" id="pet-name" placeholder="Ime">
 				</div>
@@ -113,7 +112,48 @@
 			</form:form>
 		</div>
 	</div>
-
+	<div id="add-reservation-modal" class="ui mini modal">
+		<i class="close icon"></i>
+		<div class="header">Nova rezervacija</div>
+		<div class="ui center aligned content">
+			<form:form
+					action="${pageContext.request.contextPath}/users/${user.userId}/pets/"
+					method="post" id="add-pet-form" class="ui large form">
+				<div class="field">
+					<input type="datetime-local" name="executionTime" id="res-time" placeholder="Vrijeme">
+				</div>
+				<div class="field">
+					<div class="required field">
+						<select name="service" class="ui dropdown" id="res-service">
+						</select>
+					</div>
+				</div>
+				<div class="field">
+					<div class="required field">
+						<select name="pet" class="ui dropdown" id="res-pet">
+						</select>
+					</div>
+				</div>
+				<div class="field">
+					<div class="required field">
+						<select name="employee" class="ui dropdown" id="res-employee">
+						</select>
+					</div>
+				</div>
+				<div class="field">
+					<input type="time" name="duration" id="res-duration"
+						   placeholder="Trajanje">
+				</div>
+				<div class="field">
+					<div class="ui checked checkbox">
+						<input type="checkbox" name="sendReminder" value="1" checked="checked">
+						<label>Želim dobiti podsjetnik na mail?</label>
+					</div>
+				</div>
+				<div class="ui fluid huge darkred submit button" style="width: 100%">Rezerviraj</div>
+			</form:form>
+		</div>
+	</div>
 	<main class="ui container" id="profileContent">
 	<div class="ui top attached huge tabular menu">
 		<a class="item active" data-tab="first"> Detalji </a> <a class="item"

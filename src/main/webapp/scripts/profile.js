@@ -1,7 +1,12 @@
 const userIndex           = window.location.href + (window.location.href.endsWith('/') ? '' : '/');
 const petIndex            = `${userIndex}pets/`;
 const reservationIndex    =`${userIndex}reservations/`;
-const getSpeciesAPI          = '/api/species';
+const api = {
+    species:'/api/species',
+    employees: '/api/users?role=employee',
+    pets: petIndex,
+    service: '/api/services'
+};
 
 const btnPets             = $('#btn-pets'           );
 const btnReservations     = $('#btn-reservations'   );
@@ -10,25 +15,30 @@ const btnDelete           = $('#btn-delete-user'    );
 const btnEmploy           = $('#btn-employ-user'    );
 const btnFire             = $('#btn-fire-user'      );
 const btnAddPet           = $('#btn-add-pet'        );
-const btnAddReservation   = $('#btn-add-reservation');
 
+const petSpecies          = $('#pet-species' );
+const resEmployee         = $('#res-employee');
+const resService          = $('#res-service' );
+const resPet              = $('#res-pet' );
+
+
+const btnAddReservation   = $('#btn-add-reservation');
 const addPetModal         = $('#add-pet-modal'        );
+
 const addReservationModal = $('#add-reservation-modal');
 
 const userRole            = $('#role');
-
 const clientLabel   = '<p class="ui client long tag label">Klijent</p>';
-const employeeLabel = '<p class="ui employee long tag label">Zaposlenik</p>';
 
+const employeeLabel = '<p class="ui employee long tag label">Zaposlenik</p>';
 function hideElem(e){
     e.addClass('inactive');
-}
 
+}
 function showElem(e) {
     e.removeClass('inactive');
+
 }
-
-
 function patch(data, onSuccess, onFail){
     $.ajax({
         url: userIndex,
@@ -40,6 +50,7 @@ function patch(data, onSuccess, onFail){
     })
         .then(onSuccess)
         .catch(onFail)
+
 }
 
 const employOperation = {
@@ -53,7 +64,6 @@ const fireOperation = {
     "path": "/status",
     "value": "client"
 };
-
 let Table= function(indexUrl, table, tableBody, placeholder, deleteModal){
     this.indexUrl = indexUrl;
     this.table = table;
@@ -140,8 +150,6 @@ Table.prototype = {
     }
 };
 
-
-
 let petTable = new Table(
     petIndex,
     $('#pets-table'),
@@ -149,17 +157,17 @@ let petTable = new Table(
     $('#pet-placeholder'),
     $('#delete-pet-modal')
 );
-
 let appendPet = function(pet){
     let deleteButton = '<i class="trash big remove action icon" title="Obriši ljubimca"></i>';
-    let petMarkup = $(this.formatTableRow(pet.name, pet.age, pet.species,pet.sex, pet.microchip, pet.remark,deleteButton));
 
+    let petMarkup = $(this.formatTableRow(pet.name, pet.age, pet.species,pet.sex, pet.microchip, pet.remark,deleteButton));
     petMarkup.data('id',pet.petId);
     petTable.tableBody.append(petMarkup);
-    petMarkup.find('.remove.icon').click(petTable.remove.bind(petTable,petMarkup));
 
+    petMarkup.find('.remove.icon').click(petTable.remove.bind(petTable,petMarkup));
     this.placeholder.hide();
     this.table.show();
+
 };
 
 petTable.append = appendPet.bind(petTable);
@@ -168,7 +176,7 @@ let resTable = new Table(
     reservationIndex,
     $('#reservations-table'),
     $('#reservations').find('tbody'),
-    $('#reservations-placeholder')
+    $('#reservations-placeholder'),
 );
 
 resTable.append = (function(res){
@@ -217,6 +225,7 @@ const petValidation = {
     }
 };
 
+
 const reservationValidation = {
     service: {
         identifier: 'usluga',
@@ -249,34 +258,66 @@ const reservationValidation = {
     },
 };
 
+function fillDropDown(dropdown, getId, getText, getName, data){
+        dropdown.empty();
+        let options = [];
+        data.forEach(x => {
+            let [v,t,n] = [getId(x),getText(x),getName(x)];
+            options.push({
+                value: v,
+                text: t,
+                name: n
+            });
+            dropdown.append($('<option>', {value: v, text: t}));
+        });
+        dropdown.dropdown('setup menu', {values: options});
+}
 
 btnPets.click(petTable.update.bind(petTable));
-
-let petSpecies = $('#pet-species');
 btnAddPet.click(() => {
         addPetModal.modal('show');
-        $.getJSON(getSpeciesAPI)
+        $.getJSON(api.species)
             .then(
-                data => {
-                    petSpecies.empty();
-                    let options = [];
-                    data.forEach(x => {
-                        options.push({
-                            value: x.id,
-                            text: x.name,
-                            name: x.name
-                        });
-                        petSpecies.append($('<option>', {value:x.id, text:x.name}));
-                    });
-                    petSpecies.dropdown('setup menu', {values: options});
-                }
-            );
+                data => fillDropDown(
+                    petSpecies,
+                    x => x.id,
+                    x => x.name,
+                    x => x.name,
+                    data)
+            )
     }
 );
 
 btnAddReservation.click(
-    () => window.location.href=reservationIndex+'new'
-    //() => addReservationModal.modal('show')
+    () => {addReservationModal.modal('show');
+        $.getJSON(api.employees)
+            .then(
+                data => fillDropDown(
+                    resEmployee,
+                    x => x.userId,
+                    x => `${x.firstName} ${x.lastName}`,
+                    x => `${x.firstName} ${x.lastName}`,
+                    data)
+            );
+        $.getJSON(api.service)
+            .then(
+                data => fillDropDown(
+                    resService,
+                    x => x.id,
+                    x => x.name,
+                    x => x.name,
+                    data)
+            );
+        $.getJSON(api.pets)
+            .then(
+                data => fillDropDown(
+                    resPet,
+                    x => x.petId,
+                    x => x.name,
+                    x => x.name,
+                    data)
+            )
+    }
 );
 
 btnReservations.click(resTable.update.bind(resTable));
@@ -359,15 +400,7 @@ function modalInit(modal, formFields, handler){
 $(document)
     .ready(function() {
         modalInit(addPetModal,petValidation,petTable.save.bind(petTable));
-
-        modalInit(addReservationModal,reservationValidation,
-            (fields) => addEntity(
-                reservationIndex,
-                appendReservation,
-                console.log,
-                fields,
-            ));
-
+        modalInit(addReservationModal,reservationValidation,resTable.save.bind(resTable));
         $('.menu .item')
             .tab({'onVisible':function(tabpath){
                 if(tabpath==='first'){

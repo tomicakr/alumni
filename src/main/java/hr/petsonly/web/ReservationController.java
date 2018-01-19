@@ -1,24 +1,5 @@
 package hr.petsonly.web;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.UUID;
-
-import javax.validation.Valid;
-
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.access.prepost.PreAuthorize;
-import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
-import org.springframework.validation.BindingResult;
-import org.springframework.web.bind.annotation.DeleteMapping;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.PutMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.ResponseBody;
-
 import hr.petsonly.model.Pet;
 import hr.petsonly.model.Reservation;
 import hr.petsonly.model.Service;
@@ -33,133 +14,144 @@ import hr.petsonly.repository.ReservationRepository;
 import hr.petsonly.repository.ServiceRepository;
 import hr.petsonly.repository.UserRepository;
 import hr.petsonly.service.FormFactory;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.MediaType;
+import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
+import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
+import org.springframework.web.bind.annotation.*;
+
+import javax.validation.Valid;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.UUID;
 
 @Controller
 @PreAuthorize("@webSecurityConfig.checkUserId(authentication, #uid)")
 @RequestMapping(value = "users/{uid}/reservations")
 public class ReservationController {
 
-	private final ReservationRepository reservationRepository;
-	private final UserRepository userRepository;
-	private final PetRepository petRepository;
-	private final ServiceRepository serviceRepository;
-	private final FormFactory formFactory;
+    private final ReservationRepository reservationRepository;
+    private final UserRepository userRepository;
+    private final PetRepository petRepository;
+    private final ServiceRepository serviceRepository;
+    private final FormFactory formFactory;
 
-	@Autowired
-	public ReservationController(ReservationRepository reservationRepository, UserRepository userRepository, PetRepository petRepository, ServiceRepository serviceRepository, FormFactory formFactory) {
-		this.reservationRepository = reservationRepository;
-		this.userRepository = userRepository;
-		this.petRepository = petRepository;
-		this.serviceRepository = serviceRepository;
-		this.formFactory = formFactory;
-	}
+    @Autowired
+    public ReservationController(ReservationRepository reservationRepository, UserRepository userRepository, PetRepository petRepository, ServiceRepository serviceRepository, FormFactory formFactory) {
+        this.reservationRepository = reservationRepository;
+        this.userRepository = userRepository;
+        this.petRepository = petRepository;
+        this.serviceRepository = serviceRepository;
+        this.formFactory = formFactory;
+    }
 
-	@ResponseBody
-	@GetMapping
-	public List<ReservationDetails> showAllReservationsOfAUser(@PathVariable UUID uid) {
+    @ResponseBody
+    @GetMapping
+    public List<ReservationDetails> showAllReservationsOfAUser(@PathVariable UUID uid) {
 
-		User user = userRepository.findOne(uid);
-		List<Reservation> userReservations = reservationRepository.findAllByUser(user);
-		List<ReservationDetails> reservationDetails = new ArrayList<>();
+        User user = userRepository.findOne(uid);
+        List<Reservation> userReservations = reservationRepository.findAllByUser(user);
+        List<ReservationDetails> reservationDetails = new ArrayList<>();
 
-		userReservations.forEach(reservation -> {
-			reservationDetails.add(new ReservationDetails(reservation));
-		});
+        userReservations.forEach(reservation -> {
+            reservationDetails.add(new ReservationDetails(reservation));
+        });
 
-		return reservationDetails;
-	}
+        return reservationDetails;
+    }
 
-	@GetMapping(value = "/new")
-	public String showReservationForm(Model model, @PathVariable UUID uid) {
+    @GetMapping(value = "/new")
+    public String showReservationForm(Model model, @PathVariable UUID uid) {
 
-		List<Pet> pets = petRepository.findByOwnerId(uid.toString());
-		List<PetDetails> petDetails = new ArrayList<>();
-		pets.forEach(pet -> petDetails.add(new PetDetails(pet)));
+        List<Pet> pets = petRepository.findByOwnerId(uid.toString());
+        List<PetDetails> petDetails = new ArrayList<>();
+        pets.forEach(pet -> petDetails.add(new PetDetails(pet)));
 
-		List<User> employees = userRepository.findAllEmployees();
-		List<UserDetailsBasic> employeeDetails = new ArrayList<>();
-		employees.forEach(employee -> employeeDetails.add(new UserDetailsBasic(employee)));
+        List<User> employees = userRepository.findAllEmployees();
+        List<UserDetailsBasic> employeeDetails = new ArrayList<>();
+        employees.forEach(employee -> employeeDetails.add(new UserDetailsBasic(employee)));
 
-		List<Service> services = serviceRepository.findAll();
-		List<ServiceDetails> serviceDetails = new ArrayList<>();
-		services.forEach(service -> serviceDetails.add(new ServiceDetails(service)));
+        List<Service> services = serviceRepository.findAll();
+        List<ServiceDetails> serviceDetails = new ArrayList<>();
+        services.forEach(service -> serviceDetails.add(new ServiceDetails(service)));
 
-		model.addAttribute("userId", uid);
-		model.addAttribute("pets", petDetails);
-		model.addAttribute("employees", employeeDetails);
-		model.addAttribute("services", serviceDetails);
+        model.addAttribute("userId", uid);
+        model.addAttribute("pets", petDetails);
+        model.addAttribute("employees", employeeDetails);
+        model.addAttribute("services", serviceDetails);
 
-		return "newReservation";
-	}
+        return "newReservation";
+    }
 
-	@PostMapping
-	public String createReservation(Model model, @PathVariable UUID uid, @Valid AddReservationForm reservationForm,
-			BindingResult result) {
+    @ResponseBody
+    @PostMapping(consumes = MediaType.APPLICATION_JSON_VALUE)
+    public ResponseEntity<ReservationDetails> createReservation(@RequestBody @Valid AddReservationForm reservationForm,
+                                                                BindingResult result,
+                                                                @PathVariable UUID uid) {
+        if (result.hasErrors()) {System.out.println(result);
+            return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+        }
 
-		if (result.hasErrors()) {
-			System.out.println(result);
-			System.out.println(reservationForm);
-			model.addAttribute("reservation", reservationForm);
-			return "newReservation";
-		}
+        reservationForm.setOwner(uid);
+        Reservation reservation = formFactory.createReservationFromForm(reservationForm);
 
-		User user = userRepository.getOne(uid);
-		System.out.println(reservationForm);
-		Reservation reservation = formFactory.createReservationFromForm(reservationForm);
-		// ReservationDetails reservationDetails = new ReservationDetails(reservation);
-		System.out.println(reservation.getEmployee());
-		user.getReservations().add(reservation);
-		userRepository.save(user);
+        reservation = reservationRepository.save(reservation);
+        ReservationDetails reservationDetails = new ReservationDetails(reservation);
 
-		return "redirect:/users/" + uid.toString();
-	}
+        return new ResponseEntity<>(reservationDetails, HttpStatus.OK);
 
-	@GetMapping(value = "/{id}")
-	public String showSelectedReservation(Model model, @PathVariable UUID id, @PathVariable UUID uid) {
+    }
 
-		Reservation reservation = reservationRepository.getOne(id);
-		ReservationDetails reservationDetails = new ReservationDetails(reservation);
+    @GetMapping(value = "/{id}")
+    public String showSelectedReservation(Model model, @PathVariable UUID id, @PathVariable UUID uid) {
 
-		model.addAttribute("reservation", reservationDetails);
-		return "reservation";
-	}
+        Reservation reservation = reservationRepository.getOne(id);
+        ReservationDetails reservationDetails = new ReservationDetails(reservation);
 
-	@GetMapping(value = "/{id}/edit")
-	public String showReservationEditForm(Model model, @PathVariable UUID id, @PathVariable UUID uid) {
+        model.addAttribute("reservation", reservationDetails);
+        return "reservation";
+    }
 
-		return "reservationEdit";
-	}
+    @GetMapping(value = "/{id}/edit")
+    public String showReservationEditForm(Model model, @PathVariable UUID id, @PathVariable UUID uid) {
 
-	@PutMapping(value = "/{id}")
-	public String saveReservation(Model model, @PathVariable UUID uid, @PathVariable UUID id,
-			@Valid AddReservationForm reservation, BindingResult result) {
+        return "reservationEdit";
+    }
 
-		if (result.hasErrors()) {
+    @PutMapping(value = "/{id}")
+    public String saveReservation(Model model, @PathVariable UUID uid, @PathVariable UUID id,
+                                  @Valid AddReservationForm reservation, BindingResult result) {
 
-			model.addAttribute("errorMessage", result.toString());
-			return "reservationEdit";
-		}
+        if (result.hasErrors()) {
 
-		User user = userRepository.getOne(uid);
+            model.addAttribute("errorMessage", result.toString());
+            return "reservationEdit";
+        }
 
-		Reservation res = reservationRepository.findOne(id);
+        User user = userRepository.getOne(uid);
 
-		if (formFactory.editReservationFromForm(res, reservation)) {
-			model.addAttribute("errorMessage", "Nema promjena.");
-			return String.format("redirect:/users/%s/reservations", uid.toString());
-		}
+        Reservation res = reservationRepository.findOne(id);
 
-		userRepository.save(user);
+        if (formFactory.editReservationFromForm(res, reservation)) {
+            model.addAttribute("errorMessage", "Nema promjena.");
+            return String.format("redirect:/users/%s/reservations", uid.toString());
+        }
 
-		return String.format("redirect:/users/%s/reservations", uid.toString());
-	}
+        userRepository.save(user);
 
-	@DeleteMapping(value = "/{id}")
-	public String deleteReservation(@PathVariable UUID id, @PathVariable UUID uid) {
+        return String.format("redirect:/users/%s/reservations", uid.toString());
+    }
 
-		reservationRepository.delete(id);
+    @DeleteMapping(value = "/{id}")
+    public String deleteReservation(@PathVariable UUID id, @PathVariable UUID uid) {
 
-		return String.format("redirect:/users/%s/reservations", uid.toString());
-	}
+        reservationRepository.delete(id);
+
+        return String.format("redirect:/users/%s/reservations", uid.toString());
+    }
 
 }

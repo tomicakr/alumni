@@ -1,13 +1,15 @@
 package hr.petsonly.model.details;
 
-import java.util.UUID;
-
+import hr.petsonly.model.Reservation;
 import org.springframework.stereotype.Component;
 
-import hr.petsonly.model.Reservation;
+import java.time.format.DateTimeFormatter;
+import java.util.UUID;
 
 @Component
 public class ReservationDetails {
+
+	private static final DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd.mm.yyyy. hh:mm");
 
 	private UUID reservationId;
 	private String pet;
@@ -25,7 +27,7 @@ public class ReservationDetails {
 		this.pet = reservation.getPet().getName();
 		this.service = reservation.getService().getName(); 
 		this.employee = reservation.getEmployee() == null ? null :reservation.getEmployee().getName() + " " + reservation.getEmployee().getSurname();
-		this.time = reservation.getReservationTime().toString();
+		this.time = reservation.getReservationTime().format(formatter);
 
 		switch (reservation.getReservationStatus()) {
 		case 1:

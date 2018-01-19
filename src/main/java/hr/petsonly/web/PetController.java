@@ -1,33 +1,24 @@
 package hr.petsonly.web;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
-import java.util.UUID;
-
-import javax.validation.Valid;
-
+import hr.petsonly.model.Pet;
+import hr.petsonly.model.details.PetDetails;
+import hr.petsonly.model.form.PetForm;
+import hr.petsonly.repository.PetRepository;
+import hr.petsonly.service.FormFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
-import org.springframework.web.bind.annotation.DeleteMapping;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.*;
 
-import hr.petsonly.model.Pet;
-import hr.petsonly.model.details.PetDetails;
-import hr.petsonly.model.form.PetForm;
-import hr.petsonly.repository.PetRepository;
-import hr.petsonly.service.FormFactory;
+import javax.validation.Valid;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
+import java.util.UUID;
 
 @Controller
 @PreAuthorize("@webSecurityConfig.checkUserId(authentication, #id)")
@@ -45,7 +36,7 @@ public class PetController {
 
 	@ResponseBody
 	@GetMapping
-	public List<PetDetails> showPetList(Model model, @PathVariable UUID id) {
+	public List<PetDetails> showPetList(@PathVariable UUID id) {
 
 		List<Pet> petList = petRepository.findByOwnerId(id.toString());
 		System.out.println(Arrays.toString(petList.toArray()));
@@ -66,14 +57,14 @@ public class PetController {
 
 	@ResponseBody
 	@PostMapping(consumes = MediaType.APPLICATION_JSON_VALUE)
-	public ResponseEntity<PetDetails> addNewPet(@RequestBody @Valid PetForm petForm, BindingResult result, Model model,
-			@PathVariable UUID id) {
+	public ResponseEntity<PetDetails> addNewPet(@RequestBody @Valid PetForm petForm,
+												BindingResult result,
+												@PathVariable UUID id) {
 		if (result.hasErrors()) {
-			System.out.println(result);
 			return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
 		}
 
-		petForm.setOwner(id.toString());
+		petForm.setOwner(id);
 		Pet pet = formFactory.createPetFromForm(petForm);
 
 		pet = petRepository.save(pet);
@@ -84,7 +75,7 @@ public class PetController {
 
 	@ResponseBody
 	@DeleteMapping("/{petId}")
-	public ResponseEntity<PetDetails> deletePet(Model model, @PathVariable UUID petId, @PathVariable UUID id) {
+	public ResponseEntity<PetDetails> deletePet(@PathVariable UUID petId, @PathVariable UUID id) {
 
 		Pet pet = petRepository.findOne(petId);
 		if (pet == null) {

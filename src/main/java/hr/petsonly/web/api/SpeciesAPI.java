@@ -23,8 +23,7 @@ public class SpeciesAPI {
 
     @ResponseBody
     @GetMapping
-    public List<Species> showPetList() {
-
+    public List<Species> getSpecies() {
         return speciesRepository.findAll();
     }
 }

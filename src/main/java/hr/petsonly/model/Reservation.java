@@ -1,21 +1,12 @@
 package hr.petsonly.model;
 
+import org.hibernate.annotations.Type;
+
+import javax.persistence.*;
+import javax.transaction.Transactional;
 import java.time.Duration;
 import java.time.LocalDateTime;
 import java.util.UUID;
-
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.FetchType;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
-import javax.persistence.Table;
-import javax.transaction.Transactional;
-
-import org.hibernate.annotations.Type;
 
 @Entity
 @Transactional
@@ -42,7 +33,6 @@ public class Reservation {
 
 	@Column
 	private int reservationStatus;
-
 
 	@ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name = "employeeId")

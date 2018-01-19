@@ -22,12 +22,6 @@ $.fn.form.settings.rules.secondAreaFilled = () => {
 };
 
 
-function isEmpty(){
-    return (passOld.val().toString().length + pass.val().toString().length + passCheck.val().toString().length) === 0;
-
-};
-
-
 initialize({
     oldPassword: {
         identifier: 'oldPassword',

@@ -10,7 +10,7 @@
 <body>
 <%@ include file = "../partials/sidebarBegin.jsp" %>
 <%@ include file="../partials/header.jsp" %>
-<main class="ui two column center aligned grid">
+<main>
 	<div class="ui container">
 	        <h1 class   ="ui massive center aligned header">Korisnici aplikacije</h1>
 	        <table class="ui very padded table">
@@ -32,16 +32,16 @@
 	                    <td>
 	                        <c:choose>
 	                            <c:when test="${user.roles[0].equals(\"ROLE_KORISNIK\")}">
-	                                <a class="ui long tag label brown">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Klijent&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</a>
+	                                <p class="ui client long tag label">Klijent</p>
 	                            </c:when>
 	                            <c:when test="${user.roles[0].equals(\"ROLE_ZAPOSLENIK\")}">
-	                                <a class="ui long tag label orange">&nbsp;&nbsp;&nbsp;Zaposlenik&nbsp;&nbsp;&nbsp;&nbsp;</a>
+	                                <p class="ui employee long tag label">Zaposlenik</p>
 	                            </c:when>
 	                            <c:when test="${user.roles[0].equals(\"ROLE_ADMINISTRATOR\")}">
-	                                <a class="ui long tag label red">Administrator</a>
+	                                <p class="ui administrator long tag label">Administrator</p>
 	                            </c:when>
 	                            <c:otherwise>
-	                                <a class="ui long tag label red">Greška</a>
+	                                <p class="ui administrator long tag label">Greška</p>
 	                            </c:otherwise>
 	                        </c:choose>
 	                    </td>

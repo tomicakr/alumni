@@ -5,6 +5,7 @@ import java.util.UUID;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
+import hr.petsonly.model.form.validation.ValidEmail;
 import org.hibernate.validator.constraints.NotEmpty;
 import org.springframework.stereotype.Component;
 
@@ -16,24 +17,57 @@ import hr.petsonly.model.form.validation.PasswordMatches;
 public class EditUserForm {
 
 	@NotNull
+	@NotEmpty(message = "{euform.firstname.empty}")
+	private String name;
+
+	@NotNull
+	@NotEmpty(message = "{rform.lastname.empty}")
+	private String surname;
+
+	@NotNull
 	@NotEmpty(message = "{euform.mobilephone.empty}")
 	private String mobilePhone;
+
+	@NotNull
+	@NotEmpty(message = "{euform.phone.empty}")
+	private String phone;
+
+	@NotNull
+	@ValidEmail(message = "{euform.email.invalid}")
+	private String email;
 
 	@NotNull
 	private UUID location;
 
 	@NotNull
-	@NotEmpty(message = "{euform.oldpassword.empty}")
-	private String oldPassword;
+	@NotEmpty(message = "{euform.address.empty}")
+	private String address;
 
+	@Size(min = 8, max = 30)
 	@NotNull
 	@NotEmpty(message = "{euform.password.empty}")
-	@Size(min = 6, max = 30, message = "{euform.password.invalid}")
 	private String password;
 
+	@Size(min = 8, max = 30)
 	@NotNull
 	@NotEmpty(message = "{euform.password2.empty}")
 	private String password2;
+
+	public String getName() {
+		return name;
+	}
+
+	public void setName(String name) {
+		this.name = name;
+	}
+
+	public String getSurname() {
+		return surname;
+	}
+
+	public void setSurname(String surname) {
+		this.surname = surname;
+	}
 
 	public String getMobilePhone() {
 		return mobilePhone;
@@ -41,6 +75,22 @@ public class EditUserForm {
 
 	public void setMobilePhone(String mobilePhone) {
 		this.mobilePhone = mobilePhone;
+	}
+
+	public String getPhone() {
+		return phone;
+	}
+
+	public void setPhone(String phone) {
+		this.phone = phone;
+	}
+
+	public String getEmail() {
+		return email;
+	}
+
+	public void setEmail(String email) {
+		this.email = email;
 	}
 
 	public UUID getLocation() {
@@ -51,12 +101,12 @@ public class EditUserForm {
 		this.location = location;
 	}
 
-	public String getOldPassword() {
-		return oldPassword;
+	public String getAddress() {
+		return address;
 	}
 
-	public void setOldPassword(String oldPassword) {
-		this.oldPassword = oldPassword;
+	public void setAddress(String address) {
+		this.address = address;
 	}
 
 	public String getPassword() {
@@ -76,11 +126,13 @@ public class EditUserForm {
 	}
 
 	public boolean hasChanges(User user) {
-		if (user.getLocation().getLocationId().equals(location) && user.getMobilePhone().equals(mobilePhone)
-				&& user.getPassword().equals(password)) {
-			return false;
-		}
-
-		return true;
+		return !name.equals(user.getName())
+				|| !surname.equals(user.getSurname())
+				|| !mobilePhone.equals(user.getMobilePhone())
+				|| !phone.equals(user.getPhone())
+				|| !email.equals(user.getEmail())
+				|| !location.equals(user.getLocation().getLocationId())
+				|| !address.equals(user.getAddress())
+				|| !password.equals(user.getPassword());
 	}
 }

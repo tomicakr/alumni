@@ -23,7 +23,7 @@ public class PasswordMatchesValidator implements ConstraintValidator<PasswordMat
 		if (obj instanceof EditUserForm) {
 			EditUserForm rForm = (EditUserForm) obj;
 
-			return rForm.getPassword().equals(rForm.getPassword2());
+			return rForm.getPassword() == null || rForm.getPassword().equals(rForm.getPassword2());
 		}
 
 		return false;

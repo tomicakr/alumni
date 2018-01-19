@@ -17,10 +17,10 @@
         <form action="/users/${user.userId}/" method="post" class="ui large form segment stacked">
             <div class="two fields">
                 <div class="field">
-                    <input type="text" name="name" id="first-name" disabled placeholder="Ime" value="${user.firstName}">
+                    <input type="text" name="name" id="first-name" placeholder="Ime" value="${user.firstName}">
                 </div>
                 <div class="field">
-                    <input type="text" name="surname" id="last-name" disabled placeholder="Prezime" value="${user.lastName}">
+                    <input type="text" name="surname" id="last-name" placeholder="Prezime" value="${user.lastName}">
                 </div>
             </div>
             <div class="field">
@@ -30,10 +30,10 @@
                 <input type="tel" name="mobilePhone" id="mobile-phone" placeholder="Broj mobitela" autofocus value="${user.mobilePhone}">
             </div>
             <div class="field">
-                <input type="tel" name="phone" id="telephone" placeholder="Broj telefona" disabled value="${user.telephone}">
+                <input type="tel" name="phone" id="telephone" placeholder="Broj telefona" value="${user.telephone}">
             </div>
             <div class="field">
-                <input type="email" name="email" id="email" placeholder="Adresa elektroničke pošte" disabled value="${user.email}">
+                <input type="email" name="email" id="email" placeholder="Adresa elektroničke pošte" value="${user.email}">
             </div>
             <div class="field">
                 <select name="location" title="">
@@ -44,7 +44,7 @@
                 </select>
             </div>
             <div class="field">
-                <input type="text" name="address" id="address" placeholder="Adresa stanovanja" disabled value="${user.address}">
+                <input type="text" name="address" id="address" placeholder="Adresa stanovanja" value="${user.address}">
             </div>
             <div class="ui accordion field">
                 <div class="ui left floated title">
@@ -52,9 +52,6 @@
                     Promijenite lozinku
                 </div>
                 <div class="content field">
-                    <div class="field">
-                        <input type="password" name="oldPassword" id="old-password" placeholder="Unesite staru lozinku">
-                    </div>
                     <div class="field">
                         <input type="password" name="password" id="password" placeholder="Unesite novu lozinku">
                     </div>
@@ -66,7 +63,7 @@
             <div class="ui fluid huge darkred submit button" style="width: 100%">Spremi promjene</div>
         </form>
        	
-       	<spring:hasBindErrors name="registrationForm">
+       	<spring:hasBindErrors name="editUserForm">
 			<c:forEach var="error" items="${errors.allErrors}">
 				<div class="ui error message visible"><spring:message message="${error}" /></div>
 				<br />

@@ -157,12 +157,10 @@
         </div>
     </div>
 </div>
-
 <%@ include file = "../partials/footer.jsp" %>
 <%@ include file = "../partials/sidebarEnd.jsp" %>
 
 <script src="${pageContext.request.contextPath}/scripts/jobs.js"></script>
-<script src="${pageContext.request.contextPath}/scripts/global.js"></script>
 </body>
 </html>
 

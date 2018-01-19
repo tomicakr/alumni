@@ -17,13 +17,12 @@ import org.springframework.validation.beanvalidation.LocalValidatorFactoryBean;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurerAdapter;
 
 @Configuration
-public class AppConfig extends WebMvcConfigurerAdapter{
+public class AppConfig extends WebMvcConfigurerAdapter {
 
 	@Bean
 	public JavaMailSender getMailSender() {
 		JavaMailSenderImpl mailSender = new JavaMailSenderImpl();
 
-		// Using gmail
 		mailSender.setHost("smtp.gmail.com");
 		mailSender.setPort(587);
 		mailSender.setUsername("fau53t7zss@gmail.com");
@@ -62,7 +61,6 @@ public class AppConfig extends WebMvcConfigurerAdapter{
 	@Bean
 	public static PropertyPlaceholderConfigurer properties() {
 		final PropertyPlaceholderConfigurer ppc = new PropertyPlaceholderConfigurer();
-		// ppc.setIgnoreUnresolvablePlaceholders(true);
 		ppc.setIgnoreResourceNotFound(true);
 
 		final List<Resource> resourceLst = new ArrayList<Resource>();
@@ -73,5 +71,5 @@ public class AppConfig extends WebMvcConfigurerAdapter{
 
 		return ppc;
 	}
-	
+
 }

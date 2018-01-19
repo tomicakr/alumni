@@ -29,6 +29,11 @@
 	background-size: 300px;
 }
 
-#main-content, #lower-main{
+#lower-main{
+	background-color: #ffa64d;
+}
+
+
+.pusher.dimmed, body.pushable>.pusher{
 	background-color: #ffa64d;
 }

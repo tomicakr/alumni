@@ -15,13 +15,21 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import hr.petsonly.model.Reservation;
 import hr.petsonly.model.details.ReservationDetails;
 import hr.petsonly.repository.ReservationRepository;
+import hr.petsonly.service.email.EmailServiceImpl;
 
 @Controller
 @RequestMapping(value = "/jobs")
 public class JobController {
 	
+	private final ReservationRepository reservationRepository;
+
+	private final EmailServiceImpl mailService;
+
 	@Autowired
-	private ReservationRepository reservationRepository;
+	public JobController(EmailServiceImpl mailService, ReservationRepository reservationRepository) {
+		this.mailService = mailService;
+		this.reservationRepository = reservationRepository;
+	}
 
 	@GetMapping
 	public String showAllReservations(Model model) {
@@ -49,7 +57,6 @@ public class JobController {
 		model.addAttribute("accepted", accepted);
 		model.addAttribute("confirmed", confirmed);
 		
-		
 		return "jobs";
 	}
 	
@@ -60,6 +67,7 @@ public class JobController {
 		model.addAttribute("reservation", reservationDetails);
 		
 		return "reservation";
+		
 	}
 	
 	@PostMapping("/{reservationId}/accept")
@@ -76,8 +84,9 @@ public class JobController {
 	public String confirmReservation(@PathVariable UUID reservationId) {
 		
 		Reservation reservation = reservationRepository.findOne(reservationId);
-		reservation.setReservationStatus(3); //confirmed TODO: ovo treba pomocu enuma, ne samo broj
+		reservation.setReservationStatus(3);
 		reservationRepository.save(reservation);
+		mailService.sendReservationOffer(reservation);
 		
 		return "redirect:/jobs";
 	}

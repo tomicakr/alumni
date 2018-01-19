@@ -1,6 +1,7 @@
 package hr.petsonly.service;
 
 import java.util.List;
+import java.util.UUID;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -8,6 +9,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import hr.petsonly.model.Role;
 import hr.petsonly.model.User;
+import hr.petsonly.model.form.PatchForm;
 import hr.petsonly.model.form.RegistrationForm;
 import hr.petsonly.repository.UserRepository;
 
@@ -27,13 +29,36 @@ public class UserService {
 		}
 
 		User user = formFactory.createUserFromForm(rf);
-		
+
 		return repository.save(user);
 	}
-	
+
 	@Transactional
 	public List<Role> findUsersRoles(User user) {
 		return user.getRoles();
+	}
+
+	public boolean hireUser(UUID userId) {
+		User user = repository.findOne(userId);
+		if (user == null) {
+			return false;
+		}
+		
+		repository.hireUser(userId.toString());
+
+		return true;
+	}
+
+	public boolean fireUser(UUID userId) {
+		User user = repository.findOne(userId);
+
+		if (user == null) {
+			return false;
+		}
+
+		repository.fireUser(userId.toString());
+
+		return true;
 	}
 
 	private boolean emailExist(String email) {
@@ -41,7 +66,52 @@ public class UserService {
 		if (user != null) {
 			return true;
 		}
+
+		return false;
+	}
+
+	public boolean updateUser(UUID userId, String operation, String path, String newValue) {
+
+		switch (operation) {
+		case "replace":
+
+			switch (path) {
+			case "/status":
+
+				if (newValue.equals("employee")) {
+					hireUser(userId);
+					return true;
+				} else if (newValue.equals("client")) {
+					fireUser(userId);
+					return true;
+				}
+
+				return false;
+			default:
+				return false;
+			}
+		}
 		
 		return false;
+	}
+
+	public void validatePatchForm(PatchForm patchForm, Boolean valid) {
+		switch (patchForm.getOp()) {
+		case "replace":
+
+			switch (patchForm.getPath()) {
+			case "/status":
+
+				if (patchForm.getValue().equals("employee")) {
+				} else if (patchForm.getValue().equals("client")) {
+				}
+
+				valid = false;
+			default:
+				valid = false;
+			}
+		}
+		
+		valid = false;
 	}
 }

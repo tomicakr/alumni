@@ -1,7 +1,6 @@
 package hr.petsonly.model.converters;
 
 import java.sql.Time;
-import java.time.LocalDateTime;
 import java.time.LocalTime;
 
 import javax.persistence.AttributeConverter;

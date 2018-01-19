@@ -1,18 +1,15 @@
 package hr.petsonly.model.form;
 
-import java.util.UUID;
-
-import javax.validation.constraints.NotNull;
-
+import hr.petsonly.model.Reservation;
 import org.hibernate.validator.constraints.NotEmpty;
 import org.springframework.stereotype.Component;
 
-import hr.petsonly.model.Reservation;
+import javax.validation.constraints.NotNull;
+import java.util.UUID;
 
 @Component
 public class AddReservationForm {
 
-	@NotNull
 	private UUID owner;
 
 	@NotNull
@@ -22,6 +19,7 @@ public class AddReservationForm {
 	@NotNull
 	private UUID pet;
 
+	@NotNull
 	private UUID employee;
 
 	@NotNull

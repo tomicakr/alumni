@@ -1,9 +1,10 @@
 package hr.petsonly.model.form;
 
-import javax.validation.constraints.NotNull;
-
 import org.hibernate.validator.constraints.NotEmpty;
 import org.springframework.stereotype.Component;
+
+import javax.validation.constraints.NotNull;
+import java.util.UUID;
 
 @Component
 public class PetForm {
@@ -19,18 +20,14 @@ public class PetForm {
 	private Character sex;
 
 	@NotNull
-	@NotEmpty(message = "{pform.species.empty}")
-	private String species;
-
-	@NotNull
-	private String breed;
+	private UUID species;
 
 	@NotNull
 	private String microchip;
 
 	private String remark;
 
-	private String owner;
+	private UUID owner;
 
 	public String getName() {
 		return name;
@@ -56,20 +53,12 @@ public class PetForm {
 		this.sex = sex;
 	}
 
-	public String getSpecies() {
+	public UUID getSpecies() {
 		return species;
 	}
 
-	public void setSpecies(String species) {
+	public void setSpecies(UUID species) {
 		this.species = species;
-	}
-
-	public String getBreed() {
-		return breed;
-	}
-
-	public void setBreed(String breed) {
-		this.breed = breed;
 	}
 
 	public String getMicrochip() {
@@ -88,11 +77,11 @@ public class PetForm {
 		this.remark = remark;
 	}
 
-	public String getOwner() {
+	public UUID getOwner() {
 		return owner;
 	}
 
-	public void setOwner(String owner) {
+	public void setOwner(UUID owner) {
 		this.owner = owner;
 	}
 

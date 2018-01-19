@@ -1,8 +1,3 @@
-#sidebarHeader{
-	text-align: center;
-	color: white;
-	padding-top: 10px;
-}
 
 .ui.two.column.center.aligned.grid{
 	padding-top: 65px;
@@ -11,4 +6,7 @@
 
 .ui.very.padded.table{
 	margin: 4.5em auto;
+}
+.ui.inverted.vertical.footer.segment{
+	margin-top: 310px;
 }

@@ -1,49 +1,49 @@
 package hr.petsonly.service;
 
-import java.time.Duration;
-import java.time.LocalDateTime;
-import java.time.format.DateTimeFormatter;
-import java.util.Arrays;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.UUID;
-
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Value;
-import org.springframework.stereotype.Service;
-
-import hr.petsonly.model.Location;
-import hr.petsonly.model.Pet;
-import hr.petsonly.model.Reservation;
-import hr.petsonly.model.Role;
-import hr.petsonly.model.User;
+import hr.petsonly.model.*;
 import hr.petsonly.model.form.AddReservationForm;
 import hr.petsonly.model.form.EditUserForm;
 import hr.petsonly.model.form.PetForm;
 import hr.petsonly.model.form.RegistrationForm;
-import hr.petsonly.repository.LocationRepository;
-import hr.petsonly.repository.PetRepository;
-import hr.petsonly.repository.RoleRepository;
-import hr.petsonly.repository.ServiceRepository;
-import hr.petsonly.repository.UserRepository;
+import hr.petsonly.repository.*;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
+import org.springframework.security.crypto.password.PasswordEncoder;
+import org.springframework.stereotype.Service;
+
+import java.time.Duration;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
+import java.util.UUID;
 
 @Service
 public class FormFactory {
 	
-	@Autowired
-	private LocationRepository lr;
-	@Autowired
-	private UserRepository ur;
-	@Autowired
-	private ServiceRepository sr;
-	@Autowired
-	private PetRepository pr;
-	@Autowired 
-	private RoleRepository rr;
-	
+	private final LocationRepository lr;
+	private final UserRepository ur;
+	private final ServiceRepository sr;
+	private final PetRepository pr;
+	private final RoleRepository rr;
+	private final PasswordEncoder pe;
+	private final SpeciesRepository specr;
+
 	@Value("${default.reservation.duration}")
 	private String DEFAULT_DURATION;
-	
+
+	@Autowired
+	public FormFactory(LocationRepository lr, UserRepository ur, ServiceRepository sr, PetRepository pr, RoleRepository rr, PasswordEncoder pe, SpeciesRepository specr) {
+		this.lr = lr;
+		this.ur = ur;
+		this.sr = sr;
+		this.pr = pr;
+		this.rr = rr;
+		this.pe = pe;
+		this.specr = specr;
+	}
+
 	public User createUserFromForm(RegistrationForm rf){
 		User u = new User();
 		u.setName(rf.getName());
@@ -53,7 +53,7 @@ public class FormFactory {
 		u.setPhone(rf.getPhone());
 		u.setEmail(rf.getEmail());
 		u.setAddress(rf.getAddress());
-		u.setPassword(rf.getPassword());
+		u.setPassword(pe.encode(rf.getPassword()));
 		
 		u.setRoles(Arrays.asList(rr.findByName("ROLE_KORISNIK")));
 		
@@ -106,12 +106,11 @@ public class FormFactory {
 		p.setPetKey(UUID.randomUUID());
 		p.setName(pf.getName());
 		p.setAge(pf.getAge());
-		p.setBreed(pf.getBreed());
 		p.setMicrochip(pf.getMicrochip());
 		p.setRemark(pf.getRemark());
 		p.setSex(pf.getSex());
-		p.setSpecies(pf.getSpecies());
-		p.setOwner(ur.findOne(UUID.fromString(pf.getOwner())));
+		p.setSpecies(specr.getOne(pf.getSpecies()));
+		p.setOwner(ur.findOne(pf.getOwner()));
 		return p;
 	}
 	
@@ -119,16 +118,19 @@ public class FormFactory {
 		if(!ef.hasChanges(user)) {
 			return false;
 		}
-		if(!ef.getMobilePhone().isEmpty()) {
-			user.setMobilePhone(ef.getMobilePhone());
-		}
+
+		user.setName(ef.getName());
+		user.setSurname(ef.getSurname());
+		user.setMobilePhone(ef.getMobilePhone());
+		user.setPhone(ef.getPhone());
+		user.setEmail(ef.getEmail());
 		user.setLocation(lr.findOne(ef.getLocation()));
-		
-		if(!ef.getPassword().equals("")){
+		user.setAddress(ef.getAddress());
+
+		if(ef.getPassword() != null && !ef.getPassword().equals("")){
 			user.setPassword(ef.getPassword());
 		}
 		
-			
 		return true;
 	}
 

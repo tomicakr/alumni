@@ -1,6 +1,12 @@
 const userIndex           = window.location.href + (window.location.href.endsWith('/') ? '' : '/');
 const petIndex            = `${userIndex}pets/`;
 const reservationIndex    =`${userIndex}reservations/`;
+const api = {
+    species:'/api/species',
+    employees: '/api/users?role=employee',
+    pets: petIndex,
+    service: '/api/services'
+};
 
 const btnPets             = $('#btn-pets'           );
 const btnReservations     = $('#btn-reservations'   );
@@ -9,12 +15,31 @@ const btnDelete           = $('#btn-delete-user'    );
 const btnEmploy           = $('#btn-employ-user'    );
 const btnFire             = $('#btn-fire-user'      );
 const btnAddPet           = $('#btn-add-pet'        );
-const btnAddReservation   = $('#btn-add-reservation');
 
-const addPetModal         = $('#add-pet-modal');
+const petSpecies          = $('#pet-species' );
+const resEmployee         = $('#res-employee');
+const resService          = $('#res-service' );
+const resPet              = $('#res-pet' );
+
+
+const btnAddReservation   = $('#btn-add-reservation');
+const addPetModal         = $('#add-pet-modal'        );
+
 const addReservationModal = $('#add-reservation-modal');
 
-function sendPatch(data,onSuccess, onFail){
+const userRole            = $('#role');
+const clientLabel   = '<p class="ui client long tag label">Klijent</p>';
+
+const employeeLabel = '<p class="ui employee long tag label">Zaposlenik</p>';
+function hideElem(e){
+    e.addClass('inactive');
+
+}
+function showElem(e) {
+    e.removeClass('inactive');
+
+}
+function patch(data, onSuccess, onFail){
     $.ajax({
         url: userIndex,
         type: 'PATCH',
@@ -25,6 +50,7 @@ function sendPatch(data,onSuccess, onFail){
     })
         .then(onSuccess)
         .catch(onFail)
+
 }
 
 const employOperation = {
@@ -38,15 +64,14 @@ const fireOperation = {
     "path": "/status",
     "value": "client"
 };
-
 let Table= function(indexUrl, table, tableBody, placeholder, deleteModal){
     this.indexUrl = indexUrl;
     this.table = table;
     this.tableBody = tableBody;
     this.placeholder = placeholder;
     this.deleteModal = deleteModal;
+    this.isUpdating = false;
 };
-
 
 Table.prototype = {
     isEmpty:function(){
@@ -76,7 +101,7 @@ Table.prototype = {
                 }).then(() => {
                     row.remove();
                     if (this.isEmpty()) {
-                        this.table.hide();
+                        this.table.hideElem();
                         this.placeholder.show();
                     }
                 })
@@ -87,6 +112,10 @@ Table.prototype = {
     },
 
     update: function(){
+        if(this.isUpdating){
+            return;
+        }
+        this.isUpdating = true;
         this.tableBody.empty();
         this.getData()
             .then(entities => {
@@ -100,7 +129,10 @@ Table.prototype = {
                 this.table.show();
 
             })
-            .fail(console.log);
+            .fail(console.log)
+            .always(
+                () => this.isUpdating = false
+            );
     },
 
     save: function(fields) {
@@ -112,14 +144,11 @@ Table.prototype = {
             data: JSON.stringify(fields)
         })
             .then(data => {
-                console.log(data);
                 this.append(data);
             })
             .catch(() => console.log("tu sam"));
     }
 };
-
-
 
 let petTable = new Table(
     petIndex,
@@ -128,17 +157,17 @@ let petTable = new Table(
     $('#pet-placeholder'),
     $('#delete-pet-modal')
 );
-
 let appendPet = function(pet){
     let deleteButton = '<i class="trash big remove action icon" title="Obriši ljubimca"></i>';
-    let petMarkup = $(this.formatTableRow(pet.name, pet.age, pet.species, pet.breed, pet.sex, pet.microchip, pet.remark,deleteButton));
 
+    let petMarkup = $(this.formatTableRow(pet.name, pet.age, pet.species,pet.sex, pet.microchip, pet.remark,deleteButton));
     petMarkup.data('id',pet.petId);
     petTable.tableBody.append(petMarkup);
-    petMarkup.find('.remove.icon').click(petTable.remove.bind(petTable,petMarkup));
 
+    petMarkup.find('.remove.icon').click(petTable.remove.bind(petTable,petMarkup));
     this.placeholder.hide();
     this.table.show();
+
 };
 
 petTable.append = appendPet.bind(petTable);
@@ -147,7 +176,7 @@ let resTable = new Table(
     reservationIndex,
     $('#reservations-table'),
     $('#reservations').find('tbody'),
-    $('#reservations-placeholder')
+    $('#reservations-placeholder'),
 );
 
 resTable.append = (function(res){
@@ -196,6 +225,7 @@ const petValidation = {
     }
 };
 
+
 const reservationValidation = {
     service: {
         identifier: 'usluga',
@@ -228,16 +258,66 @@ const reservationValidation = {
     },
 };
 
+function fillDropDown(dropdown, getId, getText, getName, data){
+        dropdown.empty();
+        let options = [];
+        data.forEach(x => {
+            let [v,t,n] = [getId(x),getText(x),getName(x)];
+            options.push({
+                value: v,
+                text: t,
+                name: n
+            });
+            dropdown.append($('<option>', {value: v, text: t}));
+        });
+        dropdown.dropdown('setup menu', {values: options});
+}
 
 btnPets.click(petTable.update.bind(petTable));
-
-btnAddPet.click(
-    () => addPetModal.modal('show')
+btnAddPet.click(() => {
+        addPetModal.modal('show');
+        $.getJSON(api.species)
+            .then(
+                data => fillDropDown(
+                    petSpecies,
+                    x => x.id,
+                    x => x.name,
+                    x => x.name,
+                    data)
+            )
+    }
 );
 
 btnAddReservation.click(
-    () => window.location.href=reservationIndex+'new'
-    //() => addReservationModal.modal('show')
+    () => {addReservationModal.modal('show');
+        $.getJSON(api.employees)
+            .then(
+                data => fillDropDown(
+                    resEmployee,
+                    x => x.userId,
+                    x => `${x.firstName} ${x.lastName}`,
+                    x => `${x.firstName} ${x.lastName}`,
+                    data)
+            );
+        $.getJSON(api.service)
+            .then(
+                data => fillDropDown(
+                    resService,
+                    x => x.id,
+                    x => x.name,
+                    x => x.name,
+                    data)
+            );
+        $.getJSON(api.pets)
+            .then(
+                data => fillDropDown(
+                    resPet,
+                    x => x.petId,
+                    x => x.name,
+                    x => x.name,
+                    data)
+            )
+    }
 );
 
 btnReservations.click(resTable.update.bind(resTable));
@@ -267,18 +347,36 @@ btnEdit.click(
 );
 
 
+
+function switchButtons(toHide, toShow) {
+    hideElem(toHide);
+    showElem(toShow);
+}
+
+function hire(){
+    switchButtons(btnEmploy, btnFire);
+    userRole.find('p').remove();
+    userRole.append(employeeLabel);
+}
+
+function fire(){
+    switchButtons(btnFire, btnEmploy);
+    userRole.find('p').remove();
+    userRole.append(clientLabel);
+}
+
 btnEmploy.click(() => {
-    sendPatch(
+    patch(
         [employOperation],
-        () => console.log('Kaze kontroler da je uspjelo'),
+        hire,
         () => console.log(`Ovo se poslalo: "${JSON.stringify([employOperation])}", ali nista od toga`),
     );
 });
 
 btnFire.click(() => {
-    sendPatch(
+    patch(
         [fireOperation],
-        () => console.log('Kaze kontroler da je uspjelo'),
+        fire,
         () => console.log(`Ovo se poslalo: "${JSON.stringify([fireOperation])}", ali nista od toga`),
     );
 });
@@ -302,15 +400,7 @@ function modalInit(modal, formFields, handler){
 $(document)
     .ready(function() {
         modalInit(addPetModal,petValidation,petTable.save.bind(petTable));
-
-        modalInit(addReservationModal,reservationValidation,
-            (fields) => addEntity(
-                reservationIndex,
-                appendReservation,
-                console.log,
-                fields,
-            ));
-
+        modalInit(addReservationModal,reservationValidation,resTable.save.bind(resTable));
         $('.menu .item')
             .tab({'onVisible':function(tabpath){
                 if(tabpath==='first'){

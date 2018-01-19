@@ -18,7 +18,6 @@ import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
-import javax.validation.constraints.Size;
 
 import org.hibernate.annotations.Type;
 import org.hibernate.validator.constraints.Email;
@@ -59,8 +58,7 @@ public class User {
 	@Column(unique = true)
 	private String email;
 
-	@Size(min = 6, max = 30)
-	@Column
+	@Column(length = 60)
 	private String password;
 
 	@Column

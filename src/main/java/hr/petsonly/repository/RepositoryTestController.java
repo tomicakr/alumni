@@ -85,6 +85,7 @@ public class RepositoryTestController {
 		return result;
 	}
 
+	
 	@RequestMapping("/repotest/findByOwnerAndNamePet")
 	public String findByOwnerAndName() {
 		String result = "";
@@ -113,7 +114,7 @@ public class RepositoryTestController {
 
 		List<Pet> pets = pr.findByOwnerMnemonic("mp");
 		for (Pet p : pets) {
-			result += p.getName() + " " + p.getBreed() + " " + p.getOwner().getUserMnemonic() + " "
+			result += p.getName() + " " + p.getOwner().getUserMnemonic() + " "
 					+ p.getOwner().getUserId() + "<br>";
 		}
 		return result;
@@ -125,7 +126,7 @@ public class RepositoryTestController {
 
 		List<Pet> pets = pr.findByOwnerMnemonicAndName("fs", "Šnaucer");
 		for (Pet p : pets) {
-			result += p.getName() + " " + p.getBreed() + " " + p.getOwner().getUserMnemonic() + " "
+			result += p.getName() + " " + p.getOwner().getUserMnemonic() + " "
 					+ p.getOwner().getUserId() + "<br>";
 		}
 		return result;
@@ -138,7 +139,7 @@ public class RepositoryTestController {
 		List<Pet> pets = pr.findByOwnerId("fb8f4014-e0b0-4a5e-9079-320c1e1516e8");
 		System.out.println(pets.size());
 		for (Pet p : pets) {
-			result += p.getName() + " " + p.getBreed() + " " + p.getOwner().getUserMnemonic() + " "
+			result += p.getName() + " "  + p.getOwner().getUserMnemonic() + " "
 					+ p.getOwner().getUserId() + "<br>";
 		}
 		return result;
@@ -178,20 +179,18 @@ public class RepositoryTestController {
 		Pet p = new Pet();
 		p.setPetKey(UUID.randomUUID());
 		p.setAge(1);
-		p.setBreed("patuljasti šnaucer");
 		p.setMicrochip("ABXDESD");
 		p.setName("snjofo");
 		p.setOwner(owner);
 		p.setRemark("");
 		p.setSex('f');
-		p.setSpecies("pas");
 		
-		if(false){
-			owner.getPets().add(p);
-			ur.save(owner);
-		} else {
-			pr.save(p);
-		}
+//		if(false){
+//			owner.getPets().add(p);
+//			ur.save(owner);
+//		} else {
+//			pr.save(p);
+//		}
 	}
 	
 	@RequestMapping("/repotest/employee")

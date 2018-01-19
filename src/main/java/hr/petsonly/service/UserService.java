@@ -9,6 +9,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import hr.petsonly.model.Role;
 import hr.petsonly.model.User;
+import hr.petsonly.model.form.PatchForm;
 import hr.petsonly.model.form.RegistrationForm;
 import hr.petsonly.repository.UserRepository;
 
@@ -92,5 +93,25 @@ public class UserService {
 		}
 		
 		return false;
+	}
+
+	public void validatePatchForm(PatchForm patchForm, Boolean valid) {
+		switch (patchForm.getOp()) {
+		case "replace":
+
+			switch (patchForm.getPath()) {
+			case "/status":
+
+				if (patchForm.getValue().equals("employee")) {
+				} else if (patchForm.getValue().equals("client")) {
+				}
+
+				valid = false;
+			default:
+				valid = false;
+			}
+		}
+		
+		valid = false;
 	}
 }

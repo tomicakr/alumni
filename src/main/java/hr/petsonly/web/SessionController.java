@@ -17,15 +17,13 @@ public class SessionController {
 		if(error != null) {
 			model.addAttribute("errorMessage", "Pogrešna kombinacija elektroničke pošte i lozinke.");
 		}
-		
+
 		return "login";
 	}
 
 	@RequestMapping(value = "/", method = RequestMethod.DELETE)
 	public String logoutUser(Model model, HttpSession httpSession) {
-		
 		httpSession.invalidate();
-
 		return "redirect:/index";
 	}
 	

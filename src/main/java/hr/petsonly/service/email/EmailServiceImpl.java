@@ -62,30 +62,6 @@ public class EmailServiceImpl {
 		}
 	}
 
-	/*
-	 * private MimeMessagePreparator prepareReservationOfferEmail(final
-	 * Reservation reservation) {
-	 * 
-	 * MimeMessagePreparator preparator = new MimeMessagePreparator() {
-	 * 
-	 * public void prepare(MimeMessage mimeMessage) throws Exception {
-	 * MimeMessageHelper helper = new MimeMessageHelper(mimeMessage, true);
-	 * 
-	 * helper.setSubject("PetsOnlyZg rezervacija");
-	 * helper.setFrom("fau53t7zss@gmail.com");
-	 * helper.setTo("mate.paulinovic@fer.hr");//reservation.getUser().getEmail()
-	 * ); String content = "Dear " + reservation.getUser().getName() +
-	 * ",\nthank you for your reservation. Your reservation id is " +
-	 * reservation.getReservationKey() + ".";
-	 * 
-	 * helper.setText(content); // Add a resource as an attachment
-	 * 
-	 * helper.addAttachment("Ponuda.pdf",
-	 * Paths.get("./src/main/resources/templates/turtle.html").toFile());
-	 * 
-	 * } }; return preparator; }
-	 */
-
 	private void writePdf(OutputStream outputStream, Reservation reservation) throws Exception {
 		// IText API
 		PdfWriter pdfWriter = new PdfWriter(outputStream);
@@ -115,10 +91,8 @@ public class EmailServiceImpl {
 
 				helper.setSubject("PetsOnlyZg rezervacija");
 				helper.setFrom("fau53t7zss@gmail.com");
-				helper.setTo("mate.paulinovic@fer.hr"); //reservation.getUser().getEmail());
+				helper.setTo(reservation.getUser().getEmail()); //reservation.getUser().getEmail());
 				String content = messageText;
-				// helper.setText(content);
-				// Add a resource as an attachment
 				MimeBodyPart textBodyPart = new MimeBodyPart();
 				textBodyPart.setText(content);
 				ByteArrayOutputStream os = null;
@@ -127,7 +101,6 @@ public class EmailServiceImpl {
 					writePdf(os, reservation);
 					byte[] bytes = os.toByteArray();
 
-					// construct the pdf body part
 					DataSource dataSource = new ByteArrayDataSource(bytes, "application/pdf");
 					MimeBodyPart pdfBodyPart = new MimeBodyPart();
 					pdfBodyPart.setDataHandler(new DataHandler(dataSource));
@@ -149,10 +122,6 @@ public class EmailServiceImpl {
 						}
 					}
 				}
-
-				// helper.addAttachment("Ponuda.pdf",
-				// Paths.get("./src/main/resources/turtle.html").toFile());
-
 			}
 		};
 

@@ -39,20 +39,20 @@ import hr.petsonly.service.FormFactory;
 @RequestMapping(value = "users/{uid}/reservations")
 public class ReservationController {
 
-	@Autowired
-	private ReservationRepository reservationRepository;
+	private final ReservationRepository reservationRepository;
+	private final UserRepository userRepository;
+	private final PetRepository petRepository;
+	private final ServiceRepository serviceRepository;
+	private final FormFactory formFactory;
 
 	@Autowired
-	private UserRepository userRepository;
-
-	@Autowired
-	private PetRepository petRepository;
-
-	@Autowired
-	private ServiceRepository serviceRepository;
-
-	@Autowired
-	private FormFactory formFactory;
+	public ReservationController(ReservationRepository reservationRepository, UserRepository userRepository, PetRepository petRepository, ServiceRepository serviceRepository, FormFactory formFactory) {
+		this.reservationRepository = reservationRepository;
+		this.userRepository = userRepository;
+		this.petRepository = petRepository;
+		this.serviceRepository = serviceRepository;
+		this.formFactory = formFactory;
+	}
 
 	@ResponseBody
 	@GetMapping

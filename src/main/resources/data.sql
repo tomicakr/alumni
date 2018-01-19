@@ -64,6 +64,7 @@ INSERT INTO users_roles (user_id, role_id) VALUES ('48c2ad9c-c37a-4dbc-a823-11ad
 INSERT INTO users_roles (user_id, role_id) VALUES ('0ae3760e-8ce3-4a4e-b678-98d5f6a86c65', 3);
 INSERT INTO users_roles (user_id, role_id) VALUES ('0e070ca1-4950-40ff-a1d7-8f65e6f559bf', 3);
 INSERT INTO users_roles (user_id, role_id) VALUES ('368ec8e2-c7cb-4eaf-b3f1-0077333fbea9', 3);
+INSERT INTO users_roles (user_id, role_id) VALUES ('368ec8e2-c7cb-4eaf-b3f1-0077333fbe55', 2);
 
 /*DODATI PRIVILEGES I ROLES_PRIVILEGES I  USERS_ROLES;*/
 

@@ -46,8 +46,30 @@ main {
 	color: darkred !important;
 }
 
+.long.tag.label{
+	min-width: 120px !important;
+	color: white !important;
+	text-align: center;
+}
+
+.client.tag.label{
+	background: #a5673f !important;
+}
+
+.employee.tag.label{
+	background: #f2711c !important;
+}
+
+.administrator.tag.label{
+	background: darkred !important;
+}
+
 h1, h2{
 	font-family: Coda, sans-serif !important;
+}
+
+.hidden{
+	display: none !important;
 }
 
 .ui.darkred.header{

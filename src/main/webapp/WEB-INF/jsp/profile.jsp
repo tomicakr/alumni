@@ -146,8 +146,12 @@
 							<c:when test="${not user.roles.contains(\"ROLE_ZAPOSLENIK\")}">
 								<i id="btn-employ-user" class="add user action icon"
 									title="Zaposli"></i>
+								<i id="btn-fire-user" class="hidden delete user action icon"
+								   title="Otpusti"></i>
 							</c:when>
 							<c:otherwise>
+								<i id="btn-employ-user" class="hidden add user action icon"
+								   title="Zaposli"></i>
 								<i id="btn-fire-user" class="delete user action icon"
 									title="Otpusti"></i>
 							</c:otherwise>
@@ -197,19 +201,19 @@
 				<td>${user.telephone}</td>
 			</tr>
 			<tr>
-				<td><strong>Tip</strong></td>
-				<td><c:choose>
+				<td><strong>Uloga</strong></td>
+				<td id="role"><c:choose>
 						<c:when test="${user.roles.contains(\"ROLE_ADMINISTRATOR\")}">
-							<a class="ui long tag label red">Administrator</a>
+							<p class="ui administrator long tag label">Administrator</p>
 						</c:when>
 						<c:when test="${user.roles.contains(\"ROLE_ZAPOSLENIK\")}">
-							<a class="ui long tag label orange">&nbsp;&nbsp;&nbsp;Zaposlenik&nbsp;&nbsp;&nbsp;&nbsp;</a>
+							<p class="ui employee long tag label">Zaposlenik</p>
 						</c:when>
 						<c:when test="${user.roles.contains(\"ROLE_KORISNIK\")}">
-							<a class="ui long tag label brown">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Klijent&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</a>
+							<p class="ui long tag label brown">Klijent</p>
 						</c:when>
 						<c:otherwise>
-							<a class="ui long tag label red">Greška</a>
+							<p class="ui employee long tag label">Greška</p>
 						</c:otherwise>
 					</c:choose></td>
 			</tr>

@@ -21,12 +21,16 @@ import hr.petsonly.service.email.EmailServiceImpl;
 @RequestMapping(value = "/jobs")
 public class JobController {
 	
-	@Autowired
-	private ReservationRepository reservationRepository;
+	private final ReservationRepository reservationRepository;
+
+	private final EmailServiceImpl mailService;
 
 	@Autowired
-    private EmailServiceImpl mailService;
-	
+	public JobController(EmailServiceImpl mailService, ReservationRepository reservationRepository) {
+		this.mailService = mailService;
+		this.reservationRepository = reservationRepository;
+	}
+
 	@GetMapping
 	public String showAllReservations(Model model) {
 		

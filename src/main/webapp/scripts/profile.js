@@ -12,10 +12,24 @@ const btnFire             = $('#btn-fire-user'      );
 const btnAddPet           = $('#btn-add-pet'        );
 const btnAddReservation   = $('#btn-add-reservation');
 
-const addPetModal         = $('#add-pet-modal');
+const addPetModal         = $('#add-pet-modal'        );
 const addReservationModal = $('#add-reservation-modal');
 
-function sendPatch(data,onSuccess, onFail){
+const userRole            = $('#role');
+
+const clientLabel   = '<p class="ui client long tag label">Klijent</p>';
+const employeeLabel = '<p class="ui employee long tag label">Zaposlenik</p>';
+
+function hideElem(e){
+    e.addClass('hidden');
+}
+
+function showElem(e) {
+    e.removeClass('hidden');
+}
+
+
+function patch(data, onSuccess, onFail){
     $.ajax({
         url: userIndex,
         type: 'PATCH',
@@ -77,7 +91,7 @@ Table.prototype = {
                 }).then(() => {
                     row.remove();
                     if (this.isEmpty()) {
-                        this.table.hide();
+                        this.table.hideElem();
                         this.placeholder.show();
                     }
                 })
@@ -292,18 +306,36 @@ btnEdit.click(
 );
 
 
+
+function switchButtons(toHide, toShow) {
+    hideElem(toHide);
+    showElem(toShow);
+}
+
+function hire(){
+    switchButtons(btnEmploy, btnFire);
+    userRole.find('p').remove();
+    userRole.append(employeeLabel);
+}
+
+function fire(){
+    switchButtons(btnFire, btnEmploy);
+    userRole.find('p').remove();
+    userRole.append(clientLabel);
+}
+
 btnEmploy.click(() => {
-    sendPatch(
+    patch(
         [employOperation],
-        () => console.log('Kaze kontroler da je uspjelo'),
+        hire,
         () => console.log(`Ovo se poslalo: "${JSON.stringify([employOperation])}", ali nista od toga`),
     );
 });
 
 btnFire.click(() => {
-    sendPatch(
+    patch(
         [fireOperation],
-        () => console.log('Kaze kontroler da je uspjelo'),
+        fire,
         () => console.log(`Ovo se poslalo: "${JSON.stringify([fireOperation])}", ali nista od toga`),
     );
 });

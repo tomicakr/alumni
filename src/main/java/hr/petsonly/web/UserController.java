@@ -8,6 +8,7 @@ import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.http.ResponseEntity.BodyBuilder;
@@ -20,13 +21,7 @@ import org.springframework.security.web.authentication.WebAuthenticationDetails;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.*;
 
 import hr.petsonly.model.User;
 import hr.petsonly.model.details.CustomUserDetails;
@@ -45,20 +40,20 @@ import hr.petsonly.service.UserService;
 @RequestMapping("/users")
 public class UserController {
 
-	@Autowired
-	private UserRepository userRepository;
+	private final UserRepository userRepository;
+	private final FormFactory formFactory;
+	private final CommonServices services;
+	private final UserService userService;
+	private final AuthenticationManager authenticationManager;
 
 	@Autowired
-	private FormFactory formFactory;
-
-	@Autowired
-	private CommonServices services;
-
-	@Autowired
-	private UserService userService;
-
-	@Autowired
-	protected AuthenticationManager authenticationManager;
+	public UserController(UserRepository userRepository, FormFactory formFactory, CommonServices services, UserService userService, AuthenticationManager authenticationManager) {
+		this.userRepository = userRepository;
+		this.formFactory = formFactory;
+		this.services = services;
+		this.userService = userService;
+		this.authenticationManager = authenticationManager;
+	}
 
 	@GetMapping
 	@PreAuthorize("hasRole('ADMINISTRATOR')")
@@ -218,12 +213,10 @@ public class UserController {
 	}
 
 	@RequestMapping(value = "/{id}", method = RequestMethod.PATCH, consumes = MediaType.APPLICATION_JSON_VALUE)
-	public BodyBuilder updateUser(@RequestBody List<PatchForm> patchForms,
+	@ResponseStatus(value = HttpStatus.NO_CONTENT)
+	public void updateUser(@RequestBody List<PatchForm> patchForms,
 			@PathVariable UUID id) {
-
 		patchForms.forEach(patch -> userService.updateUser(id, patch.getOp(), patch.getPath(), patch.getValue()));
-
-		return ResponseEntity.ok();
 	}
 
 	private void authenticateUserAndSetSession(RegistrationForm rform, HttpServletRequest request) {

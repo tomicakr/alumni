@@ -34,11 +34,14 @@ import hr.petsonly.service.FormFactory;
 @RequestMapping("/users/{id}/pets")
 public class PetController {
 
-	@Autowired
-	private FormFactory formFactory;
+	private final FormFactory formFactory;
+	private final PetRepository petRepository;
 
 	@Autowired
-	private PetRepository petRepository;
+	public PetController(FormFactory formFactory, PetRepository petRepository) {
+		this.formFactory = formFactory;
+		this.petRepository = petRepository;
+	}
 
 	@ResponseBody
 	@GetMapping

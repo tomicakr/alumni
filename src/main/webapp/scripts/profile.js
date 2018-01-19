@@ -21,11 +21,11 @@ const clientLabel   = '<p class="ui client long tag label">Klijent</p>';
 const employeeLabel = '<p class="ui employee long tag label">Zaposlenik</p>';
 
 function hideElem(e){
-    e.addClass('hidden');
+    e.addClass('inactive');
 }
 
 function showElem(e) {
-    e.removeClass('hidden');
+    e.removeClass('inactive');
 }
 
 

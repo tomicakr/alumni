@@ -146,11 +146,11 @@
 							<c:when test="${not user.roles.contains(\"ROLE_ZAPOSLENIK\")}">
 								<i id="btn-employ-user" class="add user action icon"
 									title="Zaposli"></i>
-								<i id="btn-fire-user" class="hidden delete user action icon"
+								<i id="btn-fire-user" class="inactive delete user action icon"
 								   title="Otpusti"></i>
 							</c:when>
 							<c:otherwise>
-								<i id="btn-employ-user" class="hidden add user action icon"
+								<i id="btn-employ-user" class="inactive add user action icon"
 								   title="Zaposli"></i>
 								<i id="btn-fire-user" class="delete user action icon"
 									title="Otpusti"></i>

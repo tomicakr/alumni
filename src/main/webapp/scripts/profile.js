@@ -64,11 +64,12 @@ const fireOperation = {
     "path": "/status",
     "value": "client"
 };
-let Table= function(indexUrl, table, tableBody, placeholder, deleteModal){
+let Table= function(indexUrl, table, tableBody, placeholder, loader, deleteModal){
     this.indexUrl = indexUrl;
     this.table = table;
     this.tableBody = tableBody;
     this.placeholder = placeholder;
+    this.loader = loader;
     this.deleteModal = deleteModal;
     this.isUpdating = false;
 };
@@ -101,8 +102,7 @@ Table.prototype = {
                 }).then(() => {
                     row.remove();
                     if (this.isEmpty()) {
-                        this.table.hideElem();
-                        this.placeholder.show();
+                        this.showPlaceholder()
                     }
                 })
             }
@@ -115,18 +115,17 @@ Table.prototype = {
         if(this.isUpdating){
             return;
         }
+        this.load();
         this.isUpdating = true;
         this.tableBody.empty();
         this.getData()
             .then(entities => {
                 if(entities.length===0){
-                    this.table.hide();
-                    this.placeholder.show();
+                    this.showPlaceholder();
                     return;
                 }
                 entities.forEach(entity => this.append(entity));
-                this.placeholder.hide();
-                this.table.show();
+                this.showContent();
 
             })
             .fail(console.log)
@@ -146,7 +145,29 @@ Table.prototype = {
             .then(data => {
                 this.append(data);
             })
-            .catch(() => console.log("tu sam"));
+            .catch(console.log);
+    },
+
+    load: function(){
+        this.loader.addClass('active')
+    },
+    finishLoad: function(){
+        this.loader.removeClass('active')
+    },
+    showContent: function(){
+        this.finishLoad();
+        hideElem(this.placeholder);
+        showElem(this.table);
+    },
+    showPlaceholder: function(){
+        this.finishLoad();
+        hideElem(this.table);
+        showElem(this.placeholder);
+    },
+    hideAll: function(){
+        this.finishLoad();
+        hideElem(this.table);
+        hideElem(this.placeholder);
     }
 };
 
@@ -155,19 +176,19 @@ let petTable = new Table(
     $('#pets-table'),
     $('#pets').find('tbody'),
     $('#pet-placeholder'),
+    $('#pet-loader'),
     $('#delete-pet-modal')
 );
 let appendPet = function(pet){
-    let deleteButton = '<i class="trash big remove action icon" title="Obriši ljubimca"></i>';
+    let deleteButton = '<i class="big trash action del icon" title="Ukloni"></i>';
 
     let petMarkup = $(this.formatTableRow(pet.name, pet.age, pet.species,pet.sex, pet.microchip, pet.remark,deleteButton));
     petMarkup.data('id',pet.petId);
     petTable.tableBody.append(petMarkup);
 
-    petMarkup.find('.remove.icon').click(petTable.remove.bind(petTable,petMarkup));
-    this.placeholder.hide();
-    this.table.show();
-
+    petMarkup.find('.del.icon').click(petTable.remove.bind(petTable,petMarkup));
+    petMarkup.find('.del.icon').popup();
+    this.showContent()
 };
 
 petTable.append = appendPet.bind(petTable);
@@ -177,12 +198,20 @@ let resTable = new Table(
     $('#reservations-table'),
     $('#reservations').find('tbody'),
     $('#reservations-placeholder'),
+    $('#reservations-loader'),
+    $('#delete-reservation-modal')
 );
 
 resTable.append = (function(res){
-    let resMarkup = $(this.formatTableRow(res.pet, res.service, res.employee, res.status, res.time));
-    resMarkup.data('id',resMarkup.reservationId);
+    let deleteButton = '<i class="big remove from calendar del action icon" title="Otkaži"></i>';
+    let resMarkup = $(this.formatTableRow(res.pet, res.service, res.employee, res.status, res.time,deleteButton));
+    console.log(res.reservationId);
+    resMarkup.data('id',res.reservationId);
     resTable.tableBody.append(resMarkup);
+
+    resMarkup.find('.del.icon').click(resTable.remove.bind(resTable,resMarkup));
+    resMarkup.find('.icon').popup();
+    this.showContent();
 }).bind(resTable);
 
 const petValidation = {
@@ -228,10 +257,10 @@ const petValidation = {
 
 const reservationValidation = {
     service: {
-        identifier: 'usluga',
+        identifier: 'service',
         rules: [{
             type: 'empty',
-            prompt: 'Molimo unesite opis usluge'
+            prompt: 'Molimo odaberite uslugu'
         }]
     },
     pet: {
@@ -288,8 +317,58 @@ btnAddPet.click(() => {
     }
 );
 
+let twoDigitFormat = (getter) => ('0' + getter()).slice(-2);
+
+let deklinacijeMrtve = {
+    'siječanj': 'siječnja',
+    'veljača': 'veljače',
+    'ožujak': 'ožujka',
+    'travanj': 'travnja',
+    'svibanj': 'svibnja',
+    'lipanj': 'lipaipnja',
+    'srpanj': 'srpnja',
+    'kolovoz': 'kolovoza',
+    'rujan': 'rujna',
+    'listopad': 'listopada',
+    'studeni': 'studenog',
+    'prosinac': 'prosinca'
+};
+
 btnAddReservation.click(
-    () => {addReservationModal.modal('show');
+    () => {
+        addReservationModal.modal({
+            autofocus: false
+        }).modal('show');
+
+        let monthFormat   = (date) => twoDigitFormat(() => date.getMonth() + 1);
+        let hourFormat    = (date) => twoDigitFormat(date.getHours.bind(date));
+        let minutesFormat = (date) => twoDigitFormat(date.getMinutes.bind(date));
+        let dayFormat     = (date) => twoDigitFormat(date.getDate.bind(date));
+        let timeFormat    = (date) => `${hourFormat(date)}:${minutesFormat(date)}`;
+
+        $('#res-time').calendar({
+            ampm: false,
+            monthFirst: false,
+            text: {
+                days: ['P', 'U', 'S', 'Č', 'P', 'S', 'N'],
+                months: ['siječanj', 'ožujak', 'ožujak', 'travanj', 'svibanj', 'lipanj', 'srpanj', 'kolovoz', 'rujan', 'listopad', 'studeni', 'prosinac'],
+                today: 'Danas',
+                now: 'Sad'
+            },
+            formatter: {
+                datetime: function(date){
+                    if (!date) return '';
+                    return `${dayFormat(date)}.${monthFormat(date)}.${date.getFullYear()}. ${timeFormat(date)}`;
+                }
+            }
+        });
+        $('#res-duration').calendar({
+            type: 'time',
+            ampm: false,
+            formatter:{
+                time: timeFormat
+            }
+        });
         $.getJSON(api.employees)
             .then(
                 data => fillDropDown(
@@ -407,10 +486,12 @@ $(document)
                     return;
                 }
                 if(tabpath === 'second'){
+                    petTable.hideAll();
                     petTable.update();
                     return;
                 }
                 if(tabpath === 'third'){
+                    resTable.hideAll();
                     resTable.update();
                 }
             }})

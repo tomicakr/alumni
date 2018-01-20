@@ -38,12 +38,29 @@
 	<div id="delete-pet-modal"
 		class="ui small basic test modal transition hidden">
 		<div class="ui icon header">
-			<i class="trash icon"></i> Brisanje ljubimca
+			<i class="trash icon"></i> Ukloni ljubimca
 		</div>
 		<div class="content">
-			<p>Brisanje ljubimca uzrokovat će otkazivanje svih njegovih
+			<p>Uklanjanje ljubimca uzrokovat će otkazivanje svih njegovih
 				rezervacija, neovisno o razini. Jeste li sigurni da želite
 				nastaviti?</p>
+		</div>
+		<div class="actions">
+			<div class="ui green basic cancel inverted button">
+				<i class="remove icon"></i> Ne
+			</div>
+			<div class="ui red basic ok inverted button">
+				<i class="checkmark icon"></i> Da
+			</div>
+		</div>
+	</div>
+	<div id="delete-reservation-modal"
+		 class="ui small basic test modal transition hidden">
+		<div class="ui icon header">
+			<i class="remove from calendar icon"></i> Otkaži rezervaciju
+		</div>
+		<div class="content">
+			<p>Otkazivanje rezervacije ne uključuje povrat novaca, jeste li sigurni da želite nastaviti?</p>
 		</div>
 		<div class="actions">
 			<div class="ui green basic cancel inverted button">
@@ -119,8 +136,11 @@
 			<form:form
 					action="${pageContext.request.contextPath}/users/${user.userId}/pets/"
 					method="post" id="add-pet-form" class="ui large form">
-				<div class="field">
-					<input type="datetime-local" name="executionTime" id="res-time" placeholder="Vrijeme">
+				<div class="ui calendar field" id="res-time">
+					<div class="ui input left icon">
+						<i class="calendar icon"></i>
+						<input type="text" name="executionTime" placeholder="Odaberite termin">
+					</div>
 				</div>
 				<div class="field">
 					<div class="required field">
@@ -140,9 +160,11 @@
 						</select>
 					</div>
 				</div>
-				<div class="field">
-					<input type="time" name="duration" id="res-duration"
-						   placeholder="Trajanje">
+				<div class="ui calendar field" id="res-duration">
+					<div class="ui input left icon">
+						<i class="clock icon"></i>
+						<input type="text" name="duration" placeholder="Trajanje">
+					</div>
 				</div>
 				<div class="field">
 					<div class="ui checked checkbox">
@@ -161,7 +183,7 @@
 			Rezervacije </a>
 	</div>
 	<section id="user-info"
-		class="ui bottom attached tab segment transition fade in active"
+		class="ui bottom attached tab segment active"
 		data-tab="first">
 		<div>
 			<h2 class="ui darkred left floated header">Detalji korisnika</h2>
@@ -261,21 +283,22 @@
 	</section>
 
 	<section id="pets"
-		class="ui bottom attached tab segment transition fade in"
+		class="ui bottom attached tab segment"
 		data-tab="second">
 		<div>
 			<h2 class="ui darkred left floated header">Ljubimci</h2>
 			<h4 class="ui right floated header">
-				<i id="btn-pets" class="refresh action icon" title="Osvježi podatke"></i>
+				<i id="btn-pets" class="refresh action icon" title="Osvježi"></i>
 				<i id="btn-add-pet" class="plus action icon"
 					title="Dodaj novog ljubimca"></i>
 			</h4>
 		</div>
 		<div class="ui hidden divider"></div>
 		<div id="pets-table-container">
-			<h2 id="pet-placeholder" class="ui centered aligned header">Nema
+			<div id="pet-loader" class="ui massive loader"></div>
+			<h2 id="pet-placeholder" class="ui centered aligned header inactive">Nema
 				prijavljenih ljubimaca</h2>
-			<table class="ui celled table" id="pets-table">
+			<table class="ui celled table inactive" id="pets-table">
 				<thead>
 					<tr>
 						<th>Ime</th>
@@ -284,7 +307,7 @@
 						<th>Spol</th>
 						<th>Mikročip</th>
 						<th>Napomena</th>
-						<th>Akcije</th>
+						<th>Opcije</th>
 					</tr>
 				</thead>
 				<tbody>
@@ -296,21 +319,22 @@
 	</section>
 
 	<section id="reservations"
-		class="ui bottom attached tab segment transition fade in"
+		class="ui bottom attached tab segment"
 		data-tab="third">
 		<div>
 			<h2 class="ui darkred left floated header">Rezervacije</h2>
 			<h4 class="ui right floated header">
 				<i id="btn-reservations" class="refresh action icon"
-					title="Osvježi rezervacije"></i> <i id="btn-add-reservation"
+					title="Osvježi"></i> <i id="btn-add-reservation"
 					class="plus action icon" title="Nova rezervacija"></i>
 			</h4>
 		</div>
 		<div class="ui hidden divider"></div>
 		<div id="reservations-table-container">
-			<h2 id="reservations-placeholder" class="ui centered aligned header">Nema
+			<div id="reservations-loader" class="ui massive loader"></div>
+			<h2 id="reservations-placeholder" class="ui centered aligned header inactive">Nema
 				aktivnih rezervacija</h2>
-			<table class="ui celled table" id="reservations-table">
+			<table class="ui celled table inactive" id="reservations-table">
 				<thead>
 					<tr>
 						<th>Ljubimac</th>
@@ -318,6 +342,7 @@
 						<th>Zaposlenik</th>
 						<th>Status</th>
 						<th>Termin</th>
+						<th>Opcije</th>
 					</tr>
 				</thead>
 				<tbody>

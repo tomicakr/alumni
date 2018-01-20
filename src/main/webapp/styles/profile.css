@@ -19,10 +19,6 @@ a, a:hover{
 	min-height: 40em !important;
 }
 
-#reservations-table, #pets-table{
-	display: none;
-}
-
 #reservations-table-container, #pets-table-container{
 	margin-top: 7em;
 }

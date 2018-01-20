@@ -9,7 +9,7 @@ import java.util.UUID;
 @Component
 public class ReservationDetails {
 
-	private static final DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd.mm.yyyy. hh:mm");
+	private static final DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd.MM.yyyy. hh:mm");
 
 	private UUID reservationId;
 	private String pet;
@@ -27,7 +27,7 @@ public class ReservationDetails {
 		this.pet = reservation.getPet().getName();
 		this.service = reservation.getService().getName(); 
 		this.employee = reservation.getEmployee() == null ? null :reservation.getEmployee().getName() + " " + reservation.getEmployee().getSurname();
-		this.time = reservation.getReservationTime().format(formatter);
+		this.time = reservation.getExecutionTime().format(formatter);
 
 		switch (reservation.getReservationStatus()) {
 		case 1:

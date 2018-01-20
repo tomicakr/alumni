@@ -77,10 +77,10 @@ public class FormFactory {
 		r.setReservationKey(UUID.randomUUID());
 		r.setReservationStatus(1); //KAKO SU NUMERIRANI STATUSI?
 		r.setReservationTime(LocalDateTime.now());
-		r.setExecutionTime(LocalDateTime.parse(arf.getExecutionTime(), DateTimeFormatter.ofPattern("yyyy-MM-dd'T'HH:mm")));
+		r.setExecutionTime(LocalDateTime.parse(arf.getExecutionTime(), DateTimeFormatter.ofPattern("dd.MM.yyyy. HH:mm")));
 		r.setSendReminder(arf.getSendReminder() != null);
-		
-		String[] parts = null;
+
+		String[] parts;
 
 		if(arf.getDuration().trim().isEmpty()) {
 			parts = DEFAULT_DURATION.split(":");

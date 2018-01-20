@@ -115,6 +115,10 @@ h1, h2{
 	display: none;
 }
 
+#service-list{
+	font-size: 1.6em;
+}
+
 #service-list .ui.actions{
 	text-align: center;
 }

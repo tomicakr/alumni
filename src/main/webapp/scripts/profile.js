@@ -21,7 +21,6 @@ const resEmployee         = $('#res-employee');
 const resService          = $('#res-service' );
 const resPet              = $('#res-pet' );
 
-
 const btnAddReservation   = $('#btn-add-reservation');
 const addPetModal         = $('#add-pet-modal'        );
 

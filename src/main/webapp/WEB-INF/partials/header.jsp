@@ -28,7 +28,6 @@
 
             </sec:authorize>
 
-
             <div class="right menu">
                 <sec:authorize access="isAnonymous()">
                     <a class="item" name="Login"
@@ -38,7 +37,6 @@
                        href="${pageContext.request.contextPath}/users/new">
                         Registracija </a>
                 </sec:authorize>
-
 
                 <sec:authorize access="isAuthenticated()">
                     <a class=" item"
@@ -58,8 +56,7 @@
     </nav>
 </header>
 <div id="service-list"
-     class="ui small basic test modal transition hidden"
-     style="font-size: 2em">
+     class="ui small basic test modal transition hidden">
     <div class="ui center aligned massive header">Popis usluga</div>
     <div class="scrolling content">
         <div class="ui inverted celled middle aligned list">

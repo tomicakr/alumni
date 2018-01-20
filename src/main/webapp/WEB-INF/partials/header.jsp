@@ -9,8 +9,8 @@
 <header>
     <nav>
         <div class="ui massive stackable secondary menu" id="top-menu">
-            <a class="item" id="home" name="Home" href="/"> Naslovnica </a> <a
-                class="item" id="services" name="Usluge"> Usluge </a>
+            <a class="item" id="home" name="Home" href="/"> Naslovnica </a>
+            <a class="item" id="services" name="Usluge"> Usluge </a>
 
             <sec:authorize access="isAuthenticated()">
 
@@ -56,5 +56,19 @@
             </div>
         </div>
     </nav>
-
 </header>
+<div id="service-list"
+     class="ui small basic test modal transition hidden"
+     style="font-size: 2em">
+    <div class="ui center aligned massive header">Popis usluga</div>
+    <div class="scrolling content">
+        <div class="ui inverted celled middle aligned list">
+        </div>
+    </div>
+    <div class="ui actions">
+        <div class="ui huge ok inverted button">
+            <i class="checkmark icon"></i> Izađi
+        </div>
+    </div>
+</div>
+<script src="/scripts/services.js"></script>

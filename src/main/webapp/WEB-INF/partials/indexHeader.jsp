@@ -51,4 +51,18 @@ uri="http://www.springframework.org/security/tags"%>
 	</div>
 </div>
 </nav>
-
+<div id="service-list"
+	 class="ui small basic test modal transition hidden"
+	 style="font-size: 2em">
+	<div class="ui center aligned massive header">Popis usluga</div>
+	<div class="scrolling content">
+		<div class="ui inverted celled middle aligned list">
+		</div>
+	</div>
+	<div class="ui actions">
+		<div class="ui huge ok inverted button">
+			<i class="checkmark icon"></i> Izađi
+		</div>
+	</div>
+</div>
+<script src="/scripts/services.js"></script>

@@ -72,19 +72,44 @@ public interface ReservationRepository extends JpaRepository<Reservation, UUID> 
 		return findAllConfirmedWithinNHoursHelper(ReservationStatus.CONFIRMED, start, end);
 	}
 	
-	@Transactional
-	@Query("SELECT r FROM Reservation r WHERE r.reservationStatus = :status AND time(r.executionTime) >= :to AND time(r.executionTime) <= :from AND r.executionTime >= now()")
-	List<Reservation> findAllOpenWithinAvailableHoursHelper(@Param("status") ReservationStatus status, @Param("from") LocalTime from, @Param("to") LocalTime to);
+	//@Query("SELECT r FROM Reservation r WHERE r.reservationStatus = :status AND time(r.executionTime >= :to AND time(r.executionTime) <= :from AND r.executionTime >= now()")
 	
-	default List<Reservation> findAllOpenWithinAvailableHours(User u){
-		LocalTime from = u.getNotAvailableFrom();
-		LocalTime to   = u.getNotAvailableTo();
-		return findAllOpenWithinAvailableHoursHelper(ReservationStatus.PENDING, from, to);
+	@Transactional
+	@Query("SELECT r FROM Reservation r "
+			+ "WHERE r.reservationStatus = :status AND "
+			+ "extract (HOUR from r.executionTime) >= :toH AND extract(MINUTE from r.executionTime) >= :toMin AND "
+			+ "extract (HOUR from r.executionTime) <= :fromH AND extract(MINUTE from r.executionTime) >= :fromMin AND "
+			+ "r.executionTime >= current_timestamp")
+	List<Reservation> findAllOpenWithinAvailableHoursHelper(@Param("status") ReservationStatus status, @Param("fromH") Integer fromH, @Param("fromMin") Integer fromMin, @Param("toH") Integer toH, @Param("toMin") Integer toMin);
+	
+	default List<Reservation> findAllPendingWithinAvailableHours(User u){
+		Integer fromH = u.getNotAvailableFrom().getHour();
+		Integer fromMin = u.getNotAvailableFrom().getMinute();
+		Integer toH   = u.getNotAvailableTo().getHour();
+		Integer toMin = u.getNotAvailableTo().getMinute();
+		return findAllOpenWithinAvailableHoursHelper(ReservationStatus.PENDING, fromH, fromMin, toH, toMin);
 		
 	}
 	
 	@Transactional
-	@Query("SELECT r FROM Reservation r WHERE r.employee = :employee AND r.reservationStatus = :status AND r.executionTime >= now()")
+	@Query("SELECT r FROM Reservation r WHERE r.reservationStatus = :status and r.executionTime >= current_timestamp")
+	List<Reservation> findAllFutureByStatusHelper(@Param("status") ReservationStatus status);
+	
+	default List<Reservation> findAllFutureConfirmed(){
+		return findAllFutureByStatusHelper(ReservationStatus.CONFIRMED);
+	}
+	
+	default List<Reservation> findAllFutureAccepted(){
+		return findAllFutureByStatusHelper(ReservationStatus.ACCEPTED);
+	}
+	
+	default List<Reservation> findAllFuturePending(){
+		return findAllFutureByStatusHelper(ReservationStatus.PENDING);
+	}
+	
+	
+	@Transactional
+	@Query("SELECT r FROM Reservation r WHERE r.employee = :employee AND r.reservationStatus = :status AND r.executionTime >= current_timestamp")
 	List<Reservation> findAllByStatusFromEmployeeHelper(@Param("employee") User employee, @Param("status") ReservationStatus status);
 	
 	default List<Reservation> findAllAcceptedByEmployee(User u){
@@ -95,7 +120,10 @@ public interface ReservationRepository extends JpaRepository<Reservation, UUID> 
 		return findAllByStatusFromEmployeeHelper(u, ReservationStatus.CONFIRMED);
 	}
 	
+	/*
+	
 	@Transactional
 	@Query(value = "SELECT * FROM reservation r WHERE r.reservation_status = :status AND r.execution_time >= now() AND r.execution_time <= date_add(now(), INTERVAL :hour HOUR)", nativeQuery = true)
 	List<Reservation> findAllByStatusAndWithinNHours(@Param("status") Integer status, @Param("hour") Integer hour);
+	*/
 }

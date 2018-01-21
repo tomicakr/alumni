@@ -17,165 +17,6 @@
 <%@ include file="../partials/sidebarBegin.jsp" %>
 <%@ include file="../partials/header.jsp" %>
 
-
-<div id="delete-user-modal"
-     class="ui small basic test modal transition hidden">
-    <div class="ui icon header">
-        <i class="trash icon"></i> Brisanje korisničkog računa
-    </div>
-    <div class="content">
-        <p>Jeste li sigurni da želite obrisati korisnički račun?</p>
-    </div>
-    <div class="actions">
-        <div class="ui green basic cancel inverted button">
-            <i class="remove icon"></i> Ne
-        </div>
-        <div class="ui red basic ok inverted button">
-            <i class="checkmark icon"></i> Da
-        </div>
-    </div>
-</div>
-<div id="delete-pet-modal"
-     class="ui small basic test modal transition hidden">
-    <div class="ui icon header">
-        <i class="trash icon"></i> Ukloni ljubimca
-    </div>
-    <div class="content">
-        <p>Uklanjanje ljubimca uzrokovat će otkazivanje svih njegovih
-            rezervacija, neovisno o razini. Jeste li sigurni da želite
-            nastaviti?</p>
-    </div>
-    <div class="actions">
-        <div class="ui green basic cancel inverted button">
-            <i class="remove icon"></i> Ne
-        </div>
-        <div class="ui red basic ok inverted button">
-            <i class="checkmark icon"></i> Da
-        </div>
-    </div>
-</div>
-<div id="delete-reservation-modal"
-     class="ui small basic test modal transition hidden">
-    <div class="ui icon header">
-        <i class="remove from calendar icon"></i> Otkaži rezervaciju
-    </div>
-    <div class="content">
-        <p>Otkazivanje rezervacije ne uključuje povrat novaca, jeste li sigurni da želite nastaviti?</p>
-    </div>
-    <div class="actions">
-        <div class="ui green basic cancel inverted button">
-            <i class="remove icon"></i> Ne
-        </div>
-        <div class="ui red basic ok inverted button">
-            <i class="checkmark icon"></i> Da
-        </div>
-    </div>
-</div>
-<div id="delete-user-success"
-     class="ui small basic test modal transition hidden">
-    <div class="ui icon header">
-        <i class="green checkmark icon"></i>
-    </div>
-    <h2>Korisnički račun uspješno obrisan.</h2>
-    <i class="checkmark icon"></i>
-    <div class="actions">
-        <div class="ui red ok inverted button">U redu</div>
-    </div>
-</div>
-<div id="add-pet-modal" class="ui mini modal">
-    <i class="close icon"></i>
-    <div class="header">Dodaj ljubimca</div>
-    <div class="ui center aligned content">
-        <form:form
-                action="${pageContext.request.contextPath}/users/${user.userId}/pets/"
-                method="post" id="add-pet-form" class="ui large form">
-            <div class="field">
-                <input type="text" name="name" id="pet-name" placeholder="Ime">
-            </div>
-            <div class="two equal width fields">
-                <div class="field">
-                    <input type="number" name="age" id="pet-age" placeholder="Starost">
-                </div>
-                <div class="field">
-                    <div class="ui dropdown selection" tabindex="0">
-                        <select name="sex" id="gender">
-                            <option value="">Spol</option>
-                            <option value="M">Dečko</option>
-                            <option value="F">Cura</option>
-                        </select><i class="dropdown icon"></i>
-                        <div class="default text">Spol</div>
-                        <div class="menu transition hidden" tabindex="-1">
-                            <div class="item" data-value="M">Dečko</div>
-                            <div class="item" data-value="F">Cura</div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="field">
-                <div class="required field">
-                    <select name="species" class="ui dropdown" id="pet-species">
-                    </select>
-                </div>
-            </div>
-            <div class="field">
-                <input type="text" name="microchip" id="pet-chip"
-                       placeholder="Broj mikročipa ljubimca.">
-            </div>
-            <div class="field">
-					<textarea rows="4" name="remark" id="remark"
-                              placeholder="Napomene..."></textarea>
-            </div>
-            <div class="ui fluid huge darkred submit button" style="width: 100%">Dodaj</div>
-        </form:form>
-    </div>
-</div>
-<div id="add-reservation-modal" class="ui mini modal">
-    <i class="close icon"></i>
-    <div class="header">Nova rezervacija</div>
-    <div class="ui center aligned content">
-        <form:form
-                action="${pageContext.request.contextPath}/users/${user.userId}/pets/"
-                method="post" id="add-pet-form" class="ui large form">
-            <div class="ui calendar field" id="res-time">
-                <div class="ui input left icon">
-                    <i class="calendar icon"></i>
-                    <input type="text" name="executionTime" placeholder="Odaberite termin">
-                </div>
-            </div>
-            <div class="field">
-                <div class="required field">
-                    <select name="service" class="ui dropdown" id="res-service">
-                    </select>
-                </div>
-            </div>
-            <div class="field">
-                <div class="required field">
-                    <select name="pet" class="ui dropdown" id="res-pet">
-                    </select>
-                </div>
-            </div>
-            <div class="field">
-                <div class="required field">
-                    <select name="employee" class="ui dropdown" id="res-employee">
-                    </select>
-                </div>
-            </div>
-            <div class="ui calendar field" id="res-duration">
-                <div class="ui input left icon">
-                    <i class="clock icon"></i>
-                    <input type="text" name="duration" placeholder="Trajanje">
-                </div>
-            </div>
-            <div class="field">
-                <div class="ui checked checkbox">
-                    <input type="checkbox" name="sendReminder" value="1" checked="checked">
-                    <label>Želim dobiti podsjetnik na mail?</label>
-                </div>
-            </div>
-            <div class="ui fluid huge darkred submit button" style="width: 100%">Rezerviraj</div>
-        </form:form>
-    </div>
-</div>
 <main class="ui container" id="profileContent">
     <div class="ui top attached huge tabular menu">
         <a class="item active" data-tab="first"> Detalji </a> <a class="item"
@@ -214,8 +55,8 @@
                                    title="Otpusti"></i>
                             </c:when>
                             <c:otherwise>
-                                 <i id="btn-employe-jobs" class="industry icon"
-                                   title="Pogledaj poslove"></i>
+                                 <i id="btn-employe-jobs" class="industry action icon"
+                                   title="Poslovi"></i>
                                 <i id="btn-employ-user" class="inactive add user action icon"
                                    title="Zaposli"></i>
                                 <i id="btn-fire-user" class="delete user action icon"
@@ -284,6 +125,13 @@
                 </c:choose></td>
             </tr>
         </table>
+        <div class="ui hidden divider"></div>
+        <div>
+            <h2 class="ui darkred left floated header">Postavke</h2>
+            <h4 class="ui right floated header">
+                    <i id="btn-edit-settings" class="setting action icon" title="Promijeni"></i>
+            </h4>
+        </div>
     </section>
 
     <section id="pets"
@@ -359,7 +207,10 @@
 <%@ include file="../partials/sidebarEnd.jsp" %>
 <%@ include file="../partials/footer.jsp" %>
 
-
+<script src="${pageContext.request.contextPath}/scripts/includes/utilities.js"></script>
+<script src="${pageContext.request.contextPath}/scripts/includes/calendar.js"></script>
+<script src="${pageContext.request.contextPath}/scripts/includes/profileForms.js"></script>
+<script src="${pageContext.request.contextPath}/scripts/includes/table.js"></script>
 <script src="${pageContext.request.contextPath}/scripts/profile.js"></script>
 </body>
 </html>

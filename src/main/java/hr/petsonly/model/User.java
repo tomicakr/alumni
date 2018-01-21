@@ -275,5 +275,18 @@ public class User {
 				+ ", notAvailableTo=" + notAvailableTo + ", pets=" + pets + ", reservations=" + reservations
 				+ ", tasks=" + tasks + ", roles=" + roles + "]";
 	}
+
+	public boolean compareUserAndReservationTime(Reservation res) {
+		if(getNotAvailableFrom() == null || getNotAvailableTo() == null) return false;
+		
+		LocalTime resTime = LocalTime.of(res.getExecutionTime().getHour(),res.getExecutionTime().getMinute());
+
+		if(getNotAvailableFrom().compareTo(resTime) >= 0 && 
+				getNotAvailableTo().compareTo(resTime) <= 0 &&
+						getNotAvailableFrom().compareTo(resTime.plusMinutes(res.getDuration().toMinutes())) >= 0){
+			return true;
+		}
+		return false;
+	}
 	
 }

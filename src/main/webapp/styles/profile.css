@@ -44,6 +44,10 @@ a, a:hover{
 	display: none;
 }
 
+#success-modal .ui.actions, #failure-modal .ui.actions{
+	text-align: center !important;
+}
+
 
 @media screen and (max-width: 1000px) {
 

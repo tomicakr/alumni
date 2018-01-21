@@ -16,158 +16,19 @@ const btnEmploy           = $('#btn-employ-user'    );
 const btnFire             = $('#btn-fire-user'      );
 const btnAddPet           = $('#btn-add-pet'        );
 const btnEmployeJobs      = $('#btn-employe-jobs'   );
-
-const petSpecies          = $('#pet-species' );
-const resEmployee         = $('#res-employee');
-const resService          = $('#res-service' );
-const resPet              = $('#res-pet' );
+const btnSettings         = $('#btn-edit-settings'  );
 
 const btnAddReservation   = $('#btn-add-reservation');
-const addPetModal         = $('#add-pet-modal'        );
 
-const addReservationModal = $('#add-reservation-modal');
 
 const userRole            = $('#role');
 const clientLabel   = '<p class="ui client long tag label">Klijent</p>';
 
 const employeeLabel = '<p class="ui employee long tag label">Zaposlenik</p>';
-function hideElem(e){
-    e.addClass('inactive');
 
-}
-function showElem(e) {
-    e.removeClass('inactive');
-
-}
-function patch(onSuccess, onFail, ...data){
-    $.ajax({
-        url: userIndex,
-        type: 'PATCH',
-        contentType: "application/json; charset=utf-8",
-        cache: false,
-        processData: false,
-        data: JSON.stringify(data)
-    })
-        .then(onSuccess)
-        .catch(onFail)
-
-}
-
-function Patch(op, path, value){
-    this.op = op;
-    this.path = path;
-    this.value = value;
-}
 
 const employOperation = new Patch("replace", "/status","employee");
 const fireOperation = new Patch("replace", "/status","client");
-
-let Table= function(indexUrl, table, tableBody, placeholder, loader, deleteModal){
-    this.indexUrl = indexUrl;
-    this.table = table;
-    this.tableBody = tableBody;
-    this.placeholder = placeholder;
-    this.loader = loader;
-    this.deleteModal = deleteModal;
-    this.isUpdating = false;
-};
-
-Table.prototype = {
-    isEmpty:function(){
-        return this.table.find('tbody tr').length === 0;
-    },
-
-    formatTableRow: function(...cells) {
-        let result = '<tr>';
-        result += cells.map(cell => `<td>${cell}</td>`).join('');
-        result += '</tr>';
-        return result;
-
-    },
-
-    getData: function(){
-        return $.getJSON(this.indexUrl);
-    },
-
-    remove: function(row){
-        const deleteUrl = `${this.indexUrl}${row.data('id')}/`;
-        this.deleteModal
-            .modal({
-            onApprove: () => {
-                $.ajax({
-                    url: deleteUrl,
-                    type: 'DELETE',
-                }).then(() => {
-                    row.remove();
-                    if (this.isEmpty()) {
-                        this.showPlaceholder()
-                    }
-                })
-            }
-        })
-            .modal('show');
-
-    },
-
-    update: function(){
-        if(this.isUpdating){
-            return;
-        }
-        this.load();
-        this.isUpdating = true;
-        this.tableBody.empty();
-        this.getData()
-            .then(entities => {
-                if(entities.length===0){
-                    this.showPlaceholder();
-                    return;
-                }
-                entities.forEach(entity => this.append(entity));
-                this.showContent();
-
-            })
-            .fail(console.log)
-            .always(
-                () => this.isUpdating = false
-            );
-    },
-
-    save: function(fields) {
-        $.post({
-            url: this.indexUrl,
-            contentType: "application/json; charset=utf-8",
-            cache: false,    //This will force requested pages not to be cached by the browser
-            processData: false, //To avoid making query String instead of JSON
-            data: JSON.stringify(fields)
-        })
-            .then(data => {
-                this.append(data);
-            })
-            .catch(console.log);
-    },
-
-    load: function(){
-        this.loader.addClass('active')
-    },
-    finishLoad: function(){
-        this.loader.removeClass('active')
-    },
-    showContent: function(){
-        this.finishLoad();
-        hideElem(this.placeholder);
-        showElem(this.table);
-    },
-    showPlaceholder: function(){
-        this.finishLoad();
-        hideElem(this.table);
-        showElem(this.placeholder);
-    },
-    hideAll: function(){
-        this.finishLoad();
-        hideElem(this.table);
-        hideElem(this.placeholder);
-    }
-};
 
 let petTable = new Table(
     petIndex,
@@ -175,7 +36,15 @@ let petTable = new Table(
     $('#pets').find('tbody'),
     $('#pet-placeholder'),
     $('#pet-loader'),
-    $('#delete-pet-modal')
+    {
+        title: 'Ukloni ljubimca',
+        icon: 'trash',
+        text: `Uklanjanje ljubimca uzrokovat će otkazivanje svih njegovih
+                rezervacija, neovisno o razini. Jeste li sigurni da želite
+                nastaviti?`
+    },
+    'Ljubimac je uspješno uklonjen.',
+    'Došlo je do pogreške pri brisanju ljubimca.'
 );
 let appendPet = function(pet){
     let deleteButton = '<i class="big trash action del icon" title="Ukloni" data-position="right center"></i>';
@@ -197,7 +66,13 @@ let resTable = new Table(
     $('#reservations').find('tbody'),
     $('#reservations-placeholder'),
     $('#reservations-loader'),
-    $('#delete-reservation-modal')
+    {
+        title: 'Otkaži rezervaciju',
+        icon: 'remove from calendar',
+        text: 'Otkazivanje rezervacije ne uključuje povrat novaca, jeste li sigurni da želite nastaviti?'
+    },
+    'Rezervacija je uspješno otkazana.',
+    'Došlo je do pogreške pri otkazivanju rezervacije.'
 );
 
 resTable.append = (function(res){
@@ -213,101 +88,18 @@ resTable.append = (function(res){
     this.showContent();
 }).bind(resTable);
 
-const petValidation = {
-    name: {
-        identifier: 'pet-name',
-        rules: [{
-            type: 'empty',
-            prompt: 'Ljubimac mora imati ime'
-        }]
-    },
-    age: {
-        identifier: 'pet-age',
-        rules: [{
-            type: 'empty',
-            prompt: 'Ljubimac mora imati broj godina'
-        }]
-    },
-    sex: {
-        identifier: 'gender',
-        rules: [{
-            type: 'empty',
-            prompt: 'Molimo odredite spol'
-        }]
-    },
-    species: {
-        identifier: 'pet-species',
-        rules: [{
-            type: 'empty',
-            prompt: 'Molimo odaberite vrstu ljubimca'
-        }]
-    },
-    breed: {
-        identifier: 'pet-breed'
-    },
-    microchip: {
-        identifier: 'pet-chip'
-    },
-    remark:{
-        identifier: 'remark'
-    }
-};
-
-
-const reservationValidation = {
-    service: {
-        identifier: 'service',
-        rules: [{
-            type: 'empty',
-            prompt: 'Molimo odaberite uslugu'
-        }]
-    },
-    pet: {
-        identifier: 'pet',
-        rules: [{
-            type: 'empty',
-            prompt: 'Molimo odaberite svog ljubimca'
-        }]
-    },
-    executionTime: {
-        identifier: 'executionTime',
-        rules: [{
-            type: 'empty',
-            prompt: 'Molimo unesite željeno vrijeme usluge'
-        }]
-    },
-
-    duration: {
-        identifier: 'duration',
-        rules: [{
-            type: 'empty',
-            prompt: 'Molimo unesite trajanje usluge'
-        }]
-    },
-};
-
-function fillDropDown(dropdown, getId, getText, getName, data){
-        dropdown.empty();
-        let options = [];
-        data.forEach(x => {
-            let [v,t,n] = [getId(x),getText(x),getName(x)];
-            options.push({
-                value: v,
-                text: t,
-                name: n
-            });
-            dropdown.append($('<option>', {value: v, text: t}));
-        });
-        dropdown.dropdown('setup menu', {values: options});
-}
-
 btnPets.click(petTable.update.bind(petTable));
 btnAddPet.click(() => {
+        modalInit(
+            addPetModal,
+            petValidation,
+            petTable.save.bind(petTable)
+        );
         addPetModal.modal('show');
         $.getJSON(api.species)
             .then(
                 data => fillDropDown(
-                    petSpecies,
+                    addPetModal.find('#pet-species'),
                     x => x.id,
                     x => x.name,
                     x => x.name,
@@ -316,80 +108,48 @@ btnAddPet.click(() => {
     }
 );
 
-let twoDigitFormat = (getter) => ('0' + getter()).slice(-2);
-
-let deklinacijeMrtve = {
-    'siječanj': 'siječnja',
-    'veljača': 'veljače',
-    'ožujak': 'ožujka',
-    'travanj': 'travnja',
-    'svibanj': 'svibnja',
-    'lipanj': 'lipaipnja',
-    'srpanj': 'srpnja',
-    'kolovoz': 'kolovoza',
-    'rujan': 'rujna',
-    'listopad': 'listopada',
-    'studeni': 'studenog',
-    'prosinac': 'prosinca'
-};
-
 btnAddReservation.click(
     () => {
+        modalInit(
+            addReservationModal,
+            reservationValidation,
+            resTable.save.bind(resTable)
+        );
+
         addReservationModal.modal({
             autofocus: false
         }).modal('show');
 
-        let monthFormat   = (date) => twoDigitFormat(() => date.getMonth() + 1);
-        let hourFormat    = (date) => twoDigitFormat(date.getHours.bind(date));
-        let minutesFormat = (date) => twoDigitFormat(date.getMinutes.bind(date));
-        let dayFormat     = (date) => twoDigitFormat(date.getDate.bind(date));
-        let timeFormat    = (date) => `${hourFormat(date)}:${minutesFormat(date)}`;
+        addReservationModal.find('#res-time')
+            .calendar(dateInputConfig);
 
-        $('#res-time').calendar({
-            ampm: false,
-            monthFirst: false,
-            text: {
-                days: ['P', 'U', 'S', 'Č', 'P', 'S', 'N'],
-                months: ['siječanj', 'ožujak', 'ožujak', 'travanj', 'svibanj', 'lipanj', 'srpanj', 'kolovoz', 'rujan', 'listopad', 'studeni', 'prosinac'],
-                today: 'Danas',
-                now: 'Sad'
-            },
-            formatter: {
-                datetime: function(date){
-                    if (!date) return '';
-                    return `${dayFormat(date)}.${monthFormat(date)}.${date.getFullYear()}. ${timeFormat(date)}`;
-                }
-            }
-        });
-        $('#res-duration').calendar({
-            type: 'time',
-            ampm: false,
-            formatter:{
-                time: timeFormat
-            }
-        });
+        addReservationModal.find('#res-duration')
+            .calendar(timeInputConfig);
+
         $.getJSON(api.employees)
             .then(
                 data => fillDropDown(
-                    resEmployee,
+                    addReservationModal.find('#res-employee'),
                     x => x.userId,
                     x => `${x.firstName} ${x.lastName}`,
                     x => `${x.firstName} ${x.lastName}`,
                     data)
             );
+
         $.getJSON(api.service)
             .then(
                 data => fillDropDown(
-                    resService,
+                    addReservationModal.find('#res-service'),
                     x => x.id,
                     x => x.name,
                     x => x.name,
                     data)
             );
+
         $.getJSON(api.pets)
             .then(
                 data => fillDropDown(
-                    resPet,
+                    addReservationModal.find('#res-pet'),
                     x => x.petId,
                     x => x.name,
                     x => x.name,
@@ -401,22 +161,22 @@ btnAddReservation.click(
 btnReservations.click(resTable.update.bind(resTable));
 
 btnDelete.click(function() {
-    $('#delete-user-modal')
-        .modal({
-            onApprove : () => {
-                $.ajax({
-                    type: 'DELETE',
-                    url: userIndex.substring(0,userIndex.length-1)
-                })
-                    .then(function() {
-                            window.location.replace("/");
-                        }
-                    )
-                    .catch(console.log);
-            }
+    confirm({
+        title: 'Brisanje korisničkog računa',
+        icon: 'trash',
+        text: 'Jeste li sigurni da želite obrisati korisnički račun?'
+    },() => {
+        $.ajax({
+            type: 'DELETE',
+            url: userIndex.substring(0,userIndex.length-1)
         })
-        .modal('show')
-    ;
+            .then(function() {
+                    showSuccess('Korisniči račun je uspješno obrisan.',
+                        () => window.location.replace("/"));
+                }
+            )
+            .catch(showFailure.bind(this,'Korisniči račun ne može se obrisati.'));
+    });
 });
 
 btnEdit.click(
@@ -427,22 +187,27 @@ btnEmployeJobs.click(
     () => window.location.href = `${userIndex}jobs`
 );
 
-
-
-
-function switchButtons(toHide, toShow) {
-    hideElem(toHide);
-    showElem(toShow);
-}
+btnSettings.click(() =>
+    {
+        modalInit(settingsModal,
+            availabilityValidation,
+            setAvailability);
+        settingsModal
+            .modal({
+                autofocus:false
+            }).modal('show');
+        settingsModal.find('.calendar').calendar(timeInputConfig);
+    }
+);
 
 function hire(){
-    switchButtons(btnEmploy, btnFire);
+    switchElements(btnEmploy, btnFire);
     userRole.find('p').remove();
     userRole.append(employeeLabel);
 }
 
 function fire(){
-    switchButtons(btnFire, btnEmploy);
+    switchElements(btnFire, btnEmploy);
     userRole.find('p').remove();
     userRole.append(clientLabel);
 }
@@ -463,26 +228,8 @@ btnFire.click(() => {
     );
 });
 
-
-function modalInit(modal, formFields, handler){
-    modal.form({
-        inline: false,
-        fields: formFields,
-        onSuccess: (event,fields) => {
-            event.preventDefault();
-            handler(fields);
-            modal.modal('hide');
-        }
-    });
-
-    $('.ui.dropdown')
-        .dropdown();
-}
-
 $(document)
     .ready(function() {
-        modalInit(addPetModal,petValidation,petTable.save.bind(petTable));
-        modalInit(addReservationModal,reservationValidation,resTable.save.bind(resTable));
         $('.menu .item')
             .tab({'onVisible':function(tabpath){
                 if(tabpath==='first'){

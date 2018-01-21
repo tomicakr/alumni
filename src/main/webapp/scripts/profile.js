@@ -38,7 +38,7 @@ function showElem(e) {
     e.removeClass('inactive');
 
 }
-function patch(data, onSuccess, onFail){
+function patch(onSuccess, onFail, ...data){
     $.ajax({
         url: userIndex,
         type: 'PATCH',
@@ -52,17 +52,15 @@ function patch(data, onSuccess, onFail){
 
 }
 
-const employOperation = {
-    "op": "replace",
-    "path": "/status",
-    "value": "employee"
-};
+function Patch(op, path, value){
+    this.op = op;
+    this.path = path;
+    this.value = value;
+}
 
-const fireOperation = {
-    "op": "replace",
-    "path": "/status",
-    "value": "client"
-};
+const employOperation = new Patch("replace", "/status","employee");
+const fireOperation = new Patch("replace", "/status","client");
+
 let Table= function(indexUrl, table, tableBody, placeholder, loader, deleteModal){
     this.indexUrl = indexUrl;
     this.table = table;
@@ -179,7 +177,7 @@ let petTable = new Table(
     $('#delete-pet-modal')
 );
 let appendPet = function(pet){
-    let deleteButton = '<i class="big trash action del icon" title="Ukloni"></i>';
+    let deleteButton = '<i class="big trash action del icon" title="Ukloni" data-position="right center"></i>';
 
     let petMarkup = $(this.formatTableRow(pet.name, pet.age, pet.species,pet.sex, pet.microchip, pet.remark,deleteButton));
     petMarkup.data('id',pet.petId);
@@ -202,9 +200,10 @@ let resTable = new Table(
 );
 
 resTable.append = (function(res){
-    let deleteButton = '<i class="big remove from calendar del action icon" title="Otkaži"></i>';
-    let resMarkup = $(this.formatTableRow(res.pet, res.service, res.employee, res.status, res.time,deleteButton));
-    console.log(res.reservationId);
+    let buttons = '';
+    buttons = res.status==='Otvorena' ? buttons + '<i class="big edit action icon" title="Uredi" data-position="right center"></i>': buttons;
+    buttons =buttons + '<i class="big remove from calendar del action icon" title="Otkaži" style="float: right;" data-position="right center"></i>';
+    let resMarkup = $(this.formatTableRow(res.pet, res.service, res.employee, res.status, res.time, buttons));
     resMarkup.data('id',res.reservationId);
     resTable.tableBody.append(resMarkup);
 
@@ -403,7 +402,6 @@ btnReservations.click(resTable.update.bind(resTable));
 btnDelete.click(function() {
     $('#delete-user-modal')
         .modal({
-            closable  : false,
             onApprove : () => {
                 $.ajax({
                     type: 'DELETE',
@@ -424,8 +422,6 @@ btnEdit.click(
     () => window.location.href = `${userIndex}edit`
 );
 
-
-
 function switchButtons(toHide, toShow) {
     hideElem(toHide);
     showElem(toShow);
@@ -445,17 +441,17 @@ function fire(){
 
 btnEmploy.click(() => {
     patch(
-        [employOperation],
         hire,
         () => console.log(`Ovo se poslalo: "${JSON.stringify([employOperation])}", ali nista od toga`),
+        employOperation
     );
 });
 
 btnFire.click(() => {
     patch(
-        [fireOperation],
         fire,
         () => console.log(`Ovo se poslalo: "${JSON.stringify([fireOperation])}", ali nista od toga`),
+        fireOperation
     );
 });
 

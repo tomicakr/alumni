@@ -281,6 +281,13 @@
                 </c:choose></td>
             </tr>
         </table>
+        <div class="ui hidden divider"></div>
+        <div>
+            <h2 class="ui darkred left floated header">Postavke</h2>
+            <h4 class="ui right floated header">
+                    <i id="btn-edit-settings" class="setting action icon" title="Promijeni"></i>
+            </h4>
+        </div>
     </section>
 
     <section id="pets"

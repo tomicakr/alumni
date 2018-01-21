@@ -32,7 +32,7 @@ public class Reservation {
 	private User user;
 
 	@Column
-	private int reservationStatus;
+	private ReservationStatus reservationStatus;
 
 	@ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name = "employeeId")
@@ -91,11 +91,11 @@ public class Reservation {
 		this.user = user;
 	}
 
-	public int getReservationStatus() {
+	public ReservationStatus getReservationStatus() {
 		return reservationStatus;
 	}
 
-	public void setReservationStatus(int reservationStatus) {
+	public void setReservationStatus(ReservationStatus reservationStatus) {
 		this.reservationStatus = reservationStatus;
 	}
 

@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import hr.petsonly.model.Reservation;
+import hr.petsonly.model.ReservationStatus;
 import hr.petsonly.model.details.ReservationDetails;
 import hr.petsonly.repository.ReservationRepository;
 import hr.petsonly.service.email.EmailServiceImpl;
@@ -41,13 +42,13 @@ public class JobController {
 
 		for (Reservation res : allReservations) {
 			switch (res.getReservationStatus()) {
-			case 1:
+			case PENDING:
 				open.add(new ReservationDetails(res));
 				break;
-			case 2:
+			case ACCEPTED:
 				accepted.add(new ReservationDetails(res));
 				break;
-			case 3:
+			case CONFIRMED:
 				confirmed.add(new ReservationDetails(res));
 				break;
 			}
@@ -74,7 +75,7 @@ public class JobController {
 	public String acceptReservation(@PathVariable UUID reservationId) {
 		
 		Reservation reservation = reservationRepository.findOne(reservationId);
-		reservation.setReservationStatus(2); //accepted
+		reservation.setReservationStatus(ReservationStatus.ACCEPTED); //accepted
 		reservationRepository.save(reservation);
 		
 		return "redirect:/users/{id}/jobs";
@@ -84,7 +85,7 @@ public class JobController {
 	public String confirmReservation(@PathVariable UUID reservationId) {
 		
 		Reservation reservation = reservationRepository.findOne(reservationId);
-		reservation.setReservationStatus(3);
+		reservation.setReservationStatus(ReservationStatus.CONFIRMED);
 		reservationRepository.save(reservation);		
 		mailService.sendReservationOffer(reservation);
 		
@@ -95,7 +96,7 @@ public class JobController {
 	public String archiveReservation(@PathVariable UUID reservationId) {
 		
 		Reservation reservation = reservationRepository.findOne(reservationId);
-		reservation.setReservationStatus(4);
+		reservation.setReservationStatus(ReservationStatus.CONFIRMED);
 		reservationRepository.save(reservation);
 
 		return "redirect:/users/{id}/jobs";

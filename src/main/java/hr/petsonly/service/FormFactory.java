@@ -75,7 +75,7 @@ public class FormFactory {
 		System.out.println(arf.toString());
 		Reservation r = new Reservation();
 		r.setReservationKey(UUID.randomUUID());
-		r.setReservationStatus(1); //KAKO SU NUMERIRANI STATUSI?
+		r.setReservationStatus(ReservationStatus.PENDING); //KAKO SU NUMERIRANI STATUSI?
 		r.setReservationTime(LocalDateTime.now());
 		r.setExecutionTime(LocalDateTime.parse(arf.getExecutionTime(), DateTimeFormatter.ofPattern("dd.MM.yyyy. HH:mm")));
 		r.setSendReminder(arf.getSendReminder() != null);

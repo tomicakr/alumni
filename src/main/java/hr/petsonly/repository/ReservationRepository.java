@@ -13,6 +13,7 @@ import org.springframework.data.repository.query.Param;
 
 import hr.petsonly.model.Pet;
 import hr.petsonly.model.Reservation;
+import hr.petsonly.model.ReservationStatus;
 import hr.petsonly.model.Service;
 import hr.petsonly.model.User;
 
@@ -62,13 +63,36 @@ public interface ReservationRepository extends JpaRepository<Reservation, UUID> 
 	List<Reservation> findAllByDocumentPathLike(String documentPath);
 
 	@Transactional
-	@Query("SELECT r FROM Reservation r WHERE r.sendReminder = TRUE AND r.reservationStatus = 3 AND r.executionTime BETWEEN :start AND :end")
-	List<Reservation> findAllConfirmedWithinNHoursHelper(@Param("start") LocalDateTime start, @Param("end") LocalDateTime end);
+	@Query("SELECT r FROM Reservation r WHERE r.sendReminder = TRUE AND r.reservationStatus = :status AND r.executionTime BETWEEN :start AND :end")
+	List<Reservation> findAllConfirmedWithinNHoursHelper(@Param("status") ReservationStatus status, @Param("start") LocalDateTime start, @Param("end") LocalDateTime end);
 	
 	default List<Reservation> findAllConfirmedWithinNHours(Long hours, Long minutes){
 		LocalDateTime start = LocalDateTime.now().plusHours(hours);
 		LocalDateTime end = start.plusHours(hours).plusMinutes(minutes);
-		return findAllConfirmedWithinNHoursHelper(start, end);
+		return findAllConfirmedWithinNHoursHelper(ReservationStatus.CONFIRMED, start, end);
+	}
+	
+	@Transactional
+	@Query("SELECT r FROM Reservation r WHERE r.reservationStatus = :status AND time(r.executionTime) >= :to AND time(r.executionTime) <= :from AND r.executionTime >= now()")
+	List<Reservation> findAllOpenWithinAvailableHoursHelper(@Param("status") ReservationStatus status, @Param("from") LocalTime from, @Param("to") LocalTime to);
+	
+	default List<Reservation> findAllOpenWithinAvailableHours(User u){
+		LocalTime from = u.getNotAvailableFrom();
+		LocalTime to   = u.getNotAvailableTo();
+		return findAllOpenWithinAvailableHoursHelper(ReservationStatus.PENDING, from, to);
+		
+	}
+	
+	@Transactional
+	@Query("SELECT r FROM Reservation r WHERE r.employee = :employee AND r.reservationStatus = :status AND r.executionTime >= now()")
+	List<Reservation> findAllByStatusFromEmployeeHelper(@Param("employee") User employee, @Param("status") ReservationStatus status);
+	
+	default List<Reservation> findAllAcceptedByEmployee(User u){
+		return findAllByStatusFromEmployeeHelper(u, ReservationStatus.ACCEPTED);
+	}
+	
+	default List<Reservation> findAllConfirmedByEmployee(User u){
+		return findAllByStatusFromEmployeeHelper(u, ReservationStatus.CONFIRMED);
 	}
 	
 	@Transactional

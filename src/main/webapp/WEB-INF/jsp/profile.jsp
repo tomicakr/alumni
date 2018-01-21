@@ -207,12 +207,15 @@
                             <c:when test="${user.roles.contains(\"ROLE_ADMINISTRATOR\")}">
                             </c:when>
                             <c:when test="${not user.roles.contains(\"ROLE_ZAPOSLENIK\")}">
+                                
                                 <i id="btn-employ-user" class="add user action icon"
                                    title="Zaposli"></i>
                                 <i id="btn-fire-user" class="inactive delete user action icon"
                                    title="Otpusti"></i>
                             </c:when>
                             <c:otherwise>
+                                 <i id="btn-employe-jobs" class="industry icon"
+                                   title="Pogledaj poslove"></i>
                                 <i id="btn-employ-user" class="inactive add user action icon"
                                    title="Zaposli"></i>
                                 <i id="btn-fire-user" class="delete user action icon"

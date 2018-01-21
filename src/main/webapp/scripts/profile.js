@@ -422,6 +422,13 @@ btnEdit.click(
     () => window.location.href = `${userIndex}edit`
 );
 
+btnEmployeJobs.click(
+    () => window.location.href = `${userIndex}jobs`
+);
+
+
+
+
 function switchButtons(toHide, toShow) {
     hideElem(toHide);
     showElem(toShow);

@@ -30,7 +30,7 @@
                     <h3>Nove rezervacije</h3>
                 </div>
 
-                <sec:authorize access="hasAuthority('CONFIRM_RESERVATION')">
+                <sec:authorize access="hasAuthority('ACCEPT_RESERVATION')">
                             <div class="ui right labeled input">
                               <input type="text" id="my-input-first-column" onkeyup="searchFunction('first-column')" placeholder="Pretraži...">
                               <div class="ui dropdown label" >
@@ -98,7 +98,7 @@
                     <h3>Prihvaćene rezervacije</h3>
                 </div>
 
-                <sec:authorize access="hasAuthority('CONFIRM_RESERVATION')">
+                <sec:authorize access="hasAuthority('ACCEPT_RESERVATION')">
                     <div class="ui right labeled input">
                               <input type="text" id="my-input-second-column" onkeyup="searchFunction('second-column')" placeholder="Pretraži...">
                               <div class="ui dropdown label">
@@ -165,7 +165,7 @@
                     <h3>Potvrđene rezervacije</h3>
                 </div>
 
-                <sec:authorize access="hasAuthority('CONFIRM_RESERVATION')">
+                <sec:authorize access="hasAuthority('ACCEPT_RESERVATION')">
                      <div class="ui right labeled input">
                                <input type="text" id="my-input-third-column" onkeyup="searchFunction('third-column')" placeholder="Pretraži...">
                               <div class="ui dropdown label">

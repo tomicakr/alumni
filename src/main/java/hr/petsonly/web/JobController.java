@@ -13,8 +13,11 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import hr.petsonly.model.Reservation;
+import hr.petsonly.model.Role;
+import hr.petsonly.model.User;
 import hr.petsonly.model.details.ReservationDetails;
 import hr.petsonly.repository.ReservationRepository;
+import hr.petsonly.repository.UserRepository;
 import hr.petsonly.service.email.EmailServiceImpl;
 
 @Controller
@@ -22,17 +25,20 @@ import hr.petsonly.service.email.EmailServiceImpl;
 public class JobController {
 	
 	private final ReservationRepository reservationRepository;
-
+	private final UserRepository userRepository;
 	private final EmailServiceImpl mailService;
 
 	@Autowired
-	public JobController(EmailServiceImpl mailService, ReservationRepository reservationRepository) {
+	public JobController(UserRepository userRepository, EmailServiceImpl mailService, ReservationRepository reservationRepository) {
+		this.userRepository = userRepository;
 		this.mailService = mailService;
 		this.reservationRepository = reservationRepository;
 	}
 
 	@GetMapping
-	public String showAllReservations(Model model) {
+	public String showAllReservations(Model model, @PathVariable UUID id) {
+		
+		User user = userRepository.findOne(id);
 		
 		List<Reservation> allReservations = reservationRepository.findAll();
 		List<ReservationDetails> open = new ArrayList<>();
@@ -42,7 +48,16 @@ public class JobController {
 		for (Reservation res : allReservations) {
 			switch (res.getReservationStatus()) {
 			case 1:
-				open.add(new ReservationDetails(res));
+				for (Role rl : user.getRoles()) {
+					if (rl.getName().equals("ROLE_ADMINISTRATOR")) {
+						open.add(new ReservationDetails(res));
+						break;
+					}
+				}
+				
+				if(user.compareUserAndReservationTime(res)){
+					open.add(new ReservationDetails(res));
+				}
 				break;
 			case 2:
 				accepted.add(new ReservationDetails(res));

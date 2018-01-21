@@ -30,6 +30,14 @@ a, a:hover{
 	margin-bottom: 30vh;
 }
 
+#employee-settings{
+	clear: both;
+}
+
+#employee-settings p{
+	font-size: 1.3em;
+}
+
 #sidebarHeader{
 	text-align: center;
 	color: white;

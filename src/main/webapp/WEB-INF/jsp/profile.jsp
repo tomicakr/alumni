@@ -125,13 +125,43 @@
                 </c:choose></td>
             </tr>
         </table>
-        <div class="ui hidden divider"></div>
-        <div>
-            <h2 class="ui darkred left floated header">Postavke</h2>
-            <h4 class="ui right floated header">
+        <c:if test="${user.roles.contains(\"ROLE_ZAPOSLENIK\")}">
+            <div class="ui hidden divider"></div>
+            <div class="ui segment">
+            <div>
+                <h2 class="ui darkred left floated header">Postavke zaposlenika</h2>
+                <h4 class="ui right floated header">
                     <i id="btn-edit-settings" class="setting action icon" title="Promijeni"></i>
-            </h4>
-        </div>
+                </h4>
+            </div>
+
+            <div id="employee-settings">
+                <p id="availability">
+                <c:choose>
+                    <c:when test="${user.notAvailableFrom==null}">
+                        Uvijek dostupan.
+                    </c:when>
+                    <c:otherwise>
+                        Nedostupan od <span class="darkred">${user.notAvailableFrom==null}</span> do <span class="darkred">${user.notAvailableTo==null}</span>.
+                    </c:otherwise>
+                </c:choose>
+                </p>
+                <p id="notifications">
+                <c:choose>
+                    <c:when test="${user.notificationSetting==0}">
+                        Ne šalju se obavijesti elektroničkom poštom.
+                    </c:when>
+                    <c:when test="${user.notificationSetting==1}">
+                        Obavijesti elektroničkom poštom šalju se samo za poslove s preferencijalnim odabirom.
+                    </c:when>
+                    <c:when test="${user.notificationSetting==2}">
+                        Obavijesti elektroničkom poštom šalju se za sve poslove.
+                    </c:when>
+                </c:choose>
+                </p>
+            </div>
+            </div>
+        </c:if>
     </section>
 
     <section id="pets"

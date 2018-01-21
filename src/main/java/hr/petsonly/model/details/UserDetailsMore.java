@@ -1,11 +1,12 @@
 package hr.petsonly.model.details;
 
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Component;
-
 import hr.petsonly.model.Location;
 import hr.petsonly.model.User;
 import hr.petsonly.repository.LocationRepository;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
+
+import java.time.LocalTime;
 
 @Component
 public class UserDetailsMore extends UserDetailsBasic{
@@ -17,14 +18,16 @@ public class UserDetailsMore extends UserDetailsBasic{
 	private String mobilePhone;
 	private String telephone;
 	private Location location;
-
+	private int notificationSetting;
+	private LocalTime notAvailableFrom;
+	private LocalTime notAvailableTo;
 	@Autowired
 	private LocationRepository locationRepository;
 
 	public UserDetailsMore(){
 		super();
 	}
-	
+
 	public UserDetailsMore(User user) {
 		super(user);
 
@@ -36,7 +39,34 @@ public class UserDetailsMore extends UserDetailsBasic{
 		this.telephone = user.getPhone();
 		this.city = location.getLocationName();
 		this.location = user.getLocation();
+		this.notificationSetting = user.getNotificationSetting();
+		this.notAvailableFrom = user.getNotAvailableFrom();
+		this.notAvailableTo = user.getNotAvailableTo();
 
+	}
+
+	public int getNotificationSetting() {
+		return notificationSetting;
+	}
+
+	public void setNotificationSetting(int notificationSetting) {
+		this.notificationSetting = notificationSetting;
+	}
+
+	public LocalTime getNotAvailableFrom() {
+		return notAvailableFrom;
+	}
+
+	public void setNotAvailableFrom(LocalTime notAvailableFrom) {
+		this.notAvailableFrom = notAvailableFrom;
+	}
+
+	public LocalTime getNotAvailableTo() {
+		return notAvailableTo;
+	}
+	
+	public void setNotAvailableTo(LocalTime notAvailableTo) {
+		this.notAvailableTo = notAvailableTo;
 	}
 
 	public String getCity() {

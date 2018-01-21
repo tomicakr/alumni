@@ -46,6 +46,10 @@ main {
 	color: darkred !important;
 }
 
+.darkred.span{
+	color: darkred;
+}
+
 .long.tag.label{
 	min-width: 120px !important;
 	color: white !important;

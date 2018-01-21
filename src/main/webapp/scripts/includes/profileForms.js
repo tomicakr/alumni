@@ -296,7 +296,9 @@ function setAvailability(formFields){
         prop => new Patch('replace',prop, formFields[prop])
     );
     patch(
-        () => console.log(`Ovo se poslalo: "${JSON.stringify(patchFields)}" i server kaze da je dobro`),
+        () => {
+            $('#employee-settings').find('#availability').text('')
+        },
         () => console.log(`Ovo se poslalo: "${JSON.stringify(patchFields)}", ali nista od toga`),
         patchFields
     )

@@ -124,6 +124,10 @@
                     </c:otherwise>
                 </c:choose></td>
             </tr>
+            <tr>
+                <td><strong>Radno vrijeme</strong></td>
+                <td>${user.workingTime}</td>
+            </tr>
         </table>
         <div class="ui hidden divider"></div>
         <div>

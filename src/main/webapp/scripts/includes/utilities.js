@@ -17,7 +17,7 @@ function Patch(op, path, value){
     this.value = value;
 }
 
-function patch(onSuccess, onFail, ...data){
+function patch(onSuccess, onFail, data){
     $.ajax({
         url: userIndex,
         type: 'PATCH',

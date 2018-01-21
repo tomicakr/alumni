@@ -216,7 +216,7 @@ btnEmploy.click(() => {
     patch(
         hire,
         () => console.log(`Ovo se poslalo: "${JSON.stringify([employOperation])}", ali nista od toga`),
-        employOperation
+        [employOperation]
     );
 });
 
@@ -224,7 +224,7 @@ btnFire.click(() => {
     patch(
         fire,
         () => console.log(`Ovo se poslalo: "${JSON.stringify([fireOperation])}", ali nista od toga`),
-        fireOperation
+        [fireOperation]
     );
 });
 

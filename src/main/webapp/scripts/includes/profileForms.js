@@ -298,7 +298,7 @@ function setAvailability(formFields){
     patch(
         () => console.log(`Ovo se poslalo: "${JSON.stringify(patchFields)}" i server kaze da je dobro`),
         () => console.log(`Ovo se poslalo: "${JSON.stringify(patchFields)}", ali nista od toga`),
-        fireOperation
+        patchFields
     )
 
 }

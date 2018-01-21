@@ -228,7 +228,10 @@ public class UserController {
 		
 		if(!valid) return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
 		
-		patchForms.forEach(patch -> userService.updateUser(id, patch));
+		patchForms.forEach(patch -> {
+			System.out.println(patch);
+			userService.updateUser(id, patch);
+			});
 		return new ResponseEntity<>(HttpStatus.NO_CONTENT);
 	}
 

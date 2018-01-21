@@ -104,7 +104,7 @@ public class UserService {
 				try {
 					i1 = Integer.parseInt(parts[0]);
 					i2 = Integer.parseInt(parts[1]);
-					user.setNotAvailableTo(LocalTime.of(i1, i2));
+					user.setNotAvailableFrom(LocalTime.of(i1, i2));
 					repository.save(user);
 				} catch (NumberFormatException|DateTimeException ex) {
 					return false;

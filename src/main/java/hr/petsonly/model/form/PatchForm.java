@@ -40,4 +40,10 @@ public class PatchForm {
 		this.value = newValue;
 	}
 
+	@Override
+	public String toString() {
+		return "PatchForm [op=" + op + ", path=" + path + ", value=" + value + "]";
+	}
+
+	
 }

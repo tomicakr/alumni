@@ -9,7 +9,7 @@ import java.util.UUID;
 @Component
 public class ReservationDetails {
 
-	private static final DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd.MM.yyyy. hh:mm");
+	private static final DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd.MM.yyyy. HH:mm");
 
 	private UUID reservationId;
 	private String pet;

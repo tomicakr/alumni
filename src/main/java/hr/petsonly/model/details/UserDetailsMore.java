@@ -17,9 +17,12 @@ public class UserDetailsMore extends UserDetailsBasic{
 	private String mobilePhone;
 	private String telephone;
 	private Location location;
+	private String workingTime;
 
 	@Autowired
 	private LocationRepository locationRepository;
+
+
 
 	public UserDetailsMore(){
 		super();
@@ -36,7 +39,20 @@ public class UserDetailsMore extends UserDetailsBasic{
 		this.telephone = user.getPhone();
 		this.city = location.getLocationName();
 		this.location = user.getLocation();
+		
+		this.workingTime = "";
+		if(user.getNotAvailableTo() != null) this.workingTime += user.getNotAvailableTo();
+		this.workingTime += "-";
+		if(user.getNotAvailableFrom() != null) this.workingTime += user.getNotAvailableFrom();
+		
 
+	}
+	public String getWorkingTime() {
+		return workingTime;
+	}
+
+	public void setWorkingTime(String workingTime) {
+		this.workingTime = workingTime;
 	}
 
 	public String getCity() {

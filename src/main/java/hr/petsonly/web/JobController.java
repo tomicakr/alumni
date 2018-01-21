@@ -18,7 +18,7 @@ import hr.petsonly.repository.ReservationRepository;
 import hr.petsonly.service.email.EmailServiceImpl;
 
 @Controller
-@RequestMapping(value = "/jobs")
+@RequestMapping(value = "/users/{id}/jobs")
 public class JobController {
 	
 	private final ReservationRepository reservationRepository;
@@ -77,7 +77,7 @@ public class JobController {
 		reservation.setReservationStatus(2); //accepted
 		reservationRepository.save(reservation);
 		
-		return "redirect:/jobs";
+		return "redirect:/users/{id}/jobs";
 	}
 	
 	@PostMapping("/{reservationId}/confirm")
@@ -85,9 +85,19 @@ public class JobController {
 		
 		Reservation reservation = reservationRepository.findOne(reservationId);
 		reservation.setReservationStatus(3);
-		reservationRepository.save(reservation);
+		reservationRepository.save(reservation);		
 		mailService.sendReservationOffer(reservation);
 		
-		return "redirect:/jobs";
+		return "redirect:/users/{id}/jobs";
+	}
+	
+	@PostMapping("/{reservationId}/archive")
+	public String archiveReservation(@PathVariable UUID reservationId) {
+		
+		Reservation reservation = reservationRepository.findOne(reservationId);
+		reservation.setReservationStatus(4);
+		reservationRepository.save(reservation);
+
+		return "redirect:/users/{id}/jobs";
 	}
 }

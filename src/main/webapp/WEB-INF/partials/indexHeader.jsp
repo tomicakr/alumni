@@ -15,12 +15,12 @@
 
             <sec:authorize access="hasRole('ZAPOSLENIK')">
                 <a class="item" name="Jobs"
-                   href="${pageContext.request.contextPath}/jobs"> Poslovi </a>
+                   href="${pageContext.request.contextPath}/users/${userInSession.userId}/jobs"> Poslovi </a>
             </sec:authorize>
 
             <sec:authorize access="hasRole('ADMINISTRATOR')">
                 <a class="item" name="Jobs"
-                   href="${pageContext.request.contextPath}/jobs"> Poslovi </a>
+                   href="${pageContext.request.contextPath}/users/${userInSession.userId}/jobs"> Poslovi </a>
                 <a class="item" name="Jobs"
                    href="${pageContext.request.contextPath}/users"> Korisnici </a>
             </sec:authorize>

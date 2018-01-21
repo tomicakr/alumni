@@ -1,7 +1,10 @@
 <%@page contentType="text/html" pageEncoding="UTF-8" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn" %>
-<%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags" %>
+<%@ taglib prefix="sec"
+           uri="http://www.springframework.org/security/tags" %>
+
+<sec:authentication var="userInSession" property="principal"/>
 
 <!DOCTYPE html>
 <html>
@@ -26,13 +29,32 @@
                 <div class="ui segment">
                     <h3>Nove rezervacije</h3>
                 </div>
+
+                <sec:authorize access="hasAuthority('CONFIRM_RESERVATION')">
+                            <div class="ui right labeled input">
+                              <input type="text" id="my-input-first-column" onkeyup="searchFunction('first-column')" placeholder="Pretraži...">
+                              <div class="ui dropdown label" >
+                                <div class="text">Naslov</div>
+                                <i class="dropdown icon"></i>
+                                <div class="menu" id="first-column-label">
+                                  <div class="item active selected" value="service-pet-pair">Naslov</div>
+                                  <div class="item" value="reservation-id-field">ID rez.</div>
+                                  <div class="item" value="pet-owner-field">Vlasnici</div>
+                                  <div class="item" value="petSpecies-field">Ljubimci</div>
+                              </div>
+                          </div>
+                          
+                      </div>
+
+                                </sec:authorize>
+
                 <div class="ui segments card-holder">
-                    <div class="ui cards wide">
+                    <div class="ui cards wide" id="first-column">
                         <c:forEach var="reservation" items="${open}">
                             <div class="card">
                                 <div class="content">
                                     <div class="header">
-                                        <h4 style="color: darkred">${reservation.service}, ${reservation.pet}</h4>
+                                        <h4 class="service-pet-pair" style="color: darkred">${reservation.service}, ${reservation.pet}</h4>
                                         <h5 style="margin-top: -10px">Vrijeme: ${reservation.time}</h5>
 
                                     </div>
@@ -43,20 +65,20 @@
                                                 <strong>Detalji rezervacije</strong>
                                             </div>
                                             <div class="content">
-                                                <p>A dog is a type of domesticated animal. Known for its loyalty and
-                                                    faithfulness, it can be found as a welcome guest in many households
-                                                    across the world.</p>
+                                                <h5>ID: </h5><p class="reservation-id-field">${reservation.reservationId}</p>
+                                                <h5>Vrsta: </h5><p class="petSpecies-field">${reservation.petSpecies}</p>
+                                                <h5>Vlasnik: </h5><p class="pet-owner-field">${reservation.owner}</p>
                                             </div>
                                         </div>
                                     </div>
                                 </div>
 
                                 <sec:authorize access="hasAuthority('ACCEPT_RESERVATION')">
-                                    <form method="post" action="/jobs/${reservation.reservationId}/accept">
+                                    <form method="post" action="${pageContext.request.contextPath}/users/${userInSession.userId}/jobs/${reservation.reservationId}/accept">
                                         <input type="hidden" name="reservationId" value="${reservation.reservationId}"/>
                                         <button class="ui darkred bottom fluid attached submit button" tabindex="0">
                                             <i class="level up icon"></i>
-                                            Prihvati
+                                            Prihvati 
                                         </button>
 
                                     </form>
@@ -75,13 +97,32 @@
                 <div class="ui segment">
                     <h3>Prihvaćene rezervacije</h3>
                 </div>
+
+                <sec:authorize access="hasAuthority('CONFIRM_RESERVATION')">
+                    <div class="ui right labeled input">
+                              <input type="text" id="my-input-second-column" onkeyup="searchFunction('second-column')" placeholder="Pretraži...">
+                              <div class="ui dropdown label">
+                                <div class="text">Naslov</div>
+                                <i class="dropdown icon"></i>
+                                <div class="menu" id="second-column-label">
+                                  <div class="item active selected" value="service-pet-pair">Naslov</div>
+                                  <div class="item" value="reservation-id-field">ID rez.</div>
+                                  <div class="item" value="pet-owner-field">Vlasnici</div>
+                                  <div class="item" value="petSpecies-field">Ljubimci</div>
+                              </div>
+                          </div>
+                          
+                      </div>
+                </sec:authorize>
+
+
                 <div class="ui segments card-holder">
-                    <div class="ui cards wide">
+                    <div class="ui cards wide" id="second-column">
                         <c:forEach var="reservation" items="${accepted}">
                             <div class="card">
                                 <div class="content">
                                     <div class="header">
-                                        <h4 style="color: darkred">${reservation.service}, ${reservation.pet}</h4>
+                                        <h4 class="service-pet-pair" style="color: darkred">${reservation.service}, ${reservation.pet}</h4>
                                         <h5 style="margin-top: -10px">Vrijeme: ${reservation.time}</h5>
 
                                     </div>
@@ -92,16 +133,16 @@
                                                 <strong>Detalji rezervacije</strong>
                                             </div>
                                             <div class="content">
-                                                <p>A dog is a type of domesticated animal. Known for its loyalty and
-                                                    faithfulness, it can be found as a welcome guest in many households
-                                                    across the world.</p>
+                                                <h5>ID: </h5><p class="reservation-id-field">${reservation.reservationId}</p>
+                                                <h5>Vrsta: </h5><p class="petSpecies-field">${reservation.petSpecies}</p>
+                                                <h5>Vlasnik: </h5><p class="pet-owner-field">${reservation.owner}</p>
                                             </div>
                                         </div>
                                     </div>
                                 </div>
 
                                 <sec:authorize access="hasAuthority('CONFIRM_RESERVATION')">
-                                    <form method="post" action="/jobs/${reservation.reservationId}/confirm">
+                                    <form method="post" action="${pageContext.request.contextPath}/users/${userInSession.userId}/jobs/${reservation.reservationId}/confirm">
                                         <input type="hidden" name="reservationId" value="${reservation.reservationId}"/>
                                         <button class="ui bottom darkred fluid attached submit button" tabindex="0">
                                             <i class="checkmark icon"></i>
@@ -123,14 +164,32 @@
                 <div class="ui segment">
                     <h3>Potvrđene rezervacije</h3>
                 </div>
+
+                <sec:authorize access="hasAuthority('CONFIRM_RESERVATION')">
+                     <div class="ui right labeled input">
+                               <input type="text" id="my-input-third-column" onkeyup="searchFunction('third-column')" placeholder="Pretraži...">
+                              <div class="ui dropdown label">
+                                <div class="text">Naslov</div>
+                                <i class="dropdown icon"></i>
+                                <div class="menu" id="third-column-label">
+                                  <div class="item active selected" value="service-pet-pair">Naslov</div>
+                                  <div class="item" value="reservation-id-field">ID rez.</div>
+                                  <div class="item" value="pet-owner-field">Vlasnici</div>
+                                  <div class="item" value="petSpecies-field">Ljubimci</div>
+                              </div>
+                          </div>
+                        
+                      </div>
+                </sec:authorize>
+
                 <div class="ui segments card-holder">
 
-                    <div class="ui cards wide">
+                    <div class="ui cards wide" id="third-column">
                         <c:forEach var="reservation" items="${confirmed}">
                             <div class="card">
                                 <div class="content">
                                     <div class="header">
-                                        <h4 style="color: darkred">${reservation.service}, ${reservation.pet}</h4>
+                                        <h4 class="service-pet-pair" style="color: darkred">${reservation.service}, ${reservation.pet}</h4>
                                         <h5 style="margin-top: -10px">Vrijeme: ${reservation.time}</h5>
 
                                     </div>
@@ -141,21 +200,25 @@
                                                 <strong>Detalji rezervacije</strong>
                                             </div>
                                             <div class="content">
-                                                <p>A dog is a type of domesticated animal. Known for its loyalty and
-                                                    faithfulness, it can be found as a welcome guest in many households
-                                                    across the world.</p>
+                                                <h5>ID: </h5><p class="reservation-id-field">${reservation.reservationId}</p>
+                                                <h5>Vrsta: </h5><p class="petSpecies-field">${reservation.petSpecies}</p>
+                                                <h5>Vlasnik: </h5><p class="pet-owner-field">${reservation.owner}</p>
                                             </div>
                                         </div>
                                     </div>
                                 </div>
-                                <form method="post" action="">
-                                    <input type="hidden" name="reservationId" value="${reservation.reservationId}"/>
-                                    <button class="ui bottom darkred fluid attached submit disabled button"
-                                            tabindex="0">
-                                        <i class="thumbs up icon"></i>
-                                        Završi
-                                    </button>
+
+                                <sec:authorize access="hasAuthority('CONFIRM_RESERVATION')">
+                                 <form method="post" action="${pageContext.request.contextPath}/users/${userInSession.userId}/jobs/${reservation.reservationId}/archive">
+                                        <input type="hidden" name="reservationId" value="${reservation.reservationId}"/>
+                                        <button class="ui bottom darkred fluid attached submit button" tabindex="0">
+                                            <i class="arrow down icon"></i>
+                                            Završi i arhiviraj
+                                        </button>
+                                    </form>
                                 </form>
+                                </sec:authorize>
+
                             </div>
                         </c:forEach>
                     </div>
@@ -164,6 +227,7 @@
         </div>
     </div>
 </div>
+
 <%@ include file="../partials/footer.jsp" %>
 <%@ include file="../partials/sidebarEnd.jsp" %>
 

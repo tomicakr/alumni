@@ -55,3 +55,13 @@
 	color: white;
 	padding-top: 10px;
 }
+
+.ui.labeled.input{
+	width: 90%;
+	left: 5%;
+	right: 5%;
+}
+
+.ui.dropdown.label{
+	min-width: 20%;
+}

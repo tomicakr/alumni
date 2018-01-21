@@ -16,12 +16,12 @@
 
                 <c:if test="${userInSession.roles[0].equals(\"ROLE_ZAPOSLENIK\")}">
                     <a class="item" name="Jobs"
-                       href="${pageContext.request.contextPath}/jobs"> Poslovi </a>
+                       href="${pageContext.request.contextPath}/users/${userInSession.userId}/jobs"> Poslovi </a>
                 </c:if>
 
                 <c:if test="${userInSession.roles[0].equals(\"ROLE_ADMINISTRATOR\")}">
                     <a class="item" name="Jobs"
-                       href="${pageContext.request.contextPath}/jobs"> Poslovi </a>
+                       href="${pageContext.request.contextPath}/users/${userInSession.userId}/jobs"> Poslovi </a>
                     <a class="item" name="Jobs"
                        href="${pageContext.request.contextPath}/users"> Korisnici </a>
                 </c:if>

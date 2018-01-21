@@ -13,10 +13,12 @@ public class ReservationDetails {
 
 	private UUID reservationId;
 	private String pet;
+	private String petSpecies;
 	private String service;
 	private String employee;
 	private String status;
 	private String time;
+	private String owner;
 
 	public ReservationDetails() {
 	}
@@ -25,10 +27,11 @@ public class ReservationDetails {
 
 		this.setReservationId(reservation.getReservationKey());
 		this.pet = reservation.getPet().getName();
+		this.petSpecies = reservation.getPet().getSpecies().getName();
 		this.service = reservation.getService().getName(); 
 		this.employee = reservation.getEmployee() == null ? null :reservation.getEmployee().getName() + " " + reservation.getEmployee().getSurname();
 		this.time = reservation.getExecutionTime().format(formatter);
-
+		this.owner = reservation.getUser().getName() + " " + reservation.getUser().getSurname();
 		switch (reservation.getReservationStatus()) {
 		case 1:
 			this.status = "Otvorena";
@@ -43,6 +46,22 @@ public class ReservationDetails {
 			this.status = "<unknown>";
 			break;
 		}
+	}
+
+	public String getPetSpecies() {
+		return petSpecies;
+	}
+
+	public void setPetSpecies(String petSpecies) {
+		this.petSpecies = petSpecies;
+	}
+
+	public String getOwner() {
+		return owner;
+	}
+
+	public void setOwner(String owner) {
+		this.owner = owner;
 	}
 
 	public String getPet() {

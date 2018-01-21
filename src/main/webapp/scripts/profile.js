@@ -15,6 +15,7 @@ const btnDelete           = $('#btn-delete-user'    );
 const btnEmploy           = $('#btn-employ-user'    );
 const btnFire             = $('#btn-fire-user'      );
 const btnAddPet           = $('#btn-add-pet'        );
+const btnEmployeJobs      = $('#btn-employe-jobs'   );
 
 const petSpecies          = $('#pet-species' );
 const resEmployee         = $('#res-employee');

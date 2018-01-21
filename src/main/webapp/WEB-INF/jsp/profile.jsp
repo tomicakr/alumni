@@ -214,8 +214,8 @@
                                    title="Otpusti"></i>
                             </c:when>
                             <c:otherwise>
-                                 <i id="btn-employe-jobs" class="industry icon"
-                                   title="Pogledaj poslove"></i>
+                                 <i id="btn-employe-jobs" class="industry action icon"
+                                   title="Poslovi"></i>
                                 <i id="btn-employ-user" class="inactive add user action icon"
                                    title="Zaposli"></i>
                                 <i id="btn-fire-user" class="delete user action icon"

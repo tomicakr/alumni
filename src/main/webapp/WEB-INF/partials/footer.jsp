@@ -21,7 +21,7 @@
                            class="item"><i class="marker icon"></i> Biankinijeva, Zagreb, Croatia</a>
                         <a class="item"><i class="mail icon"></i> petsonlyzg@gmail.com</a>
                         <a class="item"><i class="mobile icon"></i> +387 97 621 7659</a>
-                        <a href="https://www.facebook.com/PetsOnlyZg/" class="item"><i class="facebook f icon"></i>
+                        <a target="_blank" href="https://www.facebook.com/PetsOnlyZg/" class="item"><i class="facebook f icon"></i>
                             PetsOnlyZg Facebook</a>
                     </div>
                 </div>
@@ -31,16 +31,6 @@
                     <p>Lijep pozdrav!</p>
                 </div>
             </div>
-            <div class="ui inverted section divider"></div>
-
-            <div class="ui horizontal inverted divided link list">
-                <a class="item" href="/">Home</a>
-                <a class="item" href="#">Usluge</a>
-                <a class="item" href="#">Cjenik</a>
-                <a class="item" href="#">Forum</a>
-                <a class="item" href="${pageContext.request.contextPath}/sessions/new">Login</a>
-            </div>
-
         </div>
     </div>
 </footer>

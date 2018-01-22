@@ -6,6 +6,7 @@ import java.util.UUID;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -15,7 +16,9 @@ import hr.petsonly.model.Reservation;
 import hr.petsonly.model.ReservationStatus;
 import hr.petsonly.model.User;
 import hr.petsonly.model.details.ReservationDetails;
+import hr.petsonly.model.form.EditReservationForm;
 import hr.petsonly.repository.UserRepository;
+import hr.petsonly.service.FormFactory;
 import hr.petsonly.service.ReservationService;
 import hr.petsonly.service.email.EmailServiceImpl;
 
@@ -28,6 +31,7 @@ public class JobController {
 	private final EmailServiceImpl mailService;
 	
 	private final UserRepository userRepository;
+	private FormFactory formFactory;
 
 	@Autowired
 	public JobController(EmailServiceImpl mailService, ReservationService reservationService, UserRepository userRepository) {
@@ -92,5 +96,21 @@ public class JobController {
 		reservationService.save(reservation);
 
 		return "redirect:/users/{id}/jobs";
+	}
+	
+	@PostMapping("/{reservationId}/edit")
+	public String updateReservation(Model model, @PathVariable UUID reservationId, EditReservationForm editReservationForm, BindingResult result) {
+
+		Reservation reservation = reservationService.findOne(reservationId);
+
+		/*if (formFactory.editReservationFromForm(reservation, editReservationForm)) {
+			reservationRepository.save(reservation);
+		}*/
+
+		return "redirect:/users/{id}/jobs";
+
+
+
+
 	}
 }

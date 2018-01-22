@@ -119,7 +119,7 @@ public class ReservationController {
     @GetMapping(value = "/{id}/edit")
     public String showReservationEditForm(Model model, @PathVariable UUID id, @PathVariable UUID uid) {
 
-        return "reservationEdit";
+        return "editReservation";
     }
 
     @PutMapping(value = "/{id}")
@@ -129,7 +129,7 @@ public class ReservationController {
         if (result.hasErrors()) {
 
             model.addAttribute("errorMessage", result.toString());
-            return "reservationEdit";
+            return "editReservation";
         }
 
         User user = userRepository.getOne(uid);

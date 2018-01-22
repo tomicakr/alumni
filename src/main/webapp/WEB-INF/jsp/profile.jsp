@@ -29,17 +29,17 @@
              data-tab="first">
         <div>
             <h2 class="ui darkred left floated header">Detalji korisnika</h2>
-            <h4 class="ui right floated header">
+            <h4 id="user-actions" class="ui right floated header">
                 <sec:authorize access="hasRole('KORISNIK')">
                     <i id="btn-edit-user" class="edit action icon" title="Uredi profil"></i>
                     <i id="btn-delete-user" class="trash action icon"
-                       title="Obriši profil"></i>
+                       title="Obriši račun"></i>
                 </sec:authorize>
 
                 <sec:authorize access="hasRole('ZAPOSLENIK')">
                     <i id="btn-edit-user" class="edit action icon" title="Uredi profil"></i>
                     <i id="btn-delete-user" class="trash action icon"
-                       title="Obriši profil"></i>
+                       title="Obriši račun"></i>
                 </sec:authorize>
 
                 <sec:authorize access="hasRole('ADMINISTRATOR')">
@@ -55,8 +55,6 @@
                                    title="Otpusti"></i>
                             </c:when>
                             <c:otherwise>
-                                 <i id="btn-employe-jobs" class="industry action icon"
-                                   title="Poslovi"></i>
                                 <i id="btn-employ-user" class="inactive add user action icon"
                                    title="Zaposli"></i>
                                 <i id="btn-fire-user" class="delete user action icon"
@@ -111,61 +109,20 @@
                 <td><strong>Uloga</strong></td>
                 <td id="role"><c:choose>
                     <c:when test="${user.roles.contains(\"ROLE_ADMINISTRATOR\")}">
-                        <p class="ui administrator long tag label">Administrator</p>
+                        <p class="ui long tag administrator label">Administrator</p>
                     </c:when>
                     <c:when test="${user.roles.contains(\"ROLE_ZAPOSLENIK\")}">
-                        <p class="ui employee long tag label">Zaposlenik</p>
+                        <p class="ui long tag employee label">Zaposlenik</p>
                     </c:when>
                     <c:when test="${user.roles.contains(\"ROLE_KORISNIK\")}">
-                        <p class="ui long tag label brown">Klijent</p>
+                        <p class="ui long tag client label">Klijent</p>
                     </c:when>
                     <c:otherwise>
-                        <p class="ui employee long tag label">Greška</p>
+                        <p class="ui long tag red label">Greška</p>
                     </c:otherwise>
                 </c:choose></td>
             </tr>
-            <tr>
-                <td><strong>Radno vrijeme</strong></td>
-                <td>${user.workingTime}</td>
-            </tr>
         </table>
-        <c:if test="${user.roles.contains(\"ROLE_ZAPOSLENIK\")}">
-            <div class="ui hidden divider"></div>
-            <div class="ui segment">
-            <div>
-                <h2 class="ui darkred left floated header">Postavke zaposlenika</h2>
-                <h4 class="ui right floated header">
-                    <i id="btn-edit-settings" class="setting action icon" title="Promijeni"></i>
-                </h4>
-            </div>
-
-            <div id="employee-settings">
-                <p id="availability">
-                <c:choose>
-                    <c:when test="${user.notAvailableFrom==null}">
-                        Uvijek dostupan.
-                    </c:when>
-                    <c:otherwise>
-                        Nedostupan od <span class="darkred">${user.notAvailableFrom==null}</span> do <span class="darkred">${user.notAvailableTo==null}</span>.
-                    </c:otherwise>
-                </c:choose>
-                </p>
-                <p id="notifications">
-                <c:choose>
-                    <c:when test="${user.notificationSetting==0}">
-                        Ne šalju se obavijesti elektroničkom poštom.
-                    </c:when>
-                    <c:when test="${user.notificationSetting==1}">
-                        Obavijesti elektroničkom poštom šalju se samo za poslove s preferencijalnim odabirom.
-                    </c:when>
-                    <c:when test="${user.notificationSetting==2}">
-                        Obavijesti elektroničkom poštom šalju se za sve poslove.
-                    </c:when>
-                </c:choose>
-                </p>
-            </div>
-            </div>
-        </c:if>
     </section>
 
     <section id="pets"
@@ -247,4 +204,13 @@
 <script src="${pageContext.request.contextPath}/scripts/includes/table.js"></script>
 <script src="${pageContext.request.contextPath}/scripts/profile.js"></script>
 </body>
+<script>
+    renderEmployeeSettings('${user.workingTime}','${user.notificationSetting}');
+    <c:if test="${user.roles.contains(\"ROLE_ZAPOSLENIK\")}">
+        $('#user-info').append(employeeSettings);
+        $('#user-actions').prepend(btnEmployeeJobs);
+        btnEmployeeJobs.popup();
+    </c:if>
+
+</script>
 </html>

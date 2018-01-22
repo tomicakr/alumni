@@ -60,7 +60,7 @@
     </div>
     <div class="ui actions">
         <div class="ui huge ok inverted button">
-            <i class="checkmark icon"></i> Izađi
+            Izađi
         </div>
     </div>
 </div>

@@ -161,6 +161,11 @@ let failureModal =
             </div>
         </div>`);
 
+$.fn.form.settings.rules.validInterval = ()=> {
+    let from = parseFloat($('#not-available-from').find('input').val().replace(/:/g,'.'));
+    let to = parseFloat($('#not-available-to').find('input').val().replace(/:/g,'.'));
+    return from < to;
+};
 
 const petValidation = {
     name: {
@@ -237,12 +242,20 @@ const reservationValidation = {
 const availabilityValidation = {
     notAvailableFrom: {
         identifier: 'notAvailableFrom',
+        rules: [{
+            type: 'validInterval',
+            prompt: 'Interval nije valjan'
+        }]
     },
     notAvailableTo: {
         identifier: 'notAvailableTo',
+        rules: [{
+            type: 'validInterval',
+            prompt: 'Interval nije valjan'
+        }]
     },
     emailSetting: {
-        identifier: 'emailSetting',
+        identifier: 'emailSetting'
     }
 };
 
@@ -258,8 +271,8 @@ function confirm(content, approveAction){
     });
 
     confirmationModal.modal({
-            onApprove : approveAction
-        })
+        onApprove : approveAction
+    })
         .modal('show');
 }
 
@@ -291,13 +304,22 @@ function modalInit(modal, formFields, handler){
         .dropdown();
 }
 
+const messageMap = [
+    'Ne šalju se obavijesti elektroničkom poštom.',
+    'Obavijesti elektroničkom poštom šalju se samo za poslove s preferencijalnim odabirom.',
+    'Obavijesti elektroničkom poštom šalju se za sve poslove.'
+];
+
 function setAvailability(formFields){
     let patchFields = Object.getOwnPropertyNames(formFields).map(
         prop => new Patch('replace',prop, formFields[prop])
     );
     patch(
         () => {
-            $('#employee-settings').find('#availability').text('')
+            let settings =  $('#employee-settings');
+            let interval = settings.find('#availability')
+            interval.html(`Nedostupan od <strong class="darkred">${formFields.notAvailableFrom}</strong> do <strong class="darkred">${formFields.notAvailableTo}</strong>.`)
+            settings.find('#notifications').text(messageMap[formFields.emailSetting]);
         },
         () => console.log(`Ovo se poslalo: "${JSON.stringify(patchFields)}", ali nista od toga`),
         patchFields

@@ -1,108 +1,139 @@
 package hr.petsonly.model.details;
 
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Component;
-
 import hr.petsonly.model.Location;
 import hr.petsonly.model.User;
 import hr.petsonly.repository.LocationRepository;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
+
+import java.time.LocalTime;
 
 @Component
 public class UserDetailsMore extends UserDetailsBasic{
 
-	
-	private String city;
-	private String address;
-	private String userPid;
-	private String mobilePhone;
-	private String telephone;
-	private Location location;
-	private String workingTime;
 
-	@Autowired
-	private LocationRepository locationRepository;
+    private String city;
+    private String address;
+    private String userPid;
+    private String mobilePhone;
+    private String telephone;
+    private Location location;
+    private String workingTime;
+    private String notificationSetting;
+
+    @Autowired
+    private LocationRepository locationRepository;
 
 
 
-	public UserDetailsMore(){
-		super();
-	}
-	
-	public UserDetailsMore(User user) {
-		super(user);
+    public UserDetailsMore(){
+        super();
+    }
 
-		Location location = user.getLocation();
+    public UserDetailsMore(User user) {
+        super(user);
 
-		this.address = user.getAddress();
-		this.userPid = user.getUserPid();
-		this.mobilePhone = user.getMobilePhone();
-		this.telephone = user.getPhone();
-		this.city = location.getLocationName();
-		this.location = user.getLocation();
+        Location location = user.getLocation();
 
-	}
-	public String getWorkingTime() {
-		return workingTime;
-	}
+        this.address = user.getAddress();
+        this.userPid = user.getUserPid();
+        this.mobilePhone = user.getMobilePhone();
+        this.telephone = user.getPhone();
+        this.city = location.getLocationName();
+        this.location = user.getLocation();
 
-	public void setWorkingTime(String workingTime) {
-		this.workingTime = workingTime;
-	}
+        LocalTime from = user.getNotAvailableFrom();
+        LocalTime to = user.getNotAvailableTo();
 
-	public String getCity() {
-		return city;
-	}
+        if(from == null || to == null){
+            this.workingTime = "Uvijek dostupan.";
+        }else{
+            this.workingTime = String.format("Nedostupan od <strong class=\"darkred\">%s</strong> do <strong class=\"darkred\">%s</strong> sati.", from, to);
+        }
 
-	public void setCity(String city) {
-		this.city = city;
-	}
+        switch (user.getNotificationSetting()){
+            case 0:
+                this.notificationSetting = "Ne šalju se obavijesti elektroničkom poštom.";
+                break;
+            case 1:
+                this.notificationSetting = "Obavijesti elektroničkom poštom šalju se samo za poslove s preferencijalnim odabirom.";
+                break;
+            case 2:
+                this.notificationSetting = "Obavijesti elektroničkom poštom šalju se za sve poslove.";
+                break;
+        }
 
-	public String getAddress() {
-		return address;
-	}
 
-	public void setAddress(String address) {
-		this.address = address;
-	}
+    }
+    public String getWorkingTime() {
+        return workingTime;
+    }
 
-	public String getUserPid() {
-		return userPid;
-	}
+    public void setWorkingTime(String workingTime) {
+        this.workingTime = workingTime;
+    }
 
-	public void setUserPid(String userPid) {
-		this.userPid = userPid;
-	}
+    public String getCity() {
+        return city;
+    }
 
-	public String getMobilePhone() {
-		return mobilePhone;
-	}
+    public void setCity(String city) {
+        this.city = city;
+    }
 
-	public void setMobilePhone(String mobilePhone) {
-		this.mobilePhone = mobilePhone;
-	}
+    public String getAddress() {
+        return address;
+    }
 
-	public String getTelephone() {
-		return telephone;
-	}
+    public void setAddress(String address) {
+        this.address = address;
+    }
 
-	public void setTelephone(String telephone) {
-		this.telephone = telephone;
-	}
+    public String getUserPid() {
+        return userPid;
+    }
 
-	public LocationRepository getLocationRepository() {
-		return locationRepository;
-	}
+    public void setUserPid(String userPid) {
+        this.userPid = userPid;
+    }
 
-	public void setLocationRepository(LocationRepository locationRepository) {
-		this.locationRepository = locationRepository;
-	}
+    public String getMobilePhone() {
+        return mobilePhone;
+    }
 
-	public Location getLocation() {
-		return location;
-	}
+    public void setMobilePhone(String mobilePhone) {
+        this.mobilePhone = mobilePhone;
+    }
 
-	public void setLocation(Location location) {
-		this.location = location;
-	}
+    public String getTelephone() {
+        return telephone;
+    }
 
+    public void setTelephone(String telephone) {
+        this.telephone = telephone;
+    }
+
+    public LocationRepository getLocationRepository() {
+        return locationRepository;
+    }
+
+    public void setLocationRepository(LocationRepository locationRepository) {
+        this.locationRepository = locationRepository;
+    }
+
+    public Location getLocation() {
+        return location;
+    }
+
+    public void setLocation(Location location) {
+        this.location = location;
+    }
+
+    public String getNotificationSetting() {
+        return notificationSetting;
+    }
+
+    public void setNotificationSetting(String notificationSetting) {
+        this.notificationSetting = notificationSetting;
+    }
 }

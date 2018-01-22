@@ -8,6 +8,24 @@ const api = {
     service: '/api/services'
 };
 
+let employeeSettings =
+    $(`<div class="ui hidden divider"></div>
+            <div class="ui segment">
+            <div>
+                <h2 class="ui darkred left floated header">Postavke zaposlenika</h2>
+                <h4 class="ui right floated header">
+                    <i id="btn-edit-settings" class="setting action icon" title="Promijeni"></i>
+                </h4>
+            </div>
+        
+            <div id="employee-settings">
+                <p id="availability">
+                </p>
+                <p id="notifications">
+                </p>
+            </div>
+       </div>`);
+
 const btnPets             = $('#btn-pets'           );
 const btnReservations     = $('#btn-reservations'   );
 const btnEdit             = $('#btn-edit-user'      );
@@ -15,20 +33,20 @@ const btnDelete           = $('#btn-delete-user'    );
 const btnEmploy           = $('#btn-employ-user'    );
 const btnFire             = $('#btn-fire-user'      );
 const btnAddPet           = $('#btn-add-pet'        );
-const btnEmployeJobs      = $('#btn-employe-jobs'   );
-const btnSettings         = $('#btn-edit-settings'  );
 
 const btnAddReservation   = $('#btn-add-reservation');
 
+const userRole      = $('#role');
+const clientLabel   = $('<p class="ui client long tag label">Klijent</p>');
 
-const userRole            = $('#role');
-const clientLabel   = '<p class="ui client long tag label">Klijent</p>';
+const employeeLabel = $('<p class="ui employee long tag label">Zaposlenik</p>');
 
-const employeeLabel = '<p class="ui employee long tag label">Zaposlenik</p>';
-
+const btnEmployeeJobs = $('<i id="btn-employe-jobs" class="industry action icon" title="Poslovi"></i>');
 
 const employOperation = new Patch("replace", "/status","employee");
 const fireOperation = new Patch("replace", "/status","client");
+
+const transition = 250;
 
 let petTable = new Table(
     petIndex,
@@ -183,11 +201,11 @@ btnEdit.click(
     () => window.location.href = `${userIndex}edit`
 );
 
-btnEmployeJobs.click(
+btnEmployeeJobs.click(
     () => window.location.href = `${userIndex}jobs`
 );
 
-btnSettings.click(() =>
+employeeSettings.find('#btn-edit-settings').click(() =>
     {
         modalInit(settingsModal,
             availabilityValidation,
@@ -199,17 +217,38 @@ btnSettings.click(() =>
         settingsModal.find('.calendar').calendar(timeInputConfig);
     }
 );
+employeeSettings.find('#btn-edit-settings').popup();
+
 
 function hire(){
     switchElements(btnEmploy, btnFire);
-    userRole.find('p').remove();
-    userRole.append(employeeLabel);
+    (async () => userRole.find('p').fadeOut(125, function(){
+        employeeLabel.hide();
+        $(this).replaceWith(employeeLabel);
+        employeeLabel.fadeIn(125);
+    }))();
+    (async () => btnEmployeeJobs.hide().prependTo('#user-actions').fadeIn(transition))();
+    (async () => employeeSettings.hide().appendTo('#user-info').fadeIn(transition))();
+    btnEmployeeJobs
+        .popup();
+    employeeSettings.find('.setting.icon')
+        .popup();
 }
 
 function fire(){
     switchElements(btnFire, btnEmploy);
-    userRole.find('p').remove();
-    userRole.append(clientLabel);
+    (async () => userRole.find('p').fadeOut(transition/2, function(){
+        clientLabel.hide();
+        $(this).replaceWith(clientLabel);
+        clientLabel.fadeIn(transition/2);
+    }))();
+    (async () => btnEmployeeJobs.fadeOut(transition, () => $(this).detach()))();
+    (async () => employeeSettings.fadeOut(transition, () => $(this).detach()))();
+}
+
+function renderEmployeeSettings(availability, notifications){
+    employeeSettings.find('#availability').html(availability);
+    employeeSettings.find('#notifications').text(notifications);
 }
 
 btnEmploy.click(() => {

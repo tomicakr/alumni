@@ -16,7 +16,7 @@ a, a:hover{
 }
 
 .ui.bottom.attached.tab.segment{
-	min-height: 40em !important;
+	min-height: 46em !important;
 }
 
 #reservations-table-container, #pets-table-container{

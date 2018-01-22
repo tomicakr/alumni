@@ -1,19 +1,18 @@
 package hr.petsonly.service;
 
-import java.time.DateTimeException;
-import java.time.LocalTime;
-import java.util.List;
-import java.util.UUID;
-
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Service;
-import org.springframework.transaction.annotation.Transactional;
-
 import hr.petsonly.model.Role;
 import hr.petsonly.model.User;
 import hr.petsonly.model.form.PatchForm;
 import hr.petsonly.model.form.RegistrationForm;
 import hr.petsonly.repository.UserRepository;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
+
+import java.time.DateTimeException;
+import java.time.LocalTime;
+import java.util.List;
+import java.util.UUID;
 
 @Service
 public class UserService {

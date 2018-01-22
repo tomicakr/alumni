@@ -5,22 +5,24 @@ let settingsModal=
         <div class="ui center aligned content">
             <form id="availability-form" class="ui large form">
                 <div class="ui calendar field" id="not-available-from">
+                    <label> Nedostupan od:</label>
                     <div class="ui input left icon">
                         <i class="clock icon"></i>
-                        <input type="text" name="notAvailableFrom" placeholder="Nedostupan od">
+                        <input type="text" name="notAvailableFrom" placeholder="Uvijek dosutpan">
                     </div>
                 </div>
                 <div class="ui calendar field" id="not-available-to">
+                <label> Nedostupan do:</label>
                     <div class="ui input left icon">
                         <i class="clock icon"></i>
-                        <input type="text" name="notAvailableTo" placeholder="Nedostupan do">
+                        <input type="text" name="notAvailableTo" placeholder="Uvijek dostupan">
                     </div>
                 </div>
                 <div class="field" id="email-setting">
-                <label>Obavijesti elektroničkom poštom</label>
+                <label>Obavijesti o novootvorenim rezervacijama.</label>
                     <select name="emailSetting" class="ui dropdown">
-                      <option value="0">Ne obavještavaj me</option>
-                      <option value="1">Za preferencijalne poslove</option>
+                      <option value="0">Nikad ne šalji obavijesti</option>
+                      <option value="1">Samo za preferencijalne poslove</option>
                       <option value="2">Za sve poslove</option>
                     </select>
                 </div>
@@ -162,8 +164,13 @@ let failureModal =
         </div>`);
 
 $.fn.form.settings.rules.validInterval = ()=> {
-    let from = parseFloat($('#not-available-from').find('input').val().replace(/:/g,'.'));
-    let to = parseFloat($('#not-available-to').find('input').val().replace(/:/g,'.'));
+    let fromString = $('#not-available-from').find('input').val();
+    let toString = $('#not-available-to').find('input').val();
+    if(fromString === '' && toString === ''){
+        return true;
+    }
+    let from = parseFloat(fromString.replace(/:/g,'.'));
+    let to = parseFloat(toString.replace(/:/g,'.'));
     return from < to;
 };
 
@@ -321,9 +328,13 @@ function setAvailability(formFields){
     );
     patch(
         () => {
-            let settings =  $('#employee-settings');
-            let interval = settings.find('#availability')
-            interval.html(`Nedostupan od <strong class="darkred">${formFields.notAvailableFrom}</strong> do <strong class="darkred">${formFields.notAvailableTo}</strong>.`)
+            let settings = $('#employee-settings');
+            let interval = settings.find('#availability');
+            if (formFields.notAvailableTo === '' && formFields.notAvailableFrom === '') {
+                interval.html('Uvijek dostupan.');
+            } else{
+                interval.html(`Nedostupan od <strong class="darkred">${formFields.notAvailableFrom}</strong> do <strong class="darkred">${formFields.notAvailableTo}</strong>.`)
+            }
             settings.find('#notifications').text(messageMap[formFields.emailSetting]);
         },
         () => console.log(`Ovo se poslalo: "${JSON.stringify(patchFields)}", ali nista od toga`),

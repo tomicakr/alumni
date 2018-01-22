@@ -262,7 +262,7 @@ btnEmploy.click(() => {
 btnFire.click(() => {
     patch(
         fire,
-        () => console.log(`Ovo se poslalo: "${JSON.stringify([fireOperation])}", ali nista od toga`),
+        () => showFailure('Nije moguće otpustiti zaposlenika. Provjerite ima li aktivnih poslova.'),
         [fireOperation]
     );
 });

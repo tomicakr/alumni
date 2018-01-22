@@ -44,7 +44,8 @@ public class UserController {
 	private final AuthenticationManager authenticationManager;
 
 	@Autowired
-	public UserController(UserRepository userRepository, FormFactory formFactory, CommonServices services, UserService userService, AuthenticationManager authenticationManager) {
+	public UserController(UserRepository userRepository, FormFactory formFactory, CommonServices services,
+			UserService userService, AuthenticationManager authenticationManager) {
 		this.userRepository = userRepository;
 		this.formFactory = formFactory;
 		this.services = services;
@@ -183,7 +184,7 @@ public class UserController {
 
 			return "editUser";
 		}
-		
+
 		if (formFactory.editUserFromForm(user, editUserForm)) {
 			userRepository.save(user);
 		}
@@ -212,14 +213,17 @@ public class UserController {
 	@RequestMapping(value = "/{id}", method = RequestMethod.PATCH, consumes = MediaType.APPLICATION_JSON_VALUE)
 	@ResponseBody
 	@PreAuthorize("hasRole('ZAPOSLENIK') || hasRole('ADMINISTRATOR')")
-	public ResponseEntity<?> updateUser(@RequestBody List<PatchForm> patchForms,
-			@PathVariable UUID id) {
+	public ResponseEntity<?> updateUser(@RequestBody List<PatchForm> patchForms, @PathVariable UUID id) {
 		Boolean valid = true;
-		
-		patchForms.forEach(patchForm -> userService.validatePatchForm(patchForm, valid));
-		
-		if(!valid) return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
-		
+
+		for (PatchForm patchForm : patchForms) {
+			valid = userService.validatePatchForm(patchForm, valid, id);
+		}
+
+		System.out.println(valid);
+		if (!valid)
+			return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+
 		patchForms.forEach(patch -> userService.updateUser(id, patch));
 		return new ResponseEntity<>(HttpStatus.NO_CONTENT);
 	}

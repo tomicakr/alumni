@@ -11,6 +11,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import java.time.DateTimeException;
 import java.time.LocalTime;
+import java.util.Arrays;
 import java.util.List;
 import java.util.UUID;
 
@@ -51,7 +52,7 @@ public class UserService {
 
 	public boolean fireUser(User user) {
 
-		if (user == null) {
+		if (user == null || !user.getTasks().isEmpty()) {
 			return false;
 		}
 
@@ -140,11 +141,13 @@ public class UserService {
 		return false;
 	}
 
-	public void validatePatchForm(PatchForm patchForm, Boolean valid) {
+	public boolean validatePatchForm(PatchForm patchForm, Boolean valid, UUID userId) {
 
 		String operation = patchForm.getOp();
 		String path = patchForm.getPath();
 		String value = patchForm.getValue();
+		
+		User user = repository.findOne(userId);
 		
 		switch (operation) {
 		case "replace":
@@ -153,20 +156,20 @@ public class UserService {
 			case "/status":
 
 				if (value.equals("employee")) {
-					valid = true;
-					return;
+					return true;
 				} else if (value.equals("client")) {
-					valid = true;
-					return;
+					if(user == null || !user.getTasks().isEmpty()) {
+						System.out.println(Arrays.toString(user.getTasks().toArray()));
+						return false;
+					}
+					return true;
 				}
 
-				valid = false;
-				return;
+				return false;
 			case "notAvailableFrom":
 				String[] parts = value.split(":");
 				if (parts.length != 2) {
-					valid = false;
-					return;
+					return false;
 				}
 
 				Integer i1;
@@ -177,17 +180,14 @@ public class UserService {
 					i2 = Integer.parseInt(parts[1]);
 					LocalTime.of(i1, i2);
 				} catch (NumberFormatException|DateTimeException ex) {
-					valid = false;
-					return;
+					return false;
 				}
 
-				valid = true;
-				return;
+				return true;
 			case "notAvailableTo":
 				String[] parts2 = value.split(":");
 				if (parts2.length != 2) {
-					valid = false;
-					return;
+					return false;
 				}
 
 				Integer i3;
@@ -198,25 +198,21 @@ public class UserService {
 					i4 = Integer.parseInt(parts2[1]);
 					LocalTime.of(i3, i4);
 				} catch (NumberFormatException|DateTimeException ex) {
-					valid = false;
-					return;
+					return false;
 				}
 
-				valid = true;
-				return;
+				return true;
 			case "emailSetting":
 				
 				if(!(value.equals("1") || value.equals("2") || value.equals("3"))) {
-					valid = false;
-					return;
+					return false;
 				}
 				
-				valid = true;
-				return;
+				return true;
 			}
 		}
 
-		valid = false;
+		return false;
 	}
 	
 	public boolean isAdmin(User u){

@@ -74,7 +74,7 @@
                                 </div>
 
                                 <sec:authorize access="hasAuthority('ACCEPT_RESERVATION')">
-                                    <form method="post" action="${pageContext.request.contextPath}/users/${userInSession.userId}/jobs/${reservation.reservationId}/accept">
+                                    <form method="post" action="${pageContext.request.contextPath}/users/${userId}/jobs/${reservation.reservationId}/accept">
                                         <input type="hidden" name="reservationId" value="${reservation.reservationId}"/>
                                         <button class="ui darkred bottom fluid attached submit button" tabindex="0">
                                             <i class="level up icon"></i>
@@ -142,7 +142,7 @@
                                 </div>
 
                                 <sec:authorize access="hasAuthority('CONFIRM_RESERVATION')">
-                                    <form method="post" action="${pageContext.request.contextPath}/users/${userInSession.userId}/jobs/${reservation.reservationId}/confirm">
+                                    <form method="post" action="${pageContext.request.contextPath}/users/${userId}/jobs/${reservation.reservationId}/confirm">
                                         <input type="hidden" name="reservationId" value="${reservation.reservationId}"/>
                                         <button class="ui bottom darkred fluid attached submit button" tabindex="0">
                                             <i class="checkmark icon"></i>
@@ -209,7 +209,7 @@
                                 </div>
 
                                 <sec:authorize access="hasAuthority('CONFIRM_RESERVATION')">
-                                 <form method="post" action="${pageContext.request.contextPath}/users/${userInSession.userId}/jobs/${reservation.reservationId}/archive">
+                                 <form method="post" action="${pageContext.request.contextPath}/users/${userId}/jobs/${reservation.reservationId}/archive">
                                         <input type="hidden" name="reservationId" value="${reservation.reservationId}"/>
                                         <button class="ui bottom darkred fluid attached submit button" tabindex="0">
                                             <i class="arrow down icon"></i>

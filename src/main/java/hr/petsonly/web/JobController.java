@@ -68,10 +68,11 @@ public class JobController {
 	}
 	
 	@PostMapping("/{reservationId}/accept")
-	public String acceptReservation(@PathVariable UUID reservationId) {
-		
+	public String acceptReservation(@PathVariable UUID reservationId, @PathVariable UUID id) {
+		User employee = userRepository.findOne(id);
 		Reservation reservation = reservationService.findOne(reservationId);
 		reservation.setReservationStatus(ReservationStatus.ACCEPTED); //accepted
+		reservation.setEmployee(employee);
 		reservationService.save(reservation);
 		
 		return "redirect:/users/{id}/jobs";

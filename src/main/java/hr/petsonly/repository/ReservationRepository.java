@@ -83,12 +83,16 @@ public interface ReservationRepository extends JpaRepository<Reservation, UUID> 
 	List<Reservation> findAllOpenWithinAvailableHoursHelper(@Param("status") ReservationStatus status, @Param("fromH") Integer fromH, @Param("fromMin") Integer fromMin, @Param("toH") Integer toH, @Param("toMin") Integer toMin);
 	
 	default List<Reservation> findAllPendingWithinAvailableHours(User u){
+		if(u.getNotAvailableFrom() == null || u.getNotAvailableTo() == null){
+			return findAllFutureByStatusHelper(ReservationStatus.PENDING);
+		}
+		
 		Integer fromH = u.getNotAvailableFrom().getHour();
 		Integer fromMin = u.getNotAvailableFrom().getMinute();
 		Integer toH   = u.getNotAvailableTo().getHour();
 		Integer toMin = u.getNotAvailableTo().getMinute();
 		return findAllOpenWithinAvailableHoursHelper(ReservationStatus.PENDING, fromH, fromMin, toH, toMin);
-		
+	
 	}
 	
 	@Transactional
@@ -97,6 +101,12 @@ public interface ReservationRepository extends JpaRepository<Reservation, UUID> 
 	
 	default List<Reservation> findAllFutureConfirmed(){
 		return findAllFutureByStatusHelper(ReservationStatus.CONFIRMED);
+	}
+	@Transactional
+	@Query("SELECT r FROM Reservation r WHERE r.reservationStatus = :status")
+	List<Reservation> findAllByStatusHelper(@Param("status") ReservationStatus status);
+	default List<Reservation> findAllConfirmed(){
+		return findAllByStatusHelper(ReservationStatus.CONFIRMED);
 	}
 	
 	default List<Reservation> findAllFutureAccepted(){

@@ -67,7 +67,7 @@ public class ReservationService {
 	public List<ReservationDetails> findAllConfirmedReservations(User u){
 		List<Reservation> reservations;
 		if(userService.isAdmin(u)){
-			reservations = repository.findAllFutureConfirmed();
+			reservations = repository.findAllConfirmed();
 		
 		} else{
 			reservations = repository.findAllConfirmedByEmployee(u);

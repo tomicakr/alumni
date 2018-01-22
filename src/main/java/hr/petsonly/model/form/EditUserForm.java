@@ -43,14 +43,8 @@ public class EditUserForm {
 	@NotEmpty(message = "{euform.address.empty}")
 	private String address;
 
-	@Size(min = 8, max = 30)
-	@NotNull
-	@NotEmpty(message = "{euform.password.empty}")
 	private String password;
 
-	@Size(min = 8, max = 30)
-	@NotNull
-	@NotEmpty(message = "{euform.password2.empty}")
 	private String password2;
 
 	public String getName() {

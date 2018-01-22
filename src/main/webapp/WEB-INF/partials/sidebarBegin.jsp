@@ -1,7 +1,7 @@
 <%@page contentType="text/html" pageEncoding="UTF-8" %>
 <%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags" %>
 
-
+<sec:authentication var="userInSession" property="principal"/>
 <div id="sidebar-menu" class="ui sidebar vertical left menu">
     <h2 id="sidebar-header">PetsOnlyZg</h2>
 
@@ -13,12 +13,12 @@
 
     <sec:authorize access="hasRole('ZAPOSLENIK')">
         <a class="item" name="Jobs"
-           href="${pageContext.request.contextPath}/jobs"> Poslovi </a>
+           href="${pageContext.request.contextPath}/users/${userInSession.userId}/jobs"> Poslovi </a>
     </sec:authorize>
 
     <sec:authorize access="hasRole('ADMINISTRATOR')">
         <a class="item" name="Jobs"
-           href="${pageContext.request.contextPath}/jobs"> Poslovi
+           href="${pageContext.request.contextPath}/users/${userInSession.userId}/jobs"> Poslovi
             <i class="industry icon"></i></a>
         <a class="item" name="Jobs"
            href="${pageContext.request.contextPath}/users"> Korisnici

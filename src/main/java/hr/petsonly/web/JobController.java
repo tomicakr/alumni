@@ -1,5 +1,18 @@
 package hr.petsonly.web;
 
+import java.util.List;
+import java.util.UUID;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.prepost.PreAuthorize;
+import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
+
 import hr.petsonly.model.Reservation;
 import hr.petsonly.model.ReservationStatus;
 import hr.petsonly.model.User;
@@ -9,17 +22,6 @@ import hr.petsonly.repository.UserRepository;
 import hr.petsonly.service.FormFactory;
 import hr.petsonly.service.ReservationService;
 import hr.petsonly.service.email.EmailServiceImpl;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
-import org.springframework.validation.BindingResult;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-
-import java.util.List;
-import java.util.UUID;
 
 @Controller
 @RequestMapping(value = "/users/{id}/jobs")
@@ -30,16 +32,19 @@ public class JobController {
 	private final EmailServiceImpl mailService;
 	
 	private final UserRepository userRepository;
-	private FormFactory formFactory;
+	
+	private final FormFactory formFactory;
 
 	@Autowired
-	public JobController(EmailServiceImpl mailService, ReservationService reservationService, UserRepository userRepository) {
+	public JobController(EmailServiceImpl mailService, ReservationService reservationService, UserRepository userRepository, FormFactory formFactory) {
 		this.mailService = mailService;
 		this.reservationService = reservationService;
 		this.userRepository = userRepository;
+		this.formFactory = formFactory;
 	}
 
 	@GetMapping
+	@PreAuthorize("hasRole('ZAPOSLENIK') or hasRole('ADMINISTRATOR')")
 	public String showAllReservations(Model model, @PathVariable UUID id) {
 		
 		User user = userRepository.findOne(id);
@@ -53,10 +58,13 @@ public class JobController {
 		model.addAttribute("accepted", accepted);
 		model.addAttribute("confirmed", confirmed);
 		
+		model.addAttribute("userId", id);
+		
 		return "jobs";
 	}
 	
 	@GetMapping("/{reservationId}")
+	@PreAuthorize("@webSecurityConfig.checkUserId(authentication, #id) or hasRole('ZAPOSLENIK')")
 	public String showReservationDetalils(Model model, @PathVariable UUID reservationId) {
 		Reservation reservation = reservationService.findOne(reservationId);
 		ReservationDetails reservationDetails = new ReservationDetails(reservation);
@@ -67,6 +75,7 @@ public class JobController {
 	}
 	
 	@PostMapping("/{reservationId}/accept")
+	@PreAuthorize("hasRole('ZAPOSLENIK') or hasRole('ADMINISTRATOR')")
 	public String acceptReservation(@PathVariable UUID reservationId, @PathVariable UUID id) {
 		User employee = userRepository.findOne(id);
 		Reservation reservation = reservationService.findOne(reservationId);
@@ -79,6 +88,7 @@ public class JobController {
 	}
 	
 	@PostMapping("/{reservationId}/confirm")
+	@PreAuthorize("hasRole('ADMINISTRATOR')")
 	public String confirmReservation(@PathVariable UUID reservationId) {
 		
 		Reservation reservation = reservationService.findOne(reservationId);
@@ -89,6 +99,7 @@ public class JobController {
 	}
 	
 	@PostMapping("/{reservationId}/archive")
+	@PreAuthorize("hasRole('ADMINISTRATOR')")
 	public String archiveReservation(@PathVariable UUID reservationId) {
 		
 		Reservation reservation = reservationService.findOne(reservationId);
@@ -103,14 +114,10 @@ public class JobController {
 
 		Reservation reservation = reservationService.findOne(reservationId);
 
-		/*if (formFactory.editReservationFromForm(reservation, editReservationForm)) {
-			reservationRepository.save(reservation);
-		}*/
+		if (formFactory.editReservationFromForm(reservation, editReservationForm)) {
+			reservationService.save(reservation);
+		}
 
 		return "redirect:/users/{id}/jobs";
-
-
-
-
 	}
 }

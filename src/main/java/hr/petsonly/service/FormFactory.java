@@ -2,7 +2,6 @@ package hr.petsonly.service;
 
 import hr.petsonly.model.*;
 import hr.petsonly.model.form.AddReservationForm;
-import hr.petsonly.model.form.EditReservationForm;
 import hr.petsonly.model.form.EditUserForm;
 import hr.petsonly.model.form.PetForm;
 import hr.petsonly.model.form.RegistrationForm;
@@ -135,13 +134,13 @@ public class FormFactory {
 		return true;
 	}
 
-	public boolean editReservationFromForm(Reservation res, EditReservationForm editReservationForm) {
-		if(editReservationForm.hasChanges(res)) {
+	public boolean editReservationFromForm(Reservation res, AddReservationForm rf) {
+		if(rf.hasChanges(res)) {
 			return false;
 		}
 		
-		res.setDuration(Duration.parse(editReservationForm.getDuration()));
-		//TODO dovrshit
+		
+		// TODO: implementacija
 		return true;
 	}
 

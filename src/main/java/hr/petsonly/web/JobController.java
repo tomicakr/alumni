@@ -1,8 +1,14 @@
 package hr.petsonly.web;
 
-import java.util.List;
-import java.util.UUID;
-
+import hr.petsonly.model.Reservation;
+import hr.petsonly.model.ReservationStatus;
+import hr.petsonly.model.User;
+import hr.petsonly.model.details.ReservationDetails;
+import hr.petsonly.model.form.EditReservationForm;
+import hr.petsonly.repository.UserRepository;
+import hr.petsonly.service.FormFactory;
+import hr.petsonly.service.ReservationService;
+import hr.petsonly.service.email.EmailServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
@@ -13,15 +19,8 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
-import hr.petsonly.model.Reservation;
-import hr.petsonly.model.ReservationStatus;
-import hr.petsonly.model.User;
-import hr.petsonly.model.details.ReservationDetails;
-import hr.petsonly.model.form.EditReservationForm;
-import hr.petsonly.repository.UserRepository;
-import hr.petsonly.service.FormFactory;
-import hr.petsonly.service.ReservationService;
-import hr.petsonly.service.email.EmailServiceImpl;
+import java.util.List;
+import java.util.UUID;
 
 @Controller
 @RequestMapping(value = "/users/{id}/jobs")
@@ -32,15 +31,13 @@ public class JobController {
 	private final EmailServiceImpl mailService;
 	
 	private final UserRepository userRepository;
-	
-	private final FormFactory formFactory;
+	private FormFactory formFactory;
 
 	@Autowired
-	public JobController(EmailServiceImpl mailService, ReservationService reservationService, UserRepository userRepository, FormFactory formFactory) {
+	public JobController(EmailServiceImpl mailService, ReservationService reservationService, UserRepository userRepository) {
 		this.mailService = mailService;
 		this.reservationService = reservationService;
 		this.userRepository = userRepository;
-		this.formFactory = formFactory;
 	}
 
 	@GetMapping
@@ -114,10 +111,14 @@ public class JobController {
 
 		Reservation reservation = reservationService.findOne(reservationId);
 
-		if (formFactory.editReservationFromForm(reservation, editReservationForm)) {
-			reservationService.save(reservation);
-		}
+		/*if (formFactory.editReservationFromForm(reservation, editReservationForm)) {
+			reservationRepository.save(reservation);
+		}*/
 
 		return "redirect:/users/{id}/jobs";
+
+
+
+
 	}
 }

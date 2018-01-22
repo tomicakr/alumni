@@ -6,8 +6,6 @@ import javax.validation.constraints.NotNull;
 
 import org.hibernate.validator.constraints.NotEmpty;
 
-import hr.petsonly.model.Reservation;
-
 public class EditReservationForm {
 
 	@NotNull
@@ -81,12 +79,5 @@ public class EditReservationForm {
 	public void setSendReminder(String sendReminder) {
 		this.sendReminder = sendReminder;
 	}
-
-	public boolean hasChanges(Reservation res) {
-		return true;
-	}
-	
-	
-	
 	
 }

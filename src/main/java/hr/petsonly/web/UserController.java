@@ -211,7 +211,7 @@ public class UserController {
 
 	@RequestMapping(value = "/{id}", method = RequestMethod.PATCH, consumes = MediaType.APPLICATION_JSON_VALUE)
 	@ResponseBody
-	@PreAuthorize("hasRole('ZAPOSLENIK')")
+	@PreAuthorize("hasRole('ZAPOSLENIK') || hasRole('ADMINISTRATOR')")
 	public ResponseEntity<?> updateUser(@RequestBody List<PatchForm> patchForms,
 			@PathVariable UUID id) {
 		Boolean valid = true;

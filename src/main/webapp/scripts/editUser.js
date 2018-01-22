@@ -8,19 +8,13 @@ $.fn.form.settings.rules.passwordMatch = () => {
     return passCheck.val() === pass.val();
 };
 
-
-$.fn.form.settings.rules.passwordMatch = () => {
-    return (passCheck.val() === pass.val() && pass.val().toString().length > 6 ) || isEmpty();
-};
-
 $.fn.form.settings.rules.firstAreaFilled = () => {
-  return   passOld.val().toString().length > 6 ||  isEmpty();
+  return passOld.val().length > 8 ||  pass.val() === '';
 };
 
 $.fn.form.settings.rules.secondAreaFilled = () => {
-  return pass.val().toString().length > 6 ||  isEmpty();
+  return pass.val().length > 8 ||  pass.val() === '';
 };
-
 
 initialize({
     oldPassword: {

@@ -4,26 +4,34 @@ import hr.petsonly.model.Pet;
 import hr.petsonly.model.Reservation;
 import hr.petsonly.model.Service;
 import hr.petsonly.model.User;
+import hr.petsonly.model.details.CustomUserDetails;
 import hr.petsonly.model.details.PetDetails;
 import hr.petsonly.model.details.ReservationDetails;
 import hr.petsonly.model.details.ServiceDetails;
 import hr.petsonly.model.details.UserDetailsBasic;
+import hr.petsonly.model.details.UserDetailsMore;
 import hr.petsonly.model.form.AddReservationForm;
+import hr.petsonly.model.form.EditReservationForm;
+import hr.petsonly.model.form.EditUserForm;
 import hr.petsonly.repository.PetRepository;
 import hr.petsonly.repository.ReservationRepository;
 import hr.petsonly.repository.ServiceRepository;
 import hr.petsonly.repository.UserRepository;
 import hr.petsonly.service.FormFactory;
+import hr.petsonly.service.ReservationService;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 
+import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
 import java.util.ArrayList;
 import java.util.List;
@@ -122,6 +130,8 @@ public class ReservationController {
         return "reservationEdit";
     }
 
+    
+    
     @PutMapping(value = "/{id}")
     public String saveReservation(Model model, @PathVariable UUID uid, @PathVariable UUID id,
                                   @Valid AddReservationForm reservation, BindingResult result) {
@@ -136,10 +146,10 @@ public class ReservationController {
 
         Reservation res = reservationRepository.findOne(id);
 
-        if (formFactory.editReservationFromForm(res, reservation)) {
+        /*if (formFactory.editReservationFromForm(res, reservation)) {
             model.addAttribute("errorMessage", "Nema promjena.");
             return String.format("redirect:/users/%s/reservations", uid.toString());
-        }
+        }*/
 
         userRepository.save(user);
 
@@ -153,5 +163,8 @@ public class ReservationController {
 
         return new ResponseEntity<>(HttpStatus.NO_CONTENT);
     }
+    
+    
+    
 
 }

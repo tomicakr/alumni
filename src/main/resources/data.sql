@@ -52,7 +52,7 @@ INSERT INTO users (user_id, name, surname, user_pid, user_mnemonic,
 			VALUES('49341e99-918c-4214-a2f2-21403bc617aa', "Zaposlenik", "Zaposlenković", "76885283160", "zz0",
 				   "zaposlenik@gmail.com", "099268953", "4645777", '292dd5ea-5f28-4794-8eec-94adb19e46c2', "$2a$11$mkQbhBahnf.9HEe.PVx27OKYiiLQvJjgYQQcIOf4QHZOY5yOIvnZy",
                    "zaposlenicka 3", 2, "nema",
-                   '23:00:000', '06:00:00');
+                   '00:00:00', '06:00:00');
 
 INSERT INTO role (name) VALUES ("ROLE_ADMINISTRATOR");
 INSERT INTO role (name) VALUES ("ROLE_ZAPOSLENIK");

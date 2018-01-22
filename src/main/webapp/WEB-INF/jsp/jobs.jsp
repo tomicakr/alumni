@@ -21,6 +21,18 @@
 
 <div id="main-div" class="ui segment">
     <h1 align="center">Pregled svih rezervacija: </h1>
+    <c:if test="${not empty errorMessage}">
+        <div class="ui negative message">
+          <i class="close icon"></i>
+          <div class="header">
+            Ups, dogodila se pogreška!
+        </div>
+        <ul class="list">
+            <li>${errorMessage}</li>
+        </ul>
+        </div>
+
+    </c:if>
     <div id="main-grid" class="ui stackable column centered grid">
 
         <!-- prva kolona -->

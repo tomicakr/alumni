@@ -204,7 +204,7 @@ public class UserService {
 				return true;
 			case "emailSetting":
 				
-				if(!(value.equals("1") || value.equals("2") || value.equals("3"))) {
+				if(!(value.equals("0") || value.equals("1") || value.equals("2"))) {
 					return false;
 				}
 				

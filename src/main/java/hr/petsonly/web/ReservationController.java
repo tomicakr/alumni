@@ -147,11 +147,11 @@ public class ReservationController {
     }
 
     @DeleteMapping(value = "/{id}")
-    public String deleteReservation(@PathVariable UUID id, @PathVariable UUID uid) {
+    public ResponseEntity<?> deleteReservation(@PathVariable UUID id, @PathVariable UUID uid) {
 
         reservationRepository.delete(id);
 
-        return String.format("redirect:/users/%s/reservations", uid.toString());
+        return new ResponseEntity<>(HttpStatus.NO_CONTENT);
     }
 
 }

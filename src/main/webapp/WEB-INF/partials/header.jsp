@@ -9,25 +9,24 @@
 <header>
     <nav>
         <div class="ui massive stackable secondary menu" id="top-menu">
-            <a class="item" id="home" name="Home" href="/"> Naslovnica </a> <a
-                class="item" id="services" name="Usluge"> Usluge </a>
+            <a class="item" id="home" name="Home" href="/"> Naslovnica </a>
+            <a class="item" id="services" name="Usluge"> Usluge </a>
 
             <sec:authorize access="isAuthenticated()">
 
                 <c:if test="${userInSession.roles[0].equals(\"ROLE_ZAPOSLENIK\")}">
                     <a class="item" name="Jobs"
-                       href="${pageContext.request.contextPath}/jobs"> Poslovi </a>
+                       href="${pageContext.request.contextPath}/users/${userInSession.userId}/jobs"> Poslovi </a>
                 </c:if>
 
                 <c:if test="${userInSession.roles[0].equals(\"ROLE_ADMINISTRATOR\")}">
                     <a class="item" name="Jobs"
-                       href="${pageContext.request.contextPath}/jobs"> Poslovi </a>
+                       href="${pageContext.request.contextPath}/users/${userInSession.userId}/jobs"> Poslovi </a>
                     <a class="item" name="Jobs"
                        href="${pageContext.request.contextPath}/users"> Korisnici </a>
                 </c:if>
 
             </sec:authorize>
-
 
             <div class="right menu">
                 <sec:authorize access="isAnonymous()">
@@ -38,7 +37,6 @@
                        href="${pageContext.request.contextPath}/users/new">
                         Registracija </a>
                 </sec:authorize>
-
 
                 <sec:authorize access="isAuthenticated()">
                     <a class=" item"
@@ -56,5 +54,18 @@
             </div>
         </div>
     </nav>
-
 </header>
+<div id="service-list"
+     class="ui small basic test modal transition hidden">
+    <div class="ui center aligned massive header">Popis usluga</div>
+    <div class="scrolling content">
+        <div class="ui inverted celled middle aligned list">
+        </div>
+    </div>
+    <div class="ui actions">
+        <div class="ui huge ok inverted button">
+            Izađi
+        </div>
+    </div>
+</div>
+<script src="/scripts/services.js"></script>

@@ -1,17 +1,18 @@
 package hr.petsonly.service;
 
-import java.util.List;
-import java.util.UUID;
-
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Service;
-import org.springframework.transaction.annotation.Transactional;
-
 import hr.petsonly.model.Role;
 import hr.petsonly.model.User;
 import hr.petsonly.model.form.PatchForm;
 import hr.petsonly.model.form.RegistrationForm;
 import hr.petsonly.repository.UserRepository;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
+
+import java.time.DateTimeException;
+import java.time.LocalTime;
+import java.util.List;
+import java.util.UUID;
 
 @Service
 public class UserService {
@@ -38,25 +39,23 @@ public class UserService {
 		return user.getRoles();
 	}
 
-	public boolean hireUser(UUID userId) {
-		User user = repository.findOne(userId);
+	public boolean hireUser(User user) {
 		if (user == null) {
 			return false;
 		}
-		
-		repository.hireUser(userId.toString());
+
+		repository.hireUser(user.getUserId().toString());
 
 		return true;
 	}
 
-	public boolean fireUser(UUID userId) {
-		User user = repository.findOne(userId);
+	public boolean fireUser(User user) {
 
 		if (user == null) {
 			return false;
 		}
 
-		repository.fireUser(userId.toString());
+		repository.fireUser(user.getUserId().toString());
 
 		return true;
 	}
@@ -70,7 +69,13 @@ public class UserService {
 		return false;
 	}
 
-	public boolean updateUser(UUID userId, String operation, String path, String newValue) {
+	public boolean updateUser(UUID userId, PatchForm patchForm) {
+
+		User user = repository.findOne(userId);
+		
+		String operation = patchForm.getOp();
+		String path = patchForm.getPath();
+		String value = patchForm.getValue();
 
 		switch (operation) {
 		case "replace":
@@ -78,40 +83,148 @@ public class UserService {
 			switch (path) {
 			case "/status":
 
-				if (newValue.equals("employee")) {
-					hireUser(userId);
+				if (value.equals("employee")) {
+					hireUser(user);
 					return true;
-				} else if (newValue.equals("client")) {
-					fireUser(userId);
+				} else if (value.equals("client")) {
+					fireUser(user);
 					return true;
 				}
 
 				return false;
-			default:
-				return false;
+			case "notAvailableFrom":
+				String[] parts = value.split(":");
+				if (parts.length != 2)
+					return false;
+
+				Integer i1;
+				Integer i2;
+				
+				try {
+					i1 = Integer.parseInt(parts[0]);
+					i2 = Integer.parseInt(parts[1]);
+					user.setNotAvailableFrom(LocalTime.of(i1, i2));
+					repository.save(user);
+				} catch (NumberFormatException|DateTimeException ex) {
+					return false;
+				}
+
+				return true;
+			
+			case "notAvailableTo":
+				String[] parts2 = value.split(":");
+				if (parts2.length != 2) {
+					return false;
+				}
+
+				Integer i3;
+				Integer i4;
+				
+				try {
+					i3 = Integer.parseInt(parts2[0]);
+					i4 = Integer.parseInt(parts2[1]);
+					user.setNotAvailableTo(LocalTime.of(i3, i4));
+					repository.save(user);
+				} catch (NumberFormatException|DateTimeException ex) {
+					return false;
+				}
+
+				return true;
+			case "emailSetting":
+				user.setNotificationSetting(Integer.parseInt(value));
+				repository.save(user);
+				return true;
 			}
 		}
-		
+
 		return false;
 	}
 
 	public void validatePatchForm(PatchForm patchForm, Boolean valid) {
-		switch (patchForm.getOp()) {
+
+		String operation = patchForm.getOp();
+		String path = patchForm.getPath();
+		String value = patchForm.getValue();
+		
+		switch (operation) {
 		case "replace":
 
-			switch (patchForm.getPath()) {
+			switch (path) {
 			case "/status":
 
-				if (patchForm.getValue().equals("employee")) {
-				} else if (patchForm.getValue().equals("client")) {
+				if (value.equals("employee")) {
+					valid = true;
+					return;
+				} else if (value.equals("client")) {
+					valid = true;
+					return;
 				}
 
 				valid = false;
-			default:
-				valid = false;
+				return;
+			case "notAvailableFrom":
+				String[] parts = value.split(":");
+				if (parts.length != 2) {
+					valid = false;
+					return;
+				}
+
+				Integer i1;
+				Integer i2;
+				
+				try {
+					i1 = Integer.parseInt(parts[0]);
+					i2 = Integer.parseInt(parts[1]);
+					LocalTime.of(i1, i2);
+				} catch (NumberFormatException|DateTimeException ex) {
+					valid = false;
+					return;
+				}
+
+				valid = true;
+				return;
+			case "notAvailableTo":
+				String[] parts2 = value.split(":");
+				if (parts2.length != 2) {
+					valid = false;
+					return;
+				}
+
+				Integer i3;
+				Integer i4;
+				
+				try {
+					i3 = Integer.parseInt(parts2[0]);
+					i4 = Integer.parseInt(parts2[1]);
+					LocalTime.of(i3, i4);
+				} catch (NumberFormatException|DateTimeException ex) {
+					valid = false;
+					return;
+				}
+
+				valid = true;
+				return;
+			case "emailSetting":
+				
+				if(!(value.equals("1") || value.equals("2") || value.equals("3"))) {
+					valid = false;
+					return;
+				}
+				
+				valid = true;
+				return;
 			}
 		}
-		
+
 		valid = false;
+	}
+	
+	public boolean isAdmin(User u){
+		for(Role r : u.getRoles()){
+			if(r.getName().equals("ROLE_ADMINISTRATOR")){
+				return true;
+			}
+		}
+		return false;
 	}
 }

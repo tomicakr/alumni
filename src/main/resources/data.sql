@@ -67,12 +67,22 @@ INSERT INTO users_roles (user_id, role_id) VALUES ('368ec8e2-c7cb-4eaf-b3f1-0077
 INSERT INTO users_roles (user_id, role_id) VALUES ('368ec8e2-c7cb-4eaf-b3f1-0077333fbe55', 2);
 
 /*DODATI PRIVILEGES I ROLES_PRIVILEGES I  USERS_ROLES;*/
-
-INSERT INTO service (service_key, description, name, price) VALUES ('9f49e501-c5f9-41b7-a59b-51adad927fc8', "", "Šetnja", 35.0);
-INSERT INTO service (service_key, description, name, price) VALUES ('64ec5189-c400-451e-a986-97f06978aa5e', "", "Odlazak veterinaru", 20.0);
-INSERT INTO service (service_key, description, name, price) VALUES ('45fe9664-4ab7-4fea-915f-0c3607ea2120', "", "Rezanje noktiju", 30.0);
-INSERT INTO service (service_key, description, name, price) VALUES ('4a63f218-3d3d-4f3a-a7c6-9e71c3e3dd6b', "", "Kupanje", 40.0);
-INSERT INTO service (service_key, description, name, price) VALUES ('a64f3c62-f811-46db-a135-700be2f60211', "", "Čuvanje", 35.0);
+INSERT INTO service (service_key, description, name, price) VALUES ('9f49e501-c5f9-41b7-a59b-51adad927fc8',
+																	 "Ukoliko ne možete dovesti psa na čuvalici ili doći po njega, učinit ćemo to mi za Vas",
+																	 "Dolazak/odlazak po psa na čuvanje", 50.0);
+INSERT INTO service (service_key, description, name, price) VALUES ('64ec5189-c400-451e-a986-97f06978aa5e', 
+																	"Ukoliko niste u mogućnosti odvesti psa na terapiju/pregled, mi ćemo to napraviti za Vas", 
+																	"Odlazak veterinaru", 50.0);
+INSERT INTO service (service_key, description, name, price) VALUES ('45fe9664-4ab7-4fea-915f-0c3607ea2120', 
+																	"Čuvamo sve vrste ljubimaca, uključujući i egzote, dolazak kod vlasniika ili čuvamo kod nas u prostoru u Vašem
+																	kavezu/terariju", 
+																	"Čuvanje egzota, glodavaca, dvojezubaca", 35.0);
+INSERT INTO service (service_key, description, name, price) VALUES ('4a63f218-3d3d-4f3a-a7c6-9e71c3e3dd6b', 
+																	"Edukacija oko pasmina, socijalizacije, veterinarski savjeti...", 
+																	"Edukacija", 100.0);
+INSERT INTO service (service_key, description, name, price) VALUES ('a64f3c62-f811-46db-a135-700be2f60211', 
+																	"Režemo noktiće psima, macama akon am dopuštaju, kunićima, pticama... Uglavnom svim ljubimcima", 
+																	"Rezanje noktića", 30.0);
 
 INSERT INTO species (id, name) VALUES ('20998bee-089d-491c-9c49-1289daf90242', "Pas");
 INSERT INTO species (id, name) VALUES ('600d9442-bc5c-4905-9f08-81635cb8be1a', "Mačka");
@@ -135,6 +145,7 @@ INSERT INTO privilege (name) VALUES ("ACCEPT_RESERVATION");
 INSERT INTO privilege (name) VALUES ("CONFIRM_RESERVATION");
 INSERT INTO privilege (name) VALUES ("VIEW_ALL_RESERVATIONS");
 INSERT INTO privilege (name) VALUES ("VIEW_FREE_RESERVATIONS");	
+INSERT INTO privilege (name) VALUES ("ARCHIVE_RESERVATION");
 
 INSERT INTO roles_privileges (role_id, privilege_id) VALUES (1,1);
 INSERT INTO roles_privileges (role_id, privilege_id) VALUES (1,2);
@@ -143,6 +154,7 @@ INSERT INTO roles_privileges (role_id, privilege_id) VALUES (1,4);
 INSERT INTO roles_privileges (role_id, privilege_id) VALUES (1,5);
 INSERT INTO roles_privileges (role_id, privilege_id) VALUES (1,6);
 INSERT INTO roles_privileges (role_id, privilege_id) VALUES (1,7);
+INSERT INTO roles_privileges (role_id, privilege_id) VALUES (1,8);
 INSERT INTO roles_privileges (role_id, privilege_id) VALUES (2,4);
 INSERT INTO roles_privileges (role_id, privilege_id) VALUES (2,7);
                     

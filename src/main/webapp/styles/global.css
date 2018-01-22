@@ -46,6 +46,11 @@ main {
 	color: darkred !important;
 }
 
+strong.darkred{
+	color: darkred !important;
+}
+
+
 .long.tag.label{
 	min-width: 120px !important;
 	color: white !important;
@@ -102,12 +107,29 @@ h1, h2{
 	cursor: pointer;
 }
 
+#top-menu .item.active,#top-menu form input.active {
+	outline: none;
+	background: transparent !important;
+}
+
 #sidebar-menu{
 	display: none;
 }
 
 #sidebar-top{
 	display: none;
+}
+
+#service-list{
+	font-size: 1.6em;
+}
+
+#service-list .ui.actions{
+	text-align: center;
+}
+
+#service-list .item{
+	padding-top: 20px;
 }
 
 @media screen and (max-width: 1000px) {

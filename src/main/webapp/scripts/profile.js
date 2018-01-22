@@ -8,6 +8,24 @@ const api = {
     service: '/api/services'
 };
 
+let employeeSettings =
+    $(`<div class="ui hidden divider"></div>
+            <div class="ui segment">
+            <div>
+                <h2 class="ui darkred left floated header">Postavke zaposlenika</h2>
+                <h4 class="ui right floated header">
+                    <i id="btn-edit-settings" class="setting action icon" title="Promijeni"></i>
+                </h4>
+            </div>
+        
+            <div id="employee-settings">
+                <p id="availability">
+                </p>
+                <p id="notifications">
+                </p>
+            </div>
+       </div>`);
+
 const btnPets             = $('#btn-pets'           );
 const btnReservations     = $('#btn-reservations'   );
 const btnEdit             = $('#btn-edit-user'      );
@@ -16,158 +34,46 @@ const btnEmploy           = $('#btn-employ-user'    );
 const btnFire             = $('#btn-fire-user'      );
 const btnAddPet           = $('#btn-add-pet'        );
 
-const petSpecies          = $('#pet-species' );
-const resEmployee         = $('#res-employee');
-const resService          = $('#res-service' );
-const resPet              = $('#res-pet' );
-
-
 const btnAddReservation   = $('#btn-add-reservation');
-const addPetModal         = $('#add-pet-modal'        );
 
-const addReservationModal = $('#add-reservation-modal');
+const userRole      = $('#role');
+const clientLabel   = $('<p class="ui client long tag label">Klijent</p>');
 
-const userRole            = $('#role');
-const clientLabel   = '<p class="ui client long tag label">Klijent</p>';
+const employeeLabel = $('<p class="ui employee long tag label">Zaposlenik</p>');
 
-const employeeLabel = '<p class="ui employee long tag label">Zaposlenik</p>';
-function hideElem(e){
-    e.addClass('inactive');
+const btnEmployeeJobs = $('<i id="btn-employe-jobs" class="industry action icon" title="Poslovi"></i>');
 
-}
-function showElem(e) {
-    e.removeClass('inactive');
+const employOperation = new Patch("replace", "/status","employee");
+const fireOperation = new Patch("replace", "/status","client");
 
-}
-function patch(data, onSuccess, onFail){
-    $.ajax({
-        url: userIndex,
-        type: 'PATCH',
-        contentType: "application/json; charset=utf-8",
-        cache: false,
-        processData: false,
-        data: JSON.stringify(data)
-    })
-        .then(onSuccess)
-        .catch(onFail)
-
-}
-
-const employOperation = {
-    "op": "replace",
-    "path": "/status",
-    "value": "employee"
-};
-
-const fireOperation = {
-    "op": "replace",
-    "path": "/status",
-    "value": "client"
-};
-let Table= function(indexUrl, table, tableBody, placeholder, deleteModal){
-    this.indexUrl = indexUrl;
-    this.table = table;
-    this.tableBody = tableBody;
-    this.placeholder = placeholder;
-    this.deleteModal = deleteModal;
-    this.isUpdating = false;
-};
-
-Table.prototype = {
-    isEmpty:function(){
-        return this.table.find('tbody tr').length === 0;
-    },
-
-    formatTableRow: function(...cells) {
-        let result = '<tr>';
-        result += cells.map(cell => `<td>${cell}</td>`).join('');
-        result += '</tr>';
-        return result;
-
-    },
-
-    getData: function(){
-        return $.getJSON(this.indexUrl);
-    },
-
-    remove: function(row){
-        const deleteUrl = `${this.indexUrl}${row.data('id')}/`;
-        this.deleteModal
-            .modal({
-            onApprove: () => {
-                $.ajax({
-                    url: deleteUrl,
-                    type: 'DELETE',
-                }).then(() => {
-                    row.remove();
-                    if (this.isEmpty()) {
-                        this.table.hideElem();
-                        this.placeholder.show();
-                    }
-                })
-            }
-        })
-            .modal('show');
-
-    },
-
-    update: function(){
-        if(this.isUpdating){
-            return;
-        }
-        this.isUpdating = true;
-        this.tableBody.empty();
-        this.getData()
-            .then(entities => {
-                if(entities.length===0){
-                    this.table.hide();
-                    this.placeholder.show();
-                    return;
-                }
-                entities.forEach(entity => this.append(entity));
-                this.placeholder.hide();
-                this.table.show();
-
-            })
-            .fail(console.log)
-            .always(
-                () => this.isUpdating = false
-            );
-    },
-
-    save: function(fields) {
-        $.post({
-            url: this.indexUrl,
-            contentType: "application/json; charset=utf-8",
-            cache: false,    //This will force requested pages not to be cached by the browser
-            processData: false, //To avoid making query String instead of JSON
-            data: JSON.stringify(fields)
-        })
-            .then(data => {
-                this.append(data);
-            })
-            .catch(() => console.log("tu sam"));
-    }
-};
+const transition = 250;
 
 let petTable = new Table(
     petIndex,
     $('#pets-table'),
     $('#pets').find('tbody'),
     $('#pet-placeholder'),
-    $('#delete-pet-modal')
+    $('#pet-loader'),
+    {
+        title: 'Ukloni ljubimca',
+        icon: 'trash',
+        text: `Uklanjanje ljubimca uzrokovat će otkazivanje svih njegovih
+                rezervacija, neovisno o razini. Jeste li sigurni da želite
+                nastaviti?`
+    },
+    'Ljubimac je uspješno uklonjen.',
+    'Došlo je do pogreške pri brisanju ljubimca.'
 );
 let appendPet = function(pet){
-    let deleteButton = '<i class="trash big remove action icon" title="Obriši ljubimca"></i>';
+    let deleteButton = '<i class="big trash action del icon" title="Ukloni" data-position="right center"></i>';
 
     let petMarkup = $(this.formatTableRow(pet.name, pet.age, pet.species,pet.sex, pet.microchip, pet.remark,deleteButton));
     petMarkup.data('id',pet.petId);
     petTable.tableBody.append(petMarkup);
 
-    petMarkup.find('.remove.icon').click(petTable.remove.bind(petTable,petMarkup));
-    this.placeholder.hide();
-    this.table.show();
-
+    petMarkup.find('.del.icon').click(petTable.remove.bind(petTable,petMarkup));
+    petMarkup.find('.del.icon').popup();
+    this.showContent()
 };
 
 petTable.append = appendPet.bind(petTable);
@@ -177,109 +83,41 @@ let resTable = new Table(
     $('#reservations-table'),
     $('#reservations').find('tbody'),
     $('#reservations-placeholder'),
+    $('#reservations-loader'),
+    {
+        title: 'Otkaži rezervaciju',
+        icon: 'remove from calendar',
+        text: 'Otkazivanje rezervacije ne uključuje povrat novaca, jeste li sigurni da želite nastaviti?'
+    },
+    'Rezervacija je uspješno otkazana.',
+    'Došlo je do pogreške pri otkazivanju rezervacije.'
 );
 
 resTable.append = (function(res){
-    let resMarkup = $(this.formatTableRow(res.pet, res.service, res.employee, res.status, res.time));
-    resMarkup.data('id',resMarkup.reservationId);
+    let buttons = '';
+    buttons = res.status==='Otvorena' ? buttons + '<i class="big edit action icon" title="Uredi" data-position="right center"></i>': buttons;
+    buttons =buttons + '<i class="big remove from calendar del action icon" title="Otkaži" style="float: right;" data-position="right center"></i>';
+    let resMarkup = $(this.formatTableRow(res.pet, res.service, res.employee, res.status, res.time, buttons));
+    resMarkup.data('id',res.reservationId);
     resTable.tableBody.append(resMarkup);
+
+    resMarkup.find('.del.icon').click(resTable.remove.bind(resTable,resMarkup));
+    resMarkup.find('.icon').popup();
+    this.showContent();
 }).bind(resTable);
-
-const petValidation = {
-    name: {
-        identifier: 'pet-name',
-        rules: [{
-            type: 'empty',
-            prompt: 'Ljubimac mora imati ime'
-        }]
-    },
-    age: {
-        identifier: 'pet-age',
-        rules: [{
-            type: 'empty',
-            prompt: 'Ljubimac mora imati broj godina'
-        }]
-    },
-    sex: {
-        identifier: 'gender',
-        rules: [{
-            type: 'empty',
-            prompt: 'Molimo odredite spol'
-        }]
-    },
-    species: {
-        identifier: 'pet-species',
-        rules: [{
-            type: 'empty',
-            prompt: 'Molimo odaberite vrstu ljubimca'
-        }]
-    },
-    breed: {
-        identifier: 'pet-breed'
-    },
-    microchip: {
-        identifier: 'pet-chip'
-    },
-    remark:{
-        identifier: 'remark'
-    }
-};
-
-
-const reservationValidation = {
-    service: {
-        identifier: 'usluga',
-        rules: [{
-            type: 'empty',
-            prompt: 'Molimo unesite opis usluge'
-        }]
-    },
-    pet: {
-        identifier: 'pet',
-        rules: [{
-            type: 'empty',
-            prompt: 'Molimo odaberite svog ljubimca'
-        }]
-    },
-    executionTime: {
-        identifier: 'executionTime',
-        rules: [{
-            type: 'empty',
-            prompt: 'Molimo unesite željeno vrijeme usluge'
-        }]
-    },
-
-    duration: {
-        identifier: 'duration',
-        rules: [{
-            type: 'empty',
-            prompt: 'Molimo unesite trajanje usluge'
-        }]
-    },
-};
-
-function fillDropDown(dropdown, getId, getText, getName, data){
-        dropdown.empty();
-        let options = [];
-        data.forEach(x => {
-            let [v,t,n] = [getId(x),getText(x),getName(x)];
-            options.push({
-                value: v,
-                text: t,
-                name: n
-            });
-            dropdown.append($('<option>', {value: v, text: t}));
-        });
-        dropdown.dropdown('setup menu', {values: options});
-}
 
 btnPets.click(petTable.update.bind(petTable));
 btnAddPet.click(() => {
+        modalInit(
+            addPetModal,
+            petValidation,
+            petTable.save.bind(petTable)
+        );
         addPetModal.modal('show');
         $.getJSON(api.species)
             .then(
                 data => fillDropDown(
-                    petSpecies,
+                    addPetModal.find('#pet-species'),
                     x => x.id,
                     x => x.name,
                     x => x.name,
@@ -289,29 +127,47 @@ btnAddPet.click(() => {
 );
 
 btnAddReservation.click(
-    () => {addReservationModal.modal('show');
+    () => {
+        modalInit(
+            addReservationModal,
+            reservationValidation,
+            resTable.save.bind(resTable)
+        );
+
+        addReservationModal.modal({
+            autofocus: false
+        }).modal('show');
+
+        addReservationModal.find('#res-time')
+            .calendar(dateInputConfig);
+
+        addReservationModal.find('#res-duration')
+            .calendar(timeInputConfig);
+
         $.getJSON(api.employees)
             .then(
                 data => fillDropDown(
-                    resEmployee,
+                    addReservationModal.find('#res-employee'),
                     x => x.userId,
                     x => `${x.firstName} ${x.lastName}`,
                     x => `${x.firstName} ${x.lastName}`,
                     data)
             );
+
         $.getJSON(api.service)
             .then(
                 data => fillDropDown(
-                    resService,
+                    addReservationModal.find('#res-service'),
                     x => x.id,
                     x => x.name,
                     x => x.name,
                     data)
             );
+
         $.getJSON(api.pets)
             .then(
                 data => fillDropDown(
-                    resPet,
+                    addReservationModal.find('#res-pet'),
                     x => x.petId,
                     x => x.name,
                     x => x.name,
@@ -323,94 +179,108 @@ btnAddReservation.click(
 btnReservations.click(resTable.update.bind(resTable));
 
 btnDelete.click(function() {
-    $('#delete-user-modal')
-        .modal({
-            closable  : false,
-            onApprove : () => {
-                $.ajax({
-                    type: 'DELETE',
-                    url: userIndex.substring(0,userIndex.length-1)
-                })
-                    .then(function() {
-                            window.location.replace("/");
-                        }
-                    )
-                    .catch(console.log);
-            }
+    confirm({
+        title: 'Brisanje korisničkog računa',
+        icon: 'trash',
+        text: 'Jeste li sigurni da želite obrisati korisnički račun?'
+    },() => {
+        $.ajax({
+            type: 'DELETE',
+            url: userIndex.substring(0,userIndex.length-1)
         })
-        .modal('show')
-    ;
+            .then(function() {
+                    showSuccess('Korisniči račun je uspješno obrisan.',
+                        () => window.location.replace("/"));
+                }
+            )
+            .catch(showFailure.bind(this,'Korisniči račun ne može se obrisati.'));
+    });
 });
 
 btnEdit.click(
     () => window.location.href = `${userIndex}edit`
 );
 
+btnEmployeeJobs.click(
+    () => window.location.href = `${userIndex}jobs`
+);
 
+employeeSettings.find('#btn-edit-settings').click(() =>
+    {
+        modalInit(settingsModal,
+            availabilityValidation,
+            setAvailability);
+        settingsModal
+            .modal({
+                autofocus:false
+            }).modal('show');
+        settingsModal.find('.calendar').calendar(timeInputConfig);
+    }
+);
+employeeSettings.find('#btn-edit-settings').popup();
 
-function switchButtons(toHide, toShow) {
-    hideElem(toHide);
-    showElem(toShow);
-}
 
 function hire(){
-    switchButtons(btnEmploy, btnFire);
-    userRole.find('p').remove();
-    userRole.append(employeeLabel);
+    switchElements(btnEmploy, btnFire);
+    (async () => userRole.find('p').fadeOut(125, function(){
+        employeeLabel.hide();
+        $(this).replaceWith(employeeLabel);
+        employeeLabel.fadeIn(125);
+    }))();
+    (async () => btnEmployeeJobs.hide().prependTo('#user-actions').fadeIn(transition))();
+    (async () => employeeSettings.hide().appendTo('#user-info').fadeIn(transition))();
+    btnEmployeeJobs
+        .popup();
+    employeeSettings.find('.setting.icon')
+        .popup();
 }
 
 function fire(){
-    switchButtons(btnFire, btnEmploy);
-    userRole.find('p').remove();
-    userRole.append(clientLabel);
+    switchElements(btnFire, btnEmploy);
+    (async () => userRole.find('p').fadeOut(transition/2, function(){
+        clientLabel.hide();
+        $(this).replaceWith(clientLabel);
+        clientLabel.fadeIn(transition/2);
+    }))();
+    (async () => btnEmployeeJobs.fadeOut(transition, () => $(this).detach()))();
+    (async () => employeeSettings.fadeOut(transition, () => $(this).detach()))();
+}
+
+function renderEmployeeSettings(availability, notifications){
+    employeeSettings.find('#availability').html(availability);
+    employeeSettings.find('#notifications').text(notifications);
 }
 
 btnEmploy.click(() => {
     patch(
-        [employOperation],
         hire,
         () => console.log(`Ovo se poslalo: "${JSON.stringify([employOperation])}", ali nista od toga`),
+        [employOperation]
     );
 });
 
 btnFire.click(() => {
     patch(
-        [fireOperation],
         fire,
         () => console.log(`Ovo se poslalo: "${JSON.stringify([fireOperation])}", ali nista od toga`),
+        [fireOperation]
     );
 });
 
-
-function modalInit(modal, formFields, handler){
-    modal.form({
-        inline: false,
-        fields: formFields,
-        onSuccess: (event,fields) => {
-            event.preventDefault();
-            handler(fields);
-            modal.modal('hide');
-        }
-    });
-
-    $('.ui.dropdown')
-        .dropdown();
-}
-
 $(document)
     .ready(function() {
-        modalInit(addPetModal,petValidation,petTable.save.bind(petTable));
-        modalInit(addReservationModal,reservationValidation,resTable.save.bind(resTable));
         $('.menu .item')
             .tab({'onVisible':function(tabpath){
                 if(tabpath==='first'){
                     return;
                 }
                 if(tabpath === 'second'){
+                    petTable.hideAll();
                     petTable.update();
                     return;
                 }
                 if(tabpath === 'third'){
+                    resTable.hideAll();
                     resTable.update();
                 }
             }})

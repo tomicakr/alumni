@@ -17,6 +17,7 @@ import org.springframework.mail.SimpleMailMessage;
 import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.mail.javamail.MimeMessageHelper;
 import org.springframework.mail.javamail.MimeMessagePreparator;
+import org.springframework.scheduling.annotation.Async;
 import org.springframework.stereotype.Component;
 
 import com.itextpdf.io.font.FontConstants;
@@ -49,7 +50,7 @@ public class EmailServiceImpl {
 			exception.printStackTrace();
 		}
 	}
-
+	
 	public void sendReservationOffer(Reservation reservation) {
 		try {
 			MimeMessagePreparator prep = this.prepareReservationOfferEmail(reservation);
@@ -61,6 +62,7 @@ public class EmailServiceImpl {
 			e.printStackTrace();
 		}
 	}
+
 
 	private void writePdf(OutputStream outputStream, Reservation reservation) throws Exception {
 		// IText API
@@ -83,7 +85,7 @@ public class EmailServiceImpl {
 		pdfDocument.add(content);
 		pdfDocument.close();
 	}
-
+	
 	private MimeMessagePreparator prepareReservationOfferEmail(final Reservation reservation) {
 		MimeMessagePreparator preparator = new MimeMessagePreparator() {
 			public void prepare(MimeMessage mimeMessage) throws Exception {
@@ -91,7 +93,7 @@ public class EmailServiceImpl {
 
 				helper.setSubject("PetsOnlyZg rezervacija");
 				helper.setFrom("fau53t7zss@gmail.com");
-				helper.setTo(reservation.getUser().getEmail()); //reservation.getUser().getEmail());
+				helper.setTo("mate.paulinovic@fer.hr"); //reservation.getUser().getEmail());
 				String content = messageText;
 				MimeBodyPart textBodyPart = new MimeBodyPart();
 				textBodyPart.setText(content);

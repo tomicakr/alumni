@@ -16,11 +16,7 @@ a, a:hover{
 }
 
 .ui.bottom.attached.tab.segment{
-	min-height: 40em !important;
-}
-
-#reservations-table, #pets-table{
-	display: none;
+	min-height: 46em !important;
 }
 
 #reservations-table-container, #pets-table-container{
@@ -32,6 +28,14 @@ a, a:hover{
 
 #profileContent{
 	margin-bottom: 30vh;
+}
+
+#employee-settings{
+	clear: both;
+}
+
+#employee-settings p{
+	font-size: 1.3em;
 }
 
 #sidebarHeader{
@@ -46,6 +50,10 @@ a, a:hover{
 
 #sidebar-top{
 	display: none;
+}
+
+#success-modal .ui.actions, #failure-modal .ui.actions{
+	text-align: center !important;
 }
 
 

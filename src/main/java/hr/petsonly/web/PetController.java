@@ -75,7 +75,7 @@ public class PetController {
 
 	@ResponseBody
 	@DeleteMapping("/{petId}")
-	public ResponseEntity<PetDetails> deletePet(@PathVariable UUID petId, @PathVariable UUID id) {
+	public ResponseEntity<?> deletePet(@PathVariable UUID petId, @PathVariable UUID id) {
 
 		Pet pet = petRepository.findOne(petId);
 		if (pet == null) {
@@ -83,9 +83,8 @@ public class PetController {
 			return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
 		}
 
-		PetDetails petDetails = new PetDetails(pet);
 		petRepository.delete(petId);
 
-		return new ResponseEntity<>(petDetails, HttpStatus.OK);
+		return new ResponseEntity<>(HttpStatus.NO_CONTENT);
 	}
 }

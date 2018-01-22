@@ -1,12 +1,12 @@
-<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
-<%@ taglib prefix="spring" uri="http://www.springframework.org/tags"%>
-<%@page contentType="text/html" pageEncoding="UTF-8"%>
-<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
+<%@ taglib prefix="spring" uri="http://www.springframework.org/tags" %>
+<%@page contentType="text/html" pageEncoding="UTF-8" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <!DOCTYPE html>
 <html>
 <jsp:include page="../partials/head.jsp" flush="true">
-    <jsp:param name="title" value="Uredi profil" />
-    <jsp:param name="view-name" value="editUser" />
+    <jsp:param name="title" value="Uredi profil"/>
+    <jsp:param name="view-name" value="editUser"/>
 </jsp:include>
 <body>
 <main class="ui middle aligned center aligned grid">
@@ -27,17 +27,19 @@
                 <input type="text" name="userPid" id="oib" placeholder="OIB" disabled value="${user.userPid}">
             </div>
             <div class="field">
-                <input type="tel" name="mobilePhone" id="mobile-phone" placeholder="Broj mobitela" autofocus value="${user.mobilePhone}">
+                <input type="tel" name="mobilePhone" id="mobile-phone" placeholder="Broj mobitela" autofocus
+                       value="${user.mobilePhone}">
             </div>
             <div class="field">
                 <input type="tel" name="phone" id="telephone" placeholder="Broj telefona" value="${user.telephone}">
             </div>
             <div class="field">
-                <input type="email" name="email" id="email" placeholder="Adresa elektroničke pošte" value="${user.email}">
+                <input type="email" name="email" id="email" placeholder="Adresa elektroničke pošte"
+                       value="${user.email}">
             </div>
             <div class="field">
                 <select name="location" title="">
-                        <option value="${user.location.locationId}">${user.location.locationName}</option>
+                    <option value="${user.location.locationId}">${user.location.locationName}</option>
                     <c:forEach var="location" items="${locations}">
                         <option value="${location.id}">${location.name}</option>
                     </c:forEach>
@@ -62,17 +64,17 @@
             </div>
             <div class="ui fluid huge darkred submit button" style="width: 100%">Spremi promjene</div>
         </form>
-       	
-       	<spring:hasBindErrors name="editUserForm">
-			<c:forEach var="error" items="${errors.allErrors}">
-				<div class="ui error message visible"><spring:message message="${error}" /></div>
-				<br />
-			</c:forEach>
-		</spring:hasBindErrors>
-		
+
+        <spring:hasBindErrors name="editUserForm">
+            <c:forEach var="error" items="${errors.allErrors}">
+                <div class="ui error message visible"><spring:message message="${error}"/></div>
+                <br/>
+            </c:forEach>
+        </spring:hasBindErrors>
+
     </div>
 </main>
-<script src="../../scripts/forms.js" ></script>
+<script src="../../scripts/forms.js"></script>
 <script src="../../scripts/editUser.js"></script>
 </body>
 </html>

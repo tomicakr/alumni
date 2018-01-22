@@ -46,24 +46,24 @@
                 </select>
 
             </div>
-                <div class="field">
-                    <label>Vrijeme trajanja usluge</label>
-                    <input type="time" name="duration" id="duration"
-                           placeholder="Trajanje">
+            <div class="field">
+                <label>Vrijeme trajanja usluge</label>
+                <input type="time" name="duration" id="duration"
+                       placeholder="Trajanje">
+            </div>
+
+
+            <div class="field">
+                <div class="ui checked checkbox">
+                    <input type="checkbox" name="sendReminder" value="1" checked="checked">
+                    <label>Želim dobiti podsjetnik na mail?</label>
                 </div>
+            </div>
+
+            <input type="hidden" value="${userId}" name="owner">
 
 
-                <div class="field">
-                    <div class="ui checked checkbox">
-                        <input type="checkbox" name="sendReminder" value="1" checked="checked">
-                        <label>Želim dobiti podsjetnik na mail?</label>
-                    </div>
-                </div>
-
-                <input type="hidden" value="${userId}" name="owner">
-
-
-                <div class="ui fluid huge darkred submit button" style="width: 100%">Napravi rezervaciju!</div>
+            <div class="ui fluid huge darkred submit button" style="width: 100%">Napravi rezervaciju!</div>
         </form>
     </div>
 </main>

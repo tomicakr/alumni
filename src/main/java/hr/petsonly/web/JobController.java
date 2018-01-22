@@ -1,58 +1,55 @@
 package hr.petsonly.web;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import hr.petsonly.model.Reservation;
+import hr.petsonly.model.ReservationStatus;
+import hr.petsonly.model.User;
 import hr.petsonly.model.details.ReservationDetails;
-import hr.petsonly.repository.ReservationRepository;
+import hr.petsonly.model.form.EditReservationForm;
+import hr.petsonly.repository.UserRepository;
+import hr.petsonly.service.FormFactory;
+import hr.petsonly.service.ReservationService;
 import hr.petsonly.service.email.EmailServiceImpl;
 
 @Controller
-@RequestMapping(value = "/jobs")
+@RequestMapping(value = "/users/{id}/jobs")
 public class JobController {
 	
-	private final ReservationRepository reservationRepository;
+	private final ReservationService reservationService;
 
 	private final EmailServiceImpl mailService;
+	
+	private final UserRepository userRepository;
+	private FormFactory formFactory;
 
 	@Autowired
-	public JobController(EmailServiceImpl mailService, ReservationRepository reservationRepository) {
+	public JobController(EmailServiceImpl mailService, ReservationService reservationService, UserRepository userRepository) {
 		this.mailService = mailService;
-		this.reservationRepository = reservationRepository;
+		this.reservationService = reservationService;
+		this.userRepository = userRepository;
 	}
 
 	@GetMapping
-	public String showAllReservations(Model model) {
+	public String showAllReservations(Model model, @PathVariable UUID id) {
 		
-		List<Reservation> allReservations = reservationRepository.findAll();
-		List<ReservationDetails> open = new ArrayList<>();
-		List<ReservationDetails> accepted = new ArrayList<>();
-		List<ReservationDetails> confirmed = new ArrayList<>();
+		User user = userRepository.findOne(id);
+		
+		List<ReservationDetails> open = reservationService.findAllPendingReservations(user);
+		List<ReservationDetails> accepted = reservationService.findAllAcceptedReservations(user);
+		List<ReservationDetails> confirmed = reservationService.findAllConfirmedReservations(user);
 
-		for (Reservation res : allReservations) {
-			switch (res.getReservationStatus()) {
-			case 1:
-				open.add(new ReservationDetails(res));
-				break;
-			case 2:
-				accepted.add(new ReservationDetails(res));
-				break;
-			case 3:
-				confirmed.add(new ReservationDetails(res));
-				break;
-			}
-		}
-			
+		
 		model.addAttribute("open", open);
 		model.addAttribute("accepted", accepted);
 		model.addAttribute("confirmed", confirmed);
@@ -62,7 +59,7 @@ public class JobController {
 	
 	@GetMapping("/{reservationId}")
 	public String showReservationDetalils(Model model, @PathVariable UUID reservationId) {
-		Reservation reservation = reservationRepository.findOne(reservationId);
+		Reservation reservation = reservationService.findOne(reservationId);
 		ReservationDetails reservationDetails = new ReservationDetails(reservation);
 		model.addAttribute("reservation", reservationDetails);
 		
@@ -73,21 +70,47 @@ public class JobController {
 	@PostMapping("/{reservationId}/accept")
 	public String acceptReservation(@PathVariable UUID reservationId) {
 		
-		Reservation reservation = reservationRepository.findOne(reservationId);
-		reservation.setReservationStatus(2); //accepted
-		reservationRepository.save(reservation);
+		Reservation reservation = reservationService.findOne(reservationId);
+		reservation.setReservationStatus(ReservationStatus.ACCEPTED); //accepted
+		reservationService.save(reservation);
 		
-		return "redirect:/jobs";
+		return "redirect:/users/{id}/jobs";
 	}
 	
 	@PostMapping("/{reservationId}/confirm")
 	public String confirmReservation(@PathVariable UUID reservationId) {
 		
-		Reservation reservation = reservationRepository.findOne(reservationId);
-		reservation.setReservationStatus(3);
-		reservationRepository.save(reservation);
+		Reservation reservation = reservationService.findOne(reservationId);
+		reservation.setReservationStatus(ReservationStatus.CONFIRMED);
+		reservationService.save(reservation);		
 		mailService.sendReservationOffer(reservation);
 		
-		return "redirect:/jobs";
+		return "redirect:/users/{id}/jobs";
+	}
+	
+	@PostMapping("/{reservationId}/archive")
+	public String archiveReservation(@PathVariable UUID reservationId) {
+		
+		Reservation reservation = reservationService.findOne(reservationId);
+		reservation.setReservationStatus(ReservationStatus.ARCHIVED);
+		reservationService.save(reservation);
+
+		return "redirect:/users/{id}/jobs";
+	}
+	
+	@PostMapping("/{reservationId}/edit")
+	public String updateReservation(Model model, @PathVariable UUID reservationId, EditReservationForm editReservationForm, BindingResult result) {
+
+		Reservation reservation = reservationService.findOne(reservationId);
+
+		/*if (formFactory.editReservationFromForm(reservation, editReservationForm)) {
+			reservationRepository.save(reservation);
+		}*/
+
+		return "redirect:/users/{id}/jobs";
+
+
+
+
 	}
 }

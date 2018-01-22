@@ -1,7 +1,7 @@
 </div>
 
 <script>
-    $('#toggle').click(function() {
+    $('#toggle').click(function () {
         $('.ui.sidebar').sidebar('toggle');
     });
 </script>

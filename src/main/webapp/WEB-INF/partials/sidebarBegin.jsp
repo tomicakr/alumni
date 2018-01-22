@@ -1,6 +1,5 @@
-<%@page contentType="text/html" pageEncoding="UTF-8"%>
-<%@ taglib prefix="sec"	uri="http://www.springframework.org/security/tags"%>
-
+<%@page contentType="text/html" pageEncoding="UTF-8" %>
+<%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags" %>
 
 
 <div id="sidebar-menu" class="ui sidebar vertical left menu">
@@ -27,7 +26,7 @@
     </sec:authorize>
 </div>
 
-<sec:authentication var="userInSession" property="principal" />
+<sec:authentication var="userInSession" property="principal"/>
 <div id="sidebar-top" class="ui basic icon top fixed menu">
 
     <div class="item" id="toggle">
@@ -41,7 +40,8 @@
         </sec:authorize>
 
         <sec:authorize access="isAuthenticated()">
-            <a class=" item" href="${pageContext.request.contextPath}/users/${userInSession.userId}">Dobrodošli, ${userInSession.firstName}! </a>
+            <a class=" item"
+               href="${pageContext.request.contextPath}/users/${userInSession.userId}">Dobrodošli, ${userInSession.firstName}! </a>
 
             <form method="post"
                   action="${pageContext.request.contextPath}/sessions/">

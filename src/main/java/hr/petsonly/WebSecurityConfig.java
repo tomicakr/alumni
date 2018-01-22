@@ -1,7 +1,8 @@
 package hr.petsonly;
 
-import java.util.UUID;
-
+import hr.petsonly.config.specific.CustomAuthenticationFailureHandler;
+import hr.petsonly.config.specific.CustomAuthenticationSuccesHandler;
+import hr.petsonly.model.details.CustomUserDetails;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -15,23 +16,23 @@ import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 
-import hr.petsonly.config.specific.CustomAuthenticationFailureHandler;
-import hr.petsonly.config.specific.CustomAuthenticationSuccesHandler;
-import hr.petsonly.model.details.CustomUserDetails;
+import java.util.UUID;
 
 @Configuration
 @EnableWebSecurity
 @EnableGlobalMethodSecurity(prePostEnabled = true)
 public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 
-	@Autowired
-	private UserDetailsService userDetailsService;
+	private final UserDetailsService userDetailsService;
+	private final CustomAuthenticationSuccesHandler sucessHandler;
+	private final CustomAuthenticationFailureHandler failureHandler;
 
 	@Autowired
-	private CustomAuthenticationSuccesHandler sucessHandler;
-
-	@Autowired
-	private CustomAuthenticationFailureHandler failureHandler;
+	public WebSecurityConfig(UserDetailsService userDetailsService, CustomAuthenticationSuccesHandler sucessHandler, CustomAuthenticationFailureHandler failureHandler) {
+		this.userDetailsService = userDetailsService;
+		this.sucessHandler = sucessHandler;
+		this.failureHandler = failureHandler;
+	}
 
 	@Override
 	protected void configure(HttpSecurity http) throws Exception {

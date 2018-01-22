@@ -74,7 +74,7 @@ initialize({
         identifier: 'email',
         rules: [{
             type: 'empty',
-            prompt: 'Molimo upišite adresu elektroničke pošte'
+            prompt: 'Molimo unesite adresu elektroničke pošte'
         },
             {
                 type: 'email',
@@ -83,17 +83,17 @@ initialize({
         ]
     },
     city: {
-        identifier: 'email',
+        identifier: 'city',
         rules: [{
             type: 'empty',
             prompt: 'Molimo odaberite grad'
         }]
     },
     address: {
-        identifier: 'email',
+        identifier: 'address',
         rules: [{
             type: 'empty',
-            prompt: 'Molimo upišite kućnu adresu'
+            prompt: 'Molimo unesite kućnu adresu'
         }]
     },
     password: {
@@ -104,7 +104,7 @@ initialize({
         },
             {
                 type: 'length[8]',
-                prompt: 'Lozinka mora biti dugačka barem 6 znakova'
+                prompt: 'Lozinka mora biti dugačka barem 8 znakova'
             }
         ]
     },

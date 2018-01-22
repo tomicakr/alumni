@@ -1,21 +1,15 @@
 package hr.petsonly.repository;
 
-import java.time.LocalDateTime;
-import java.time.LocalTime;
-import java.util.List;
-import java.util.UUID;
-
-import javax.transaction.Transactional;
-
+import hr.petsonly.model.*;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 
-import hr.petsonly.model.Pet;
-import hr.petsonly.model.Reservation;
-import hr.petsonly.model.ReservationStatus;
-import hr.petsonly.model.Service;
-import hr.petsonly.model.User;
+import javax.transaction.Transactional;
+import java.time.LocalDateTime;
+import java.time.LocalTime;
+import java.util.List;
+import java.util.UUID;
 
 
 public interface ReservationRepository extends JpaRepository<Reservation, UUID> {
@@ -76,10 +70,10 @@ public interface ReservationRepository extends JpaRepository<Reservation, UUID> 
 	
 	@Transactional
 	@Query("SELECT r FROM Reservation r "
-			+ "WHERE r.reservationStatus = :status AND "
-			+ "extract (HOUR from r.executionTime) >= :toH AND extract(MINUTE from r.executionTime) >= :toMin AND "
-			+ "extract (HOUR from r.executionTime) <= :fromH AND extract(MINUTE from r.executionTime) >= :fromMin AND "
-			+ "r.executionTime >= current_timestamp")
+			+ "WHERE r.reservationStatus = :status AND NOT ("
+			+ "(extract (HOUR from r.executionTime) < :toH  OR extract (HOUR from r.executionTime) = :toH AND extract(MINUTE from r.executionTime) <= :toMin) AND "
+			+ "(extract (HOUR from r.executionTime) > :fromH OR extract (HOUR from r.executionTime) = :fromH AND extract(MINUTE from r.executionTime) >= :fromMin) AND "
+			+ "r.executionTime >= current_timestamp)")
 	List<Reservation> findAllOpenWithinAvailableHoursHelper(@Param("status") ReservationStatus status, @Param("fromH") Integer fromH, @Param("fromMin") Integer fromMin, @Param("toH") Integer toH, @Param("toMin") Integer toMin);
 	
 	default List<Reservation> findAllPendingWithinAvailableHours(User u){

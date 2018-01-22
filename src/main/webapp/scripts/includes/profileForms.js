@@ -102,7 +102,7 @@ let addReservationModal =
                 </div>
                 <div class="field">
                     <div class="required field">
-                        <select name="employee" class="ui dropdown" id="res-employee">
+                        <select name="preferedEmployee" class="ui dropdown" id="res-employee">
                         </select>
                     </div>
                 </div>

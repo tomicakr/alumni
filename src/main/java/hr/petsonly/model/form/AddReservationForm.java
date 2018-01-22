@@ -19,8 +19,7 @@ public class AddReservationForm {
 	@NotNull
 	private UUID pet;
 
-	@NotNull
-	private UUID employee;
+	private UUID preferedEmployee;
 
 	@NotNull
 	@NotEmpty(message = "{arform.executiontime.empty}")
@@ -57,12 +56,12 @@ public class AddReservationForm {
 		this.pet = pet;
 	}
 
-	public UUID getEmployee() {
-		return employee;
+	public UUID getPreferedEmployee() {
+		return preferedEmployee;
 	}
 
-	public void setEmployee(UUID employee) {
-		this.employee = employee;
+	public void setPreferecEmployee(UUID employee) {
+		this.preferedEmployee = employee;
 	}
 
 	public String getExecutionTime() {

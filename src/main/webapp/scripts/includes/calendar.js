@@ -28,10 +28,14 @@ let timeInputConfig = {
         time: timeFormat
     }
 };
-
+let today = new Date();
+let tommorow = new Date();
+tommorow.setDate(today.getDate()+1);
 let dateInputConfig = {
     ampm: false,
     monthFirst: false,
+    minDate: new Date(tommorow.getFullYear(), tommorow.getMonth(), tommorow.getDate()),
+    maxDate: new Date(tommorow.getFullYear(), tommorow.getMonth(), tommorow.getDate()+60),
     text: {
         days: ['P', 'U', 'S', 'Č', 'P', 'S', 'N'],
         months: ['siječanj', 'ožujak', 'ožujak', 'travanj', 'svibanj', 'lipanj', 'srpanj', 'kolovoz', 'rujan', 'listopad', 'studeni', 'prosinac'],

@@ -1,17 +1,5 @@
 package hr.petsonly.web;
 
-import java.util.List;
-import java.util.UUID;
-
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
-import org.springframework.validation.BindingResult;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-
 import hr.petsonly.model.Reservation;
 import hr.petsonly.model.ReservationStatus;
 import hr.petsonly.model.User;
@@ -21,6 +9,17 @@ import hr.petsonly.repository.UserRepository;
 import hr.petsonly.service.FormFactory;
 import hr.petsonly.service.ReservationService;
 import hr.petsonly.service.email.EmailServiceImpl;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
+
+import java.util.List;
+import java.util.UUID;
 
 @Controller
 @RequestMapping(value = "/users/{id}/jobs")
@@ -74,7 +73,8 @@ public class JobController {
 		reservation.setReservationStatus(ReservationStatus.ACCEPTED); //accepted
 		reservation.setEmployee(employee);
 		reservationService.save(reservation);
-		
+		mailService.sendReservationOffer(reservation);
+
 		return "redirect:/users/{id}/jobs";
 	}
 	
@@ -83,8 +83,7 @@ public class JobController {
 		
 		Reservation reservation = reservationService.findOne(reservationId);
 		reservation.setReservationStatus(ReservationStatus.CONFIRMED);
-		reservationService.save(reservation);		
-		mailService.sendReservationOffer(reservation);
+		reservationService.save(reservation);
 		
 		return "redirect:/users/{id}/jobs";
 	}

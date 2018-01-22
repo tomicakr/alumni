@@ -48,7 +48,7 @@
                             <c:when test="${user.roles.contains(\"ROLE_ADMINISTRATOR\")}">
                             </c:when>
                             <c:when test="${not user.roles.contains(\"ROLE_ZAPOSLENIK\")}">
-                                
+
                                 <i id="btn-employ-user" class="add user action icon"
                                    title="Zaposli"></i>
                                 <i id="btn-fire-user" class="inactive delete user action icon"
@@ -203,14 +203,14 @@
 <script src="${pageContext.request.contextPath}/scripts/includes/profileForms.js"></script>
 <script src="${pageContext.request.contextPath}/scripts/includes/table.js"></script>
 <script src="${pageContext.request.contextPath}/scripts/profile.js"></script>
-</body>
 <script>
-    renderEmployeeSettings('${user.workingTime}','${user.notificationSetting}');
+    renderEmployeeSettings('${user.workingTime}', '${user.notificationSetting}');
     <c:if test="${user.roles.contains(\"ROLE_ZAPOSLENIK\")}">
-        $('#user-info').append(employeeSettings);
-        $('#user-actions').prepend(btnEmployeeJobs);
-        btnEmployeeJobs.popup();
+    $('#user-info').append(employeeSettings);
+    $('#user-actions').prepend(btnEmployeeJobs);
+    btnEmployeeJobs.popup();
     </c:if>
 
 </script>
+</body>
 </html>

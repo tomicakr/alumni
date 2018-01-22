@@ -9,7 +9,7 @@ import java.util.UUID;
 @Component
 public class ReservationDetails {
 
-	private static final DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd.MM.yyyy. hh:mm");
+	private static final DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd.MM.yyyy. HH:mm");
 
 	private UUID reservationId;
 	private String pet;
@@ -29,7 +29,7 @@ public class ReservationDetails {
 		this.pet = reservation.getPet().getName();
 		this.petSpecies = reservation.getPet().getSpecies().getName();
 		this.service = reservation.getService().getName(); 
-		this.employee = reservation.getEmployee() == null ? null :reservation.getEmployee().getName() + " " + reservation.getEmployee().getSurname();
+		this.employee = reservation.getEmployee() == null ? "" :reservation.getEmployee().getName() + " " + reservation.getEmployee().getSurname();
 		this.time = reservation.getExecutionTime().format(formatter);
 		this.owner = reservation.getUser().getName() + " " + reservation.getUser().getSurname();
 		switch (reservation.getReservationStatus()) {
@@ -37,13 +37,13 @@ public class ReservationDetails {
 			this.status = "Otvorena";
 			break;
 		case ACCEPTED:
-			this.status = "Prihvaćena";
+			this.status = "Čeka se uplata";
 			break;
 		case CONFIRMED:
-			this.status = "Potvrđena";
+			this.status = "Uplaćena";
 			break;
 		case ARCHIVED:
-			this.status = "Arhivirana";
+			this.status = "Gotova";
 			break;
 		default:
 			this.status = "<unknown>";

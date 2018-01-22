@@ -1,25 +1,5 @@
 package hr.petsonly.service.email;
 
-import java.io.OutputStream;
-import java.time.format.DateTimeFormatter;
-import java.time.format.FormatStyle;
-
-import javax.activation.DataHandler;
-import javax.activation.DataSource;
-import javax.mail.internet.MimeBodyPart;
-import javax.mail.internet.MimeMessage;
-import javax.mail.internet.MimeMultipart;
-import javax.mail.util.ByteArrayDataSource;
-
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.mail.MailException;
-import org.springframework.mail.SimpleMailMessage;
-import org.springframework.mail.javamail.JavaMailSender;
-import org.springframework.mail.javamail.MimeMessageHelper;
-import org.springframework.mail.javamail.MimeMessagePreparator;
-import org.springframework.scheduling.annotation.Async;
-import org.springframework.stereotype.Component;
-
 import com.itextpdf.io.font.FontConstants;
 import com.itextpdf.io.source.ByteArrayOutputStream;
 import com.itextpdf.kernel.font.PdfFontFactory;
@@ -27,8 +7,24 @@ import com.itextpdf.kernel.pdf.PdfDocument;
 import com.itextpdf.kernel.pdf.PdfWriter;
 import com.itextpdf.layout.Document;
 import com.itextpdf.layout.element.Paragraph;
-
 import hr.petsonly.model.Reservation;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.mail.MailException;
+import org.springframework.mail.SimpleMailMessage;
+import org.springframework.mail.javamail.JavaMailSender;
+import org.springframework.mail.javamail.MimeMessageHelper;
+import org.springframework.mail.javamail.MimeMessagePreparator;
+import org.springframework.stereotype.Component;
+
+import javax.activation.DataHandler;
+import javax.activation.DataSource;
+import javax.mail.internet.MimeBodyPart;
+import javax.mail.internet.MimeMessage;
+import javax.mail.internet.MimeMultipart;
+import javax.mail.util.ByteArrayDataSource;
+import java.io.OutputStream;
+import java.time.format.DateTimeFormatter;
+import java.time.format.FormatStyle;
 
 @Component
 public class EmailServiceImpl {
@@ -93,7 +89,7 @@ public class EmailServiceImpl {
 
 				helper.setSubject("PetsOnlyZg rezervacija");
 				helper.setFrom("fau53t7zss@gmail.com");
-				helper.setTo("mate.paulinovic@fer.hr"); //reservation.getUser().getEmail());
+				helper.setTo(reservation.getUser().getEmail()); //reservation.getUser().getEmail());
 				String content = messageText;
 				MimeBodyPart textBodyPart = new MimeBodyPart();
 				textBodyPart.setText(content);

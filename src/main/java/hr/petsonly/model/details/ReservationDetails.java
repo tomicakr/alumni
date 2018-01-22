@@ -33,14 +33,17 @@ public class ReservationDetails {
 		this.time = reservation.getExecutionTime().format(formatter);
 		this.owner = reservation.getUser().getName() + " " + reservation.getUser().getSurname();
 		switch (reservation.getReservationStatus()) {
-		case 1:
+		case PENDING:
 			this.status = "Otvorena";
 			break;
-		case 2:
+		case ACCEPTED:
 			this.status = "Prihvaćena";
 			break;
-		case 3:
+		case CONFIRMED:
 			this.status = "Potvrđena";
+			break;
+		case ARCHIVED:
+			this.status = "Arhivirana";
 			break;
 		default:
 			this.status = "<unknown>";

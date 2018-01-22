@@ -219,4 +219,13 @@ public class UserService {
 
 		valid = false;
 	}
+	
+	public boolean isAdmin(User u){
+		for(Role r : u.getRoles()){
+			if(r.getName().equals("ROLE_ADMINISTRATOR")){
+				return true;
+			}
+		}
+		return false;
+	}
 }

@@ -145,6 +145,7 @@ INSERT INTO privilege (name) VALUES ("ACCEPT_RESERVATION");
 INSERT INTO privilege (name) VALUES ("CONFIRM_RESERVATION");
 INSERT INTO privilege (name) VALUES ("VIEW_ALL_RESERVATIONS");
 INSERT INTO privilege (name) VALUES ("VIEW_FREE_RESERVATIONS");	
+INSERT INTO privilege (name) VALUES ("ARCHIVE_RESERVATION");
 
 INSERT INTO roles_privileges (role_id, privilege_id) VALUES (1,1);
 INSERT INTO roles_privileges (role_id, privilege_id) VALUES (1,2);
@@ -153,6 +154,7 @@ INSERT INTO roles_privileges (role_id, privilege_id) VALUES (1,4);
 INSERT INTO roles_privileges (role_id, privilege_id) VALUES (1,5);
 INSERT INTO roles_privileges (role_id, privilege_id) VALUES (1,6);
 INSERT INTO roles_privileges (role_id, privilege_id) VALUES (1,7);
+INSERT INTO roles_privileges (role_id, privilege_id) VALUES (1,8);
 INSERT INTO roles_privileges (role_id, privilege_id) VALUES (2,4);
 INSERT INTO roles_privileges (role_id, privilege_id) VALUES (2,7);
                     

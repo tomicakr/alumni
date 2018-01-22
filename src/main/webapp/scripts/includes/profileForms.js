@@ -40,7 +40,7 @@ let addPetModal =
                 </div>
                 <div class="two equal width fields">
                     <div class="field">
-                        <input type="number" name="age" id="pet-age" placeholder="Starost">
+                        <input type="number" min="0" name="age" id="pet-age" placeholder="Starost">
                     </div>
                     <div class="field">
                         <div class="ui dropdown selection" tabindex="0">
@@ -167,6 +167,8 @@ $.fn.form.settings.rules.validInterval = ()=> {
     return from < to;
 };
 
+$.fn.form.settings.rules.validAge = (age)=> age >= 0;
+
 const petValidation = {
     name: {
         identifier: 'pet-name',
@@ -180,6 +182,9 @@ const petValidation = {
         rules: [{
             type: 'empty',
             prompt: 'Ljubimac mora imati broj godina'
+        },{
+            type: 'validAge',
+            prompt: 'Nitko nije toliko mlad'
         }]
     },
     sex: {

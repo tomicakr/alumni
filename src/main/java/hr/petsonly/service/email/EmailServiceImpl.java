@@ -66,7 +66,7 @@ public class EmailServiceImpl {
 		PdfDocument pdf = new PdfDocument(pdfWriter);
 		Document pdfDocument = new Document(pdf);
 		// title
-		Paragraph title = new Paragraph(reservation.getUser().getName());
+		Paragraph title = new Paragraph("PONUDA");
 		title.setFont(PdfFontFactory.createFont(FontConstants.HELVETICA));
 		title.setFontSize(18f);
 		title.setItalic();
@@ -77,7 +77,18 @@ public class EmailServiceImpl {
 		date.setFontSize(16f);
 		pdfDocument.add(date);
 		// content
-		Paragraph content = new Paragraph(reservation.getService().getName());
+		
+		StringBuilder sb = new StringBuilder();
+		
+		sb.append('\n');
+		sb.append("Ljubimac: "+reservation.getPet().getName()+"\n");
+		sb.append("Klijent: " + reservation.getUser().getName() + " "+ reservation.getUser().getSurname()+"\n");
+		sb.append("Zaposlenik: "+reservation.getEmployee().getName() + " " + reservation.getEmployee().getSurname()+"\n");
+		sb.append("Usluga: " + reservation.getService().getName()+"\n");
+		sb.append("Cijena: "+reservation.getPrice()+"\n");
+		sb.append("\n");
+		sb.append("Hvala na povjerenju!");
+		Paragraph content = new Paragraph(sb.toString());
 		pdfDocument.add(content);
 		pdfDocument.close();
 	}

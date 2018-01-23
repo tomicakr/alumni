@@ -21,15 +21,18 @@ let minutesFormat = (date) => twoDigitFormat(date.getMinutes.bind(date));
 let dayFormat     = (date) => twoDigitFormat(date.getDate.bind(date));
 let timeFormat    = (date) => `${hourFormat(date)}:${minutesFormat(date)}`;
 
+let today = new Date();
+let tommorow = new Date();
+
 let timeInputConfig = {
     type: 'time',
     ampm: false,
+    minDate: new Date(tommorow.getFullYear(), tommorow.getMonth(), tommorow.getDate(), 1),
+    maxDate: new Date(tommorow.getFullYear(), tommorow.getMonth(), tommorow.getDate(), 5),
     formatter:{
         time: timeFormat
     }
 };
-let today = new Date();
-let tommorow = new Date();
 tommorow.setDate(today.getDate()+1);
 let dateInputConfig = {
     ampm: false,
@@ -38,7 +41,7 @@ let dateInputConfig = {
     maxDate: new Date(tommorow.getFullYear(), tommorow.getMonth(), tommorow.getDate()+60),
     text: {
         days: ['P', 'U', 'S', 'Č', 'P', 'S', 'N'],
-        months: ['siječanj', 'ožujak', 'ožujak', 'travanj', 'svibanj', 'lipanj', 'srpanj', 'kolovoz', 'rujan', 'listopad', 'studeni', 'prosinac'],
+        months: ['siječanj', 'veljača', 'ožujak', 'travanj', 'svibanj', 'lipanj', 'srpanj', 'kolovoz', 'rujan', 'listopad', 'studeni', 'prosinac'],
         today: 'Danas',
         now: 'Sad'
     },

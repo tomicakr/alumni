@@ -94,6 +94,11 @@ public class UserService {
 
 				return false;
 			case "notAvailableFrom":
+				if(value.isEmpty()){
+					user.setNotAvailableFrom(null);
+					repository.save(user);
+					return true;
+				}
 				String[] parts = value.split(":");
 				if (parts.length != 2)
 					return false;
@@ -113,6 +118,11 @@ public class UserService {
 				return true;
 			
 			case "notAvailableTo":
+				if(value.isEmpty()){
+					user.setNotAvailableTo(null);
+					repository.save(user);
+					return true;
+				}
 				String[] parts2 = value.split(":");
 				if (parts2.length != 2) {
 					return false;

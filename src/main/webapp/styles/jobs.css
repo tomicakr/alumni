@@ -65,3 +65,9 @@
 .ui.dropdown.label{
 	min-width: 20%;
 }
+.ui.negative.message{
+	margin: auto;
+	max-width: 60%;
+	margin-bottom: 4%;
+}
+

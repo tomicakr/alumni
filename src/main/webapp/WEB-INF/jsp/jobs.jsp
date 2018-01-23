@@ -21,6 +21,18 @@
 
 <div id="main-div" class="ui segment">
     <h1 align="center">Pregled svih rezervacija: </h1>
+    <c:if test="${not empty errorMessage}">
+        <div class="ui negative message">
+          <i class="close icon"></i>
+          <div class="header">
+            Ups, dogodila se pogreška!
+        </div>
+        <ul class="list">
+            <li>${errorMessage}</li>
+        </ul>
+        </div>
+
+    </c:if>
     <div id="main-grid" class="ui stackable column centered grid">
 
         <!-- prva kolona -->
@@ -65,9 +77,9 @@
                                                 <strong>Detalji rezervacije</strong>
                                             </div>
                                             <div class="content">
-                                                <h5>ID: </h5><p class="reservation-id-field">${reservation.reservationId}</p>
-                                                <h5>Vrsta: </h5><p class="petSpecies-field">${reservation.petSpecies}</p>
-                                                <h5>Vlasnik: </h5><p class="pet-owner-field">${reservation.owner}</p>
+                                                <p><strong>ID: </strong><span class="reservation-id-field">${reservation.reservationId}</span></p>
+                                                <p><strong>Vrsta: </strong><span class="petSpecies-field">${reservation.petSpecies}</span></p>
+                                                <p><strong>Vlasnik: </strong><span class="pet-owner-field">${reservation.owner}</span></p>
                                             </div>
                                         </div>
                                     </div>
@@ -133,9 +145,9 @@
                                                 <strong>Detalji rezervacije</strong>
                                             </div>
                                             <div class="content">
-                                                <h5>ID: </h5><p class="reservation-id-field">${reservation.reservationId}</p>
-                                                <h5>Vrsta: </h5><p class="petSpecies-field">${reservation.petSpecies}</p>
-                                                <h5>Vlasnik: </h5><p class="pet-owner-field">${reservation.owner}</p>
+                                                <p><strong>ID: </strong><span class="reservation-id-field">${reservation.reservationId}</span></p>
+                                                <p><strong>Vrsta: </strong><span class="petSpecies-field">${reservation.petSpecies}</span></p>
+                                                <p><strong>Vlasnik: </strong><span class="pet-owner-field">${reservation.owner}</span></p>
                                             </div>
                                         </div>
                                     </div>
@@ -200,9 +212,9 @@
                                                 <strong>Detalji rezervacije</strong>
                                             </div>
                                             <div class="content">
-                                                <h5>ID: </h5><p class="reservation-id-field">${reservation.reservationId}</p>
-                                                <h5>Vrsta: </h5><p class="petSpecies-field">${reservation.petSpecies}</p>
-                                                <h5>Vlasnik: </h5><p class="pet-owner-field">${reservation.owner}</p>
+                                                <p><strong>ID: </strong><span class="reservation-id-field">${reservation.reservationId}</span></p>
+                                                <p><strong>Vrsta: </strong><span class="petSpecies-field">${reservation.petSpecies}</span></p>
+                                                <p><strong>Vlasnik: </strong><span class="pet-owner-field">${reservation.owner}</span></p>
                                             </div>
                                         </div>
                                     </div>

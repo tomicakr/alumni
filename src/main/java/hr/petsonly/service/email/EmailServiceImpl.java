@@ -80,16 +80,15 @@ public class EmailServiceImpl {
 		date.setFontSize(16f);
 		pdfDocument.add(date);
 		// content
-
+		
 		StringBuilder sb = new StringBuilder();
-
+		
 		sb.append('\n');
-		sb.append("Ljubimac: " + reservation.getPet().getName() + "\n");
-		sb.append("Klijent: " + reservation.getUser().getName() + " " + reservation.getUser().getSurname() + "\n");
-		sb.append("Zaposlenik: " + reservation.getEmployee().getName() + " " + reservation.getEmployee().getSurname()
-				+ "\n");
-		sb.append("Usluga: " + reservation.getService().getName() + "\n");
-		sb.append("Cijena: " + reservation.getPrice() + "\n");
+		sb.append("Ljubimac: "+reservation.getPet().getName()+"\n");
+		sb.append("Klijent: " + reservation.getUser().getName() + " "+ reservation.getUser().getSurname()+"\n");
+		sb.append("Zaposlenik: "+reservation.getEmployee().getName() + " " + reservation.getEmployee().getSurname()+"\n");
+		sb.append("Usluga: " + reservation.getService().getName()+"\n");
+		sb.append("Cijena: "+reservation.getPrice()+"\n");
 		sb.append("\n");
 		sb.append("Hvala na povjerenju!");
 		Paragraph content = new Paragraph(sb.toString());

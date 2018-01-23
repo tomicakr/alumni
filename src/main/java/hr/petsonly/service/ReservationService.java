@@ -29,6 +29,10 @@ public class ReservationService {
 		return repository.save(r);
 	}
 	
+	public boolean isDeleted(UUID id){
+		return !repository.exists(id);
+	}
+	
 	public List<ReservationDetails> findAllPendingReservations(User u){
 		List<Reservation> reservations;
 		if(userService.isAdmin(u)){

@@ -72,7 +72,6 @@ public class FormFactory {
 	}
 
 	public Reservation createReservationFromForm(AddReservationForm arf){
-		System.out.println(arf.toString());
 		Reservation r = new Reservation();
 		r.setReservationKey(UUID.randomUUID());
 		r.setReservationStatus(ReservationStatus.PENDING); //KAKO SU NUMERIRANI STATUSI?
@@ -93,11 +92,14 @@ public class FormFactory {
 		r.setDuration(Duration.ofMinutes(hours * 60 + minutes));
 		
 		r.setUser(ur.findOne(arf.getOwner()));
-		r.setService(sr.findOne(UUID.fromString(arf.getService())));
+		r.setService(sr.findOne(arf.getService()));
 		r.setPet(pr.findOne(arf.getPet()));
+		r.setPrice(sr.findOne(arf.getService()).getPrice());
+		
 		if(arf.getPreferedEmployee() != null){
 			r.setPreferedEmployee(ur.findOne(arf.getPreferedEmployee()));
 		}
+		
 		return r;
 	}
 	

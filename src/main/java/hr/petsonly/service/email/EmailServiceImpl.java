@@ -2,6 +2,7 @@ package hr.petsonly.service.email;
 
 import com.itextpdf.io.font.FontConstants;
 import com.itextpdf.io.source.ByteArrayOutputStream;
+import com.itextpdf.kernel.font.PdfFont;
 import com.itextpdf.kernel.font.PdfFontFactory;
 import com.itextpdf.kernel.pdf.PdfDocument;
 import com.itextpdf.kernel.pdf.PdfWriter;
@@ -22,6 +23,8 @@ import javax.mail.internet.MimeBodyPart;
 import javax.mail.internet.MimeMessage;
 import javax.mail.internet.MimeMultipart;
 import javax.mail.util.ByteArrayDataSource;
+
+import java.awt.Font;
 import java.io.OutputStream;
 import java.time.format.DateTimeFormatter;
 import java.time.format.FormatStyle;
@@ -30,7 +33,7 @@ import java.time.format.FormatStyle;
 public class EmailServiceImpl {
 
 	private static final String messageText = "Poštovani,\n\nzahvaljujemo na Vašoj rezervaciji. Vaša ponuda nalazi se u privitku.\n\nLijep pozdrav,\nVaš PetsOnlyZg";
-	
+
 	@Autowired
 	JavaMailSender mailSender;
 
@@ -46,7 +49,7 @@ public class EmailServiceImpl {
 			exception.printStackTrace();
 		}
 	}
-	
+
 	public void sendReservationOffer(Reservation reservation) {
 		try {
 			MimeMessagePreparator prep = this.prepareReservationOfferEmail(reservation);
@@ -59,14 +62,14 @@ public class EmailServiceImpl {
 		}
 	}
 
-
 	private void writePdf(OutputStream outputStream, Reservation reservation) throws Exception {
 		// IText API
 		PdfWriter pdfWriter = new PdfWriter(outputStream);
 		PdfDocument pdf = new PdfDocument(pdfWriter);
 		Document pdfDocument = new Document(pdf);
+
 		// title
-		Paragraph title = new Paragraph(reservation.getUser().getName());
+		Paragraph title = new Paragraph("PONUDA");
 		title.setFont(PdfFontFactory.createFont(FontConstants.HELVETICA));
 		title.setFontSize(18f);
 		title.setItalic();
@@ -77,11 +80,23 @@ public class EmailServiceImpl {
 		date.setFontSize(16f);
 		pdfDocument.add(date);
 		// content
-		Paragraph content = new Paragraph(reservation.getService().getName());
+
+		StringBuilder sb = new StringBuilder();
+
+		sb.append('\n');
+		sb.append("Ljubimac: " + reservation.getPet().getName() + "\n");
+		sb.append("Klijent: " + reservation.getUser().getName() + " " + reservation.getUser().getSurname() + "\n");
+		sb.append("Zaposlenik: " + reservation.getEmployee().getName() + " " + reservation.getEmployee().getSurname()
+				+ "\n");
+		sb.append("Usluga: " + reservation.getService().getName() + "\n");
+		sb.append("Cijena: " + reservation.getPrice() + "\n");
+		sb.append("\n");
+		sb.append("Hvala na povjerenju!");
+		Paragraph content = new Paragraph(sb.toString());
 		pdfDocument.add(content);
 		pdfDocument.close();
 	}
-	
+
 	private MimeMessagePreparator prepareReservationOfferEmail(final Reservation reservation) {
 		MimeMessagePreparator preparator = new MimeMessagePreparator() {
 			public void prepare(MimeMessage mimeMessage) throws Exception {
@@ -89,7 +104,7 @@ public class EmailServiceImpl {
 
 				helper.setSubject("PetsOnlyZg rezervacija");
 				helper.setFrom("fau53t7zss@gmail.com");
-				helper.setTo(reservation.getUser().getEmail()); //reservation.getUser().getEmail());
+				helper.setTo(reservation.getUser().getEmail()); // reservation.getUser().getEmail());
 				String content = messageText;
 				MimeBodyPart textBodyPart = new MimeBodyPart();
 				textBodyPart.setText(content);

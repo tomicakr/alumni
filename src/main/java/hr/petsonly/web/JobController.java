@@ -117,8 +117,5 @@ public class JobController {
 
 		return "redirect:/users/{id}/jobs";
 
-
-
-
 	}
 }

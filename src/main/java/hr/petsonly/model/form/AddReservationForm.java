@@ -13,8 +13,7 @@ public class AddReservationForm {
 	private UUID owner;
 
 	@NotNull
-	@NotEmpty(message = "{arform.service.empty}")
-	private String service;
+	private UUID service;
 
 	@NotNull
 	private UUID pet;
@@ -40,11 +39,11 @@ public class AddReservationForm {
 		this.owner = owner;
 	}
 
-	public String getService() {
+	public UUID getService() {
 		return service;
 	}
 
-	public void setService(String service) {
+	public void setService(UUID service) {
 		this.service = service;
 	}
 

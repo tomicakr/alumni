@@ -142,6 +142,16 @@ public class JobController {
 		return "redirect:/users/{id}/jobs";
 	}
 	
-	
-	
+	@PostMapping("/{reservationId}/edit")
+	public String updateReservation(Model model, @PathVariable UUID reservationId, EditReservationForm editReservationForm, BindingResult result) {
+
+		Reservation reservation = reservationService.findOne(reservationId);
+
+		/*if (formFactory.editReservationFromForm(reservation, editReservationForm)) {
+			reservationRepository.save(reservation);
+		}*/
+
+		return "redirect:/users/{id}/jobs";
+
+	}
 }

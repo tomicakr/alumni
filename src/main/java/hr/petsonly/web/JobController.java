@@ -3,35 +3,20 @@ package hr.petsonly.web;
 import hr.petsonly.model.Reservation;
 import hr.petsonly.model.ReservationStatus;
 import hr.petsonly.model.User;
-import hr.petsonly.model.details.CustomUserDetails;
-import hr.petsonly.model.details.LocationDetails;
 import hr.petsonly.model.details.ReservationDetails;
-import hr.petsonly.model.details.UserDetailsMore;
-import hr.petsonly.model.form.EditReservationForm;
-import hr.petsonly.model.form.EditUserForm;
 import hr.petsonly.repository.UserRepository;
 import hr.petsonly.service.FormFactory;
 import hr.petsonly.service.ReservationService;
 import hr.petsonly.service.email.EmailServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.prepost.PreAuthorize;
-import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.validation.BindingResult;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import java.util.List;
 import java.util.UUID;
-
-import javax.servlet.http.HttpSession;
-import javax.validation.Valid;
 
 @Controller
 @RequestMapping(value = "/users/{id}/jobs")
@@ -140,18 +125,5 @@ public class JobController {
 			}
 		}
 		return "redirect:/users/{id}/jobs";
-	}
-	
-	@PostMapping("/{reservationId}/edit")
-	public String updateReservation(Model model, @PathVariable UUID reservationId, EditReservationForm editReservationForm, BindingResult result) {
-
-		Reservation reservation = reservationService.findOne(reservationId);
-
-		/*if (formFactory.editReservationFromForm(reservation, editReservationForm)) {
-			reservationRepository.save(reservation);
-		}*/
-
-		return "redirect:/users/{id}/jobs";
-
 	}
 }

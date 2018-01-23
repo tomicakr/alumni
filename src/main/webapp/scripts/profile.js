@@ -142,8 +142,13 @@ btnAddReservation.click(
         addReservationModal.find('#res-time')
             .calendar(dateInputConfig);
 
+        let durationInputConfig = {
+            minDate: new Date(0, 0, 0, 1),
+            maxDate: new Date(0,0, 0, 3),
+        };
+        $.extend(durationInputConfig,timeInputConfig);
         addReservationModal.find('#res-duration')
-            .calendar(timeInputConfig);
+            .calendar(durationInputConfig);
 
         $.getJSON(api.employees)
             .then(

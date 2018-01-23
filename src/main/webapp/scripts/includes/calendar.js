@@ -27,8 +27,6 @@ let tommorow = new Date();
 let timeInputConfig = {
     type: 'time',
     ampm: false,
-    minDate: new Date(tommorow.getFullYear(), tommorow.getMonth(), tommorow.getDate(), 1),
-    maxDate: new Date(tommorow.getFullYear(), tommorow.getMonth(), tommorow.getDate(), 5),
     formatter:{
         time: timeFormat
     }

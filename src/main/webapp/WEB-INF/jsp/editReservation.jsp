@@ -11,23 +11,27 @@
 <main class="ui middle aligned center aligned grid">
     <div class="column">
         <h1 class="ui image massive header">Uredite rezervaciju</h1>
-        <form action="/users/${reservation.ownerId}/reservations/${reservation.reservationId}" method="post"
+        <form action="/users/${ownerId}/reservations/${reservationId}" method="post"
               class="ui large form segment stacked">
 
             <div class="field">
                 <select name="service" class="ui search dropdown" id="res-service">
-                    <option value="${reservation.service.id}">${reservation.service.name}</option>
                     <c:forEach var="service" items="${services}">
-                        <option value="${service.id}">${service.name}</option>
+                        <option value="${service.id}"
+                                <c:if test="${reservation.serviceId.equals(service.id)}">selected</c:if>>
+                                ${service.name}
+                        </option>
                     </c:forEach>
                 </select>
             </div>
 
             <div class="field">
                 <select name="pet" id="res-pet" class="ui search dropdown">
-                    <option value="${reservation.pet.petId}">${reservation.pet.name}</option>
                     <c:forEach var="pet" items="${pets}">
-                        <option value="${pet.petId}">${pet.name}</option>
+                        <option value="${pet.petId}"
+                                <c:if test="${petId.equals(pet.petId)}">selected</c:if>>
+                                ${pet.name}
+                        </option>
                     </c:forEach>
                 </select>
             </div>
@@ -40,10 +44,12 @@
             </div>
 
             <div class="field">
-                <select name="preferedEmployee" class="ui search dropdown" id="res-employee">
-                    <option value="${reservation.preferedEmployee.userId}">${reservation.preferedEmployee.firstName} ${reservation.preferedEmployee.lastName}</option>
+                <select name="preferredEmployee" class="ui search dropdown" id="res-employee">
                     <c:forEach var="employee" items="${employees}">
-                        <option value="${employee.userId}">${employee.firstName} ${employee.lastName}</option>
+                        <option value="${employee.userId}"
+                                <c:if test="${reservation.preferredEmployee.userId.equals(employee.userId)}">selected</c:if>>
+                                ${employee.firstName} ${employee.lastName}
+                        </option>
                     </c:forEach>
                 </select>
 

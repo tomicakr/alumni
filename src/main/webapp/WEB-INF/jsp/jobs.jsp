@@ -77,9 +77,9 @@
                                                 <strong>Detalji rezervacije</strong>
                                             </div>
                                             <div class="content">
-                                                <h5>ID: </h5><p class="reservation-id-field">${reservation.reservationId}</p>
-                                                <h5>Vrsta: </h5><p class="petSpecies-field">${reservation.petSpecies}</p>
-                                                <h5>Vlasnik: </h5><p class="pet-owner-field">${reservation.owner}</p>
+                                                <p><strong>ID: </strong><span class="reservation-id-field">${reservation.reservationId}</span></p>
+                                                <p><strong>Vrsta: </strong><span class="petSpecies-field">${reservation.petSpecies}</span></p>
+                                                <p><strong>Vlasnik: </strong><span class="pet-owner-field">${reservation.owner}</span></p>
                                             </div>
                                         </div>
                                     </div>
@@ -145,9 +145,9 @@
                                                 <strong>Detalji rezervacije</strong>
                                             </div>
                                             <div class="content">
-                                                <h5>ID: </h5><p class="reservation-id-field">${reservation.reservationId}</p>
-                                                <h5>Vrsta: </h5><p class="petSpecies-field">${reservation.petSpecies}</p>
-                                                <h5>Vlasnik: </h5><p class="pet-owner-field">${reservation.owner}</p>
+                                                <p><strong>ID: </strong><span class="reservation-id-field">${reservation.reservationId}</span></p>
+                                                <p><strong>Vrsta: </strong><span class="petSpecies-field">${reservation.petSpecies}</span></p>
+                                                <p><strong>Vlasnik: </strong><span class="pet-owner-field">${reservation.owner}</span></p>
                                             </div>
                                         </div>
                                     </div>
@@ -212,9 +212,9 @@
                                                 <strong>Detalji rezervacije</strong>
                                             </div>
                                             <div class="content">
-                                                <h5>ID: </h5><p class="reservation-id-field">${reservation.reservationId}</p>
-                                                <h5>Vrsta: </h5><p class="petSpecies-field">${reservation.petSpecies}</p>
-                                                <h5>Vlasnik: </h5><p class="pet-owner-field">${reservation.owner}</p>
+                                                <p><strong>ID: </strong><span class="reservation-id-field">${reservation.reservationId}</span></p>
+                                                <p><strong>Vrsta: </strong><span class="petSpecies-field">${reservation.petSpecies}</span></p>
+                                                <p><strong>Vlasnik: </strong><span class="pet-owner-field">${reservation.owner}</span></p>
                                             </div>
                                         </div>
                                     </div>

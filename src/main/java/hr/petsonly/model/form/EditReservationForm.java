@@ -6,6 +6,8 @@ import javax.validation.constraints.NotNull;
 
 import org.hibernate.validator.constraints.NotEmpty;
 
+import hr.petsonly.model.Reservation;
+
 public class EditReservationForm {
 
 	@NotNull
@@ -13,7 +15,7 @@ public class EditReservationForm {
 	private String service;
 	
 	@NotNull
-	private UUID employee;
+	private UUID preferredEmployee;
 
 	@NotNull
 	@NotEmpty(message = "{arform.executiontime.empty}")
@@ -30,11 +32,11 @@ public class EditReservationForm {
 		super();
 	}
 
-	public EditReservationForm(String service, UUID employee, String executionTime, String duration,
+	public EditReservationForm(String service, UUID preferredEmployee, String executionTime, String duration,
 			String sendReminder) {
 		super();
 		this.service = service;
-		this.employee = employee;
+		this.preferredEmployee = preferredEmployee;
 		this.executionTime = executionTime;
 		this.duration = duration;
 		this.sendReminder = sendReminder;
@@ -49,11 +51,11 @@ public class EditReservationForm {
 	}
 
 	public UUID getEmployee() {
-		return employee;
+		return preferredEmployee;
 	}
 
-	public void setEmployee(UUID employee) {
-		this.employee = employee;
+	public void setEmployee(UUID preferredEmployee) {
+		this.preferredEmployee = preferredEmployee;
 	}
 
 	public String getExecutionTime() {
@@ -78,6 +80,14 @@ public class EditReservationForm {
 
 	public void setSendReminder(String sendReminder) {
 		this.sendReminder = sendReminder;
+	}
+	
+	public boolean hasChanges(Reservation res) {
+		return !service.equals(res.getService())
+				|| !preferredEmployee.equals(res.getPreferedEmployee())
+				|| !executionTime.equals(res.getExecutionTime())
+				|| !sendReminder.equals(res.isSendReminder())
+				|| !duration.equals(res.getDuration());
 	}
 	
 }

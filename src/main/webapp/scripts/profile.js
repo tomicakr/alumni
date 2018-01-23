@@ -102,6 +102,7 @@ resTable.append = (function(res){
     resTable.tableBody.append(resMarkup);
 
     resMarkup.find('.del.icon').click(resTable.remove.bind(resTable,resMarkup));
+    resMarkup.find('.edit.icon').click(() => window.location.href = `${reservationIndex}${res.reservationId}/edit`);
     resMarkup.find('.icon').popup();
     this.showContent();
 }).bind(resTable);
@@ -141,8 +142,13 @@ btnAddReservation.click(
         addReservationModal.find('#res-time')
             .calendar(dateInputConfig);
 
+        let durationInputConfig = {
+            minDate: new Date(0, 0, 0, 1),
+            maxDate: new Date(0,0, 0, 3),
+        };
+        $.extend(durationInputConfig,timeInputConfig);
         addReservationModal.find('#res-duration')
-            .calendar(timeInputConfig);
+            .calendar(durationInputConfig);
 
         $.getJSON(api.employees)
             .then(

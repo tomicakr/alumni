@@ -18,7 +18,6 @@ public class ReservationService {
 	@Autowired
 	ReservationRepository repository;
 
-	
 	@Autowired
 	UserService userService;
 	
@@ -28,6 +27,10 @@ public class ReservationService {
 	
 	public Reservation save(Reservation r){
 		return repository.save(r);
+	}
+	
+	public boolean isDeleted(UUID id){
+		return !repository.exists(id);
 	}
 	
 	public List<ReservationDetails> findAllPendingReservations(User u){

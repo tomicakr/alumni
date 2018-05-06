@@ -10,8 +10,6 @@ import hr.alumni.model.User;
 @Service
 public interface UserRepository extends JpaRepository<User, UUID> {
 
-	User findByUserPid(String userPid);
-
 	List<User> findAllByName(String name);
 
 	List<User> findAllByNameIgnoreCase(String name);
@@ -24,10 +22,6 @@ public interface UserRepository extends JpaRepository<User, UUID> {
 
 	List<User> findAllBySurnameLike(String surname);
 
-	User findByMobilePhone(String mobilePhone);
-
-	User findByMobilePhoneLike(String mobilePhone);
-
 	List<User> findAllByPhone(String phone);
 
 	List<User> findAllByPhoneLike(String phone);
@@ -36,16 +30,6 @@ public interface UserRepository extends JpaRepository<User, UUID> {
 
 	List<User> findAllByEmailLike(String email);
 
-	List<User> findAllByRemark(String remark);
-
-	List<User> findAllByRemarkIgnoreCase(String remark);
-
-	List<User> findAllByRemarkLike(String remark);
-
-	List<User> findAllByUserMnemonic(String userMnemonic);
-
-	List<User> findAllByUserMnemonicLike(String userMnemonic);
-
 	List<User> findAllByAddress(String address);
 
 	List<User> findAllByAddressIgnoreCase(String address);
@@ -53,6 +37,4 @@ public interface UserRepository extends JpaRepository<User, UUID> {
 	List<User> findAllByAddressLike(String address);
 
 	List<User> findAllByLocation(Location location);
-
-	List<User> findAllByNotificationSetting(int notificationSetting);
 }

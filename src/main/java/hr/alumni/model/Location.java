@@ -26,7 +26,15 @@ public class Location {
 	@OneToMany(fetch = FetchType.LAZY, mappedBy = "location")
 	private List<User> users;
 	
+	@OneToMany(fetch = FetchType.LAZY)
+	private List<Post> posts; 
+	
 	public Location() {
+	}
+	
+	public Location(int zipCode, String locationName) {
+		this.zipCode = zipCode;
+		this.locationName = locationName;
 	}
 
 	public UUID getLocationId() {
@@ -52,5 +60,4 @@ public class Location {
 	public void setLocationName(String locationName) {
 		this.locationName = locationName;
 	}
-
 }

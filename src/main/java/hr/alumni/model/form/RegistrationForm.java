@@ -24,14 +24,6 @@ public class RegistrationForm {
 	private String surname;
 
 	@NotNull
-	@NotEmpty(message = "{rform.oib.empty}")
-	private String userPid;
-
-	@NotNull
-	@NotEmpty(message = "{rform.mobilephone.empty}")
-	private String mobilePhone;
-
-	@NotNull
 	@NotEmpty(message = "{rform.phone.empty}")
 	private String phone;
 
@@ -55,6 +47,14 @@ public class RegistrationForm {
 	@NotNull
 	@NotEmpty(message = "{rform.password2.empty}")
 	private String password2;
+	
+	@NotNull
+	@NotEmpty(message = "{rform.graduation.empty}")
+	private String graduation;
+	
+	@NotNull
+	@NotEmpty(message = "{rform.birthday.empty}")
+	private String birthday;
 
 	public String getName() {
 		return name;
@@ -70,22 +70,6 @@ public class RegistrationForm {
 
 	public void setSurname(String surname) {
 		this.surname = surname;
-	}
-
-	public String getUserPid() {
-		return userPid;
-	}
-
-	public void setUserPid(String userPid) {
-		this.userPid = userPid;
-	}
-
-	public String getMobilePhone() {
-		return mobilePhone;
-	}
-
-	public void setMobilePhone(String mobilePhone) {
-		this.mobilePhone = mobilePhone;
 	}
 
 	public String getPhone() {
@@ -136,4 +120,20 @@ public class RegistrationForm {
 		this.password2 = password2;
 	}
 
+	public String getGraduation() {
+		return graduation;
+	}
+
+	public void setGraduation(String graduation) {
+		this.graduation = graduation;
+	}
+
+	public String getBirthday() {
+		return birthday;
+	}
+
+	public void setBirthday(String birthday) {
+		this.birthday = birthday;
+	}
+	
 }

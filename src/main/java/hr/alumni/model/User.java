@@ -1,9 +1,10 @@
 package hr.alumni.model;
 
-import java.sql.Date;
+import java.util.Date;
 import java.util.List;
 import java.util.UUID;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
@@ -15,7 +16,10 @@ import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
 
+import org.hibernate.annotations.Cascade;
 import org.hibernate.annotations.Type;
 import org.hibernate.validator.constraints.Email;
 import org.hibernate.validator.constraints.NotEmpty;
@@ -49,22 +53,24 @@ public class User {
 	@Column(unique = true)
 	private String email;
 
-	@Column(length = 60)
+	@Column
 	private String password;
 
 	@NotEmpty
 	@Column
 	private String address;
 
-	@ManyToOne(fetch = FetchType.LAZY)
+	@ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
 	@JoinColumn(name = "locationId")
 	private Location location;
 
+	@Temporal(TemporalType.DATE)
 	@Column
-	private Date birthdayDate;
+	private Date birthday;
 	
 	@Column
-	private Date graduationDate;
+	@Temporal(TemporalType.DATE)
+	private Date graduation;
 	
 	@ManyToMany
 	@JoinTable(name = "users_roles", joinColumns = @JoinColumn(name = "user_id", referencedColumnName = "userId"), inverseJoinColumns = @JoinColumn(name = "role_id", referencedColumnName = "id"))
@@ -137,20 +143,20 @@ public class User {
 		this.location = location;
 	}
 
-	public Date getBirthdayDate() {
-		return birthdayDate;
+	public Date getBirthday() {
+		return birthday;
 	}
 
-	public void setBirthdayDate(Date birthdayDate) {
-		this.birthdayDate = birthdayDate;
+	public void setBirthday(Date birthday) {
+		this.birthday= birthday;
 	}
 
-	public Date getGraduationDate() {
-		return graduationDate;
+	public Date getGraduation() {
+		return graduation;
 	}
 
-	public void setGraduationDate(Date graduationDate) {
-		this.graduationDate = graduationDate;
+	public void setGraduation(Date graduation) {
+		this.graduation = graduation;
 	}
 
 	public List<Role> getRoles() {

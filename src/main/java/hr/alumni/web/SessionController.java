@@ -26,6 +26,5 @@ public class SessionController {
 		httpSession.invalidate();
 		return "redirect:/index";
 	}
-	
 
 }

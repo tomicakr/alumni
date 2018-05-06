@@ -1,10 +1,9 @@
 package hr.alumni.model;
 
-import java.time.LocalTime;
+import java.sql.Date;
 import java.util.List;
 import java.util.UUID;
 
-import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
@@ -15,8 +14,6 @@ import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
-import javax.persistence.OneToMany;
-import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 import org.hibernate.annotations.Type;
@@ -35,9 +32,6 @@ public class User {
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private UUID userId;
 
-	@Column
-	private String userPid;
-
 	@NotEmpty
 	@Column
 	private String name;
@@ -45,9 +39,6 @@ public class User {
 	@NotEmpty
 	@Column
 	private String surname;
-
-	@Column
-	private String mobilePhone;
 
 	@NotEmpty
 	@Column
@@ -61,12 +52,6 @@ public class User {
 	@Column(length = 60)
 	private String password;
 
-	@Column
-	private String remark;
-
-	@Column
-	private String userMnemonic;
-
 	@NotEmpty
 	@Column
 	private String address;
@@ -76,27 +61,12 @@ public class User {
 	private Location location;
 
 	@Column
-	private int notificationSetting;
-
-	@Column
-	private LocalTime notAvailableFrom;
-
-	@Column
-	private LocalTime notAvailableTo;
-
-	@OneToMany(fetch = FetchType.LAZY, mappedBy = "owner", cascade = CascadeType.ALL)
-	private List<Pet> pets;
-
-	@OneToMany(fetch = FetchType.LAZY, mappedBy = "user" , cascade = CascadeType.ALL)
-	private List<Reservation> reservations;
-
-	@OneToMany(fetch = FetchType.LAZY, mappedBy = "employee" , cascade = CascadeType.ALL)
-	private List<Reservation> tasks;
+	private Date birthdayDate;
 	
-	@OneToMany(fetch = FetchType.LAZY, mappedBy = "preferedEmployee" , cascade = CascadeType.ALL)
-	private List<Reservation> tasksWherePrefered;
-
-	@ManyToMany()
+	@Column
+	private Date graduationDate;
+	
+	@ManyToMany
 	@JoinTable(name = "users_roles", joinColumns = @JoinColumn(name = "user_id", referencedColumnName = "userId"), inverseJoinColumns = @JoinColumn(name = "role_id", referencedColumnName = "id"))
 	private List<Role> roles;
 
@@ -109,14 +79,6 @@ public class User {
 
 	public void setUserId(UUID userId) {
 		this.userId = userId;
-	}
-
-	public String getUserPid() {
-		return userPid;
-	}
-
-	public void setUserPid(String userPid) {
-		this.userPid = userPid;
 	}
 
 	public String getName() {
@@ -135,14 +97,6 @@ public class User {
 		this.surname = surname;
 	}
 
-	public String getMobilePhone() {
-		return mobilePhone;
-	}
-
-	public void setMobilePhone(String mobilePhone) {
-		this.mobilePhone = mobilePhone;
-	}
-
 	public String getPhone() {
 		return phone;
 	}
@@ -159,20 +113,12 @@ public class User {
 		this.email = email;
 	}
 
-	public String getRemark() {
-		return remark;
+	public String getPassword() {
+		return password;
 	}
 
-	public void setRemark(String remark) {
-		this.remark = remark;
-	}
-
-	public String getUserMnemonic() {
-		return userMnemonic;
-	}
-
-	public void setUserMnemonic(String userMnemonic) {
-		this.userMnemonic = userMnemonic;
+	public void setPassword(String password) {
+		this.password = password;
 	}
 
 	public String getAddress() {
@@ -183,8 +129,6 @@ public class User {
 		this.address = address;
 	}
 
-	@OneToOne(fetch = FetchType.LAZY)
-	@JoinColumn(name = "location")
 	public Location getLocation() {
 		return location;
 	}
@@ -193,60 +137,20 @@ public class User {
 		this.location = location;
 	}
 
-	public int getNotificationSetting() {
-		return notificationSetting;
+	public Date getBirthdayDate() {
+		return birthdayDate;
 	}
 
-	public void setNotificationSetting(int notificationSetting) {
-		this.notificationSetting = notificationSetting;
+	public void setBirthdayDate(Date birthdayDate) {
+		this.birthdayDate = birthdayDate;
 	}
 
-	public LocalTime getNotAvailableFrom() {
-		return notAvailableFrom;
+	public Date getGraduationDate() {
+		return graduationDate;
 	}
 
-	public void setNotAvailableFrom(LocalTime notAvailableFrom) {
-		this.notAvailableFrom = notAvailableFrom;
-	}
-
-	public LocalTime getNotAvailableTo() {
-		return notAvailableTo;
-	}
-
-	public void setNotAvailableTo(LocalTime notAvailableTo) {
-		this.notAvailableTo = notAvailableTo;
-	}
-
-	public String getPassword() {
-		return password;
-	}
-
-	public void setPassword(String password) {
-		this.password = password;
-	}
-
-	public List<Pet> getPets() {
-		return pets;
-	}
-
-	public void setPets(List<Pet> pets) {
-		this.pets = pets;
-	}
-
-	public List<Reservation> getReservations() {
-		return reservations;
-	}
-
-	public void setReservations(List<Reservation> reservations) {
-		this.reservations = reservations;
-	}
-
-	public List<Reservation> getTasks() {
-		return tasks;
-	}
-
-	public void setTasks(List<Reservation> tasks) {
-		this.tasks = tasks;
+	public void setGraduationDate(Date graduationDate) {
+		this.graduationDate = graduationDate;
 	}
 
 	public List<Role> getRoles() {
@@ -256,37 +160,5 @@ public class User {
 	public void setRoles(List<Role> roles) {
 		this.roles = roles;
 	}
-	
 
-	public List<Reservation> getTasksWherePrefered() {
-		return tasksWherePrefered;
-	}
-
-	public void setTasksWherePrefered(List<Reservation> tasksWherePrefered) {
-		this.tasksWherePrefered = tasksWherePrefered;
-	}
-
-	@Override
-	public String toString() {
-		return "User [userId=" + userId + ", userPid=" + userPid + ", name=" + name + ", surname=" + surname
-				+ ", mobilePhone=" + mobilePhone + ", phone=" + phone + ", email=" + email + ", password=" + password
-				+ ", remark=" + remark + ", userMnemonic=" + userMnemonic + ", address=" + address + ", location="
-				+ location + ", notificationSetting=" + notificationSetting + ", notAvailableFrom=" + notAvailableFrom
-				+ ", notAvailableTo=" + notAvailableTo + ", pets=" + pets + ", reservations=" + reservations
-				+ ", tasks=" + tasks + ", roles=" + roles + "]";
-	}
-
-	public boolean compareUserAndReservationTime(Reservation res) {
-		if(getNotAvailableFrom() == null || getNotAvailableTo() == null) return false;
-		
-		LocalTime resTime = LocalTime.of(res.getExecutionTime().getHour(),res.getExecutionTime().getMinute());
-
-		if(getNotAvailableFrom().compareTo(resTime) >= 0 && 
-				getNotAvailableTo().compareTo(resTime) <= 0 &&
-						getNotAvailableFrom().compareTo(resTime.plusMinutes(res.getDuration().toMinutes())) >= 0){
-			return true;
-		}
-		return false;
-	}
-	
 }

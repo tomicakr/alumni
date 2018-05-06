@@ -1,17 +1,6 @@
 package hr.alumni.scheduled;
 
-import java.time.LocalDateTime;
-import java.util.List;
-
-import javax.transaction.Transactional;
-
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Component;
-
-import hr.alumni.model.Reservation;
-import hr.alumni.repository.ReservationRepository;
-import hr.alumni.service.email.EmailServiceImpl;
 
 @Component
 public class ScheduledTasks {
@@ -20,7 +9,7 @@ public class ScheduledTasks {
 	final long CONFIRMED_RESERVATION_INTERVAL_MINUTES = 15;
 	final long MILISECONDS_IN_A_MINUTE = 60000;
 	final String DEFAULT_REMINDER_EMAIL_SUBJECT = "Podsjetnik na rezervaciju";
-	
+	/*
 	@Autowired
 	EmailServiceImpl emailServiceImpl;
 	
@@ -71,5 +60,6 @@ public class ScheduledTasks {
 		
 		return dateString;
 	}
+	*/
 	
 }

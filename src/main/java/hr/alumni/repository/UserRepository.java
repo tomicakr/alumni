@@ -3,11 +3,7 @@ import java.util.List;
 import java.util.UUID;
 
 import org.springframework.data.jpa.repository.JpaRepository;
-import org.springframework.data.jpa.repository.Modifying;
-import org.springframework.data.jpa.repository.Query;
-import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Service;
-import org.springframework.transaction.annotation.Transactional;
 
 import hr.alumni.model.Location;
 import hr.alumni.model.User;
@@ -59,26 +55,4 @@ public interface UserRepository extends JpaRepository<User, UUID> {
 	List<User> findAllByLocation(Location location);
 
 	List<User> findAllByNotificationSetting(int notificationSetting);
-
-	@Query(value = "SELECT COUNT(u.user_id) FROM users u WHERE u.user_mnemonic REGEXP :pattern", nativeQuery = true)
-	Long countByUserMnemonic(@Param("pattern") String pattern);
-	default User saveWithMnemonic(User entity) {
-		String pattern = entity.getName() + entity.getSurname();
-		Long num = countByUserMnemonic(pattern);
-		entity.setUserMnemonic(pattern + num);
-		return this.save(entity);
-	}
-
-	@Query(value = "SELECT * FROM users u INNER JOIN users_roles ur ON u.user_id = ur.user_id WHERE role_id = 2", nativeQuery = true)
-	List<User> findAllEmployees();
-
-	@Transactional
-	@Modifying(clearAutomatically = true)
-	@Query(value = "UPDATE users_roles ur SET ur.role_id = 2 WHERE ur.user_id = :user_id", nativeQuery = true)
-	void hireUser(@Param("user_id") String userId);
-	
-	@Transactional
-	@Modifying(clearAutomatically = true)
-	@Query(value = "UPDATE users_roles ur SET ur.role_id = 3 WHERE ur.user_id = :user_id", nativeQuery = true)
-	void fireUser(@Param("user_id") String userId);
 }

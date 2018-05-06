@@ -1,69 +1,45 @@
 package hr.alumni.service;
 
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Value;
-import org.springframework.security.crypto.password.PasswordEncoder;
-import org.springframework.stereotype.Service;
-
-import hr.alumni.model.*;
-import hr.alumni.model.form.AddReservationForm;
-import hr.alumni.model.form.EditUserForm;
-import hr.alumni.model.form.PetForm;
-import hr.alumni.model.form.RegistrationForm;
-import hr.alumni.repository.*;
-
-import java.time.Duration;
-import java.time.LocalDateTime;
-import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
-import java.util.UUID;
 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.password.PasswordEncoder;
+import org.springframework.stereotype.Service;
+
+import hr.alumni.model.Role;
+import hr.alumni.model.User;
+import hr.alumni.model.form.EditUserForm;
+import hr.alumni.model.form.RegistrationForm;
+import hr.alumni.repository.LocationRepository;
+import hr.alumni.repository.RoleRepository;
 @Service
 public class FormFactory {
 	
 	private final LocationRepository lr;
-	private final UserRepository ur;
-	private final ServiceRepository sr;
-	private final PetRepository pr;
 	private final RoleRepository rr;
 	private final PasswordEncoder pe;
-	private final SpeciesRepository specr;
 
-	@Value("${default.reservation.duration}")
-	private String DEFAULT_DURATION;
 
 	@Autowired
-	public FormFactory(LocationRepository lr, UserRepository ur, ServiceRepository sr, PetRepository pr, RoleRepository rr, PasswordEncoder pe, SpeciesRepository specr) {
+	public FormFactory(LocationRepository lr, RoleRepository rr, PasswordEncoder pe) {
 		this.lr = lr;
-		this.ur = ur;
-		this.sr = sr;
-		this.pr = pr;
 		this.rr = rr;
 		this.pe = pe;
-		this.specr = specr;
 	}
 
 	public User createUserFromForm(RegistrationForm rf){
 		User u = new User();
+
 		u.setName(rf.getName());
 		u.setSurname(rf.getSurname());
-		u.setUserPid(rf.getUserPid());
-		u.setMobilePhone(rf.getMobilePhone());
 		u.setPhone(rf.getPhone());
 		u.setEmail(rf.getEmail());
 		u.setAddress(rf.getAddress());
 		u.setPassword(pe.encode(rf.getPassword()));
-		
 		u.setRoles(Arrays.asList(rr.findByName("ROLE_KORISNIK")));
-		
-		Location l = lr.findOne(rf.getLocation());
-		u.setLocation(l);
-		
-		String pattern = u.getName() + u.getSurname();
-		Long num = ur.countByUserMnemonic(pattern+"[0-9]*");
-		u.setUserMnemonic(pattern + num);
+		u.setLocation(lr.findOne(rf.getLocation()));
 		
 		List<Role> roles = new ArrayList<>();
 		Role r = rr.findByNameIgnoreCase("ROLE_KORISNIK");
@@ -72,51 +48,6 @@ public class FormFactory {
 		return u;
 	}
 
-	public Reservation createReservationFromForm(AddReservationForm arf){
-		Reservation r = new Reservation();
-		r.setReservationKey(UUID.randomUUID());
-		r.setReservationStatus(ReservationStatus.PENDING); //KAKO SU NUMERIRANI STATUSI?
-		r.setReservationTime(LocalDateTime.now());
-		r.setExecutionTime(LocalDateTime.parse(arf.getExecutionTime(), DateTimeFormatter.ofPattern("dd.MM.yyyy. HH:mm")));
-		r.setSendReminder(arf.getSendReminder() != null);
-
-		String[] parts;
-
-		if(arf.getDuration().trim().isEmpty()) {
-			parts = DEFAULT_DURATION.split(":");
-		} else {
-			parts = arf.getDuration().split(":");
-		}
-		
-		Integer hours = Integer.parseInt(parts[0]);
-		Integer minutes = Integer.parseInt(parts[1]);
-		r.setDuration(Duration.ofMinutes(hours * 60 + minutes));
-		
-		r.setUser(ur.findOne(arf.getOwner()));
-		r.setService(sr.findOne(arf.getService()));
-		r.setPet(pr.findOne(arf.getPet()));
-		r.setPrice(sr.findOne(arf.getService()).getPrice());
-		
-		if(arf.getPreferedEmployee() != null){
-			r.setPreferedEmployee(ur.findOne(arf.getPreferedEmployee()));
-		}
-		
-		return r;
-	}
-	
-	public Pet createPetFromForm(PetForm pf){
-		Pet p = new Pet();
-		p.setPetKey(UUID.randomUUID());
-		p.setName(pf.getName());
-		p.setAge(pf.getAge());
-		p.setMicrochip(pf.getMicrochip());
-		p.setRemark(pf.getRemark());
-		p.setSex(pf.getSex());
-		p.setSpecies(specr.getOne(pf.getSpecies()));
-		p.setOwner(ur.findOne(pf.getOwner()));
-		return p;
-	}
-	
 	public boolean editUserFromForm(User user, EditUserForm ef) {
 		if(!ef.hasChanges(user)) {
 			return false;
@@ -124,7 +55,6 @@ public class FormFactory {
 
 		user.setName(ef.getName());
 		user.setSurname(ef.getSurname());
-		user.setMobilePhone(ef.getMobilePhone());
 		user.setPhone(ef.getPhone());
 		user.setEmail(ef.getEmail());
 		user.setLocation(lr.findOne(ef.getLocation()));
@@ -134,16 +64,6 @@ public class FormFactory {
 			user.setPassword(ef.getPassword());
 		}
 		
-		return true;
-	}
-
-	public boolean editReservationFromForm(Reservation res, AddReservationForm rf) {
-		if(rf.hasChanges(res)) {
-			return false;
-		}
-		
-		
-		// TODO: implementacija
 		return true;
 	}
 

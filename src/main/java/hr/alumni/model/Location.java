@@ -25,6 +25,7 @@ public class Location {
 
 	@OneToMany(fetch = FetchType.LAZY, mappedBy = "location")
 	private List<User> users;
+	
 	public Location() {
 	}
 

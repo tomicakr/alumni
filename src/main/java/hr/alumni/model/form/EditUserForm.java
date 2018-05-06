@@ -3,7 +3,6 @@ package hr.alumni.model.form;
 import java.util.UUID;
 
 import javax.validation.constraints.NotNull;
-import javax.validation.constraints.Size;
 
 import org.hibernate.validator.constraints.NotEmpty;
 import org.springframework.stereotype.Component;
@@ -122,7 +121,6 @@ public class EditUserForm {
 	public boolean hasChanges(User user) {
 		return !name.equals(user.getName())
 				|| !surname.equals(user.getSurname())
-				|| !mobilePhone.equals(user.getMobilePhone())
 				|| !phone.equals(user.getPhone())
 				|| !email.equals(user.getEmail())
 				|| !location.equals(user.getLocation().getLocationId())

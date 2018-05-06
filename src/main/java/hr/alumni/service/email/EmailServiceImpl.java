@@ -1,4 +1,5 @@
 package hr.alumni.service.email;
+/*
 
 import com.itextpdf.io.font.FontConstants;
 import com.itextpdf.io.source.ByteArrayOutputStream;
@@ -8,8 +9,6 @@ import com.itextpdf.kernel.pdf.PdfDocument;
 import com.itextpdf.kernel.pdf.PdfWriter;
 import com.itextpdf.layout.Document;
 import com.itextpdf.layout.element.Paragraph;
-
-import hr.alumni.model.Reservation;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.mail.MailException;
@@ -97,7 +96,6 @@ public class EmailServiceImpl {
 		pdfDocument.add(content);
 		pdfDocument.close();
 	}
-
 	private MimeMessagePreparator prepareReservationOfferEmail(final Reservation reservation) {
 		MimeMessagePreparator preparator = new MimeMessagePreparator() {
 			public void prepare(MimeMessage mimeMessage) throws Exception {
@@ -142,3 +140,4 @@ public class EmailServiceImpl {
 		return preparator;
 	}
 }
+ */

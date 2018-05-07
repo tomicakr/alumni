@@ -38,10 +38,10 @@ public class Post {
 	private String title;
 	
 	@NotEmpty
-	@Column
+	@Column(length = 10000)
 	private String shortDescription;
 	
-	@Column
+	@Column(length = 100000)
 	private String longDescription;
 	
 	@Column

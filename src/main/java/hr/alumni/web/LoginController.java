@@ -9,8 +9,8 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
 @Controller
-@RequestMapping("/sessions")
-public class SessionController {
+@RequestMapping("/login")
+public class LoginController {
 
 	@RequestMapping(value = "/new", method = RequestMethod.GET)
 	public String showLoginPage(Model model, @RequestParam(value = "error", required = false) String error) {
@@ -21,7 +21,7 @@ public class SessionController {
 		return "login";
 	}
 
-	@RequestMapping(value = "/", method = RequestMethod.DELETE)
+	@RequestMapping(value = "/", method = RequestMethod.POST)
 	public String logoutUser(Model model, HttpSession httpSession) {
 		httpSession.invalidate();
 		return "redirect:/index";

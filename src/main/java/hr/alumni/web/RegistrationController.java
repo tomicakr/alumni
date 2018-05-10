@@ -1,9 +1,13 @@
 package hr.alumni.web;
 
+import java.util.List;
+import java.util.UUID;
+
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
+import javax.validation.Valid;
+
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpStatus;
-import org.springframework.http.MediaType;
-import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
@@ -13,7 +17,12 @@ import org.springframework.security.web.authentication.WebAuthenticationDetails;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import hr.alumni.model.User;
 import hr.alumni.model.details.CustomUserDetails;
@@ -26,14 +35,8 @@ import hr.alumni.service.CommonServices;
 import hr.alumni.service.FormFactory;
 import hr.alumni.service.UserService;
 
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpSession;
-import javax.validation.Valid;
-import java.util.List;
-import java.util.UUID;
-
 @Controller
-@RequestMapping("/users")
+@RequestMapping("/register")
 public class RegistrationController {
 
 	private final UserRepository userRepository;
@@ -53,17 +56,6 @@ public class RegistrationController {
 	}
 
 	@GetMapping
-	@PreAuthorize("hasRole('ADMINISTRATOR')")
-	public String showUserList(Model model) {
-
-		//List<UserDetailsBasic> allUsers = services.getAllUsersBasicDetails();
-
-		//model.addAttribute("users", allUsers);
-
-		return "users";
-	}
-
-	@GetMapping("/new")
 	public String showRegistrationForm(Model model) {
 
 		//List<LocationDetails> locationDetails = services.getAllLocationDetails();

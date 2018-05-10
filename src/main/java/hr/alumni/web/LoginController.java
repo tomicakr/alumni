@@ -12,7 +12,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 @RequestMapping("/login")
 public class LoginController {
 
-	@RequestMapping(value = "/new", method = RequestMethod.GET)
+	@RequestMapping(value = "", method = RequestMethod.GET)
 	public String showLoginPage(Model model, @RequestParam(value = "error", required = false) String error) {
 		if(error != null) {
 			model.addAttribute("errorMessage", "Pogrešna kombinacija elektroničke pošte i lozinke.");

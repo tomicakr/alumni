@@ -27,8 +27,9 @@
 <body id="sticky-context">
 
   <div class="ui top menu">
-    <a class="item"><h1>Alumni</h1></a>
+    <a href="/" class="item"><h1>Alumni</h1></a>
     <a href="/login" class="item">Prijava</a>
+    <a href="/register" class="item">Registracija</a>
   </div>
   
   <div class="ui container" >

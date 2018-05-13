@@ -29,7 +29,7 @@
     <body>
 
         <div class="ui top menu">
-            <a class="item">
+            <a href="/" class="item">
                 <h1>Alumni</h1>
             </a>
             <a href="/login" class="item">Prijava</a>
@@ -67,11 +67,11 @@
                 </div>
                 <div class="field">
                     <label>Lozinka</label>
-                    <input type="number" name="password" id="password">
+                    <input type="password" name="password" id="password">
                 </div>
                 <div class="field">
                     <label>Ponovi lozinku</label>
-                    <input type="number" name="password2" id="password-confirm">
+                    <input type="password" name="password2" id="password-confirm">
                 </div>
                 <button class="ui button" type="submit">Submit</button>
             </form>
@@ -90,6 +90,7 @@
             </spring:hasBindErrors>
 
             <script src="../../scripts/includes/handlebars-v4.0.11.js"></script>
+            <script src="../../scripts/register.js"></script>
         </div>
     </body>
 

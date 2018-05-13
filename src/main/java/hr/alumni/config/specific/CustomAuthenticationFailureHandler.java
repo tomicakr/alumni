@@ -21,7 +21,7 @@ public class CustomAuthenticationFailureHandler implements AuthenticationFailure
 	public void onAuthenticationFailure(HttpServletRequest request, HttpServletResponse response, AuthenticationException exc)
 			throws IOException, ServletException {
 		
-		redirectStrategy.sendRedirect(request, response, "/sessions/new?error=1");
+		redirectStrategy.sendRedirect(request, response, "/login?error=1");
 	}
 	
 }

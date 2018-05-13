@@ -1,5 +1,6 @@
 package hr.alumni.service;
 
+import java.sql.Date;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -39,8 +40,9 @@ public class FormFactory {
 		u.setAddress(rf.getAddress());
 		u.setPassword(pe.encode(rf.getPassword()));
 		u.setRoles(Arrays.asList(rr.findByName("ROLE_KORISNIK")));
-		u.setLocation(lr.findOne(rf.getLocation()));
-		
+		u.setBirthday(Date.valueOf(rf.getBirthday()));
+		u.setGraduation(Date.valueOf(rf.getGraduation()));
+
 		List<Role> roles = new ArrayList<>();
 		Role r = rr.findByNameIgnoreCase("ROLE_KORISNIK");
 		roles.add(r);

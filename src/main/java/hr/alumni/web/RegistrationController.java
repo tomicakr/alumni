@@ -58,9 +58,6 @@ public class RegistrationController {
 	@GetMapping
 	public String showRegistrationForm(Model model) {
 
-		//List<LocationDetails> locationDetails = services.getAllLocationDetails();
-
-		//model.addAttribute("locations", locationDetails);
 		model.addAttribute("registrationForm", new RegistrationForm());
 
 		return "register";
@@ -72,12 +69,7 @@ public class RegistrationController {
 
 		if (result.hasErrors()) {
 			model.addAttribute("registrationForm", registrationForm);
-			result.getAllErrors().forEach(e -> System.out.println(e.getDefaultMessage()));
 			return "register";
-		}
-
-		if (registrationForm.getAddress().isEmpty()) {
-
 		}
 
 		User user = userService.registerNewUserAccount(registrationForm);

@@ -1,7 +1,5 @@
 package hr.alumni.model.form;
 
-import java.util.UUID;
-
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
@@ -32,9 +30,6 @@ public class RegistrationForm {
 	private String email;
 
 	@NotNull
-	private UUID location;
-
-	@NotNull
 	@NotEmpty(message = "{rform.address.empty}")
 	private String address;
 
@@ -42,16 +37,16 @@ public class RegistrationForm {
 	@NotNull
 	@NotEmpty(message = "{rform.password.empty}")
 	private String password;
-	
+
 	@Size(min = 8, max = 30)
 	@NotNull
 	@NotEmpty(message = "{rform.password2.empty}")
 	private String password2;
-	
+
 	@NotNull
 	@NotEmpty(message = "{rform.graduation.empty}")
 	private String graduation;
-	
+
 	@NotNull
 	@NotEmpty(message = "{rform.birthday.empty}")
 	private String birthday;
@@ -86,14 +81,6 @@ public class RegistrationForm {
 
 	public void setEmail(String email) {
 		this.email = email;
-	}
-
-	public UUID getLocation() {
-		return location;
-	}
-
-	public void setLocation(UUID location) {
-		this.location = location;
 	}
 
 	public String getAddress() {
@@ -135,5 +122,5 @@ public class RegistrationForm {
 	public void setBirthday(String birthday) {
 		this.birthday = birthday;
 	}
-	
+
 }

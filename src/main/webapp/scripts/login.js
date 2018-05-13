@@ -1,6 +1,4 @@
-//import {initialize} from './forms.js';
-
-initialize({
+const rules = {
     email: {
         identifier  : 'email',
         rules: [
@@ -19,4 +17,17 @@ initialize({
             }
         ]
     }
-});
+};
+
+$(document)
+    .ready(function () {
+        $('.ui.form')
+            .form({
+                inline: true,
+                fields: rules,
+                onSuccess: () => $('.submit.button').addClass('loading')
+            })
+            ;
+    })
+    ;
+    

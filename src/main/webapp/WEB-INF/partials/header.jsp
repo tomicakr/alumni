@@ -6,66 +6,24 @@
 
 <sec:authentication var="userInSession" property="principal"/>
 
-<header>
-    <nav>
-        <div class="ui massive stackable secondary menu" id="top-menu">
-            <a class="item" id="home" name="Home" href="/"> Naslovnica </a>
-            <a class="item" id="services" name="Usluge"> Usluge </a>
+        <div class="ui top menu">
+            <a href="/" class="item">
+                <h1>Alumni</h1>
+            </a>
 
-            <sec:authorize access="isAuthenticated()">
-
-                <c:if test="${userInSession.roles[0].equals(\"ROLE_ZAPOSLENIK\")}">
-                    <a class="item" name="Jobs"
-                       href="${pageContext.request.contextPath}/users/${userInSession.userId}/jobs"> Poslovi </a>
-                </c:if>
-
-                <c:if test="${userInSession.roles[0].equals(\"ROLE_ADMINISTRATOR\")}">
-                    <a class="item" name="Jobs"
-                       href="${pageContext.request.contextPath}/users/${userInSession.userId}/jobs"> Poslovi </a>
-                    <a class="item" name="Jobs"
-                       href="${pageContext.request.contextPath}/users"> Korisnici </a>
-                </c:if>
-
+            <sec:authorize access="isAnonymous()">
+                <a href="/login" class="item">Prijava</a>
+                <a href="/register" class="item">Registracija</a>
             </sec:authorize>
+            <sec:authorize access="isAuthenticated()">
+                <a class=" item"
+                    href="${pageContext.request.contextPath}/users/${userInSession.userId}">
+                    Dobrodošli, ${userInSession.firstName}! </a>
 
-            <div class="right menu">
-                <sec:authorize access="isAnonymous()">
-                    <a class="item" name="Login"
-                       href="${pageContext.request.contextPath}/sessions/new"> Prijava
-                    </a>
-                    <a class="item" name="singup"
-                       href="${pageContext.request.contextPath}/users/new">
-                        Registracija </a>
-                </sec:authorize>
-
-                <sec:authorize access="isAuthenticated()">
-                    <a class=" item"
-                       href="${pageContext.request.contextPath}/users/${userInSession.userId}">
-                        Dobrodošli, ${userInSession.firstName}! </a>
-
-                    <form method="post"
-                          action="${pageContext.request.contextPath}/sessions/">
-                        <input class="item" type="hidden" name="_method" value="DELETE">
-                        <input class="item" type="submit" value="Odjavi se">
-                    </form>
-                </sec:authorize>
-
-
-            </div>
+                <form method="post"
+                        action="${pageContext.request.contextPath}/login">
+                    <input class="item" type="submit" action="/login?logout=1" value="Odjavi se">
+                </form>
+            </sec:authorize>
         </div>
-    </nav>
-</header>
-<div id="service-list"
-     class="ui small basic test modal transition hidden">
-    <div class="ui center aligned massive header">Popis usluga</div>
-    <div class="scrolling content">
-        <div class="ui inverted celled middle aligned list">
-        </div>
-    </div>
-    <div class="ui actions">
-        <div class="ui huge ok inverted button">
-            Izađi
-        </div>
-    </div>
-</div>
 <script src="/scripts/services.js"></script>

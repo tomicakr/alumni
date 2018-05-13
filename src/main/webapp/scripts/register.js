@@ -1,4 +1,3 @@
-import {initialize} from './forms.js';
 
 const firstName = $('#first-name');
 const lastName = $('#last-name');
@@ -8,15 +7,13 @@ const address = $('#address');
 const birthday = $('#birthday');
 const graduation = $('#graduation');
 const pass = $('#password');
-const passCheck = $('#password2');
+const passCheck = $('#password-confirm');
 
 $.fn.form.settings.rules.passwordMatch = () => {
     return passCheck.val() === pass.val();
 };
 
-$.fn.form.settings.rules.oibCheck = oibCheck;
-
-initialize({
+const rules = {
     firstName: {
         identifier: 'first-name',
         rules: [{
@@ -93,7 +90,19 @@ initialize({
             prompt: 'Lozinke se ne podudaraju'
         }]
     }
-});
+};
+
+$(document)
+    .ready(function () {
+        $('.ui.form')
+            .form({
+                inline: true,
+                fields: rules,
+                onSuccess: () => $('.submit.button').addClass('loading')
+            })
+            ;
+    })
+    ;
 
 let generateOib = () => {
     Math.floor(Math.random() * 1000000000);

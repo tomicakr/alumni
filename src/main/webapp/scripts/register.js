@@ -1,35 +1,14 @@
-// import {initialize} from './forms.js';
+import {initialize} from './forms.js';
 
-const firstName   = $('#first-name'  );
-const lastName    = $('#last-name'   );
-const mobilePhone = $('#mobile-phone');
-const telephone   = $('#telephone'   );
-const email       = $('#email'       );
-const address     = $('#address'     );
-const pass        = $('#password'    );
-const oib         = $('#oib'         );
-const passCheck   = $('#password2'   );
-
-function oibCheck(oib) {
-    oib = oib.toString();
-    if (oib.length !== 11) return false;
-
-    let b = parseInt(oib, 10);
-    if (isNaN(b)) return false;
-
-    let a = 10;
-    for (let i = 0; i < 10; i++) {
-        a = a + parseInt(oib.substr(i, 1), 10);
-        a = a % 10;
-        if (a === 0) a = 10;
-        a *= 2;
-        a = a % 11;
-    }
-    let control = 11 - a;
-    if (control === 10) control = 0;
-
-    return control === parseInt(oib.substr(10, 1));
-}
+const firstName = $('#first-name');
+const lastName = $('#last-name');
+const phone = $('#phone');
+const email = $('#email');
+const address = $('#address');
+const birthday = $('#birthday');
+const graduation = $('#graduation');
+const pass = $('#password');
+const passCheck = $('#password2');
 
 $.fn.form.settings.rules.passwordMatch = () => {
     return passCheck.val() === pass.val();
@@ -52,17 +31,6 @@ initialize({
             prompt: 'Molimo unesite prezime'
         }]
     },
-    oib: {
-        identifier: 'oib',
-        rules: [{
-            type: 'empty',
-            prompt: 'Molimo unesite OIB'
-        },
-            {
-                type: 'oibCheck[value]',
-                prompt: 'Molimo unesite OIB'
-            }]
-    },
     phone: {
         identifier: 'phone',
         rules: [{
@@ -76,18 +44,11 @@ initialize({
             type: 'empty',
             prompt: 'Molimo unesite adresu elektroničke pošte'
         },
-            {
-                type: 'email',
-                prompt: 'Adresa elektroničke pošte nije valjana'
-            }
+        {
+            type: 'email',
+            prompt: 'Adresa elektroničke pošte nije valjana'
+        }
         ]
-    },
-    city: {
-        identifier: 'city',
-        rules: [{
-            type: 'empty',
-            prompt: 'Molimo odaberite grad'
-        }]
     },
     address: {
         identifier: 'address',
@@ -96,20 +57,34 @@ initialize({
             prompt: 'Molimo unesite kućnu adresu'
         }]
     },
+    birthday: {
+        identifier: 'birthday',
+        rules: [{
+            type: 'empty',
+            prompt: 'Molimo unesite datum rođenja'
+        }]
+    },
+    graduation: {
+        identifier: 'graduation',
+        rules: [{
+            type: 'empty',
+            prompt: 'Molimo unesite datum diplomiranja'
+        }]
+    },
     password: {
         identifier: 'password',
         rules: [{
             type: 'empty',
             prompt: 'Molimo odaberite lozinku'
         },
-            {
-                type: 'length[8]',
-                prompt: 'Lozinka mora biti dugačka barem 8 znakova'
-            }
+        {
+            type: 'length[8]',
+            prompt: 'Lozinka mora biti dugačka barem 8 znakova'
+        }
         ]
     },
     password2: {
-        identifier: 'password2',
+        identifier: 'password-confirm',
         rules: [{
             type: 'empty',
             prompt: 'Molimo ponovite lozinku'

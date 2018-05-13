@@ -72,8 +72,7 @@ public class RegistrationController {
 
 		if (result.hasErrors()) {
 			model.addAttribute("registrationForm", registrationForm);
-			model.addAttribute("locations", services.getAllLocationDetails());
-
+			result.getAllErrors().forEach(e -> System.out.println(e.getDefaultMessage()));
 			return "register";
 		}
 

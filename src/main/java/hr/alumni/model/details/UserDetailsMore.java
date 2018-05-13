@@ -1,12 +1,11 @@
 package hr.alumni.model.details;
 
-import hr.alumni.model.Location;
-import hr.alumni.model.User;
-import hr.alumni.repository.LocationRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
-import java.time.LocalTime;
+import hr.alumni.model.Location;
+import hr.alumni.model.User;
+import hr.alumni.repository.LocationRepository;
 
 @Component
 public class UserDetailsMore extends UserDetailsBasic{
@@ -23,8 +22,6 @@ public class UserDetailsMore extends UserDetailsBasic{
 
     @Autowired
     private LocationRepository locationRepository;
-
-
 
     public UserDetailsMore(){
         super();

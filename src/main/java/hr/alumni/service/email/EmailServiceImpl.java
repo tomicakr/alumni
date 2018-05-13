@@ -58,7 +58,6 @@ public class EmailServiceImpl {
 		} catch (MailException exception) {
 			exception.printStackTrace();
 		} catch (Exception e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 	}

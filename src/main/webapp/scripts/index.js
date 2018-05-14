@@ -12,6 +12,8 @@ $.get("/posts/all", function (data) {
     .accordion()
     ;
 });
+
+
 $(document).ready(function () {
   alert("ready");
 

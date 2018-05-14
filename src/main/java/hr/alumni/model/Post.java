@@ -18,6 +18,8 @@ import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
 import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.Type;
 import org.hibernate.annotations.UpdateTimestamp;
@@ -60,7 +62,7 @@ public class Post {
 	@Column
 	private PostType postType;
 	
-	@OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.REMOVE)
+	@OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
 	private List<Comment> comments;
 	
 	@ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)

@@ -26,14 +26,11 @@
 
 <body id="sticky-context">
 
-  <div class="ui top menu">
-    <a href="/" class="item"><h1>Alumni</h1></a>
-    <a href="/login" class="item">Prijava</a>
-    <a href="/register" class="item">Registracija</a>
-  </div>
-  
-  <div class="ui container" >
-    <div class="ui segment" >
+  <%@ include file="../partials/header.jsp" %>
+
+
+    <div class="ui container">
+      <div class="ui segment">
         <div class="ui left rail">
           <div class="ui vertical huge menu">
             <div class="item">
@@ -64,40 +61,72 @@
                 <a class="item">E-mail Support</a>
                 <a class="item">FAQs</a>
               </div>
+            </div>
           </div>
         </div>
-      </div>
 
-      <div id="posts" class="ui divided items">
-        <script id="postsTemplate" type="text/x-handlebars-template">
-              {{#each this}}
-              <div class="item">
+        <div id="posts" class="ui divided items">
+          <script id="postsTemplate" type="text/x-handlebars-template">
+        {{#each this}}
+        <div class="item">
+          <div class="content">
+            <a class="header">{{title}}</a>
+            <div class="meta">
+              <span class="cinema">{{address}}</span>
+            </div>
+            <div class="description">
+              <p>{{shortDescription}}</p>
+            </div>
+            <div class="item">
+              <div class="ui accordion">
+                <div class="active title">
+                  <i class="dropdown icon"></i>
+                  Više...
+                </div>
                   <div class="content">
-                    <a class="header">{{title}}</a>
-                    <div class="meta">
-                      <span class="cinema">{{address}}</span>
-                    </div>
-                    <div class="description">
-                      <p>{{shortDescription}}</p>
-                    </div>
-                    <div class="extra">
-                        <div class="ui right floated primary button">
-                            Više...
-                            <i class="right chevron icon"></i>
+                    <p>{{longDescription}}</p>
+                    <div class="ui comments">
+                      <div class="ui header">Komentari</div>
+                      {{#each comments}}
+                      <div class="comment">
+                        <div class="content">
+                          <a class="author">{{user.name}}</a>
+                          <div class="metadata">
+                            <span class="date">{{date}}</span>
+                          </div>
                         </div>
+                      </div>
+                      <div class="text">
+                        {{message}}
+                      </div>
+                      {{/each}}
+                      <form method="post" action="/posts/{{postId}}/comment" class="ui reply form">
+                        <div class="header">Komentiraj</div>
+                          <div class="field">
+                            <textarea name="message"></textarea>
+                          </div>
+                          <button type="submit" class="ui blue labeled submit icon button">
+                            <i class="icon edit"></i> Komentiraj
+                          </button>
+                      </form>
                     </div>
                   </div>
+                    
+                  </div>
                 </div>
-              {{/each}}
-            </script>
+            </div>
+          </div>
+        </div>
+        {{/each}}
+      </script>
+        </div>
       </div>
     </div>
-  </div>
 
 
 
-  <script src="../../scripts/index.js"></script>
-  <script src="../../scripts/includes/handlebars-v4.0.11.js"></script>
+    <script src="../../scripts/index.js"></script>
+    <script src="../../scripts/includes/handlebars-v4.0.11.js"></script>
 </body>
 
 </html>

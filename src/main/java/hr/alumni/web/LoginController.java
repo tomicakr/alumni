@@ -21,7 +21,7 @@ public class LoginController {
 		return "login";
 	}
 
-	@RequestMapping(value = "/", method = RequestMethod.POST)
+	@RequestMapping(value = "", method = RequestMethod.POST)
 	public String logoutUser(Model model, HttpSession httpSession) {
 		httpSession.invalidate();
 		return "redirect:/index";

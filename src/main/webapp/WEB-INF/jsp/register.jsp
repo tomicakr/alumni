@@ -28,13 +28,8 @@
 
     <body>
 
-        <div class="ui top menu">
-            <a href="/" class="item">
-                <h1>Alumni</h1>
-            </a>
-            <a href="/login" class="item">Prijava</a>
-            <a href="/register" class="item">Registracija</a>
-        </div>
+        <%@ include file="../partials/header.jsp" %>
+
         <div class="ui container">
             <form class="ui form" action="/register" method="post">
                 <div class="field">

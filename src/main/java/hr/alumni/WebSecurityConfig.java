@@ -12,12 +12,19 @@ import org.springframework.security.core.Authentication;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
+import org.springframework.security.web.authentication.logout.LogoutSuccessHandler;
 
 import hr.alumni.config.specific.CustomAuthenticationFailureHandler;
 import hr.alumni.config.specific.CustomAuthenticationSuccesHandler;
+import hr.alumni.config.specific.CustomLogoutSuccessHandler;
 import hr.alumni.model.details.CustomUserDetails;
 
+import java.io.IOException;
 import java.util.UUID;
+
+import javax.servlet.ServletException;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 
 @Configuration
 @EnableWebSecurity
@@ -27,12 +34,14 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 	private final UserDetailsService userDetailsService;
 	private final CustomAuthenticationSuccesHandler sucessHandler;
 	private final CustomAuthenticationFailureHandler failureHandler;
+	private final CustomLogoutSuccessHandler logoutHandler;
 
 	@Autowired
-	public WebSecurityConfig(UserDetailsService userDetailsService, CustomAuthenticationSuccesHandler sucessHandler, CustomAuthenticationFailureHandler failureHandler) {
+	public WebSecurityConfig(UserDetailsService userDetailsService, CustomAuthenticationSuccesHandler sucessHandler, CustomAuthenticationFailureHandler failureHandler, CustomLogoutSuccessHandler logoutHandler) {
 		this.userDetailsService = userDetailsService;
 		this.sucessHandler = sucessHandler;
 		this.failureHandler = failureHandler;
+		this.logoutHandler = logoutHandler;
 	}
 
 	@Override
@@ -42,6 +51,8 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 				.loginProcessingUrl("/login")
 				.failureHandler(failureHandler)
 				.successHandler(sucessHandler);
+
+		http.logout().logoutUrl("/logout").logoutSuccessHandler(logoutHandler);
 		
 		http.csrf().disable();
 	}

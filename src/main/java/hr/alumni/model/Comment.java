@@ -11,7 +11,8 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
-import javax.validation.constraints.NotNull;
+
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.Type;
@@ -19,6 +20,7 @@ import org.hibernate.validator.constraints.NotEmpty;
 
 @Entity
 @Table(name = "comments")
+@JsonIgnoreProperties({"post"})
 public class Comment {
 	
 	@Id
@@ -27,12 +29,10 @@ public class Comment {
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private UUID commentId;
 	
-	@NotNull
 	@ManyToOne
 	@JoinColumn(name = "user_id")
 	private User user;
 	
-	@NotNull
 	@CreationTimestamp
 	@Column
 	private Date date;
@@ -41,7 +41,6 @@ public class Comment {
 	@Column
 	private String message;
 	
-	@NotNull
 	@ManyToOne
 	@JoinColumn(name = "post_id")
 	private Post post;

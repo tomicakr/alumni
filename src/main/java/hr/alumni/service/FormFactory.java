@@ -4,7 +4,6 @@ import java.sql.Date;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
-import java.util.UUID;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.password.PasswordEncoder;
@@ -18,7 +17,6 @@ import hr.alumni.model.form.CommentForm;
 import hr.alumni.model.form.EditUserForm;
 import hr.alumni.model.form.RegistrationForm;
 import hr.alumni.repository.LocationRepository;
-import hr.alumni.repository.PostRepository;
 import hr.alumni.repository.RoleRepository;
 import hr.alumni.repository.UserRepository;
 @Service

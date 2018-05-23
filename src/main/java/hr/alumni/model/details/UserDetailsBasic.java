@@ -15,7 +15,6 @@ public class UserDetailsBasic {
 	private String firstName;
 	private String lastName;
 	private String email;
-	private String mnemonicId;
 	private List<String> roles;
 
 	public UserDetailsBasic() {
@@ -59,14 +58,6 @@ public class UserDetailsBasic {
 
 	public void setEmail(String email) {
 		this.email = email;
-	}
-
-	public String getMnemonicId() {
-		return mnemonicId;
-	}
-
-	public void setMnemonicId(String mnemonicId) {
-		this.mnemonicId = mnemonicId;
 	}
 
 	public List<String> getRoles() {

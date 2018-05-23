@@ -25,6 +25,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import hr.alumni.model.User;
 import hr.alumni.model.details.CustomUserDetails;
 import hr.alumni.model.details.LocationDetails;
+import hr.alumni.model.details.UserDetailsMore;
 import hr.alumni.model.form.RegistrationForm;
 import hr.alumni.repository.UserRepository;
 import hr.alumni.service.LocationService;
@@ -113,7 +114,7 @@ public class UserController {
 			return "customError";
 		}
 
-		model.addAttribute("user", user);
+		model.addAttribute("user", new UserDetailsMore(user));
 
 		return "profile";
 	}
@@ -141,7 +142,7 @@ public class UserController {
 		List<LocationDetails> locationDetails = locationService.getAllLocationDetails(user.getLocation());
 
 		model.addAttribute("locations", locationDetails);
-		model.addAttribute("user", user);
+		model.addAttribute("user", new UserDetailsMore(user));
 
 		return "editUser";
 	}

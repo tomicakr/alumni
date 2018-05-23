@@ -1,27 +1,17 @@
 package hr.alumni.model.details;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
-import hr.alumni.model.Location;
 import hr.alumni.model.User;
-import hr.alumni.repository.LocationRepository;
 
 @Component
 public class UserDetailsMore extends UserDetailsBasic{
 
 
-    private String city;
     private String address;
-    private String userPid;
-    private String mobilePhone;
-    private String telephone;
-    private Location location;
-    private String workingTime;
-    private String notificationSetting;
-
-    @Autowired
-    private LocationRepository locationRepository;
+    private String phone;
+    private String graduation;
+    private String birthday;
 
     public UserDetailsMore(){
         super();
@@ -30,36 +20,12 @@ public class UserDetailsMore extends UserDetailsBasic{
     public UserDetailsMore(User user) {
         super(user);
 
-        Location location = user.getLocation();
-
         this.address = user.getAddress();
-        
-        this.telephone = user.getPhone();
-        this.city = location.getLocationName();
-        this.location = user.getLocation();
-
-       
-
-       
-
-
+        this.phone = user.getPhone();
+        this.graduation = user.getGraduation().toString();
+        this.birthday = user.getBirthday().toString();
     }
-    public String getWorkingTime() {
-        return workingTime;
-    }
-
-    public void setWorkingTime(String workingTime) {
-        this.workingTime = workingTime;
-    }
-
-    public String getCity() {
-        return city;
-    }
-
-    public void setCity(String city) {
-        this.city = city;
-    }
-
+   
     public String getAddress() {
         return address;
     }
@@ -68,51 +34,28 @@ public class UserDetailsMore extends UserDetailsBasic{
         this.address = address;
     }
 
-    public String getUserPid() {
-        return userPid;
+    public String getPhone() {
+        return phone;
     }
 
-    public void setUserPid(String userPid) {
-        this.userPid = userPid;
+    
+    public void setPhone(String phone) {
+        this.phone = phone;
     }
 
-    public String getMobilePhone() {
-        return mobilePhone;
+    public String getGraduation() {
+        return graduation;
     }
 
-    public void setMobilePhone(String mobilePhone) {
-        this.mobilePhone = mobilePhone;
+    public void setGraduation(String graduation) {
+        this.graduation = graduation;
     }
 
-    public String getTelephone() {
-        return telephone;
+    public String getBirthday() {
+        return birthday;
     }
 
-    public void setTelephone(String telephone) {
-        this.telephone = telephone;
-    }
-
-    public LocationRepository getLocationRepository() {
-        return locationRepository;
-    }
-
-    public void setLocationRepository(LocationRepository locationRepository) {
-        this.locationRepository = locationRepository;
-    }
-
-    public Location getLocation() {
-        return location;
-    }
-
-    public void setLocation(Location location) {
-        this.location = location;
-    }
-
-    public String getNotificationSetting() {
-        return notificationSetting;
-    }
-
-    public void setNotificationSetting(String notificationSetting) {
-        this.notificationSetting = notificationSetting;
+    public void setBirthday(String birthday) {
+        this.birthday = birthday;
     }
 }

@@ -93,7 +93,7 @@
                         <div class="content">
                           <a class="author">{{user.name}}</a>
                           <div class="metadata">
-                            <span class="date">{{date}}</span>
+                            <span class="date">{{formatTime date "DD-MM-YYYY, hh:mm"}}</span>
                           </div>
                         </div>
                       </div>
@@ -132,9 +132,9 @@
         </div>
 
 
-
-        <script src="../../scripts/index.js"></script>
+        <script src="../../scripts/includes/moment.js"></script>
         <script src="../../scripts/includes/handlebars-v4.0.11.js"></script>
+        <script src="../../scripts/index.js"></script>
     </body>
 
     </html>

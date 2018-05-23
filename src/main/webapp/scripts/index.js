@@ -12,6 +12,11 @@ $.get("/posts/all", function (data) {
     .accordion()
     ;
 });
+
+function comment(input) {
+  alert(input);
+}
+
 /*
 $.get("/links/all", function (data) {
 
@@ -41,3 +46,8 @@ $(document).ready(function () {
     ;
 }
 )
+
+Handlebars.registerHelper('formatTime', function (date, format) {
+  var mmnt = moment(date);
+  return mmnt.format(format);
+});

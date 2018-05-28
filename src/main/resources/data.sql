@@ -15,7 +15,7 @@ INSERT INTO role (name) VALUES ("ROLE_ADMINISTRATOR");
 INSERT INTO role (name) VALUES ("ROLE_ZAPOSLENIK");
 INSERT INTO role (name) VALUES ("ROLE_KORISNIK");
 
-INSERT INTO users_roles (user_id, role_id) VALUES ('368ec8e2-c7cb-4eaf-b3f1-0077333fbea9', 3);
+INSERT INTO users_roles (user_id, role_id) VALUES ('368ec8e2-c7cb-4eaf-b3f1-0077333fbea9', 1);
 
 INSERT INTO posts (post_id, title, short_description, long_description, address, post_type) VALUES ('9f49e501-c5f9-41b7-a59b-51adad927fc8',
 																	 "Naslov",

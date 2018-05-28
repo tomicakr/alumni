@@ -1,10 +1,6 @@
 package hr.alumni.model.form;
 
-import java.util.UUID;
-
-import javax.validation.constraints.NotNull;
-
-import org.hibernate.validator.constraints.NotEmpty;
+import org.hibernate.validator.constraints.NotBlank;
 import org.springframework.stereotype.Component;
 
 import hr.alumni.model.User;
@@ -15,59 +11,42 @@ import hr.alumni.model.form.validation.ValidEmail;
 @PasswordMatches
 public class EditUserForm {
 
-	@NotNull
-	@NotEmpty(message = "{euform.firstname.empty}")
-	private String name;
+	@NotBlank(message = "{euform.firstName.blank}")
+	private String firstName;
 
-	@NotNull
-	@NotEmpty(message = "{rform.lastname.empty}")
-	private String surname;
+	@NotBlank(message = "{rform.lastName.blank}")
+	private String lastName;
 
-	@NotNull
-	@NotEmpty(message = "{euform.mobilephone.empty}")
-	private String mobilePhone;
-
-	@NotNull
-	@NotEmpty(message = "{euform.phone.empty}")
+	@NotBlank(message = "{euform.phone.blank}")
 	private String phone;
 
-	@NotNull
+	@NotBlank(message = "{euform.address.blank}")
 	@ValidEmail(message = "{euform.email.invalid}")
 	private String email;
 
-	@NotNull
-	private UUID location;
-
-	@NotNull
-	@NotEmpty(message = "{euform.address.empty}")
+	@NotBlank(message = "{euform.address.blank}")
 	private String address;
 
+	@NotBlank(message = "{euform.address.empty}")
 	private String password;
 
-	private String password2;
+	@NotBlank(message = "{euform.address.empty}")
+	private String passwordConfirm;
 
-	public String getName() {
-		return name;
+	public String getfirstName() {
+		return firstName;
 	}
 
-	public void setName(String name) {
-		this.name = name;
+	public void setfirstName(String firstName) {
+		this.firstName = firstName;
 	}
 
-	public String getSurname() {
-		return surname;
+	public String getlastName() {
+		return lastName;
 	}
 
-	public void setSurname(String surname) {
-		this.surname = surname;
-	}
-
-	public String getMobilePhone() {
-		return mobilePhone;
-	}
-
-	public void setMobilePhone(String mobilePhone) {
-		this.mobilePhone = mobilePhone;
+	public void setlastName(String lastName) {
+		this.lastName = lastName;
 	}
 
 	public String getPhone() {
@@ -86,14 +65,6 @@ public class EditUserForm {
 		this.email = email;
 	}
 
-	public UUID getLocation() {
-		return location;
-	}
-
-	public void setLocation(UUID location) {
-		this.location = location;
-	}
-
 	public String getAddress() {
 		return address;
 	}
@@ -110,20 +81,19 @@ public class EditUserForm {
 		this.password = password;
 	}
 
-	public String getPassword2() {
-		return password2;
+	public String getpasswordConfirm() {
+		return passwordConfirm;
 	}
 
-	public void setPassword2(String password2) {
-		this.password2 = password2;
+	public void setpasswordConfirm(String passwordConfirm) {
+		this.passwordConfirm = passwordConfirm;
 	}
 
 	public boolean hasChanges(User user) {
-		return !name.equals(user.getName())
-				|| !surname.equals(user.getSurname())
+		return !firstName.equals(user.getFirstName())
+				|| !lastName.equals(user.getLastName())
 				|| !phone.equals(user.getPhone())
 				|| !email.equals(user.getEmail())
-				|| !location.equals(user.getLocation().getLocationId())
 				|| !address.equals(user.getAddress())
 				|| !password.equals(user.getPassword());
 	}

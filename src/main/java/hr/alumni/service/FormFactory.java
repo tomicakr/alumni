@@ -19,21 +19,18 @@ import hr.alumni.model.form.CommentForm;
 import hr.alumni.model.form.EditUserForm;
 import hr.alumni.model.form.PostForm;
 import hr.alumni.model.form.RegistrationForm;
-import hr.alumni.repository.LocationRepository;
 import hr.alumni.repository.RoleRepository;
 import hr.alumni.repository.UserRepository;
 @Service
 public class FormFactory {
 	
-	private final LocationRepository lr;
 	private final RoleRepository rr;
 	private final PasswordEncoder pe;
 	private final UserRepository ur;
 
 
 	@Autowired
-	public FormFactory(LocationRepository lr, RoleRepository rr, PasswordEncoder pe, UserRepository ur) {
-		this.lr = lr;
+	public FormFactory(RoleRepository rr, PasswordEncoder pe, UserRepository ur) {
 		this.rr = rr;
 		this.pe = pe;
 		this.ur = ur;
@@ -42,8 +39,6 @@ public class FormFactory {
 	public User createUserFromForm(RegistrationForm rf){
 		User u = new User();
 
-		u.setName(rf.getName());
-		u.setSurname(rf.getSurname());
 		u.setPhone(rf.getPhone());
 		u.setEmail(rf.getEmail());
 		u.setAddress(rf.getAddress());
@@ -64,11 +59,10 @@ public class FormFactory {
 			return false;
 		}
 
-		user.setName(ef.getName());
-		user.setSurname(ef.getSurname());
+		user.setFirstName(ef.getfirstName());
+		user.setLastName(ef.getlastName());
 		user.setPhone(ef.getPhone());
 		user.setEmail(ef.getEmail());
-		user.setLocation(lr.findOne(ef.getLocation()));
 		user.setAddress(ef.getAddress());
 
 		if(ef.getPassword() != null && !ef.getPassword().equals("")){

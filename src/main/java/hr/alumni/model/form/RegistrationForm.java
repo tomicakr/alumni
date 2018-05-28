@@ -1,9 +1,8 @@
 package hr.alumni.model.form;
 
-import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
-import org.hibernate.validator.constraints.NotEmpty;
+import org.hibernate.validator.constraints.NotBlank;
 import org.springframework.stereotype.Component;
 
 import hr.alumni.model.form.validation.PasswordMatches;
@@ -13,50 +12,42 @@ import hr.alumni.model.form.validation.ValidEmail;
 @PasswordMatches
 public class RegistrationForm {
 
-	@NotNull
-	@NotEmpty(message = "{rform.firstname.empty}")
-	private String name;
+	@NotBlank(message = "{rform.firstName.blank}")
+	private String firstName;
 
-	@NotNull
-	@NotEmpty(message = "{rform.lastname.empty}")
+	@NotBlank(message = "{rform.lastName.blank}")
 	private String surname;
 
-	@NotNull
-	@NotEmpty(message = "{rform.phone.empty}")
+	@NotBlank(message = "{rform.phone.blank}")
 	private String phone;
 
-	@NotNull
+	@NotBlank(message = "{rform.email.blank}")
 	@ValidEmail(message = "{rform.email.invalid}")
 	private String email;
 
-	@NotNull
-	@NotEmpty(message = "{rform.address.empty}")
+	@NotBlank(message = "{rform.address.blank}")
 	private String address;
 
-	@Size(min = 8, max = 30)
-	@NotNull
-	@NotEmpty(message = "{rform.password.empty}")
+	@Size(min = 8, max = 30, message = "{rform.password.notfit}")
+	@NotBlank(message = "{rform.password.blank}")
 	private String password;
 
-	@Size(min = 8, max = 30)
-	@NotNull
-	@NotEmpty(message = "{rform.password2.empty}")
-	private String password2;
+	@Size(min = 8, max = 30, message = "{rform.passwordConfirm.notfit}") 
+	@NotBlank(message = "{rform.passwordConfirm.blank}")
+	private String passwordConfirm;
 
-	@NotNull
-	@NotEmpty(message = "{rform.graduation.empty}")
+	@NotBlank(message = "{rform.graduation.blank}")
 	private String graduation;
 
-	@NotNull
-	@NotEmpty(message = "{rform.birthday.empty}")
+	@NotBlank(message = "{rform.birthday.blank}")
 	private String birthday;
 
-	public String getName() {
-		return name;
+	public String getfirstName() {
+		return firstName;
 	}
 
-	public void setName(String name) {
-		this.name = name;
+	public void setfirstName(String firstName) {
+		this.firstName = firstName;
 	}
 
 	public String getSurname() {
@@ -99,12 +90,12 @@ public class RegistrationForm {
 		this.password = password;
 	}
 
-	public String getPassword2() {
-		return password2;
+	public String getPasswordConfirm() {
+		return passwordConfirm;
 	}
 
-	public void setPassword2(String password2) {
-		this.password2 = password2;
+	public void setPasswordConfirm(String passwordConfirm) {
+		this.passwordConfirm = passwordConfirm;
 	}
 
 	public String getGraduation() {
@@ -122,5 +113,4 @@ public class RegistrationForm {
 	public void setBirthday(String birthday) {
 		this.birthday = birthday;
 	}
-
 }

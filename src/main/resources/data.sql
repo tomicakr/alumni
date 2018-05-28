@@ -1,67 +1,111 @@
-INSERT INTO location (location_id, location_name, zip_code)
-			VALUES	 ('292dd5ea-5f28-4794-8eec-94adb19e46c2', "Zagreb", 10000);
-INSERT INTO location (location_id, location_name, zip_code)
-			VALUES   ('d167cd4c-be23-4dc3-9280-8e6451b41c46', "Bregana", 10432);
-INSERT INTO location (location_id, location_name, zip_code)
-			VALUES   ('bdd93cdb-a85f-4182-b051-c3d061eb583a', "Pula", 52100);
-INSERT INTO location (location_id, location_name, zip_code)
-			VALUES   ('10e619f2-5d4c-418a-b703-d265e873b774', "Sesvete", 10360);
-            
-INSERT INTO users (user_id, name, surname, email, phone, location_id, password, address, birthday, graduation)
-			VALUES('368ec8e2-c7cb-4eaf-b3f1-0077333fbea9', "Mate", "Paulinović", "mate.paulinovic@gmail.com", "0994562345", '292dd5ea-5f28-4794-8eec-94adb19e46c2', "$2a$11$bBQIy5F6ON/cfJx29PYBd.B0eXq07wKl6x678b4P/0vG.Fy.m1L0a",
-                   "gracanska 126", "1993-12-02", "1993-11-03");
+INSERT INTO users (user_id, first_name, last_name, email, phone, password, address, birthday, graduation)
+			VALUES('368ec8e2-c7cb-4eaf-b3f1-0077333fbea9', "Tomislav", "Kravaršćan", "tomislav.kravarscan@fer.hr", 
+			"0989958015", "$2a$11$bBQIy5F6ON/cfJx29PYBd.B0eXq07wKl6x678b4P/0vG.Fy.m1L0a",
+            "Klinovec 36", "1996-07-18", "2018-12-01");
+
+INSERT INTO users (user_id, first_name, last_name, email, phone, password, address, birthday, graduation)
+			VALUES('c6cf2893-1074-4638-a879-3604aa87f2a0', "Antonio", "Pavlinić", "antonio.pavlinic@fer.hr",
+			"0975648222", "$2a$11$bBQIy5F6ON/cfJx29PYBd.B0eXq07wKl6x678b4P/0vG.Fy.m1L0a",
+            "Kolodvorska 28", "1992-05-20", "2015-12-21");
+
+INSERT INTO users (user_id, first_name, last_name, email, phone, password, address, birthday, graduation)
+			VALUES('cf615b0e-5ee6-412f-b661-719d212b4884', "Ernest", "Tot", "ernest.tot@fer.hr",
+			"0995668863", "$2a$11$bBQIy5F6ON/cfJx29PYBd.B0eXq07wKl6x678b4P/0vG.Fy.m1L0a",
+            "Ljubljanska avenija 30", "1986-02-13", "2007-12-14");
+		
+INSERT INTO users (user_id, first_name, last_name, email, phone, password, address, birthday, graduation)
+			VALUES('2f37ab13-e3d2-4e80-ac61-1504a8c01605', "Vanja", "Petrović", "vanja.petrović@fer.hr",
+			"0989965878", "$2a$11$bBQIy5F6ON/cfJx29PYBd.B0eXq07wKl6x678b4P/0vG.Fy.m1L0a",
+            "Savska cesta 12a", "1996-07-14", "2018-12-30");
+
+INSERT INTO users (user_id, first_name, last_name, email, phone, password, address, birthday, graduation)
+			VALUES('e6efdad8-2192-4627-b6be-d93fc15555c0', "Ivanka", "Rezić", "ivanka.rezic@fer.hr",
+			"0956312101", "$2a$11$bBQIy5F6ON/cfJx29PYBd.B0eXq07wKl6x678b4P/0vG.Fy.m1L0a",
+            "Črnomerec 28", "1993-07-19", "2016-11-21");
+
+INSERT INTO users (user_id, first_name, last_name, email, phone, password, address, birthday, graduation)
+			VALUES('5849ed0e-c901-4e60-b4e7-807163deee9b', "Juraj", "Šebalj", "juraj.sebalj@fer.hr",
+			"0954872541", "$2a$11$bBQIy5F6ON/cfJx29PYBd.B0eXq07wKl6x678b4P/0vG.Fy.m1L0a",
+            "Trg Kralja Tomislava 2", "1994-07-21", "2010-10-05");
 
 INSERT INTO role (name) VALUES ("ROLE_ADMINISTRATOR");
-INSERT INTO role (name) VALUES ("ROLE_ZAPOSLENIK");
+INSERT INTO role (name) VALUES ("ROLE_MODERATOR");
 INSERT INTO role (name) VALUES ("ROLE_KORISNIK");
 
 INSERT INTO users_roles (user_id, role_id) VALUES ('368ec8e2-c7cb-4eaf-b3f1-0077333fbea9', 1);
+INSERT INTO users_roles (user_id, role_id) VALUES ('5849ed0e-c901-4e60-b4e7-807163deee9b', 2);
+INSERT INTO users_roles (user_id, role_id) VALUES ('e6efdad8-2192-4627-b6be-d93fc15555c0', 3);
+INSERT INTO users_roles (user_id, role_id) VALUES ('2f37ab13-e3d2-4e80-ac61-1504a8c01605', 3);
+INSERT INTO users_roles (user_id, role_id) VALUES ('cf615b0e-5ee6-412f-b661-719d212b4884', 3);
+INSERT INTO users_roles (user_id, role_id) VALUES ('c6cf2893-1074-4638-a879-3604aa87f2a0', 3);
 
-INSERT INTO posts (post_id, title, short_description, long_description, address, post_type) VALUES ('9f49e501-c5f9-41b7-a59b-51adad927fc8',
-																	 "Naslov",
-																	 "Kratak opis posta",
-																	 "Dugi opis posta", "Vukovarska 2", 1);
-INSERT INTO posts (post_id, title, short_description, long_description, address, post_type) VALUES ('ce236c67-ba86-4f65-9eee-f5627de48c89',
-																	 "Naslov",
-																	 "Lorem Ipsum je jednostavno probni tekst koji se koristi u tiskarskoj i slovoslagarskoj industriji. Lorem Ipsum postoji kao industrijski standard još od 16-og stoljeća, kada je nepoznati tiskar uzeo tiskarsku galiju slova i posložio ih da bi napravio knjigu s uzorkom tiska. Taj je tekst ne samo preživio pet stoljeća, već se i vinuo u svijet elektronskog slovoslagarstva, ostajući u suštini nepromijenjen. Postao je popularan tijekom 1960-ih s pojavom Letraset listova s odlomcima Lorem Ipsum-a, a u skorije vrijeme sa software-om za stolno izdavaštvo kao što je Aldus PageMaker koji također sadrži varijante Lorem Ipsum-a.",
-																	 "Dugi opis posta", "Vukovarska 2", 1);
-INSERT INTO posts (post_id, title, short_description, long_description, address, post_type) VALUES ('8114ab04-0fb8-43f2-a163-31876a2971c6',
-																	 "Naslov",
-																	 "Suprotno raširenom mišljenju, Lorem Ipsum nije samo slučajni tekst, već ima korijene u klasičnoj latinskoj književnosti iz godine 45. pr.n.e., što znači da mu je preko 2000 godina. Richard McClintock, profesor latinskog jezika na Hampden-Sydney koledžu u Virginiji, potražio je jednu od čudnijijh latinskih riječi, consectetur, iz Lorem Ipsum teksta, i prolazeći kroz citate te riječi u klasičnoj književnosti, otkrio nedvojbeni izvor. Lorem Ipsum dolazi iz odlomaka 1.10.32 i 1.10.33 Ciceronovog djela pod naslovom de Finibus Bonorum et Malorum (Krajnosti dobra i zla), napisanog 45. godine pr.n.e. Ovo je djelo rasprava o teoriji etike, a bilo je vrlo popularno u Renesansi. Prvi redak Lorem Ipsum-a, Lorem ipsum dolor sit amet.., dolazi iz odlomka 1.10.32.",
-																	 "Dugi opis posta", "Vukovarska 2", 1);																
-INSERT INTO posts (post_id, title, short_description, long_description, address, post_type) VALUES ('5301414c-078f-44d9-a143-8aa2a66c9b2e',
-																	 "Naslov",
-																	 "Kratak opis posta",
-																	 "Dugi opis posta", "Vukovarska 2", 1);
-INSERT INTO posts (post_id, title, short_description, long_description, address, post_type) VALUES ('9aadc29e-eed6-44b5-a822-04999267714f',
-																	 "Naslov",
-																	 "Kratak opis posta",
-																	 "Dugi opis posta", "Vukovarska 2", 1);
-INSERT INTO posts (post_id, title, short_description, long_description, address, post_type) VALUES ('1a6e9480-d64e-4214-a8bc-043793f07756',
-																	 "Naslov",
-																	 "Postoje mnoge varijacije odlomaka iz Lorem Ipsum-a, ali većina je pretrpjela kojekakve promjene s dodanim humorom, ili nasumičnim riječima koje nikako tu ne spadaju. Ako trebate koristiti Lorem Ipsum, morate biti sigurni da tekst ne sadrži skrivene nepodobne riječi ili fraze. Lorem Ipsum generatori na Internetu većinom ponavljaju zadane odlomke po potrebi, što ovaj naš čini prvim pravim generatorom na Internetu. Mi koristimo riječnik od 200 latinskih riječi, u kombinaciji s nekoliko modela rečeničnih struktura, da bi generirali Lorem Ipsum koji izgleda razumno. Stoga je Lorem Ipsum s ove stranice uvijek bez ponavljanja, bez dodanog humora ili nekaraketerističnih riječi.",
-																	 "Dugi opis posta", "Vukovarska 2", 1);
-INSERT INTO posts (post_id, title, short_description, long_description, address, post_type) VALUES ('101ac6db-5225-494b-8216-1ab866a1d48a',
-																	 "Naslov",
-																	 "Kratak opis posta",
-																	 "Dugi opis posta", "Vukovarska 2", 1);																	
-INSERT INTO privilege (name) VALUES ("ADD_PET_OTHERS");
-INSERT INTO privilege (name) VALUES ("ADD_RESERVATION_OTHERS");
-INSERT INTO privilege (name) VALUES ("ELEVATE_USER_TO_EMPLOYEE");
-INSERT INTO privilege (name) VALUES ("ACCEPT_RESERVATION");
-INSERT INTO privilege (name) VALUES ("CONFIRM_RESERVATION");
-INSERT INTO privilege (name) VALUES ("VIEW_ALL_RESERVATIONS");
-INSERT INTO privilege (name) VALUES ("VIEW_FREE_RESERVATIONS");	
-INSERT INTO privilege (name) VALUES ("ARCHIVE_RESERVATION");
+INSERT INTO posts (post_id, title, short_description, long_description, address, post_type, create_date, modify_date)
+	VALUES ('9f49e501-c5f9-41b7-a59b-51adad927fc8',
+			"Najava ciklusa predavanja",
+			"Poštovani alumni FER-a,<br>Ove godine započinjemo s ciklusom predavanja koje će održati renomirani predavači iz raznih područja elektrotehnike i računarstva. Osnovna ideja jest da to budu pregledna predavanja, zanimljiva i razumljiva svim našim alumnima.<br>U akademskoj godini 2017./2018. dogovoren je niz predavanja istaknutih profesora FER-a.",
+			"Predavanja će se održavati u Sivoj vijećnici s početkom u 17 sati.<br>Na predavanja su pozvani svi alumni, studenti i djelatnici FER-a kao i njihovi gosti.<br>Zabilježite si datume u kalendar. Proslijedite informaciju vašim kolegama i prijateljima, alumnima FER-a.",
+			"Ozaljska 8", 
+			2,
+			now(),
+			now());
+INSERT INTO posts (post_id, title, short_description, long_description, address, post_type, create_date, modify_date)
+	VALUES ('ce236c67-ba86-4f65-9eee-f5627de48c89',
+			"Ljudski sluh - savršen informacijski kanal?",
+			"Udruga Alumni FER poziva vas na predavanje:<br>Ljudski sluh - savršen informacijski kanal?<br>koje će održati prof. dr. sc. Bojan Ivančević,",
+			"Sluh je potpuno funkcionalan prije rođenja i posljednje je još funkcionalno osjetilo prije smrti. Sluh doslovce nikada ne spava. Ljudski sluh je optimiran za percepciju govora. Čovjek sluhom dobiva 86% svih komunikacijskih informacija. Sluh je najviši sudac zvuka!Čuješ? Jasno da čujem!!! Da, dok smo mladi i zdravi gotovo nitko ne razmišlja o sluhu, jer je to nešto „što se samo po sebi razumije“. Da li je to doista tako? Što zapravo čujemo? Što se događa ako nešto ne čujemo, ili čak ako ništa ne čujemo? Gdje su granice sluha, i o čemu ovise? Kakvu obrambenu ulogu ima sluh? Zašto se tako dobro snalazimo u prostoru? Čuju li životinje bolje od ljudi? Kolika je vremenska i amplitudna rezolucija sluha i kako to utječe na informatički kapacitet? Kakva bi trebala biti kvaliteta prijenosa ili zapisa akustičkog signala da bi se postigle mogućnosti sluha? Da li je tom izazovu dorasla današnja tehnologija? Mijenja li se sluh tijekom života i o čemu to ovisi? Što je glasnoća i što o njoj ovisi? Zašto se pojavljuju subjektivni tonovi? Što je efekt maskiranja zvuka? Pojam „slušna akustika“. Možemo li se potpuno pouzdati u sluh?",
+			"u Sivoj vijećnici Fakulteta elektrotehnike i računarstva Sveučilišta u Zagrebu.", 
+			2,
+			now(),
+			now());
+INSERT INTO posts (post_id, title, short_description, long_description, address, post_type, create_date, modify_date)
+	VALUES ('8114ab04-0fb8-43f2-a163-31876a2971c6',
+			"Primjene suvremenih tehnologija u medicini",
+			"Udruga Alumni FER u suradnji s Hrvatskim društvom za biomedicinsko inženjerstvo i medicinsku fiziku (HDBIMF), Odjelom za tehniku u medicini i biologiji Hrvatske sekcije IEEE i Akademijom tehničkih znanosti Hrvatske vas poziva na predavanje:", 
+			"-",
+			"Siva vijećnica Fakulteta elektrotehnike i računarstva Sveučilišta u Zagrebu.", 
+			2,
+			now(),
+			now());																
+INSERT INTO posts (post_id, title, short_description, long_description, address, post_type, create_date, modify_date) 
+	VALUES ('5301414c-078f-44d9-a143-8aa2a66c9b2e',
+			"Almae matris alumni Universitatis studiorum Zagrabiensis",
+			"AMAC Domus i AMAC Mundus udruge okupljene su u Savez  društava bivših studenata Sveučilišta u Zagrebu koje ima svoje Predsjedništvo, Časni sud i Nadzorno povjerenstvo. Predsjednici i članovi tijela Saveza biraju se svake četiri godine na Saboru Saveza.",
+			"Pri fakultetima i akademijama Sveučilišta u Zagrebu osnovane su ili se osnivaju alumni (AMAC/AMCA) udruge koje okupljaju svoje bivše studente. S druge strane, nekadašnji članovi našeg Sveučilišta koji žive i djeluju van granica naše zemlje osnovali su svoje udruge diljem svijeta. Svaka od tih udruga ima svoje pojedinisti organizacije i djelovanja, ali im je svima zajednička zadaća okupljanje svojih alumnija i promicanje alumni ideje među sadašnjim i budućim članovima. Alumni udruge u zemlji i neformalno su objedinjene pod nazivom AMAC Domus, a udruge osnovane u inozemstvu pod nazivom AMAC Mundus.", 
+			"Kvintička 7", 
+			1,
+			now(),
+			now());
+INSERT INTO posts (post_id, title, short_description, long_description, address, post_type, create_date, modify_date)
+	VALUES ('9aadc29e-eed6-44b5-a822-04999267714f',
+			"Alumni klub VPŠ Zagreb",
+			"Ažurirajte vaše informacije i podijelite vašu priču. Popunjavanje pristupnice za Alumni klub je prvi korak (nalazi se na dnu stranice). Ukoliko se samo želite prijaviti ili podijeliti vašu priču, molim da nas kontaktirate putem emaila <a href='mailto:alumni@vpsz.hr'>alumni@vpsz.hr<a>. ",
+			"Alumni klub je udruženje bivših studenata Visoke poslovne škole Zagreb, a mi smo ponosni na svojih preko 710 diplomanata. Pozivamo Vas da ostanete u kontaktu sa fakultetom i da nastavite podupirati naše vrijednosti u visokom školstvu kroz propagiranje, uključenost i davanje. Nadamo se da ste ostvarili kontakte i prijateljstva koja su dragocijena i dugovječna. Sa velikim brojem alumni-a koji zovu Visoku poslovnu školu Zagreb svojom alma mater, dijelom ste raznolike i dinamične obitelji alumni-a, od učitelja i novinara do direktora i sportskih zvijezda. Kao diplomant Visoke poslovne škole Zagreb, automatski dobijate članstvo u VPŠZ Alumni klubu. Bilo da svojim domom zovete Zagreb ili neki drugi dio Lijepe Naše, povezani ste kroz posebnu mrežu koja je dijelom obitelji Visoke poslovne škole Zagreb, gdjegod išli i štogod radili.",
+			"-", 
+			3,
+			now(),
+			now());
+INSERT INTO posts (post_id, title, short_description, long_description, address, post_type, create_date, modify_date)
+	VALUES ('1a6e9480-d64e-4214-a8bc-043793f07756',
+			"Informacijski paket",
+			"Postoje mnoge varijacije odlomaka iz Lorem Ipsum-a, ali većina je pretrpjela kojekakve promjene s dodanim humorom, ili nasumičnim riječima koje nikako tu ne spadaju. Ako trebate koristiti Lorem Ipsum, morate biti sigurni da tekst ne sadrži skrivene nepodobne riječi ili fraze. Lorem Ipsum generatori na Internetu većinom ponavljaju zadane odlomke po potrebi, što ovaj naš čini prvim pravim generatorom na Internetu. Mi koristimo riječnik od 200 latinskih riječi, u kombinaciji s nekoliko modela rečeničnih struktura, da bi generirali Lorem Ipsum koji izgleda razumno. Stoga je Lorem Ipsum s ove stranice uvijek bez ponavljanja, bez dodanog humora ili nekaraketerističnih riječi.",
+			"U 2016. godini održana je Alumni večer u Klubu književnika.ELSA Zagreb ponosi se svojim alumni članovima koji joj donose veliki ugled zbog uspješnih karijera.Studenti shvaćaju važnost prijateljstva i dobrih odnosa te se u tom smislu okupljamo u ELSA-i.Stres nije nepoznanica studentima, ali je zato udruga tu da jedni drugima pomognemo.Alumni klub ima svoju tajnicu i svoje događaje.", 
+			"-", 
+			3,
+			now(),
+			now());
+INSERT INTO posts (post_id, title, short_description, long_description, address, post_type, create_date, modify_date)
+	VALUES ('101ac6db-5225-494b-8216-1ab866a1d48a',
+			"Alumni klub UNIZD Zadar",
+			"Pozivamo Vas da se pridružite Alumni klubu UNIZD ispunjavanjem pristupnice.",
+			"Alumni klub Sveučilišta u Zadru osnovan je 10. lipnja 2014. sa sljedećim ciljevima: očuvanje tradicije Sveučilišta u Zadru, promicanje ugleda Sveučilišta u Zadru u Hrvatskoj i u inozemstvu, skrb za razvitak i napredak Sveučilišta u Zadru, njegovanje etičnosti među sveučilištarcima,izgradnja i jačanje veza i suradnje između bivših studenata i Sveučilišta u Zadru, poticanje i uspostava veza i suradnje Sveučilišta u Zadru i sličnih obrazovnih, razvojnih i istraživačkih institucija u Republici Hrvatskoj i u svijetu, suradnja s institucijama u kojima rade bivši studenti Sveučilišta u Zadru i njegovih prethodnika te uspostava i razvijanje suradnje sa sličnim udrugama (AMAC/AMCA) u Hrvatskoj i inozemstvu.", 
+			"Zadarska 23", 
+			3,
+			now(),
+			now());	
+
+INSERT INTO privilege (name) VALUES ("CRUD_USER");
+INSERT INTO privilege (name) VALUES ("CRUD_POST");
 
 INSERT INTO roles_privileges (role_id, privilege_id) VALUES (1,1);
 INSERT INTO roles_privileges (role_id, privilege_id) VALUES (1,2);
-INSERT INTO roles_privileges (role_id, privilege_id) VALUES (1,3);
-INSERT INTO roles_privileges (role_id, privilege_id) VALUES (1,4);
-INSERT INTO roles_privileges (role_id, privilege_id) VALUES (1,5);
-INSERT INTO roles_privileges (role_id, privilege_id) VALUES (1,6);
-INSERT INTO roles_privileges (role_id, privilege_id) VALUES (1,7);
-INSERT INTO roles_privileges (role_id, privilege_id) VALUES (1,8);
-INSERT INTO roles_privileges (role_id, privilege_id) VALUES (2,4);
-INSERT INTO roles_privileges (role_id, privilege_id) VALUES (2,7);
-                    
+INSERT INTO roles_privileges (role_id, privilege_id) VALUES (2,2);

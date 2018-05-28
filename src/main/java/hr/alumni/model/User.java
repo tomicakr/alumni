@@ -4,17 +4,14 @@ import java.util.Date;
 import java.util.List;
 import java.util.UUID;
 
-import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
-import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
@@ -37,11 +34,11 @@ public class User {
 
 	@NotEmpty
 	@Column
-	private String name;
+	private String firstName;
 
 	@NotEmpty
 	@Column
-	private String surname;
+	private String lastName;
 
 	@NotEmpty
 	@Column
@@ -58,10 +55,6 @@ public class User {
 	@NotEmpty
 	@Column
 	private String address;
-
-	@ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
-	@JoinColumn(name = "locationId")
-	private Location location;
 
 	@Temporal(TemporalType.DATE)
 	@Column
@@ -86,20 +79,20 @@ public class User {
 		this.userId = userId;
 	}
 
-	public String getName() {
-		return name;
+	public String getFirstName() {
+		return firstName;
 	}
 
-	public void setName(String name) {
-		this.name = name;
+	public void setFirstName(String firstName) {
+		this.firstName = firstName;
 	}
 
-	public String getSurname() {
-		return surname;
+	public String getLastName() {
+		return lastName;
 	}
 
-	public void setSurname(String surname) {
-		this.surname = surname;
+	public void setLastName(String lastName) {
+		this.lastName = lastName;
 	}
 
 	public String getPhone() {
@@ -132,14 +125,6 @@ public class User {
 
 	public void setAddress(String address) {
 		this.address = address;
-	}
-
-	public Location getLocation() {
-		return location;
-	}
-
-	public void setLocation(Location location) {
-		this.location = location;
 	}
 
 	public Date getBirthday() {

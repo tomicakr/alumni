@@ -17,13 +17,13 @@ public class PasswordMatchesValidator implements ConstraintValidator<PasswordMat
 		if (obj instanceof RegistrationForm) {
 			RegistrationForm rForm = (RegistrationForm) obj;
 
-			return rForm.getPassword().equals(rForm.getPassword2());
+			return rForm.getPassword().equals(rForm.getPasswordConfirm());
 		}
 
 		if (obj instanceof EditUserForm) {
 			EditUserForm rForm = (EditUserForm) obj;
 
-			return rForm.getPassword() == null || rForm.getPassword().equals(rForm.getPassword2());
+			return rForm.getPassword() == null || rForm.getPassword().equals(rForm.getpasswordConfirm());
 		}
 
 		return false;

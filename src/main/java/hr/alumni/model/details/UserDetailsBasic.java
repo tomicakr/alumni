@@ -23,8 +23,8 @@ public class UserDetailsBasic {
 	public UserDetailsBasic(User user) {
 
 		this.userId = user.getUserId();
-		this.firstName = user.getName();
-		this.lastName = user.getSurname();
+		this.firstName = user.getFirstName();
+		this.lastName = user.getLastName();
 		this.email = user.getEmail();
 		this.roles = new ArrayList<>();
 

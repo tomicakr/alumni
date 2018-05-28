@@ -10,7 +10,6 @@ import org.springframework.test.annotation.Rollback;
 import org.springframework.test.context.jdbc.SqlConfig;
 import org.springframework.test.context.junit4.SpringRunner;
 
-import hr.alumni.model.Location;
 import hr.alumni.model.Post;
 import hr.alumni.model.PostType;
 
@@ -32,7 +31,6 @@ public class PostRepositoryTest {
 		p.setPostType(PostType.EVENT);
 		p.setTitle("Post koji se testira");
 		p.setShortDescription("ovaj se post trenutno testira");
-		p.setLocation(new Location(12100, "Umag"));
 
 		pr.save(p);
 	}

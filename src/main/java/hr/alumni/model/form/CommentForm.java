@@ -1,17 +1,12 @@
 package hr.alumni.model.form;
 
-import javax.validation.constraints.NotNull;
-
 import org.hibernate.validator.constraints.NotBlank;
-import org.hibernate.validator.constraints.NotEmpty;
 import org.springframework.stereotype.Component;
 
 @Component
 public class CommentForm {
 
-    @NotNull
-    @NotEmpty(message = "{comment.message.empty}")
-    @NotBlank
+    @NotBlank(message = "{comment.message.blank}")
     private String message;
 
     public CommentForm() {

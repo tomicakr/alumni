@@ -1,0 +1,15 @@
+\select@language {croatian}
+\contentsline {chapter}{\numberline {1}Uvod}{1}
+\contentsline {chapter}{\numberline {2}Analiza postoje\IeC {\'c}e programske podr\IeC {\v s}ke}{2}
+\contentsline {section}{\numberline {2.1}Graduway}{2}
+\contentsline {section}{\numberline {2.2}VeryConnect}{3}
+\contentsline {section}{\numberline {2.3}Hiverbrite}{4}
+\contentsline {chapter}{\numberline {3}Zahtjevi nad programskom potporom}{6}
+\contentsline {section}{\numberline {3.1}Funkcionalni zahtjevi}{6}
+\contentsline {section}{\numberline {3.2}Nefunkcionalni zahtjevi}{7}
+\contentsline {chapter}{\numberline {4}Arhitektura sustava}{8}
+\contentsline {section}{\numberline {4.1}Baza podataka}{8}
+\contentsline {subsection}{\numberline {4.1.1}Konceptualni model baze podataka}{8}
+\contentsline {subsection}{\numberline {4.1.2}Fizi\IeC {\v c}ki model baze podataka}{8}
+\contentsline {chapter}{\numberline {5}Zaklju\IeC {\v c}ak}{9}
+\contentsline {chapter}{Literatura}{10}

@@ -75,21 +75,12 @@ const rules = {
             prompt: 'Molimo odaberite lozinku'
         },
         {
-<<<<<<< HEAD
             type: 'length[6]',
             prompt: 'Lozinka mora biti dugačka barem 6 znakova'
         }
         ]
     },
     passwordConfirm: {
-=======
-            type: 'length[8]',
-            prompt: 'Lozinka mora biti dugačka barem 8 znakova'
-        }
-        ]
-    },
-    password2: {
->>>>>>> 3bcf26512a1a8adf6f997a55f5f812e44b8d47c8
         identifier: 'password-confirm',
         rules: [{
             type: 'empty',

@@ -4,13 +4,9 @@ function deleteUser(userId) {
         $.ajax({
             type: 'POST',
             url: '/users/' + userId + '/delete'
-<<<<<<< HEAD
         }).then(() => {
-            location.reload();
+            window.location.replace("/users");
         });;
-=======
-        });
->>>>>>> 3bcf26512a1a8adf6f997a55f5f812e44b8d47c8
     }
 }
 

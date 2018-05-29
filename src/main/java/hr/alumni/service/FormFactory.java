@@ -39,6 +39,8 @@ public class FormFactory {
 	public User createUserFromForm(RegistrationForm rf){
 		User u = new User();
 
+		u.setFirstName(rf.getFirstName());
+		u.setLastName(rf.getLastName());
 		u.setPhone(rf.getPhone());
 		u.setEmail(rf.getEmail());
 		u.setAddress(rf.getAddress());
@@ -54,22 +56,16 @@ public class FormFactory {
 		return u;
 	}
 
-	public boolean editUserFromForm(User user, EditUserForm ef) {
-		if(!ef.hasChanges(user)) {
-			return false;
-		}
+	public void editUserFromForm(User user, EditUserForm ef) {
 
-		user.setFirstName(ef.getfirstName());
-		user.setLastName(ef.getlastName());
+		user.setFirstName(ef.getFirstName());
+		user.setLastName(ef.getLastName());
 		user.setPhone(ef.getPhone());
 		user.setEmail(ef.getEmail());
 		user.setAddress(ef.getAddress());
+		user.setBirthday(Date.valueOf(ef.getBirthday()));
+		user.setGraduation(Date.valueOf(ef.getGraduation()));
 
-		if(ef.getPassword() != null && !ef.getPassword().equals("")){
-			user.setPassword(ef.getPassword());
-		}
-		
-		return true;
 	}
 
 	public Comment createCommentFromForm(CommentForm cForm, CustomUserDetails user) {
@@ -91,6 +87,29 @@ public class FormFactory {
 		post.setPostType(PostType.valueOf(postForm.getPostType()));
 
 		return post;
+	}
+
+	public void editPostFromForm(PostForm postForm, Post post) {
+
+		post.setAddress(postForm.getAddress());
+		post.setLongDescription(postForm.getLongDescription());
+		post.setShortDescription(postForm.getShortDescription());
+		post.setTitle(postForm.getTitle());
+		post.setPostType(PostType.valueOf(postForm.getPostType()));
+
+	}
+
+	public PostForm createFormFromPost(Post post) {
+		PostForm form = new PostForm();
+
+		form.setPostId(post.getPostId());
+		form.setAddress(post.getAddress());
+		form.setLongDescription(post.getLongDescription());
+		form.setShortDescription(post.getShortDescription());
+		form.setTitle(post.getTitle());
+		form.setPostType(post.getPostType().toString());
+
+		return form;
 	}
 
 }

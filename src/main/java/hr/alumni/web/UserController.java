@@ -84,10 +84,9 @@ public class UserController {
 			return "editUser";
 		}
 
-		if (formFactory.editUserFromForm(user, editUserForm)) {
-			userRepository.save(user);
-		}
-
+		formFactory.editUserFromForm(user, editUserForm);
+		userRepository.save(user);
+		
 		return "redirect:/users/" + id.toString();
 	}
 

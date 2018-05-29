@@ -3,7 +3,6 @@ package hr.alumni.model.form.validation;
 import javax.validation.ConstraintValidator;
 import javax.validation.ConstraintValidatorContext;
 
-import hr.alumni.model.form.EditUserForm;
 import hr.alumni.model.form.RegistrationForm;
 
 public class PasswordMatchesValidator implements ConstraintValidator<PasswordMatches, Object> {
@@ -18,12 +17,6 @@ public class PasswordMatchesValidator implements ConstraintValidator<PasswordMat
 			RegistrationForm rForm = (RegistrationForm) obj;
 
 			return rForm.getPassword().equals(rForm.getPasswordConfirm());
-		}
-
-		if (obj instanceof EditUserForm) {
-			EditUserForm rForm = (EditUserForm) obj;
-
-			return rForm.getPassword() == null || rForm.getPassword().equals(rForm.getpasswordConfirm());
 		}
 
 		return false;

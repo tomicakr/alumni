@@ -27,7 +27,7 @@
                         <div class="ui right rail">
                             <div class="ui vertical huge menu">
                                 <div class="item">
-                                    <form action="/users/${user.userId}/edit" method="post">
+                                    <form action="/users/${user.userId}/edit" method="get">
                                         <button type="submit" class="ui secondary button">Uredi podatke</button>
                                     </form>
                                 </div>

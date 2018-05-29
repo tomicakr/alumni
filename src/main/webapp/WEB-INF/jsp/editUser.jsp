@@ -31,47 +31,39 @@
         <%@ include file="../partials/header.jsp" %>
 
         <div class="ui container">
-            <form class="ui form" action="/register" method="post">
+            <form class="ui form" action="/users/${user.userId}/edit" method="post">
                 <div class="field">
                     <label>Ime</label>
-                    <input type="text" name="firstName" id="first-name" value="${registrationForm.firstName}">
+                    <input type="text" name="firstName" id="first-name" value="${user.firstName}">
                 </div>
                 <div class="field">
                     <label>Prezime</label>
-                    <input type="text" name="lastName" id="last-name" value="${registrationForm.lastName}">
+                    <input type="text" name="lastName" id="last-name" value="${user.lastName}">
                 </div>
                 <div class="field">
                     <label>Broj telefona</label>
-                    <input type="number" name="phone" id="phone-number" value="${registrationForm.phone}">
+                    <input type="number" name="phone" id="phone-number" value="${user.phone}">
                 </div>
                 <div class="field">
                     <label>Email</label>
-                    <input type="email" name="email" id="email" value="${registrationForm.email}">
+                    <input type="email" name="email" id="email" value="${user.email}">
                 </div>
                 <div class="field">
                     <label>Adresa</label>
-                    <input type="text" name="address" id="address" value="${registrationForm.address}">
+                    <input type="text" name="address" id="address" value="${user.address}">
                 </div>
                 <div class="field">
                     <label>Datum rođenja</label>
-                    <input type="date" name="birthday" id="birthday" value="${registrationForm.birthday}">
+                    <input type="date" name="birthday" id="birthday" value="${user.birthday}">
                 </div>
                 <div class="field">
                     <label>Datum diplomiranja</label>
-                    <input type="date" name="graduation" id="graduation" value="${registrationForm.graduation}">
-                </div>
-                <div class="field">
-                    <label>Lozinka</label>
-                    <input type="password" name="password" id="password" value="${registrationForm.password}">
-                </div>
-                <div class="field">
-                    <label>Ponovi lozinku</label>
-                    <input type="password" name="passwordConfirm" id="password-confirm" value="${registrationForm.passwordConfirm}">
+                    <input type="date" name="graduation" id="graduation" value="${user.graduation}">
                 </div>
                 <button class="ui button" type="submit">Submit</button>
             </form>
 
-            <spring:hasBindErrors name="registrationForm">
+            <spring:hasBindErrors name="editUserForm">
                 <div class="ui error message">
                     <div class="header">
                         Imate neke pogreške
@@ -85,7 +77,7 @@
             </spring:hasBindErrors>
 
             <script src="../../scripts/includes/handlebars-v4.0.11.js"></script>
-            <script src="../../scripts/register.js"></script>
+            <script src="../../scripts/editUser.js"></script>
         </div>
     </body>
 

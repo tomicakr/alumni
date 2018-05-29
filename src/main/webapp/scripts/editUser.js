@@ -1,41 +1,77 @@
-//import {initialize} from './forms.js';
 
-const passOld = $('#old-password');
-const pass = $('#password');
-const passCheck = $('#password2');
+const firstName = $('#first-name');
+const lastName = $('#last-name');
+const phone = $('#phone');
+const email = $('#email');
+const address = $('#address');
+const birthday = $('#birthday');
+const graduation = $('#graduation');
 
-$.fn.form.settings.rules.passwordMatch = () => {
-    return passCheck.val() === pass.val();
-};
-
-$.fn.form.settings.rules.firstAreaFilled = () => {
-  return passOld.val().length > 8 ||  pass.val() === '';
-};
-
-$.fn.form.settings.rules.secondAreaFilled = () => {
-  return pass.val().length > 8 ||  pass.val() === '';
-};
-
-initialize({
-    oldPassword: {
-        identifier: 'oldPassword',
+const rules = {
+    firstName: {
+        identifier: 'first-name',
         rules: [{
-            type: 'firstAreaFilled',
-            prompt: 'Neispravan unos! Broj znakova mora biti veći od 6'
+            type: 'empty',
+            prompt: 'Molimo unesite ime'
         }]
     },
-    password: {
-        identifier: 'password',
+    lastName: {
+        identifier: 'last-name',
         rules: [{
-            type: 'secondAreaFilled',
-            prompt: 'Neispravan unos! Broj znakova mora biti veći od 6'
+            type: 'empty',
+            prompt: 'Molimo unesite prezime'
         }]
     },
-    password2: {
-        identifier: 'password2',
-        rules: [ {
-            type: 'passwordMatch',
-            prompt: 'Lozinke se ne podudaraju!'
+    phone: {
+        identifier: 'phone',
+        rules: [{
+            type: 'empty',
+            prompt: 'Molimo unesite broj telefona'
+        }]
+    },
+    email: {
+        identifier: 'email',
+        rules: [{
+            type: 'empty',
+            prompt: 'Molimo unesite adresu elektroničke pošte'
+        },
+        {
+            type: 'email',
+            prompt: 'Adresa elektroničke pošte nije valjana'
+        }
+        ]
+    },
+    address: {
+        identifier: 'address',
+        rules: [{
+            type: 'empty',
+            prompt: 'Molimo unesite kućnu adresu'
+        }]
+    },
+    birthday: {
+        identifier: 'birthday',
+        rules: [{
+            type: 'empty',
+            prompt: 'Molimo unesite datum rođenja'
+        }]
+    },
+    graduation: {
+        identifier: 'graduation',
+        rules: [{
+            type: 'empty',
+            prompt: 'Molimo unesite datum diplomiranja'
         }]
     }
-});
+};
+
+$(document)
+    .ready(function () {
+        $('.ui.form')
+            .form({
+                inline: true,
+                fields: rules,
+                onSuccess: () => $('.submit.button').addClass('loading')
+            })
+            ;
+    })
+    ;

@@ -16,7 +16,7 @@ public class RegistrationForm {
 	private String firstName;
 
 	@NotBlank(message = "{rform.lastName.blank}")
-	private String surname;
+	private String lastName;
 
 	@NotBlank(message = "{rform.phone.blank}")
 	private String phone;
@@ -42,20 +42,20 @@ public class RegistrationForm {
 	@NotBlank(message = "{rform.birthday.blank}")
 	private String birthday;
 
-	public String getfirstName() {
+	public String getFirstName() {
 		return firstName;
 	}
 
-	public void setfirstName(String firstName) {
+	public void setFirstName(String firstName) {
 		this.firstName = firstName;
 	}
 
-	public String getSurname() {
-		return surname;
+	public String getLastName() {
+		return lastName;
 	}
 
-	public void setSurname(String surname) {
-		this.surname = surname;
+	public void setLastName(String lastName) {
+		this.lastName = lastName;
 	}
 
 	public String getPhone() {

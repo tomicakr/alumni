@@ -45,22 +45,23 @@ public class PostController {
 		List<Post> allPosts = pr.findAll();
 
 		allPosts.sort(new Comparator<Post>() {
-			public int compare(Post p1, Post p2){
+			public int compare(Post p1, Post p2) {
 				return 1;
-				//return -p1.getCreateDate().compareTo(p2.getCreateDate());
+				// return -p1.getCreateDate().compareTo(p2.getCreateDate());
 			}
 		});
 
 		allPosts.forEach(post -> {
 			post.getComments().sort(new Comparator<Comment>() {
-				public int compare(Comment c1, Comment c2){
+				public int compare(Comment c1, Comment c2) {
 					return -c1.getDate().compareTo(c2.getDate());
 				}
 			});
 		});
 
-		if(type != null){
-			List<Post> posts = allPosts.stream().filter((p) -> p.getPostType() == PostType.valueOf(type)).collect(Collectors.toList());
+		if (type != null) {
+			List<Post> posts = allPosts.stream().filter((p) -> p.getPostType() == PostType.valueOf(type))
+					.collect(Collectors.toList());
 
 			System.out.println(Arrays.toString(posts.toArray()));
 			return posts;
@@ -72,7 +73,7 @@ public class PostController {
 	@RequestMapping(value = "/newPost", method = RequestMethod.GET)
 	@PreAuthorize("hasRole('ADMINISTRATOR')")
 	public String newPost(Model model) {
-		
+
 		model.addAttribute("postForm", new PostForm());
 		return "newPost";
 	}
@@ -94,6 +95,38 @@ public class PostController {
 		return "index";
 	}
 
+	@RequestMapping(value = "/{id}/edit", method = RequestMethod.GET)
+	@PreAuthorize("hasRole('ADMINISTRATOR')")
+	public String editPost(Model model, @PathVariable UUID id) {
+
+		model.addAttribute("postForm", factory.createFormFromPost(pr.getOne(id)));
+		return "editPost";
+	}
+
+	@RequestMapping(value = "/{id}/edit", method = RequestMethod.POST)
+	@PreAuthorize("hasRole('ADMINISTRATOR')")
+	public String updatePost(Model model, @PathVariable UUID id, @Valid PostForm pform, BindingResult result) {
+		if(result.hasErrors()){
+			model.addAttribute("postForm", pform);
+			return "editPost";
+		}
+
+		Post post = pr.getOne(id);
+		factory.editPostFromForm(pform, post);
+		pr.save(post);
+
+		return "index";
+	}
+
+	@RequestMapping(value = "/{id}/delete", method = RequestMethod.POST)
+	@PreAuthorize("hasRole('ADMINISTRATOR')")
+	public String deletePost(Model model, @PathVariable UUID id) {
+
+		pr.delete(pr.findOne(id));
+
+		return "index";
+	}
+
 	@RequestMapping(value = "/{id}/comment", method = RequestMethod.POST)
 	@PreAuthorize("hasRole('KORISNIK')")
 	public String createComment(Model model, @PathVariable UUID id, @Valid CommentForm cForm, BindingResult result) {
@@ -110,15 +143,6 @@ public class PostController {
 		comment.setPost(post);
 
 		pr.save(post);
-		return "index";
-	}
-
-	@RequestMapping(value = "/{id}/delete", method = RequestMethod.POST)
-	@PreAuthorize("hasRole('ADMINISTRATOR')")
-	public String deleteUser(Model model, @PathVariable UUID id) {
-
-		pr.delete(pr.findOne(id));
-
 		return "index";
 	}
 }

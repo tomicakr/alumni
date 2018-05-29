@@ -103,35 +103,3 @@ $(document)
             ;
     })
     ;
-
-let generateOib = () => {
-    Math.floor(Math.random() * 1000000000);
-    let first10 = Math.floor(Math.random() * 1000000000).toString();
-    let last = 0;
-    let oib;
-    do {
-        oib = first10 + last.toString();
-        last++;
-    } while (!oibCheck(oib));
-    return oib;
-};
-
-let skombaj = function () {
-    let oibgen = generateOib();
-    oib.val(oibgen);
-    $.getJSON('https://uinames.com/api/?region=england')
-        .done(function (data) {
-            firstName.val(data.name);
-            lastName.val(data.surname);
-            address.val(`${data.region} ${Math.floor(Math.random() * 100)}`);
-            mobilePhone.val(oibgen);
-            telephone.val(oibgen);
-            pass.val(data.name.toLowerCase() + "12345");
-            passCheck.val(data.name.toLowerCase() + "12345");
-            email.val(`${data.name.toLowerCase()}.${data.surname.toLowerCase()}@gmail.com`);
-        })
-        .fail(function () {
-            alert('Morat ces sam, ne radi API');
-        });
-};
-

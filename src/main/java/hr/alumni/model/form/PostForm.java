@@ -1,11 +1,14 @@
 package hr.alumni.model.form;
 
+import java.util.UUID;
+
 import org.hibernate.validator.constraints.NotEmpty;
 import org.springframework.stereotype.Component;
 
 @Component
 public class PostForm {
 
+    private UUID postId;
     @NotEmpty
     private String title;
 
@@ -19,6 +22,14 @@ public class PostForm {
     private String postType;
 
     public PostForm() {
+    }
+
+    public UUID getPostId() {
+        return postId;
+    }
+
+    public void setPostId(UUID postId) {
+        this.postId = postId;
     }
 
     public String getTitle() {

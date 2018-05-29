@@ -1,9 +1,13 @@
 package hr.alumni.model;
 
 import javax.persistence.*;
+
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
 import java.util.List;
 
 @Entity
+@JsonIgnoreProperties({"roles"})
 public class Privilege {
 
 	@Id

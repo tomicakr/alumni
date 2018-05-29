@@ -1,15 +1,14 @@
 # Fdb version 3
-["bibtex zavrsni"] 1527549778 "zavrsni.aux" "zavrsni.bbl" "zavrsni" 1527550009
+["bibtex zavrsni"] 1527602652 "zavrsni.aux" "zavrsni.bbl" "zavrsni" 1527602653
   "./fer.bst" 1284151297 26009 c9fe7ac62e814ee4c7bb7b0cdf6bf7a5 ""
   "literatura.bib" 1268922119 694 14ef1ef6963dccc1171f34d0309bf39f ""
-  "zavrsni.aux" 1527550008 2499 06f43c698ac7bd31ae9d74a7389fe65a ""
+  "zavrsni.aux" 1527602653 2499 06f43c698ac7bd31ae9d74a7389fe65a ""
   "zavrsni.bcf" 0 -1 0 ""
   (generated)
-  "zavrsni.blg"
   "zavrsni.bbl"
-["pdflatex"] 1527550008 "/media/tomica/2fa42c9d-6f18-425e-b642-d24e91ac0aaa/home/tomica/git/alumni/Dokumentacija/zavrsni.tex" "zavrsni.pdf" "zavrsni" 1527550009
+["pdflatex"] 1527602652 "/media/tomica/2fa42c9d-6f18-425e-b642-d24e91ac0aaa/home/tomica/git/alumni/Dokumentacija/zavrsni.tex" "zavrsni.pdf" "zavrsni" 1527602653
   "/etc/texmf/web2c/texmf.cnf" 1527519253 1101 af7716885e081ab43982cab7b4672c1a ""
-  "/media/tomica/2fa42c9d-6f18-425e-b642-d24e91ac0aaa/home/tomica/git/alumni/Dokumentacija/zavrsni.tex" 1527550008 6478 78a7bff07e3a2b762771a4d048940730 ""
+  "/media/tomica/2fa42c9d-6f18-425e-b642-d24e91ac0aaa/home/tomica/git/alumni/Dokumentacija/zavrsni.tex" 1527602649 6483 3b426582771ef4aa4f722b28aec8cfd5 ""
   "/usr/share/texlive/texmf-dist/fonts/enc/dvips/base/8r.enc" 1165713224 4850 80dc9bab7f31fb78a000ccfed0e27cab ""
   "/usr/share/texlive/texmf-dist/fonts/map/fontname/texfonts.map" 1272929888 3287 e6b82fe08f5336d4d5ebc73fb1152e87 ""
   "/usr/share/texlive/texmf-dist/fonts/tfm/adobe/courier/pcrro8r.tfm" 1136768653 1544 4fb84cf2931ec523c2c6a08d939088ba ""
@@ -124,12 +123,12 @@
   "slike/izgledUCLAgraduwayRjesenja.png" 1527533890 111678 b0023eb58e0578462de0b204c898daf7 ""
   "slike/very-connect-dogadaji.png" 1527534421 393831 9676cde9c9e6dda19c09fbc24a0f4e78 ""
   "slike/very-connect-korisnici.png" 1527534368 286036 48769f50085e6b4a13a2fe227c9b7a45 ""
-  "zavrsni.aux" 1527550008 2499 06f43c698ac7bd31ae9d74a7389fe65a ""
-  "zavrsni.bbl" 1527549778 275 de5ffaf5b665b622658d80bed97ba2a5 "bibtex zavrsni"
-  "zavrsni.tex" 1527550008 6478 78a7bff07e3a2b762771a4d048940730 ""
-  "zavrsni.toc" 1527550008 951 39e62d1d0c3a08e8457fa7e66551c1da ""
+  "zavrsni.aux" 1527602653 2499 06f43c698ac7bd31ae9d74a7389fe65a ""
+  "zavrsni.bbl" 1527602652 275 de5ffaf5b665b622658d80bed97ba2a5 "bibtex zavrsni"
+  "zavrsni.tex" 1527602649 6483 3b426582771ef4aa4f722b28aec8cfd5 ""
+  "zavrsni.toc" 1527602653 951 39e62d1d0c3a08e8457fa7e66551c1da ""
   (generated)
+  "zavrsni.toc"
+  "zavrsni.aux"
   "zavrsni.log"
   "zavrsni.pdf"
-  "zavrsni.aux"
-  "zavrsni.toc"

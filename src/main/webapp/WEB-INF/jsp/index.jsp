@@ -1,4 +1,5 @@
 <%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags" %>
+<%@ taglib prefix="spring" uri="http://www.springframework.org/tags" %>
 <%@page contentType="text/html" pageEncoding="UTF-8" %>
 <!DOCTYPE html>
 <html>
@@ -48,95 +49,104 @@
                 </div>
                 <sec:authorize access="hasRole('ADMINISTRATOR')">
                     <div class="ui right rail">
+                        <div class="header">Administratorski panel</div>
                         <div class="ui vertical huge menu">
                             <div class="item">
-                                <div class="header">Administratorski panel</div>
                                 <form action="/posts/newPost" method="get">
                                     <button type="submit" class="ui secondary button">Novi post</button>
+                                </form>
+                            </div>
+                            <div class="item">
+                                <form action="/users" method="get">
+                                    <button type="submit" class="ui secondary button">Popis svih korisnika</button>
                                 </form>
                             </div>
                         </div>
                     </div>
                 </sec:authorize>
                 <div id="posts" class="ui divided items">
-                <script id="postsTemplate" type="text/x-handlebars-template">
-                {{#each this}}
+                    <script id="postsTemplate" type="text/x-handlebars-template">
+        {{#each this}}
+        <div class="item">
+        
+            <div class="content">
+                <a class="header" href="/posts/{{postId}}">{{title}}</a>
+                <div class="meta">
+                    <span class="cinema">Adresa: {{address}}</span>
+                </div>
+                <div class="meta">
+                    <span class="cinema">Kreirano: {{ formatTime createDate "DD-MM-YYYY, HH:mm" }}</span>
+                    <span class="cinema">Zadnje modificirano: {{ formatTime modifyDate "DD-MM-YYYY, HH:mm" }}</span>
+                </div>
+                <div class="meta">
+                    <p class="ui long tag label">Tip: {{ postTypeConversion postType }}</p>
+                </div>
+                <div class="description">
+                    <p>{{shortDescription}}</p>
+                </div>
+                <sec:authorize access="hasRole('ADMINISTRATOR')">
+                    <div class="extra">
+                        <form action="/posts/{{postId}}/delete" method="post">
+                            <button type="submit" class="negative tiny ui right floated default button">Obriši</button>
+                        </form>
+                        
+                        <form action="/posts/{{postId}}/edit" method="get">
+                            <button type="submit" class="ui right floated default button">Uređivanje posta</button>
+                        </form>
+                    </div>
+                </sec:authorize>
                 <div class="item">
-                
-                    <div class="content">
-                        <a class="header">{{title}}</a>
-                        <div class="meta">
-                            <span class="cinema">Adresa: {{address}}</span>
+                    <div class="ui accordion">
+                        <div class="active title">
+                            <i class="dropdown icon"></i>
+                            Više...
                         </div>
-                        <div class="meta">
-                            <span class="cinema">Kreirano: {{ formatTime createDate "DD-MM-YYYY, HH:mm" }}</span>
-                            <span class="cinema">Zadnje modificirano: {{ formatTime modifyDate "DD-MM-YYYY, HH:mm" }}</span>
-                        </div>
-                        <div class="meta">
-                            <span class="cinema">Tip: {{ postTypeConversion postType }}</span>
-                        </div>
-                        <div class="description">
-                            <p>{{shortDescription}}</p>
-                        </div>
-                        <div class="item">
-                            <div class="ui accordion">
-                                <div class="active title">
-                                    <i class="dropdown icon"></i>
-                                    Više...
-                                </div>
-                                <div class="content">
-                                    <p>{{longDescription}}</p>
-                                    <hr>
-                                    <div class="ui comments">
-                                        {{#each comments}}
-                                        <div class="comment">
-                                            <div class="content">
-                                                <a class="author">{{user.name}} {{user.surname}}</a>
-                                                <div class="metadata">
-                                                    <span class="date">{{formatTime date "DD-MM-YYYY, HH:mm"}}</span>
-                                                </div>
-                                            </div>
+                        <div class="content">
+                            <p>{{longDescription}}</p>
+                            <hr>
+                            <div class="ui comments">
+                                {{#each comments}}
+                                <div class="comment">
+                                    <div class="content">
+                                        <a class="author">{{user.firstName}} {{user.lastName}}</a>
+                                        <div class="metadata">
+                                            <span class="date">{{formatTime date "DD-MM-YYYY, HH:mm"}}</span>
                                         </div>
-                                        <div class="text">
-                                            {{message}}
-                                        </div>
-                                        {{/each}}
-                                        <sec:authorize access="isAuthenticated()">
-                                            <form method="post" action="/posts/{{postId}}/comment" class="ui reply form">
-                                                <div class="header">Komentiraj</div>
-                                                <div class="field">
-                                                    <textarea name="message"></textarea>
-                                                </div>
-                                                <button type="submit" class="ui blue labeled submit icon button">
-                                                    <i class="icon edit"></i> Komentiraj
-                                                </button>
-                                            </form>
-                                        </sec:authorize>
-                                        <sec:authorize access="isAnonymous()">
-                                            <div class="ui small message">
-                                                <a href="/register">Registrirajte se</a> ili
-                                                <a href="login">prijavite</a> kako biste mogli komentirati.
-                                            </div>
-                                        </sec:authorize>
-                                        <sec:authorize access="hasRole('ADMINISTRATOR')">
-                                            <form action="/posts/{{postId}}/delete" method="post">
-                                                <button type="submit" class="ui secondary button">Obriši</button>
-                                            </form>
-                                            <form action="/posts/{{postId}}/edit" method="get">
-                                                <button type="submit" class="ui secondary button">Uređivanje posta</button>
-                                            </form>
-                                        </sec:authorize>
                                     </div>
                                 </div>
-                
+                                <div class="text">
+                                    {{message}}
+                                </div>
+                                {{/each}}
+                                <sec:authorize access="isAuthenticated()">
+                                    <form method="post" action="/posts/{{postId}}/comment" class="ui reply form">
+                                        <div class="header">Komentiraj</div>
+                                        <div class="field">
+                                            <textarea name="message"></textarea>
+                                        </div>
+                                        <button type="submit" class="ui blue labeled submit icon button">
+                                            <i class="icon edit"></i> Komentiraj
+                                        </button>
+                                    </form>
+                                </sec:authorize>
+                                <sec:authorize access="isAnonymous()">
+                                    <div class="ui small message">
+                                        <a href="/register">Registrirajte se</a> ili
+                                        <a href="login">prijavite</a> kako biste mogli komentirati.
+                                    </div>
+                                </sec:authorize>
                             </div>
+                                
                         </div>
+        
                     </div>
                 </div>
-                </div>
-                
-                {{/each}}
-            </script>
+            </div>
+        </div>
+        </div>
+        
+        {{/each}}
+    </script>
                 </div>
             </div>
         </div>

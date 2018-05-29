@@ -46,8 +46,7 @@ public class PostController {
 
 		allPosts.sort(new Comparator<Post>() {
 			public int compare(Post p1, Post p2) {
-				return 1;
-				// return -p1.getCreateDate().compareTo(p2.getCreateDate());
+				return -p1.getCreateDate().compareTo(p2.getCreateDate());
 			}
 		});
 
@@ -68,6 +67,16 @@ public class PostController {
 		}
 
 		return allPosts;
+	}
+
+	@RequestMapping(value = "/{id}", method = RequestMethod.GET)
+	public String getPost(Model model, @PathVariable UUID id) {
+
+		Post post = pr.getOne(id);
+		model.addAttribute("post", post);
+		model.addAttribute("comments", post.getComments());
+
+		return "post";
 	}
 
 	@RequestMapping(value = "/newPost", method = RequestMethod.GET)
@@ -115,7 +124,10 @@ public class PostController {
 		factory.editPostFromForm(pform, post);
 		pr.save(post);
 
-		return "index";
+		model.addAttribute("post", post);
+		model.addAttribute("comments", post.getComments());
+
+		return "post";
 	}
 
 	@RequestMapping(value = "/{id}/delete", method = RequestMethod.POST)
@@ -128,21 +140,28 @@ public class PostController {
 	}
 
 	@RequestMapping(value = "/{id}/comment", method = RequestMethod.POST)
-	@PreAuthorize("hasRole('KORISNIK')")
+	@PreAuthorize("isAuthenticated()")
 	public String createComment(Model model, @PathVariable UUID id, @Valid CommentForm cForm, BindingResult result) {
 		CustomUserDetails userInSession = (CustomUserDetails) SecurityContextHolder.getContext().getAuthentication()
 				.getPrincipal();
-
+				
+		Post post = pr.findOne(id);
+		
 		if (result.hasErrors()) {
-			return "index";
+			model.addAttribute("commentForm", cForm);
+			model.addAttribute("post", post);
+			model.addAttribute("comments", post.getComments());
+			return "post";
 		}
 
 		Comment comment = factory.createCommentFromForm(cForm, userInSession);
-		Post post = pr.findOne(id);
 		post.getComments().add(comment);
 		comment.setPost(post);
-
 		pr.save(post);
-		return "index";
+		
+		model.addAttribute("post", post);
+		model.addAttribute("comments", post.getComments());
+		
+		return "post";
 	}
 }

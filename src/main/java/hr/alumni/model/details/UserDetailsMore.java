@@ -1,8 +1,5 @@
 package hr.alumni.model.details;
 
-import java.text.SimpleDateFormat;
-
-import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.stereotype.Component;
 
 import hr.alumni.model.User;

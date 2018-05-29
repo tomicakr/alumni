@@ -29,3 +29,5 @@ nbdist/
 .project
 bin/
 spring-*/src/main/java/META-INF/MANIFEST.MF
+spring-*/src/main/resources/application.properties
+

@@ -1,9 +1,13 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.16 (TeX Live 2015/Debian) (preloaded format=pdflatex 2018.5.28)  29 MAY 2018 20:28
+This is pdfTeX, Version 3.14159265-2.6-1.40.16 (TeX Live 2015/Debian) (preloaded format=pdflatex 2018.5.28)  30 MAY 2018 00:24
 entering extended mode
  restricted \write18 enabled.
+ file:line:error style messages enabled.
  %&-line parsing enabled.
-**zavrsni.tex
-(./zavrsni.tex
+**/media/tomica/2fa42c9d-6f18-425e-b642-d24e91ac0aaa/home/tomica/git/alumni/Dok
+umentacija/zavrsni.tex
+
+(/media/tomica/2fa42c9d-6f18-425e-b642-d24e91ac0aaa/home/tomica/git/alumni/Doku
+mentacija/zavrsni.tex
 LaTeX2e <2016/02/01>
 Babel <3.9q> and hyphenation patterns for 81 language(s) loaded.
 (./fer.cls
@@ -777,13 +781,13 @@ Package natbib Warning: Empty `thebibliography' environment on input line 8.
 
 ] [11] (./zavrsni.aux) ) 
 Here is how much of TeX's memory you used:
- 5968 strings out of 493029
- 82666 string characters out of 6136234
+ 5969 strings out of 493029
+ 82928 string characters out of 6136234
  157784 words of memory out of 5000000
  9355 multiletter control sequences out of 15000+600000
  58791 words of font info for 77 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
- 43i,6n,40p,840b,350s stack positions out of 5000i,500n,10000p,200000b,80000s
+ 43i,6n,40p,928b,350s stack positions out of 5000i,500n,10000p,200000b,80000s
 {/usr/share/texlive/texmf-dist/fonts/enc/dvips/base/8r.
 enc}</usr/share/texlive/texmf-dist/fonts/type1/urw/courier/ucrro8a.pfb></usr/sh
 are/texlive/texmf-dist/fonts/type1/urw/helvetic/uhvb8a.pfb></usr/share/texlive/

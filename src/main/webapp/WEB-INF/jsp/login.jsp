@@ -1,6 +1,6 @@
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<%@page contentType="text/html" pageEncoding="UTF-8" %>
 <!DOCTYPE html>
+<%@page contentType="text/html" pageEncoding="UTF-8" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <html>
 
 <head>
@@ -12,13 +12,6 @@
     <script src="../../scripts/jQuery/jquery-3.2.1.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.2.13/semantic.min.js"></script>
     <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.2.13/semantic.min.css">
-    <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/styles/global.css" />
-    <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/styles/index.css">
-    <script type="text/javascript">
-        if (screen.width <= 800 || $(window).width() <= 800) {
-            window.location.href = "${pageContext.request.contextPath}/mobile";
-        }
-    </script>
 </head>
 
 <body>

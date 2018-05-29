@@ -30,3 +30,4 @@ nbdist/
 bin/
 spring-*/src/main/java/META-INF/MANIFEST.MF
 
+application.properties

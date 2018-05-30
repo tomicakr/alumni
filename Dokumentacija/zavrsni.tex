@@ -1,6 +1,7 @@
 \documentclass[times, utf8, zavrsni]{fer}
 \usepackage{booktabs}
 \usepackage[section]{placeins}
+\usepackage{float		}
 
 
 \begin{document}
@@ -9,7 +10,7 @@
 \thesisnumber{000}
 
 % TODO: Navedite naslov rada.
-\title{PROGRAMSKA PODRŠKA ZA SVRŠENIKE}
+\title{Programska podrška za svršenike}
 
 % TODO: Navedite vaše ime i prezime.
 \author{Tomislav Kravaršćan}
@@ -38,7 +39,7 @@ Neki od njihovih klijenata za rješenje upravljanja svršenicima su Longwood Uni
 
 Svako rješenje je napravljeno za preko tisuću korisnika, početna cijena je pet tisuća dolara godišnje, te je ponuđen besplatni probni period.
 
-\begin{figure}[htb]
+\begin{figure}[H]
 	\centering
 	\includegraphics[width=13cm]{slike/izgledUCLAgraduwayRjesenja.png}
 	\caption{Izgled UCLA Graduway rješenja}
@@ -48,14 +49,14 @@ Svako rješenje je napravljeno za preko tisuću korisnika, početna cijena je pe
 \section{VeryConnect}
 VeryConnect je nešto manje popularna platforma za upravljanje svršenicima, ali sa jednako opširnim funkcionalnostima. Ima znatno manji broj klijenata od kojih je samo jedno sveučilište, University of Glasgow. Također ima neku početnu cijenu koja za razliku od Graduway-a nije javno vidljiva, a dodatne funkcionalnosti se naplaćuju zasebno.
 
-\begin{figure}[!htb]
+\begin{figure}[H]
 	\centering
 	\includegraphics[width=13cm]{slike/very-connect-korisnici.png}
 	\caption{VeryConnect - pregled korisnika}
 	\label{fig:veryconn-users}
 \end{figure}
 
-\begin{figure}[!htb]
+\begin{figure}[H]
 	\centering
 	\includegraphics[width=13cm]{slike/very-connect-dogadaji.png}
 	\caption{VeryConnect - pregled događaja}
@@ -65,7 +66,7 @@ VeryConnect je nešto manje popularna platforma za upravljanje svršenicima, ali
 \section{Hiverbrite}
 Hiverbrite je također platforma sa vrlo opširnim funkcionalnostima.
 
-\begin{figure}[!htb]
+\begin{figure}[H]
 	\centering
 	\includegraphics[width=13cm]{slike/hiverbrite-upravljanje.png}
 	\caption{Izgled Hiverbrite stranice za upravljanje zajednicom}
@@ -80,19 +81,18 @@ Funkcionalni zahtjevi su izjavljeni u prirodnom jeziku u obliku slučajeva kori�
 
  
 \begin{itemize}
-	\item Pregled novosti – korisnik
-	\item Pregled događaja – korisnik
-	\item Pregled svih korisnika – korisnik
-	\item Pregled ponuda poslova – korisnik
-	\item Pregled informacija o zajednici – korisnik
-	\item Izrada korisničkog računa – korisnik
-	\item Brisanje korisničkog računa – korisnik 
-	\item Prijava na sustav – korisnik 
-	\item Odjava sa sustava – korisnik
-	\item Dodavanje novosti – administrator
-	\item Dodavanje događaja – administrator 
-	\item Dodavanje ponude posla – administrator
-	\item Dodavanje informacija o zajednici – administrator 
+	\item Pregled postova - korisnik
+	\item Dodavanje posta - administrator
+	\item Brisanje posta - administrator
+	\item Uređivanje posta - administrator
+	\item Filtriranje postova po tipu - korisnik
+	\item Pregled korisničkog računa - korisnik
+	\item Dodavanje korisničkog računa (registracija) - anonimni korisnik
+	\item Brisanje korisničkog računa - korisnik 
+	\item Uređivanje korisničkog računa - korisnik
+ 	\item Pregled svih korisnika - administrator
+	\item Prijava na sustav - korisnik 
+	\item Odjava sa sustava - korisnik
 \end{itemize}
 
 \section{Nefunkcionalni zahtjevi}
@@ -101,6 +101,7 @@ Nefunkcionalni zahtjevi su sljedeći:
 \begin{itemize}
 	\item Sustav mora podržavati istodobni rad više korisnika
 	\item Sustav mora biti otporan na kritične pogreške
+	\item Sustav mora biti otporan na XSS ranjivosti
 	\item Sustav mora biti ostvaren MVC arhitekturom kao web aplikacija
 	\item Sustav mora biti u mogućnosti spremati podatke u bazu podataka
 \end{itemize}
@@ -120,7 +121,7 @@ Zaključak.
 
 \begin{sazetak}
 	Sažetak na hrvatskom jeziku.
-	
+		
 	\kljucnerijeci{Ključne riječi, odvojene zarezima.}
 \end{sazetak}
 
@@ -128,7 +129,7 @@ Zaključak.
 \engtitle{Title}
 \begin{abstract}
 	Abstract.
-	
+		
 	\keywords{Keywords.}
 \end{abstract}
 

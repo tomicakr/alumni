@@ -1,9 +1,9 @@
-PWD /media/tomica/2fa42c9d-6f18-425e-b642-d24e91ac0aaa/home/tomica/git/alumni/Dokumentacija
+PWD /home/tomica/git/alumni/Dokumentacija
 INPUT /etc/texmf/web2c/texmf.cnf
 INPUT /usr/share/texmf/web2c/texmf.cnf
 INPUT /usr/share/texlive/texmf-dist/web2c/texmf.cnf
 INPUT /var/lib/texmf/web2c/pdftex/pdflatex.fmt
-INPUT /media/tomica/2fa42c9d-6f18-425e-b642-d24e91ac0aaa/home/tomica/git/alumni/Dokumentacija/zavrsni.tex
+INPUT /home/tomica/git/alumni/Dokumentacija/zavrsni.tex
 OUTPUT zavrsni.log
 INPUT fer.cls
 INPUT fer.cls
@@ -93,6 +93,8 @@ INPUT /usr/share/texlive/texmf-dist/tex/latex/booktabs/booktabs.sty
 INPUT /usr/share/texlive/texmf-dist/tex/latex/booktabs/booktabs.sty
 INPUT /usr/share/texlive/texmf-dist/tex/latex/placeins/placeins.sty
 INPUT /usr/share/texlive/texmf-dist/tex/latex/placeins/placeins.sty
+INPUT /usr/share/texlive/texmf-dist/tex/latex/float/float.sty
+INPUT /usr/share/texlive/texmf-dist/tex/latex/float/float.sty
 INPUT zavrsni.aux
 INPUT zavrsni.aux
 OUTPUT zavrsni.aux
@@ -206,13 +208,13 @@ INPUT /usr/share/texlive/texmf-dist/fonts/tfm/adobe/times/ptmb8r.tfm
 INPUT slike/very-connect-korisnici.png
 INPUT ./slike/very-connect-korisnici.png
 INPUT ./slike/very-connect-korisnici.png
-INPUT slike/very-connect-dogadaji.png
-INPUT ./slike/very-connect-dogadaji.png
-INPUT ./slike/very-connect-dogadaji.png
 INPUT /usr/share/texlive/texmf-dist/fonts/vf/adobe/times/ptmb8t.vf
 INPUT /usr/share/texlive/texmf-dist/fonts/tfm/adobe/times/ptmb8r.tfm
 INPUT /usr/share/texlive/texmf-dist/fonts/vf/adobe/times/ptmr8t.vf
 INPUT /usr/share/texlive/texmf-dist/fonts/tfm/adobe/times/ptmr8r.tfm
+INPUT slike/very-connect-dogadaji.png
+INPUT ./slike/very-connect-dogadaji.png
+INPUT ./slike/very-connect-dogadaji.png
 INPUT slike/hiverbrite-upravljanje.png
 INPUT ./slike/hiverbrite-upravljanje.png
 INPUT ./slike/hiverbrite-upravljanje.png

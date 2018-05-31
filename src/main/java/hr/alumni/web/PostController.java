@@ -38,6 +38,7 @@ public class PostController {
 
 	@Autowired
 	private FormFactory factory;
+	
 
 	@ResponseBody
 	@RequestMapping(value = "/all", method = RequestMethod.GET)

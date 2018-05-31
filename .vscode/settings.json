@@ -1,11 +1,10 @@
 {
-    "editor.formatOnSave": false,
-    "html.format.enable": true,
-    "html.format.indentHandlebars": true,
-<<<<<<< HEAD
-    "html.format.maxPreserveNewLines": 0,
-    "java.configuration.updateBuildConfiguration": "automatic"
-=======
-    "html.format.maxPreserveNewLines": 0
->>>>>>> 3bcf26512a1a8adf6f997a55f5f812e44b8d47c8
+  "editor.formatOnSave": false,
+  "html.format.enable": true,
+  "html.format.indentHandlebars": true,
+  "html.format.maxPreserveNewLines": 0,
+  "java.configuration.updateBuildConfiguration": "automatic",
+  "[Log]": {
+    "editor.fontSize": 10
+  }
 }

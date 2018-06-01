@@ -17,16 +17,12 @@
 <body>
     <%@ include file="../partials/header.jsp" %>
     <div class="ui container">
+        <div class="ui compact menu inverted">
+            <a class="item" href="/categories/new" >
+                <i class="plus icon"></i>Nova kategorija
+            </a>
+        </div>
         <div class="ui segment">
-            <div class="ui right rail">
-                <div class="ui vertical huge menu">
-                    <div class="item">
-                        <form action="/categories/new" method="get">
-                            <button type="submit" class="ui secondary button">Nova kategorija</button>
-                        </form>
-                    </div>
-                </div>
-            </div>
 
             <h1 class="ui massive center aligned header">Kategorije</h1>
                 <table class="ui very padded table">
@@ -51,6 +47,8 @@
         </div>
     </div>
     <script src="${pageContext.request.contextPath}/scripts/category.js"></script>
+    <script type="text/javascript" src="../../scripts/includes/global.js"></script>
+
 </body>
 
 </html>

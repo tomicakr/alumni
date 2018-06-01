@@ -59,7 +59,8 @@
         </table>
     </div>
 
-<script src="${pageContext.request.contextPath}/scripts/global.js"></script>
 <script src="${pageContext.request.contextPath}/scripts/profile.js"></script>
+<script type="text/javascript" src="../../scripts/includes/global.js"></script>
+
 </body>
 </html>

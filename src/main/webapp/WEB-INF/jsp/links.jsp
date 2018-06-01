@@ -6,7 +6,7 @@
 
 <head>
     <meta charset="utf-8">
-    <title>Alumni - Popis linkova</title>
+    <title>Alumni - Popis poveznica</title>
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
     <script src="../../scripts/jQuery/jquery-3.2.1.min.js"></script>
@@ -17,18 +17,13 @@
 <body>
     <%@ include file="../partials/header.jsp" %>
     <div class="ui container">
+        <div class="ui compact menu inverted">
+            <a class="item" href="/links/new">
+                <i class="plus icon"></i>Nova poveznica
+            </a>
+        </div>
         <div class="ui segment">
-            <div class="ui right rail">
-                <div class="ui vertical huge menu">
-                    <div class="item">
-                        <form action="/links/new" method="get">
-                            <button type="submit" class="ui secondary button">Novi link</button>
-                        </form>
-                    </div>
-                </div>
-            </div>
-
-            <h1 class="ui massive center aligned header">Linkovi</h1>
+            <h1 class="ui massive center aligned header">Poveznice</h1>
                 <table class="ui very padded table">
                     <thead>
                         <tr>
@@ -53,6 +48,8 @@
         </div>
     </div>
     <script src="${pageContext.request.contextPath}/scripts/link.js"></script>
+    <script type="text/javascript" src="../../scripts/includes/global.js"></script>
+
 </body>
 
 </html>

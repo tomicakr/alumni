@@ -43,13 +43,23 @@ function paginate(contentId,pagerId,perPage) {
 	}
 
 	content.innerHTML = '';
-	for (var i = 0; i < elements[1].length; i++) {
-		content.appendChild(elements[1][i]);
+	if(elements[1]) {
+
+		for (var i = 0; i < elements[1].length; i++) {
+			content.appendChild(elements[1][i]);
+		}
+		for (var i = 0; i < document.getElementsByClassName('pager-link').length; i++) {
+			document.getElementsByClassName('pager-link')[i].setAttribute('class','pager-link');
+		}
+	} else {
+		content.innerHTML = "<p>Nema postova</p>"
 	}
-	for (var i = 0; i < document.getElementsByClassName('pager-link').length; i++) {
-		document.getElementsByClassName('pager-link')[i].setAttribute('class','pager-link');
+
+	var link1 = document.getElementById('pager-link-1');
+	
+	if(link1){
+		document.getElementById('pager-link-1').setAttribute('class','pager-link pager-link-selected')
 	}
-	//document.getElementById('pager-link-1').setAttribute('class','pager-link pager-link-selected')
 	return false;
 
 }

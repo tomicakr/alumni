@@ -39,6 +39,8 @@
     </div>
 
     <script src="../../scripts/login.js"></script>
+    <script type="text/javascript" src="../../scripts/includes/global.js"></script>
+
 </body>
 
 </html>

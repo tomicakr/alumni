@@ -32,13 +32,14 @@
 <body>
     <%@ include file="../partials/header.jsp" %>
         <div class="ui container">
+            <div class="ui massive center aligned header">Arhiva postova</div>
             <div class="ui dropdown item">
                 <i class="filter icon"></i>
                 <span id="ftext">Sve</span>
                 <i class="dropdown icon"></i>
                 <div class="menu" id="categories">
-                    <a class="item" onclick="filterBy(null)">
-                        <i class="clipboard list icon"></i>Svi postovi
+                    <a class="item" onclick="filterArchivedBy(null)">
+                        <i class="clipboard list icon"></i>Svi arhivirani postovi
                     </a>
                 </div>
             </div>
@@ -139,10 +140,11 @@
         </div>
         <script src="../../scripts/includes/moment.js"></script>
         <script src="../../scripts/includes/handlebars-v4.0.11.js"></script>
-        <script src="../../scripts/index.js"></script>
         <script src="../../scripts/post.js"></script>
+        <script src="../../scripts/archive.js"></script>
         <script type="text/javascript" src="../../scripts/includes/paginate.js"></script>
         <script type="text/javascript" src="../../scripts/includes/global.js"></script>
+
 </body>
 
 </html>

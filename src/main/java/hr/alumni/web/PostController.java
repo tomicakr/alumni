@@ -69,6 +69,12 @@ public class PostController {
 		return archived;
 	}
 
+	@GetMapping(value="/archive")
+	public String archive() {
+		return "archive";
+	}
+	
+
 	@ResponseBody
 	@PostMapping(value = "/{id}/archive")
 	public String archive(@PathVariable UUID id) {
@@ -83,16 +89,19 @@ public class PostController {
 
 	@ResponseBody
 	@RequestMapping(value = "/all", method = RequestMethod.GET)
-	public List<Post> allPosts(Model model, @RequestParam(value = "type", required = false) String type) {
+	public List<Post> allPosts(Model model, @RequestParam(value = "type", required = false) String type, @RequestParam(value = "archived", required = false) Integer archived) {
 		List<Post> all = pr.findAll();
 
 		List<Post> allPosts = new ArrayList<>();
 
-		all.forEach(post -> {
-			if (!post.getArchived()) {
-				allPosts.add(post);
-			}
-		});
+		if(archived != null && archived.equals(1)) {
+			allPosts = all.stream().filter((p) -> p.getArchived())
+			.collect(Collectors.toList());
+		} else {
+			allPosts = all.stream().filter((p) -> !p.getArchived())
+			.collect(Collectors.toList());
+		}
+	
 
 		allPosts.sort(new Comparator<Post>() {
 			public int compare(Post p1, Post p2) {

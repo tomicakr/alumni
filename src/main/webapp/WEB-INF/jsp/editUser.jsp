@@ -78,6 +78,8 @@
         </spring:hasBindErrors>
 
         <script src="../../scripts/editUser.js"></script>
+        <script type="text/javascript" src="../../scripts/includes/global.js"></script>
+
     </div>
 </body>
 

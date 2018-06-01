@@ -109,6 +109,8 @@
         <!-- Library -->
         <script src="/vendor/wysi/dist/wysihtml5-0.3.0.min.js"></script>
         <script src="../../scripts/editPost.js"></script>
+        <script type="text/javascript" src="../../scripts/includes/global.js"></script>
+
 </body>
 
 </html>

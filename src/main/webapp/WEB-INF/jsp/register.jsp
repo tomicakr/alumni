@@ -21,13 +21,20 @@
     <%@ include file="../partials/header.jsp" %>
 
     <div class="ui container">
+        <div class="ui info message">
+                <i class="close icon"></i>
+                <div class="header">
+                    Napomena
+                </div>
+                    Polja označena sa zvjezdicom(*) su obavezna
+        </div>
         <form class="ui form" action="/register" method="post">
             <div class="field">
-                <label>Ime</label>
+                <label>Ime*</label>
                 <input type="text" name="firstName" id="first-name" value="${registrationForm.firstName}">
             </div>
             <div class="field">
-                <label>Prezime</label>
+                <label>Prezime*</label>
                 <input type="text" name="lastName" id="last-name" value="${registrationForm.lastName}">
             </div>
             <div class="field">
@@ -35,7 +42,7 @@
                 <input type="number" name="phone" id="phone-number" value="${registrationForm.phone}">
             </div>
             <div class="field">
-                <label>Email</label>
+                <label>Email*</label>
                 <input type="email" name="email" id="email" value="${registrationForm.email}">
             </div>
             <div class="field">
@@ -47,15 +54,15 @@
                 <input type="date" name="birthday" id="birthday" value="${registrationForm.birthday}">
             </div>
             <div class="field">
-                <label>Datum diplomiranja</label>
+                <label>Datum diplomiranja*</label>
                 <input type="date" name="graduation" id="graduation" value="${registrationForm.graduation}">
             </div>
             <div class="field">
-                <label>Lozinka</label>
+                <label>Lozinka*</label>
                 <input type="password" name="password" id="password" value="${registrationForm.password}">
             </div>
             <div class="field">
-                <label>Ponovi lozinku</label>
+                <label>Ponovi lozinku*</label>
                 <input type="password" name="passwordConfirm" id="password-confirm" value="${registrationForm.passwordConfirm}">
             </div>
             <button class="ui button" type="submit">Submit</button>
@@ -75,6 +82,8 @@
         </spring:hasBindErrors>
 
         <script src="../../scripts/register.js"></script>
+        <script type="text/javascript" src="../../scripts/includes/global.js"></script>
+
     </div>
 </body>
 

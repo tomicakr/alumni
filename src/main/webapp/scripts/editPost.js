@@ -25,8 +25,6 @@ $(document).ready(function () {
                 selected: $("[id='" + item.name + "']").val() ? true : false
             }));
         });
-    }).then(() => {
-        window.location.reload();
     });
 }
 )

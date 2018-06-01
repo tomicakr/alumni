@@ -11,5 +11,43 @@
 \contentsline {section}{\numberline {4.1}Baza podataka}{8}
 \contentsline {subsection}{\numberline {4.1.1}Konceptualni model baze podataka}{8}
 \contentsline {subsection}{\numberline {4.1.2}Fizi\IeC {\v c}ki model baze podataka}{8}
-\contentsline {chapter}{\numberline {5}Zaklju\IeC {\v c}ak}{9}
-\contentsline {chapter}{Literatura}{10}
+\contentsline {chapter}{\numberline {5}Implementirane funkcionalnosti}{9}
+\contentsline {section}{\numberline {5.1}Navigacijska traka}{10}
+\contentsline {subsection}{\numberline {5.1.1}Navigacijska traka za anonimnog(ne prijavljenog) korisnika}{10}
+\contentsline {subsection}{\numberline {5.1.2}Navigacijska traka za prijavljenog korisnika}{10}
+\contentsline {subsubsection}{Registracija na sustav}{10}
+\contentsline {subsubsection}{Prijava na sustav}{10}
+\contentsline {subsubsection}{Odjava sa sustava}{10}
+\contentsline {section}{\numberline {5.2}Upravljanje korisnicima}{10}
+\contentsline {subsection}{\numberline {5.2.1}Pregled svih korisnika}{10}
+\contentsline {subsection}{\numberline {5.2.2}Brisanje korisni\IeC {\v c}kog ra\IeC {\v c}una}{10}
+\contentsline {subsection}{\numberline {5.2.3}Ure\IeC {\dj }ivanje korisni\IeC {\v c}kog ra\IeC {\v c}una}{10}
+\contentsline {subsection}{\numberline {5.2.4}Pregled korisni\IeC {\v c}kog ra\IeC {\v c}una}{10}
+\contentsline {subsection}{\numberline {5.2.5}Promijena uloge korisnika}{10}
+\contentsline {section}{\numberline {5.3}Upravljanje linkovima}{10}
+\contentsline {subsection}{\numberline {5.3.1}Pregled svih linkova}{10}
+\contentsline {subsection}{\numberline {5.3.2}Dodavanje novog linka}{10}
+\contentsline {subsection}{\numberline {5.3.3}Ure\IeC {\dj }ivanje linka}{10}
+\contentsline {subsection}{\numberline {5.3.4}Brisanje linka}{10}
+\contentsline {section}{\numberline {5.4}Upravljanje kategorijama}{10}
+\contentsline {subsection}{\numberline {5.4.1}Pregled svih kategorija}{10}
+\contentsline {subsection}{\numberline {5.4.2}Dodavanje nove kategorije}{10}
+\contentsline {subsection}{\numberline {5.4.3}Ure\IeC {\dj }ivanje kategorije}{10}
+\contentsline {subsection}{\numberline {5.4.4}Brisanje kategorije}{10}
+\contentsline {section}{\numberline {5.5}Upravljanje postovima}{10}
+\contentsline {subsection}{\numberline {5.5.1}Pregled svih postova}{10}
+\contentsline {subsection}{\numberline {5.5.2}Filtriranje postova}{10}
+\contentsline {subsection}{\numberline {5.5.3}Dodavanje novog posta}{10}
+\contentsline {subsection}{\numberline {5.5.4}Ure\IeC {\dj }ivanje posta}{10}
+\contentsline {subsection}{\numberline {5.5.5}Brisanje posta}{10}
+\contentsline {subsection}{\numberline {5.5.6}Arhiviranje posta}{10}
+\contentsline {subsection}{\numberline {5.5.7}Komentari}{10}
+\contentsline {subsubsection}{Dodavanje novog komentara}{10}
+\contentsline {subsubsection}{Brisanje komentara}{10}
+\contentsline {section}{\numberline {5.6}Po\IeC {\v c}etna stranica}{10}
+\contentsline {subsection}{\numberline {5.6.1}Po\IeC {\v c}etna stranica za administratora}{11}
+\contentsline {section}{\numberline {5.7}Sustav pretplata}{11}
+\contentsline {subsection}{\numberline {5.7.1}Dodavanje i a\IeC {\v z}uriranje pretplata}{11}
+\contentsline {subsection}{\numberline {5.7.2}Slanje po\IeC {\v s}te prilikom dodavanja novog posta}{11}
+\contentsline {chapter}{\numberline {6}Zaklju\IeC {\v c}ak}{12}
+\contentsline {chapter}{Literatura}{13}

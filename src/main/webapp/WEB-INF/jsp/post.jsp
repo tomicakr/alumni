@@ -37,21 +37,17 @@
             </div>
         </spring:hasBindErrors>
         <div class="ui container">
-            <div class="ui segment">
-                <div class="ui right rail">
-                        <sec:authorize access="hasRole('ADMINISTRATOR')">
-                            <div class="ui vertical huge menu">
-                                <div class="item">
-                                    <form action="/posts/${post.postId}/edit" method="get">
-                                        <button type="submit" class="ui default button">Uređivanje posta</button>
-                                    </form>
-                                </div>
-                                <div class="item">
-                                    <button onclick="deletePost('${post.postId}')" class="ui red button">Obriši</button>
-                                </div>
-                            </div>
-                        </sec:authorize>
+            <sec:authorize access="hasRole('ADMINISTRATOR')">
+                <div class="ui compact menu inverted">
+                    <a class="active green item" title="Uredi" href="/posts/${post.postId}/edit">
+                        <i class="edit icon"></i>
+                    </a>
+                    <a class="active red item" href="" title="Obriši" onclick="deletePost('${post.postId}')">
+                        <i class="trash icon"></i>
+                    </a>
                 </div>
+            </sec:authorize>
+            <div class="ui segment">
                 <div class="ui items">
                     <div class="item">
                         <div class="content">
@@ -83,7 +79,7 @@
                                         <div class="content">
                                             <a class="author">${comment.user.firstName} ${comment.user.lastName}</a>
                                             <div class="metadata">
-                                                <span class="date">${comment.date}</span>
+                                                <span class="date"><fmt:formatDate value="${comment.date}" pattern="dd-MM-yyyy, HH:mm" /></span>
                                             </div>
                                         </div>
                                     </div>
@@ -117,6 +113,8 @@
         
     </div>
     <script src="../../scripts/post.js"></script>
+    <script type="text/javascript" src="../../scripts/includes/global.js"></script>
+
 </body>
 
 </html>

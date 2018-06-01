@@ -64,6 +64,7 @@ public class EmailServiceImpl {
 		properties.put("mail.smtp.port", 587);
 		properties.put("mail.smtp.auth", "true");
 		properties.put("mail.smtp.starttls.enable", "true");
+		properties.put("mail.mime.charset", "utf-8");
 
 		// creates a new session with an authenticator
 		Authenticator auth = new Authenticator() {
@@ -75,15 +76,15 @@ public class EmailServiceImpl {
 		Session session = Session.getInstance(properties, auth);
 
 		// creates a new e-mail message
-		Message msg = new MimeMessage(session);
+		MimeMessage msg = new MimeMessage(session);
 
 		try {
 			msg.setFrom(new InternetAddress("no.reply.alumni@gmail.com"));
 			InternetAddress[] toAddresses = { new InternetAddress(to) };
 			msg.setRecipients(Message.RecipientType.TO, toAddresses);
-			msg.setSubject(subject);
+			msg.setSubject(subject, "UTF-8");
 			msg.setSentDate(new Date());
-			msg.setContent(generirajMailText(post), "text/html");
+			msg.setContent(generirajMailText(post), "text/html;charset=\"utf-8\"");
 
 			// sends the e-mail
 			Transport.send(msg);
@@ -95,13 +96,13 @@ public class EmailServiceImpl {
 	private String generirajMailText(Post post) {
 		String text = "";
 
-		text += "Adresa: " + post.getAddress() + "<br>";
-		text += "Kratki opis: " + post.getShortDescription() + "<br>";
+		text += "Adresa: " + post.getAddress() + "<br><hr>";
+		text += "Kratki opis: " + post.getShortDescription() + "<br><hr>";
 		text += "Kategorije: ";
 		for (int i = 0; i < post.getPostCategories().size(); i++) {
-			text += post.getPostCategories().get(i) + " ";
+			text += post.getPostCategories().get(i).getName() + " ";
 		}
-		text+= "<br>";
+		text+= "<br><hr>";
 		text += "Dugi opis: " + post.getLongDescription() + "<br>";
 
 		return text;

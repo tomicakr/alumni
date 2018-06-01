@@ -101,5 +101,13 @@ $(document)
                 onSuccess: () => $('.submit.button').addClass('loading')
             })
             ;
+        $('.message .close')
+            .on('click', function () {
+                $(this)
+                    .closest('.message')
+                    .transition('fade')
+                    ;
+            })
+            ;
     })
     ;

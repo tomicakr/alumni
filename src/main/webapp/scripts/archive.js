@@ -4,19 +4,15 @@ posts = document.getElementById("posts");
 var selectedPage = 0
 var postsWeGot;
 
-
-
-
-
-function filterBy(input) {
+function filterArchivedBy(input) {
    
     if (input === null) {
-        $('#ftext').text('Svi postovi');
-        $.get("/posts/all", function (data) {
+        $('#ftext').text('Svi arhivirani postovi');
+        $.get("/posts/all?archived=1", function (data) {
             posts.innerHTML = "";
 
             var generatedHtml = compiledTemplate(data);
-
+            console.log(data)
             posts.innerHTML = generatedHtml;
             $('.ui.accordion')
                 .accordion()
@@ -25,7 +21,7 @@ function filterBy(input) {
         });
     } else {
         $('#ftext').text(input);
-        $.get("/posts/all?type=" + input, function (data) {
+        $.get("/posts/all?type=" + input + "&archived=1", function (data) {
             posts.innerHTML = "";
 
             var generatedHtml = compiledTemplate(data);
@@ -40,37 +36,36 @@ function filterBy(input) {
 }
 
 $(document).ready(function () {
-    filterBy(null);
-    paginate('posts', 'pager', 3);
     $('.ui.sticky')
-        .sticky({
-            context: '#sticky-context'
-        })
-        ;
-
+    .sticky({
+        context: '#sticky-context'
+    })
+    ;
+    
     $('.ui.accordion')
-        .accordion()
-        ;
+    .accordion()
+    ;
     $('#multi-select')
-        .dropdown()
-        ;
+    .dropdown()
+    ;
     $('.ui.dropdown')
-        .dropdown()
-        ;
+    .dropdown()
+    ;
+    filterArchivedBy(null);
+    paginate('posts', 'pager', 3);
+    $.get("/categories/all", function (data) {
+        console.log("podaci:");
+        console.log(data);
         
-        $.get("/categories/all", function (data) {
-            console.log("podaci:");
-            console.log(data);
-            
-            $.each(data, function (i, category) {
-                $('#categories').append($('<a>', {
-                    class: "item",
-                    value: category.name,
-                    text: category.name
-                }).on("click", () => filterBy(category.name)));
-            });
-            
+        $.each(data, function (i, category) {
+            $('#categories').append($('<a>', {
+                class: "item",
+                value: category.name,
+                text: category.name
+            }).on("click", () => filterArchivedBy(category.name)));
         });
+        
+    });
        
 }
 )

@@ -73,5 +73,32 @@ $(document)
                 onSuccess: () => $('.submit.button').addClass('loading')
             })
             ;
+            $('#multi-select')
+            .dropdown()
+            ;
+        $('.ui.dropdown')
+            .dropdown()
+            ;
+    
+        $('.message .close')
+            .on('click', function () {
+                $(this)
+                    .closest('.message')
+                    .transition('fade')
+                    ;
+            })
+            ;
+    
+    
+        $.get("/categories/all", function (data) {
+    
+            $.each(data, function (i, item) {
+                $('#subscriptions').append($('<option>', {
+                    value: item.name,
+                    text: item.name,
+                    selected: $("[id='" + item.name + "']").val() ? true : false
+                }));
+            });
+        });
     })
     ;

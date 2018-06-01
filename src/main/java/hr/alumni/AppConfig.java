@@ -2,6 +2,7 @@ package hr.alumni;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Properties;
 
 import org.springframework.beans.factory.config.PropertyPlaceholderConfigurer;
 import org.springframework.context.MessageSource;
@@ -10,12 +11,33 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.context.support.ReloadableResourceBundleMessageSource;
 import org.springframework.core.io.ClassPathResource;
 import org.springframework.core.io.Resource;
+import org.springframework.mail.javamail.JavaMailSender;
+import org.springframework.mail.javamail.JavaMailSenderImpl;
 import org.springframework.validation.beanvalidation.LocalValidatorFactoryBean;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurerAdapter;
 
 @Configuration
 public class AppConfig extends WebMvcConfigurerAdapter {
 
+	@Bean
+	public JavaMailSender getMailSender() {
+		JavaMailSenderImpl mailSender = new JavaMailSenderImpl();
+
+		mailSender.setHost("smtp.gmail.com");
+		mailSender.setPort(587);
+		mailSender.setUsername("no.reply.alumni@gmail.com");
+		mailSender.setPassword("alumni123");
+
+		Properties javaMailProperties = new Properties();
+		javaMailProperties.put("mail.smtp.starttls.enable", "true");
+		javaMailProperties.put("mail.smtp.auth", "true");
+		javaMailProperties.put("mail.transport.protocol", "smtp");
+		javaMailProperties.put("mail.debug", "true");// Prints out everything on screen
+
+		mailSender.setJavaMailProperties(javaMailProperties);
+		return mailSender;
+	}
+	
 	@Bean
 	public MessageSource messageSource() {
 		ReloadableResourceBundleMessageSource bean = new ReloadableResourceBundleMessageSource();

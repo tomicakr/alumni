@@ -11,6 +11,9 @@ import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
+import javax.persistence.ManyToMany;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
@@ -20,6 +23,7 @@ import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.Type;
 import org.hibernate.annotations.UpdateTimestamp;
 import org.hibernate.validator.constraints.NotEmpty;
+
 
 @Table(name = "posts")
 @Entity
@@ -55,11 +59,15 @@ public class Post {
 	@UpdateTimestamp
 	private Date modifyDate;
 	
-	@Column
-	private PostType postType;
+	@ManyToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+	@JoinTable(name = "posts_categories", joinColumns = @JoinColumn(name = "post_id", referencedColumnName = "postId"), inverseJoinColumns = @JoinColumn(name = "post_category_id", referencedColumnName = "postCategoryId"))
+	private List<PostCategory> postCategories;
 	
 	@OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
 	private List<Comment> comments;
+
+	@Column(columnDefinition="tinyint(1) default 0")
+	private boolean archived = false;
 	
 	public Post() {
 	}
@@ -104,12 +112,12 @@ public class Post {
 		this.address = address;
 	}
 
-	public PostType getPostType() {
-		return postType;
+	public List<PostCategory> getPostCategories() {
+		return postCategories;
 	}
 
-	public void setPostType(PostType postType) {
-		this.postType = postType;
+	public void setPostCategories(List<PostCategory> postCategories) {
+		this.postCategories = postCategories;
 	}
 
 	public Date getCreateDate() {
@@ -135,5 +143,13 @@ public class Post {
 	public void setComments(List<Comment> comments) {
 		this.comments = comments;
 	}
+
+	public boolean getArchived() {
+		return this.archived;
+	}
 	
+	public void setArchived(boolean archived) {
+		this.archived = archived;
+	}
+
 }

@@ -3,6 +3,7 @@ package hr.alumni.model.form;
 import java.util.UUID;
 
 import org.hibernate.validator.constraints.NotBlank;
+import org.hibernate.validator.constraints.NotEmpty;
 import org.hibernate.validator.constraints.SafeHtml;
 import org.hibernate.validator.constraints.SafeHtml.WhiteListType;
 import org.springframework.stereotype.Component;
@@ -20,11 +21,9 @@ public class PostForm {
     @SafeHtml(whitelistType = WhiteListType.RELAXED)
     private String shortDescription;
 
-    @NotBlank(message = "{post.type.blank}")
-    @SafeHtml(whitelistType = WhiteListType.NONE)
-    private String postType;
+    @NotEmpty(message = "{post.type.blank}")
+    private String[] postCategories;
     
-    @SafeHtml(whitelistType = WhiteListType.RELAXED)
     private String longDescription;
 
     @SafeHtml(whitelistType = WhiteListType.NONE)
@@ -74,12 +73,12 @@ public class PostForm {
         this.address = address;
     }
 
-    public String getPostType() {
-        return postType;
+    public String[] getPostCategories() {
+        return postCategories;
     }
 
-    public void setPostType(String postType) {
-        this.postType = postType;
+    public void setPostCategories(String[] postCategories) {
+        this.postCategories = postCategories;
     }
 
 }

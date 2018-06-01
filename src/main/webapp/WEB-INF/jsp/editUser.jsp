@@ -50,6 +50,16 @@
                 <label>Datum diplomiranja</label>
                 <input type="date" name="graduation" id="graduation" value="${user.graduation}">
             </div>
+            <div class="field">
+                <label>Pretplate</label>
+                <c:forEach var="category" items="${user.subscriptions}" >
+                    <input type="hidden" id="${category.name}" value="${category.name}">
+                </c:forEach>
+                
+                <select id="subscriptions" multiple="" class="ui float dropdown" name="subscriptions">
+                    
+                </select>
+            </div>
             <button class="ui button" type="submit">Ažuriraj</button>
             <a class="ui button" href="/users/${user.userId}">Odustani</a>
         </form>

@@ -1,15 +1,15 @@
 $(document).ready(function () {
 
     var value = $('#postTypeValue').val();
-    if(value == 'EVENT') {
+    if (value == 'EVENT') {
         $('#postType').text('DOGAĐAJ');
     }
 
-    if(value == 'INFO') {
+    if (value == 'INFO') {
         $('#postType').text('INFORMACIJA');
     }
 
-    if(value == 'LECTURE') {
+    if (value == 'LECTURE') {
         $('#postType').text('PREDAVANJE');
     }
 }
@@ -23,6 +23,18 @@ function deletePost(postId) {
             url: '/posts/' + postId + '/delete'
         }).then(() => {
             window.location.replace("/");
+        });
+    }
+}
+
+function archivePost(postId) {
+    var r = confirm("Jeste li sigurni da želite arhivirati post?");
+    if (r == true) {
+        $.ajax({
+            type: 'POST',
+            url: '/posts/' + postId + '/archive'
+        }).then(() => {
+            window.location.reload()
         });
     }
 }

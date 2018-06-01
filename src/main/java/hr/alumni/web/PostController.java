@@ -1,8 +1,10 @@
 package hr.alumni.web;
 
-import java.util.Arrays;
+import java.util.ArrayList;
 import java.util.Comparator;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 import java.util.UUID;
 import java.util.stream.Collectors;
 
@@ -22,12 +24,18 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import hr.alumni.model.Comment;
 import hr.alumni.model.Post;
-import hr.alumni.model.PostType;
+import hr.alumni.model.PostCategory;
 import hr.alumni.model.details.CustomUserDetails;
 import hr.alumni.model.form.CommentForm;
 import hr.alumni.model.form.PostForm;
+import hr.alumni.repository.PostCategoryRepository;
 import hr.alumni.repository.PostRepository;
 import hr.alumni.service.FormFactory;
+import hr.alumni.service.email.EmailServiceImpl;
+
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 
 @Controller
 @RequestMapping("/posts")
@@ -37,13 +45,54 @@ public class PostController {
 	private PostRepository pr;
 
 	@Autowired
+	private PostCategoryRepository pcr;
+
+	@Autowired
 	private FormFactory factory;
-	
+
+	@Autowired
+	private EmailServiceImpl emailService;
+
+	@ResponseBody
+	@GetMapping(value = "/archived")
+	public List<Post> getArchived() {
+		List<Post> allPosts = pr.findAll();
+
+		List<Post> archived = new ArrayList<>();
+
+		allPosts.forEach(post -> {
+			if (post.getArchived()) {
+				archived.add(post);
+			}
+		});
+
+		return archived;
+	}
+
+	@ResponseBody
+	@PostMapping(value = "/{id}/archive")
+	public String archive(@PathVariable UUID id) {
+		Post post = pr.getOne(id);
+
+		post.setArchived(true);
+
+		pr.save(post);
+
+		return "/";
+	}
 
 	@ResponseBody
 	@RequestMapping(value = "/all", method = RequestMethod.GET)
 	public List<Post> allPosts(Model model, @RequestParam(value = "type", required = false) String type) {
-		List<Post> allPosts = pr.findAll();
+		List<Post> all = pr.findAll();
+
+		List<Post> allPosts = new ArrayList<>();
+
+		all.forEach(post -> {
+			if (!post.getArchived()) {
+				allPosts.add(post);
+			}
+		});
 
 		allPosts.sort(new Comparator<Post>() {
 			public int compare(Post p1, Post p2) {
@@ -60,10 +109,11 @@ public class PostController {
 		});
 
 		if (type != null) {
-			List<Post> posts = allPosts.stream().filter((p) -> p.getPostType() == PostType.valueOf(type))
+			PostCategory pc = pcr.findByName(type);
+			System.out.println(pc.getName());
+			List<Post> posts = allPosts.stream().filter((p) -> p.getPostCategories().contains(pc))
 					.collect(Collectors.toList());
 
-			System.out.println(Arrays.toString(posts.toArray()));
 			return posts;
 		}
 
@@ -101,6 +151,16 @@ public class PostController {
 
 		Post post = factory.createPostFromForm(postForm, userInSession);
 
+		Set<String> mailsToSend = new HashSet<>();
+		post.getPostCategories().forEach(category -> {
+			category.getUsers().forEach((user) -> {
+				mailsToSend.add(user.getEmail());
+			});
+		});
+		mailsToSend.forEach((mail) -> {
+			emailService.sendSimpleMessage(mail, "[OBAVIJEST] " + post.getTitle(), post);
+		});
+
 		pr.save(post);
 		return "index";
 	}
@@ -116,7 +176,7 @@ public class PostController {
 	@RequestMapping(value = "/{id}/edit", method = RequestMethod.POST)
 	@PreAuthorize("hasRole('ADMINISTRATOR')")
 	public String updatePost(Model model, @PathVariable UUID id, @Valid PostForm pform, BindingResult result) {
-		if(result.hasErrors()){
+		if (result.hasErrors()) {
 			model.addAttribute("postForm", pform);
 			return "editPost";
 		}
@@ -145,9 +205,9 @@ public class PostController {
 	public String createComment(Model model, @PathVariable UUID id, @Valid CommentForm cForm, BindingResult result) {
 		CustomUserDetails userInSession = (CustomUserDetails) SecurityContextHolder.getContext().getAuthentication()
 				.getPrincipal();
-				
+
 		Post post = pr.findOne(id);
-		
+
 		if (result.hasErrors()) {
 			model.addAttribute("commentForm", cForm);
 			model.addAttribute("post", post);
@@ -159,10 +219,10 @@ public class PostController {
 		post.getComments().add(comment);
 		comment.setPost(post);
 		pr.save(post);
-		
+
 		model.addAttribute("post", post);
 		model.addAttribute("comments", post.getComments());
-		
+
 		return "post";
 	}
 }

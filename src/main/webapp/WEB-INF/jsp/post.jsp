@@ -64,8 +64,10 @@
                                 <span class="cinema">Zadnje modificirano: <fmt:formatDate value="${post.modifyDate}" pattern="dd-MM-yyyy, HH:mm" /></span>
                             </div>
                             <div class="meta">
-                                <input type="hidden" id="postTypeValue" value="${post.postType}">
-                                Tip: <p class="ui label" id="postType"></p>
+                                Kategorije:
+                                <c:forEach var="postcategory" items="${post.postCategories}">
+                                    <span class="ui label" id="postType">${postcategory.name}</span>
+                                </c:forEach>
                             </div>
                             <div class="description">
                                 <p>${post.shortDescription}</p>

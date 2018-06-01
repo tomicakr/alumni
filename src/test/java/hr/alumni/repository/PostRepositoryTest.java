@@ -11,7 +11,6 @@ import org.springframework.test.context.jdbc.SqlConfig;
 import org.springframework.test.context.junit4.SpringRunner;
 
 import hr.alumni.model.Post;
-import hr.alumni.model.PostType;
 
 @RunWith(SpringRunner.class)
 @DataJpaTest
@@ -28,7 +27,7 @@ public class PostRepositoryTest {
 		Post p = new Post();
 		
 		p.setAddress("Unska 3");
-		p.setPostType(PostType.EVENT);
+		//p.setPostType(PostType.EVENT); ovak je bilo prije
 		p.setTitle("Post koji se testira");
 		p.setShortDescription("ovaj se post trenutno testira");
 

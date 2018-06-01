@@ -68,6 +68,10 @@ public class User {
 	@JoinTable(name = "users_roles", joinColumns = @JoinColumn(name = "user_id", referencedColumnName = "userId"), inverseJoinColumns = @JoinColumn(name = "role_id", referencedColumnName = "id"))
 	private List<Role> roles;
 
+	@ManyToMany
+	@JoinTable(name = "users_subscriptions", joinColumns = @JoinColumn(name = "user_id", referencedColumnName = "userId"), inverseJoinColumns = @JoinColumn(name = "post_category_id", referencedColumnName = "postCategoryId"))
+	private List<PostCategory> subscriptions;
+
 	public User() {
 	}
 
@@ -149,6 +153,14 @@ public class User {
 
 	public void setRoles(List<Role> roles) {
 		this.roles = roles;
+	}
+
+	public List<PostCategory> getSubscriptions() {
+		return subscriptions;
+	}
+
+	public void setSubscriptions(List<PostCategory> subscriptions) {
+		this.subscriptions = subscriptions;
 	}
 
 }

@@ -78,7 +78,17 @@
                     <th>Datum diplomiranja</th>
                     <td>${user.graduation}</td>
                 </tr>
-                <tr>
+                <c:if test="${user.subscriptions.size() != 0}">
+                    <tr>
+                        <th>Pretplate</th>
+                        <td>
+                            <c:forEach var="category" items="${user.subscriptions}">
+                                <span class="ui default label">${category.name}</span>
+                            </c:forEach>
+                        </td>
+                    </tr>
+                </c:if>
+                    <tr>
                     <th>Uloga</th>
                     <td>
                         <c:choose>

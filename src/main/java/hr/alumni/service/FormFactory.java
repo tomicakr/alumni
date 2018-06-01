@@ -10,15 +10,19 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import hr.alumni.model.Comment;
+import hr.alumni.model.Link;
 import hr.alumni.model.Post;
-import hr.alumni.model.PostType;
+import hr.alumni.model.PostCategory;
 import hr.alumni.model.Role;
 import hr.alumni.model.User;
 import hr.alumni.model.details.CustomUserDetails;
+import hr.alumni.model.form.CategoryForm;
 import hr.alumni.model.form.CommentForm;
 import hr.alumni.model.form.EditUserForm;
+import hr.alumni.model.form.LinkForm;
 import hr.alumni.model.form.PostForm;
 import hr.alumni.model.form.RegistrationForm;
+import hr.alumni.repository.PostCategoryRepository;
 import hr.alumni.repository.RoleRepository;
 import hr.alumni.repository.UserRepository;
 @Service
@@ -27,13 +31,15 @@ public class FormFactory {
 	private final RoleRepository rr;
 	private final PasswordEncoder pe;
 	private final UserRepository ur;
+	private final PostCategoryRepository pcr;
 
 
 	@Autowired
-	public FormFactory(RoleRepository rr, PasswordEncoder pe, UserRepository ur) {
+	public FormFactory(RoleRepository rr, PasswordEncoder pe, UserRepository ur, PostCategoryRepository pcr) {
 		this.rr = rr;
 		this.pe = pe;
 		this.ur = ur;
+		this.pcr = pcr;
 	}
 
 	public User createUserFromForm(RegistrationForm rf){
@@ -48,6 +54,7 @@ public class FormFactory {
 		u.setRoles(Arrays.asList(rr.findByName("ROLE_KORISNIK")));
 		u.setBirthday(Date.valueOf(rf.getBirthday()));
 		u.setGraduation(Date.valueOf(rf.getGraduation()));
+		
 
 		List<Role> roles = new ArrayList<>();
 		Role r = rr.findByNameIgnoreCase("ROLE_KORISNIK");
@@ -65,6 +72,15 @@ public class FormFactory {
 		user.setAddress(ef.getAddress());
 		user.setBirthday(Date.valueOf(ef.getBirthday()));
 		user.setGraduation(Date.valueOf(ef.getGraduation()));
+
+		user.getSubscriptions().clear();
+		if(ef.getSubscriptions() != null){
+			for (String postCategoryName : ef.getSubscriptions()) {
+				user.getSubscriptions().add(pcr.findByName(postCategoryName));
+			}
+		} else {
+			user.getSubscriptions().clear();
+		}
 
 	}
 
@@ -84,7 +100,11 @@ public class FormFactory {
 		post.setLongDescription(postForm.getLongDescription());
 		post.setShortDescription(postForm.getShortDescription());
 		post.setTitle(postForm.getTitle());
-		post.setPostType(PostType.valueOf(postForm.getPostType()));
+		List<PostCategory> postCategories = new ArrayList<>();
+		for (String postCategoryName : postForm.getPostCategories()) {
+			postCategories.add(pcr.findByName(postCategoryName));
+		}
+		post.setPostCategories(postCategories);
 
 		return post;
 	}
@@ -95,7 +115,10 @@ public class FormFactory {
 		post.setLongDescription(postForm.getLongDescription());
 		post.setShortDescription(postForm.getShortDescription());
 		post.setTitle(postForm.getTitle());
-		post.setPostType(PostType.valueOf(postForm.getPostType()));
+		post.getPostCategories().clear();
+		for (String postCategoryName : postForm.getPostCategories()) {
+			post.getPostCategories().add(pcr.findByName(postCategoryName));
+		}
 
 	}
 
@@ -107,9 +130,62 @@ public class FormFactory {
 		form.setLongDescription(post.getLongDescription());
 		form.setShortDescription(post.getShortDescription());
 		form.setTitle(post.getTitle());
-		form.setPostType(post.getPostType().toString());
+
+		int size = post.getPostCategories().size();
+		String[] postCategoryNames = new String[size];
+		for (int i = 0; i < size; i++) {
+			postCategoryNames[i] = post.getPostCategories().get(i).getName();
+		}
+		
+
+		form.setPostCategories(postCategoryNames);
 
 		return form;
+	}
+
+	public CategoryForm createFormFormCategory(PostCategory category) {
+		CategoryForm cf = new CategoryForm();
+
+		cf.setCategoryId(category.getPostCategoryId());
+		cf.setName(category.getName());
+
+		return cf;
+	}
+
+	public PostCategory createCategoryFromForm(CategoryForm cf) {
+		PostCategory pc = new PostCategory();
+
+		pc.setName(cf.getName());
+
+		return pc;
+	}
+
+	public void editCategoryFromForm(PostCategory pc, CategoryForm cf) {
+		pc.setName(cf.getName());
+	}
+
+	public LinkForm createFormFromLink(Link l) {
+		LinkForm lf = new LinkForm();
+
+		lf.setLinkId(l.getLinkId());
+		lf.setTitle(l.getTitle());
+		lf.setUrl(l.getUrl());
+
+		return lf;
+	}
+
+	public Link createLinkFromForm(LinkForm lf) {
+		Link l = new Link();
+
+		l.setTitle(lf.getTitle());
+		l.setUrl(lf.getUrl());
+
+		return l;
+	}
+
+	public void editLinkFromForm(Link l, LinkForm lf) {
+		l.setTitle(lf.getTitle());
+		l.setUrl(lf.getUrl());
 	}
 
 }

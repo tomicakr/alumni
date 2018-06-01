@@ -39,6 +39,8 @@ public class EditUserForm {
 	@SafeHtml(whitelistType = WhiteListType.NONE)
 	private String birthday;
 
+	private String[] subscriptions;
+	
 	public String getFirstName() {
 		return firstName;
 	}
@@ -93,5 +95,13 @@ public class EditUserForm {
 
 	public void setBirthday(String birthday) {
 		this.birthday = birthday;
+	}
+
+	public String[] getSubscriptions() {
+		return subscriptions;
+	}
+
+	public void setSubscriptions(String[] subscriptions) {
+		this.subscriptions = subscriptions;
 	}
 }

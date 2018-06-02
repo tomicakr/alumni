@@ -2,8 +2,10 @@ package hr.alumni.model;
 
 import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -16,7 +18,7 @@ import org.hibernate.validator.constraints.NotBlank;
 
 @Table(name = "post_categories")
 @Entity
-@JsonIgnoreProperties({"users"})
+@JsonIgnoreProperties({"users", "posts"})
 public class PostCategory {
 
 	@Id
@@ -29,6 +31,9 @@ public class PostCategory {
 
 	@ManyToMany(mappedBy = "subscriptions")
 	private List<User> users;
+
+	@ManyToMany(fetch = FetchType.LAZY, mappedBy = "postCategories", cascade = CascadeType.ALL)
+	private List<Post> posts;
 	
 	public String getName() {
 		return name;
@@ -52,5 +57,13 @@ public class PostCategory {
 
 	public void setUsers(List<User> users) {
 		this.users = users;
+	}
+
+	public List<Post> getPosts() {
+		return posts;
+	}
+
+	public void setPosts(List<Post> posts) {
+		this.posts = posts;
 	}
 }

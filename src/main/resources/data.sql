@@ -45,6 +45,12 @@ INSERT INTO post_categories (name) VALUES ("PREDAVANJE");
 INSERT INTO post_categories (name) VALUES ("PONUDA POSLA");
 INSERT INTO post_categories (name) VALUES ("O UDRUZI");
 
+INSERT INTO users_subscriptions (user_id, post_category_id) VALUES ('368ec8e2-c7cb-4eaf-b3f1-0077333fbea9', 1);
+INSERT INTO users_subscriptions (user_id, post_category_id) VALUES ('368ec8e2-c7cb-4eaf-b3f1-0077333fbea9', 2);
+INSERT INTO users_subscriptions (user_id, post_category_id) VALUES ('368ec8e2-c7cb-4eaf-b3f1-0077333fbea9', 3);
+INSERT INTO users_subscriptions (user_id, post_category_id) VALUES ('cf615b0e-5ee6-412f-b661-719d212b4884', 1);
+INSERT INTO users_subscriptions (user_id, post_category_id) VALUES ('cf615b0e-5ee6-412f-b661-719d212b4884', 2);
+
 INSERT INTO posts (post_id, title, short_description, long_description, address, create_date, modify_date)
 	VALUES ('9f49e501-c5f9-41b7-a59b-51adad927fc8',
 			"Najava ciklusa predavanja",
@@ -119,3 +125,10 @@ INSERT INTO privilege (name) VALUES ("CRUD_POST");
 INSERT INTO roles_privileges (role_id, privilege_id) VALUES (1,1);
 INSERT INTO roles_privileges (role_id, privilege_id) VALUES (1,2);
 INSERT INTO roles_privileges (role_id, privilege_id) VALUES (2,2);
+
+INSERT INTO links (title, url) VALUES ("SUBOS", "http://www.subos.hr/");
+INSERT INTO links (title, url) VALUES ("UDRUGA PROGRAMERA INFORMACIJSKE TEHNOLOGIJE (UPIT)", "http://upitsplit.hr/");
+INSERT INTO links (title, url) VALUES ("ZAVIČAJNA UDRUGA STUDENATA DALMATINSKE ZAGORE", "http://www.zusdz.hr/");
+INSERT INTO links (title, url) VALUES ("OMNI MEDIA", "http://www.omnimedia.com.hr/");
+INSERT INTO links (title, url) VALUES ("UDRUGA O.A.ZA.", "http://oazainfo.hr/");
+INSERT INTO links (title, url) VALUES ("BEST ZAGREB", "http://www.best.hr/");

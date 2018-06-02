@@ -6,6 +6,7 @@ function deleteUser(userId) {
             url: '/users/' + userId + '/delete'
         }).then(() => {
             window.location.replace("/users");
+            alert("Korisnik je obrisan.");
         });;
     }
 }
@@ -17,7 +18,8 @@ function changeRole(newRole, userId) {
             type: 'POST',
             url: '/users/' + userId + '/changeRole?newRole=' + newRole
         }).then(() => {
-            location.reload();
+            window.location.href = '/users/' + userId;
+            alert("Uloga promijenjena.");
         });
     }
 }

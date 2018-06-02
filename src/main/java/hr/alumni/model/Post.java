@@ -59,7 +59,7 @@ public class Post {
 	@UpdateTimestamp
 	private Date modifyDate;
 	
-	@ManyToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+	@ManyToMany(fetch = FetchType.LAZY, cascade = { CascadeType.PERSIST, CascadeType.MERGE } )
 	@JoinTable(name = "posts_categories", joinColumns = @JoinColumn(name = "post_id", referencedColumnName = "postId"), inverseJoinColumns = @JoinColumn(name = "post_category_id", referencedColumnName = "postCategoryId"))
 	private List<PostCategory> postCategories;
 	

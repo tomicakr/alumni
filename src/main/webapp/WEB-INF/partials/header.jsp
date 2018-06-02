@@ -15,7 +15,7 @@
     </div>
     <sec:authorize access="hasRole('ADMINISTRATOR')">
         <div class="ui dropdown item">
-            <i class="linkify icon"></i>
+            <i class="male icon"></i>
             Admin
             <i class="dropdown icon"></i>
             <div class="menu">

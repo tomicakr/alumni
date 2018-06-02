@@ -11,6 +11,7 @@ import java.util.stream.Collectors;
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
@@ -28,6 +29,7 @@ import hr.alumni.model.PostCategory;
 import hr.alumni.model.details.CustomUserDetails;
 import hr.alumni.model.form.CommentForm;
 import hr.alumni.model.form.PostForm;
+import hr.alumni.repository.CommentRepository;
 import hr.alumni.repository.PostCategoryRepository;
 import hr.alumni.repository.PostRepository;
 import hr.alumni.service.FormFactory;
@@ -43,6 +45,9 @@ public class PostController {
 
 	@Autowired
 	private PostRepository pr;
+
+	@Autowired
+	private CommentRepository cr;
 
 	@Autowired
 	private PostCategoryRepository pcr;
@@ -234,4 +239,20 @@ public class PostController {
 
 		return "post";
 	}
+
+	@ResponseBody
+	@PostMapping(value="/{id}/comment/{commentId}/delete")
+	@PreAuthorize("hasRole('ADMINISTRATOR')")
+	public String deleteComment(@PathVariable UUID id, @PathVariable UUID commentId) {
+		
+		Comment c = cr .findOne(commentId);
+		Post p = pr.findOne(id);
+
+		p.getComments().remove(c);
+
+		pr.save(p);
+
+		return "ok";
+	}
+	
 }

@@ -99,6 +99,11 @@
                                                         <a class="author">{{user.firstName}} {{user.lastName}}</a>
                                                         <div class="metadata">
                                                             <span class="date">{{formatTime date "DD-MM-YYYY, HH:mm"}}</span>
+                                                            <sec:authorize access="hasRole('ADMINISTRATOR')">
+                                                                <a title="Obriši komentar" onclick="deleteComment('{{ postId }}', '{{ commentId }}')">
+                                                                    <i class="trash icon"></i>
+                                                                </a>
+                                                            </sec:authorize>
                                                         </div>
                                                     </div>
                                                 </div>

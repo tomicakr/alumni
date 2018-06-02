@@ -45,6 +45,11 @@
                     <a class="active red item" href="" title="Obriši" onclick="deletePost('${post.postId}')">
                         <i class="trash icon"></i>
                     </a>
+                    <c:if test="${!post.archived}">
+                        <a class="active red item" href="" title="Arhiviraj" onclick="archivePost('${post.postId}')">
+                            <i class="archive icon"></i>
+                        </a>
+                    </c:if>
                 </div>
             </sec:authorize>
             <div class="ui segment">
@@ -80,6 +85,11 @@
                                             <a class="author">${comment.user.firstName} ${comment.user.lastName}</a>
                                             <div class="metadata">
                                                 <span class="date"><fmt:formatDate value="${comment.date}" pattern="dd-MM-yyyy, HH:mm" /></span>
+                                                <sec:authorize access="hasRole('ADMINISTRATOR')">
+                                                    <a title="Obriši komentar" onclick="deleteComment('${post.postId}', '${comment.commentId}')">
+                                                        <i class="trash icon"></i>
+                                                    </a>
+                                                </sec:authorize>
                                             </div>
                                         </div>
                                     </div>
@@ -112,8 +122,8 @@
         </div>
         
     </div>
-    <script src="../../scripts/post.js"></script>
     <script type="text/javascript" src="../../scripts/includes/global.js"></script>
+    <script src="../../scripts/post.js"></script>
 
 </body>
 

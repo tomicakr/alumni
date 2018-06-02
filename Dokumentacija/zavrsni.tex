@@ -112,9 +112,160 @@ Nefunkcionalni zahtjevi su sljedeći:
 
 \chapter{Arhitektura sustava}
 \section{Baza podataka}
-\subsection{Konceptualni model baze podataka}
-
 \subsection{Fizički model baze podataka}
+
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=13cm]{slike/fizicki-model.png}
+	\caption{Fizički model baze podataka}
+	\label{fig:fizicki-model}
+\end{figure}
+
+\subsection{Opis tablica}
+
+\subsubsection{Users}
+
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=7cm]{slike/t-users.png}
+	\caption{Tablica Users}
+	\label{fig:t-users}
+\end{figure}
+
+U tablici \textit{Users} su podaci o korisnicima aplikacije. Polja email, ime, prezime i lozinka su nužna za rad aplikacije, pa imaju "NN", odnosno \textit{Not Null} oznaku.
+
+\subsubsection{Roles}
+
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=7cm]{slike/t-roles.png}
+	\caption{Tablica Roles}
+	\label{fig:t-roles}
+\end{figure}
+
+Tablica \textit{Roles} nam služi za spremanje uloga korisnika u bazu. Pomoću tih uloga aplikacija određuje dozvole nad određenim akcijama.
+
+\subsubsection{Privileges}
+
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=7cm]{slike/t-privileges.png}
+	\caption{Tablica Privileges}
+	\label{fig:t-privileges}
+\end{figure}
+
+Tablica \textit{Privileges} služi istoj svrsi kao i tablica \textit{Roles}, samo što ova tablica pospješuje bolju granulaciju dozvola nad akcijama koje korisnik može obaviti u aplikaciji.
+
+\subsubsection{Users roles}
+
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=7cm]{slike/t-users_roles.png}
+	\caption{Tablica Users roles}
+	\label{fig:t-users_roles}
+\end{figure}
+
+Svaki korisnik može imati više uloga, a svaka uloga može biti zastupljena kod više korisnika. Ova tablica spaja ta dva entiteta.
+
+\subsubsection{Roles privileges}
+
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=7cm]{slike/t-roles_privileges.png}
+	\caption{Tablica Roles privileges}
+	\label{fig:t-roles_privileges}
+\end{figure}
+
+Svaka uloga može imati više privilegija, te svaka privilegija može biti prisutna u više uloga. Zbog toga postoji ova tablica koja spaja uloge sa privilegijama.
+
+\subsubsection{Posts}
+
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=7cm]{slike/t-posts.png}
+	\caption{Tablica Posts}
+	\label{fig:t-posts}
+\end{figure}
+
+Tablica \textit{Posts} sprema podatke o postovima. Podaci koji su nužni su naslov i kratki opis. Datum izrade posta se automatski sprema u bazu prilikom \textit{Insert} akcije, dok se datum izmjene automatski ažurira prilikom \textit{Update} akcije.
+
+\subsubsection{Post categories}
+
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=7cm]{slike/t-post_categories.png}
+	\caption{Tablica Post categories}
+	\label{fig:t-post_categories}
+\end{figure}
+
+Svaki post može imati više kategorija. Tablica \textit{Post categories} sprema te vrste kategorija. Ime kategorije je obavezno pa je označeno \textit{Not Null} oznakom.
+
+\subsubsection{Posts categories}
+
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=7cm]{slike/t-posts_categories.png}
+	\caption{Tablica Posts categories}
+	\label{fig:t-posts_categories}
+\end{figure}
+
+Pošto svaki post može imati više kategorija, a svaka kategorija može biti prisutna u više postova, postoji tablica \textit{Posts categories} koja spaja ta dva entiteta.
+
+\subsubsection{Users subscriptions}
+
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=7cm]{slike/t-users_subscriptions.png}
+	\caption{Tablica Users subscriptions}
+	\label{fig:t-users_subscriptions}
+\end{figure}
+
+Korisnik može biti pretplaćen na više kategorija, a više kategorija može biti u listi pretplata različitih korisnika. Zato tablica \textit{Users subscriptions} čuva informaciju o tome koji je korisnik pretplaćen na koje kategorije.
+
+\subsubsection{Comments}
+
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=7cm]{slike/t-comments.png}
+	\caption{Tablica Comments}
+	\label{fig:t-comments}
+\end{figure}
+
+Tablica \textit{Comments} sadrži podatke o komentarima na razne postove. Za komentar je bitno da u bazi bude prisutno ime autora komentara, te poruka koju komentar sadrži. Datum komentara se automatski upisuje prilikom \textit{Insert} akcije.
+
+\subsubsection{Posts comments}
+
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=7cm]{slike/t-posts_comments.png}
+	\caption{Tablica Posts comments}
+	\label{fig:t-posts_comments}
+\end{figure}
+
+Svaki post može imati više komentara, tablica \textit{Posts comments} sadrži podatke o tome koji post ima koje komentare.
+
+\subsubsection{Links}
+
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=7cm]{slike/t-links.png}
+	\caption{Tablica Links}
+	\label{fig:t-links}
+\end{figure}
+
+Tablica \textit{Links} sadrži ime i "URL" poveznica.
+
+\subsection{Obrazac model-pogled-upravljač}
+zašto kako što
+
+\subsubsection{Modeli}
+primjer koda - podaci i forme
+
+\subsubsection{Pogledi}
+primjer koda - neki jsp
+
+\subsubsection{Upravljači}
+primjer koda - neki kontroler
 
 \chapter{Implementirane funkcionalnosti}
 Pregled funkcionalnosti koje posjeduje programska potpora. Svaka funkcionalnost je popraćena opisom i slikom koja pokazuje njenu implementaciju.

@@ -15,6 +15,7 @@ import javax.persistence.ManyToMany;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
+import javax.validation.constraints.NotNull;
 
 import org.hibernate.annotations.Type;
 import org.hibernate.validator.constraints.Email;
@@ -40,7 +41,6 @@ public class User {
 	@Column
 	private String lastName;
 
-	@NotEmpty
 	@Column
 	private String phone;
 
@@ -52,7 +52,6 @@ public class User {
 	@Column
 	private String password;
 
-	@NotEmpty
 	@Column
 	private String address;
 
@@ -60,6 +59,7 @@ public class User {
 	@Column
 	private Date birthday;
 	
+	@NotNull
 	@Column
 	@Temporal(TemporalType.DATE)
 	private Date graduation;

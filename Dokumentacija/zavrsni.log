@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.16 (TeX Live 2015/Debian) (preloaded format=pdflatex 2018.5.28)  1 JUN 2018 19:31
+This is pdfTeX, Version 3.14159265-2.6-1.40.16 (TeX Live 2015/Debian) (preloaded format=pdflatex 2018.5.28)  2 JUN 2018 18:14
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -781,31 +781,155 @@ Poglavlje 4.
 
 ]
 Poglavlje 5.
-[9
+<slike/nav-admin.png, id=59, 1908.12875pt x 665.48625pt>
+File: slike/nav-admin.png Graphic file (type png)
 
-]
-Overfull \vbox (401.79118pt too high) has occurred while \output is active []
+<use slike/nav-admin.png>
+Package pdftex.def Info: slike/nav-admin.png used on input line 126.
+(pdftex.def)             Requested size: 369.88582pt x 129.00262pt.
+ [9
 
+ <./slike/nav-admin.png>]
+<slike/registracija.png, id=63, 1927.2pt x 2073.7475pt>
+File: slike/registracija.png Graphic file (type png)
 
-[10] [11]
+<use slike/registracija.png>
+Package pdftex.def Info: slike/registracija.png used on input line 145.
+(pdftex.def)             Requested size: 369.88582pt x 398.00311pt.
+ [10 <./slike/registracija.png>]
+<slike/prijava.png, id=68, 1927.2pt x 1514.65875pt>
+File: slike/prijava.png Graphic file (type png)
+ <use slike/prijava.png>
+Package pdftex.def Info: slike/prijava.png used on input line 156.
+(pdftex.def)             Requested size: 369.88582pt x 290.70024pt.
+
+<slike/odjava.png, id=69, 290.08376pt x 369.38pt>
+File: slike/odjava.png Graphic file (type png)
+ <use slike/odjava.png>
+Package pdftex.def Info: slike/odjava.png used on input line 167.
+(pdftex.def)             Requested size: 227.62204pt x 289.84557pt.
+
+[11 <./slike/prijava.png>] <slike/korisnici.png, id=74, 1927.2pt x 1786.675pt>
+File: slike/korisnici.png Graphic file (type png)
+
+<use slike/korisnici.png>
+Package pdftex.def Info: slike/korisnici.png used on input line 181.
+(pdftex.def)             Requested size: 369.88582pt x 342.90685pt.
+ [12 <./slike/odjava.png>]
+<slike/profil.png, id=78, 1927.2pt x 1322.9425pt>
+File: slike/profil.png Graphic file (type png)
+ <use slike/profil.png>
+Package pdftex.def Info: slike/profil.png used on input line 192.
+(pdftex.def)             Requested size: 369.88582pt x 253.90518pt.
+
+[13 <./slike/korisnici.png>]
+<slike/uredi-profil.png, id=83, 1927.2pt x 1704.3675pt>
+File: slike/uredi-profil.png Graphic file (type png)
+
+<use slike/uredi-profil.png>
+Package pdftex.def Info: slike/uredi-profil.png used on input line 205.
+(pdftex.def)             Requested size: 369.88582pt x 327.11002pt.
+ [14 <./slike/profil.png>] [15 <./slike/uredi-profil.png>] <slike/poveznice.png
+, id=93, 1927.2pt x 1319.93124pt>
+File: slike/poveznice.png Graphic file (type png)
+
+<use slike/poveznice.png>
+Package pdftex.def Info: slike/poveznice.png used on input line 225.
+(pdftex.def)             Requested size: 369.88582pt x 253.32724pt.
+
+<slike/nova-poveznica.png, id=94, 1927.2pt x 935.495pt>
+File: slike/nova-poveznica.png Graphic file (type png)
+
+<use slike/nova-poveznica.png>
+Package pdftex.def Info: slike/nova-poveznica.png used on input line 236.
+(pdftex.def)             Requested size: 369.88582pt x 179.54448pt.
+ [16 <./slike/poveznice.png>]
+<slike/kategorije.png, id=99, 1927.2pt x 1353.055pt>
+File: slike/kategorije.png Graphic file (type png)
+
+<use slike/kategorije.png>
+Package pdftex.def Info: slike/kategorije.png used on input line 256.
+(pdftex.def)             Requested size: 369.88582pt x 259.68451pt.
+ [17 <./slike/nova-poveznica.png>]
+<slike/nova-kategorija.png, id=104, 1927.2pt x 969.6225pt>
+File: slike/nova-kategorija.png Graphic file (type png)
+
+<use slike/nova-kategorija.png>
+Package pdftex.def Info: slike/nova-kategorija.png used on input line 267.
+(pdftex.def)             Requested size: 369.88582pt x 186.09439pt.
+ [18 <./slike/kategorije.png>]
+<slike/postovi.png, id=109, 1927.2pt x 2619.7875pt>
+File: slike/postovi.png Graphic file (type png)
+ <use slike/postovi.png>
+Package pdftex.def Info: slike/postovi.png used on input line 287.
+(pdftex.def)             Requested size: 369.88582pt x 502.80162pt.
+
+[19 <./slike/nova-kategorija.png>] [20 <./slike/postovi.png>]
+<slike/filter.png, id=119, 592.2125pt x 643.40375pt>
+File: slike/filter.png Graphic file (type png)
+ <use slike/filter.png>
+Package pdftex.def Info: slike/filter.png used on input line 300.
+(pdftex.def)             Requested size: 369.88582pt x 401.8711pt.
+
+[21 <./slike/filter.png>] <slike/post.png, id=123, 1927.2pt x 2776.3725pt>
+File: slike/post.png Graphic file (type png)
+
+<use slike/post.png>
+Package pdftex.def Info: slike/post.png used on input line 311.
+(pdftex.def)             Requested size: 369.88582pt x 532.85413pt.
+ [22 <./slike/post.png>]
+<slike/novi-post.png, id=128, 1927.2pt x 1862.96pt>
+File: slike/novi-post.png Graphic file (type png)
+ <use slike/novi-post.png>
+Package pdftex.def Info: slike/novi-post.png used on input line 324.
+(pdftex.def)             Requested size: 369.88582pt x 357.5478pt.
+
+[23 <./slike/novi-post.png>]
+<slike/arhivirani-postovi.png, id=133, 1927.2pt x 1732.4725pt>
+File: slike/arhivirani-postovi.png Graphic file (type png)
+
+<use slike/arhivirani-postovi.png>
+Package pdftex.def Info: slike/arhivirani-postovi.png used on input line 344.
+(pdftex.def)             Requested size: 369.88582pt x 332.50406pt.
+ [24]
+<slike/komentari.png, id=137, 1138.2525pt x 953.5625pt>
+File: slike/komentari.png Graphic file (type png)
+
+<use slike/komentari.png>
+Package pdftex.def Info: slike/komentari.png used on input line 355.
+(pdftex.def)             Requested size: 369.88582pt x 309.87505pt.
+ [25 <./slike/arhivirani-postovi.png>] [26 <./slike/komentari.png>] <slike/pret
+plate.png, id=146, 1767.60374pt x 962.59625pt>
+File: slike/pretplate.png Graphic file (type png)
+
+<use slike/pretplate.png>
+Package pdftex.def Info: slike/pretplate.png used on input line 376.
+(pdftex.def)             Requested size: 369.88582pt x 201.43146pt.
+ <slike/mail.png, id=147, 880.28876pt x 976.64874pt>
+File: slike/mail.png Graphic file (type png)
+
+<use slike/mail.png>
+Package pdftex.def Info: slike/mail.png used on input line 387.
+(pdftex.def)             Requested size: 369.88582pt x 410.3685pt.
+ [27 <./slike/pretplate.png>] [28 <./slike/mail.png>]
 Poglavlje 6.
-(./zavrsni.bbl [12
+(./zavrsni.bbl [29
 
 ]
 
 Package natbib Warning: Empty `thebibliography' environment on input line 8.
 
-) [13
+) [30
 
-] [14] (./zavrsni.aux) ) 
+] [31] (./zavrsni.aux) ) 
 Here is how much of TeX's memory you used:
- 6019 strings out of 493029
- 83592 string characters out of 6136234
- 161171 words of memory out of 5000000
- 9401 multiletter control sequences out of 15000+600000
+ 6133 strings out of 493029
+ 85953 string characters out of 6136234
+ 161389 words of memory out of 5000000
+ 9496 multiletter control sequences out of 15000+600000
  58791 words of font info for 77 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
- 43i,6n,40p,928b,352s stack positions out of 5000i,500n,10000p,200000b,80000s
+ 43i,6n,40p,931b,352s stack positions out of 5000i,500n,10000p,200000b,80000s
 {/usr/share/texlive/texmf-dist/fonts/enc/dvips/base/8r.
 enc}</usr/share/texlive/texmf-dist/fonts/type1/urw/courier/ucrro8a.pfb></usr/sh
 are/texlive/texmf-dist/fonts/type1/urw/helvetic/uhvb8a.pfb></usr/share/texlive/
@@ -813,10 +937,10 @@ texmf-dist/fonts/type1/urw/helvetic/uhvr8a.pfb></usr/share/texlive/texmf-dist/f
 onts/type1/urw/times/utmb8a.pfb></usr/share/texlive/texmf-dist/fonts/type1/urw/
 times/utmr8a.pfb></usr/share/texlive/texmf-dist/fonts/type1/urw/times/utmr8a.pf
 b></usr/share/texlive/texmf-dist/fonts/type1/urw/times/utmri8a.pfb>
-Output written on zavrsni.pdf (19 pages, 1156979 bytes).
+Output written on zavrsni.pdf (36 pages, 3213862 bytes).
 PDF statistics:
- 103 PDF objects out of 1000 (max. 8388607)
- 67 compressed objects within 1 object stream
+ 189 PDF objects out of 1000 (max. 8388607)
+ 103 compressed objects within 2 object streams
  0 named destinations out of 1000 (max. 500000)
- 21 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 116 words of extra memory for PDF output out of 10000 (max. 10000000)
 

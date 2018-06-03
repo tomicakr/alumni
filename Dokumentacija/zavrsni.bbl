@@ -1,8 +1,76 @@
-\begin{thebibliography}{0}
+\begin{thebibliography}{13}
 \providecommand{\natexlab}[1]{#1}
 \providecommand{\url}[1]{\texttt{#1}}
 \expandafter\ifx\csname urlstyle\endcsname\relax
   \providecommand{\doi}[1]{doi: #1}\else
   \providecommand{\doi}{doi: \begingroup \urlstyle{rm}\Url}\fi
+
+\bibitem[Developers(2007)]{hibernate}
+Red~Hat Developers.
+\newblock \emph{Hibernate ORM}, 2007.
+\newblock URL \url{http://hibernate.org/orm/}.
+
+\bibitem[Foundation(2018{\natexlab{a}})]{apache-maven}
+Apache~Software Foundation.
+\newblock \emph{Apache Maven}, 2018{\natexlab{a}}.
+\newblock URL \url{https://maven.apache.org/}.
+
+\bibitem[Foundation(2018{\natexlab{b}})]{jquery}
+The~JQuery Foundation.
+\newblock \emph{JQuery}, 2018{\natexlab{b}}.
+\newblock URL \url{https://jquery.com/}.
+
+\bibitem[Initializer i Services(2018)]{spring-initializr}
+Spring Initializer i Pivotal~Web Services.
+\newblock \emph{Spring Initializr}, 2018.
+\newblock URL \url{https://projects.spring.io/spring-security/}.
+
+\bibitem[International(1997)]{ecma-script}
+Ecma International.
+\newblock \emph{Standard ECMA-262, ECMAScript Language Specification}, 1997.
+\newblock URL
+  \url{https://www.ecma-international.org/publications/standards/Ecma-262.html}.
+
+\bibitem[Microsoft(2018)]{vscode}
+Microsoft.
+\newblock \emph{Visual Studio Code}, 2018.
+\newblock URL \url{https://code.visualstudio.com/}.
+
+\bibitem[MIT(2018)]{semantic}
+MIT.
+\newblock \emph{SemanticUI, Open Source}, 2018.
+\newblock URL \url{https://jquery.com/}.
+
+\bibitem[Oracle(2007{\natexlab{a}})]{jpa}
+Oracle.
+\newblock \emph{Java Persistance Api}, 2007{\natexlab{a}}.
+\newblock URL
+  \url{http://www.oracle.com/technetwork/java/javaee/tech/persistence-jsp-140049.html}.
+
+\bibitem[Oracle(2007{\natexlab{b}})]{jsp}
+Oracle.
+\newblock \emph{JavaServer Pages}, 2007{\natexlab{b}}.
+\newblock URL
+  \url{http://www.oracle.com/technetwork/java/index-jsp-138231.html}.
+
+\bibitem[Oracle(2018)]{mysql}
+Oracle.
+\newblock \emph{MySQL, Open Source}, 2018.
+\newblock URL \url{https://www.mysql.com/}.
+
+\bibitem[Services(2018)]{spring-security}
+Pivotal~Web Services.
+\newblock \emph{Spring Security}, 2018.
+\newblock URL \url{https://projects.spring.io/spring-security/}.
+
+\bibitem[Software(2018)]{spring-boot}
+Pivotal Software.
+\newblock \emph{Spring Boot}, 2018.
+\newblock URL \url{https://spring.io/projects/spring-boot}.
+
+\bibitem[Wikipedia.org(2018)]{xss}
+Wikipedia.org.
+\newblock \emph{Cross-site scripting}, 2018.
+\newblock URL \url{https://en.wikipedia.org/wiki/Cross-site_scripting}.
 
 \end{thebibliography}

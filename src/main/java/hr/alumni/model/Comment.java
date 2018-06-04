@@ -5,10 +5,12 @@ import java.util.UUID;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.Lob;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
@@ -29,9 +31,9 @@ public class Comment {
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private UUID commentId;
 	
-	@ManyToOne
-	@JoinColumn(name = "user_id")
-	private User user;
+	@Column
+	@NotEmpty
+	private String username;
 	
 	@CreationTimestamp
 	@Column
@@ -39,9 +41,10 @@ public class Comment {
 
 	@NotEmpty
 	@Column
+	@Lob
 	private String message;
 	
-	@ManyToOne
+	@ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name = "post_id")
 	private Post post;
 	
@@ -56,12 +59,12 @@ public class Comment {
 		this.commentId = commentId;
 	}
 
-	public User getUser() {
-		return user;
+	public String getString() {
+		return username;
 	}
 
-	public void setUser(User user) {
-		this.user = user;
+	public void setString(String username) {
+		this.username = username;
 	}
 
 	public Date getDate() {
@@ -88,5 +91,12 @@ public class Comment {
 		this.post = post;
 	}
 	
+	public void setUsername(String username) {
+		this.username = username;
+	}
+
+	public String getUsername() {
+		return username;
+	}
 	
 }

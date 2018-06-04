@@ -4,12 +4,16 @@ function deleteCategory(categoryId) {
         $.ajax({
             type: 'POST',
             url: '/categories/' + categoryId + '/delete',
-            success: () =>  alert("Uspješno obrisano."),
-            error: () =>  alert("Nije moguće obrisati kategoriju dok postoji post koji je tog tipa."),
-            afterSend : () =>  window.location.reload()
-        }).then(() => {
-            window.location.reload()
-        });;
+            complete: (obj, textStatus) => {
+                if(textStatus === 'error') {
+                    alert('Kategorija nije obrisana, vjerojatno postoje postovi koji su te kategorije.');
+                    return;
+                }
+
+                alert('Kategorija uspješno obrisana.');
+                window.location.href = "/users";
+            }
+        });
     }
 }
 

@@ -1,12 +1,8 @@
 var template = document.getElementById("postsTemplate").innerHTML;
-var compiledTemplate = Handlebars.compile(template);
+var compiledTemplatePosts = Handlebars.compile(template);
 posts = document.getElementById("posts");
 var selectedPage = 0
 var postsWeGot;
-
-
-
-
 
 function filterBy(input) {
    
@@ -15,8 +11,8 @@ function filterBy(input) {
         $.get("/posts/all", function (data) {
             posts.innerHTML = "";
 
-            var generatedHtml = compiledTemplate(data);
-
+            var generatedHtml = compiledTemplatePosts(data);
+           
             posts.innerHTML = generatedHtml;
             $('.ui.accordion')
                 .accordion()
@@ -28,7 +24,7 @@ function filterBy(input) {
         $.get("/posts/all?type=" + input, function (data) {
             posts.innerHTML = "";
 
-            var generatedHtml = compiledTemplate(data);
+            var generatedHtml = compiledTemplatePosts(data);
 
             posts.innerHTML = generatedHtml;
             $('.ui.accordion')
@@ -59,8 +55,6 @@ $(document).ready(function () {
         ;
         
         $.get("/categories/all", function (data) {
-            console.log("podaci:");
-            console.log(data);
             
             $.each(data, function (i, category) {
                 $('#categories').append($('<a>', {

@@ -59,8 +59,8 @@
         </table>
     </div>
 
-<script src="${pageContext.request.contextPath}/scripts/profile.js"></script>
 <script type="text/javascript" src="../../scripts/includes/global.js"></script>
+<script type="text/javascript" src="../../scripts/user.js"></script>
 
 </body>
 </html>

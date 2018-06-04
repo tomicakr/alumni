@@ -11,14 +11,17 @@ import java.util.stream.Collectors;
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -135,6 +138,13 @@ public class PostController {
 	public String getPost(Model model, @PathVariable UUID id) {
 
 		Post post = pr.getOne(id);
+
+		post.getComments().sort(new Comparator<Comment>() {
+			public int compare(Comment c1, Comment c2) {
+				return -c1.getDate().compareTo(c2.getDate());
+			}
+		});
+
 		model.addAttribute("post", post);
 		model.addAttribute("comments", post.getComments());
 
@@ -211,45 +221,39 @@ public class PostController {
 		return "index";
 	}
 
-	@RequestMapping(value = "/{id}/comment", method = RequestMethod.POST)
+	@ResponseBody
+	@RequestMapping(value = "/{id}/comment", method = RequestMethod.POST, consumes = "application/json")
 	@PreAuthorize("isAuthenticated()")
-	public String createComment(Model model, @PathVariable UUID id, @Valid CommentForm cForm, BindingResult result) {
+	public Comment createComment(Model model, @PathVariable UUID id, @RequestBody @Valid CommentForm cForm, BindingResult result) {
 		CustomUserDetails userInSession = (CustomUserDetails) SecurityContextHolder.getContext().getAuthentication()
 				.getPrincipal();
 
 		Post post = pr.findOne(id);
 
 		if (result.hasErrors()) {
-			model.addAttribute("commentForm", cForm);
-			model.addAttribute("post", post);
-			model.addAttribute("comments", post.getComments());
-			return "post";
+			return null;
 		}
 
 		Comment comment = factory.createCommentFromForm(cForm, userInSession);
-		post.getComments().add(comment);
-		comment.setPost(post);
-		pr.save(post);
-
-		model.addAttribute("post", post);
-		model.addAttribute("comments", post.getComments());
-
-		return "post";
+		post.addComment(comment);
+		Comment saved = cr.save(comment);
+		
+		return saved;
 	}
 
-	@ResponseBody
-	@PostMapping(value="/{id}/comment/{commentId}/delete")
+	@DeleteMapping(value="/comment/{commentId}")
 	@PreAuthorize("hasRole('ADMINISTRATOR')")
-	public String deleteComment(@PathVariable UUID id, @PathVariable UUID commentId) {
-		
-		Comment c = cr .findOne(commentId);
-		Post p = pr.findOne(id);
+	public ResponseEntity<?> deleteComment(@PathVariable(name = "commentId") UUID commentId) {
+		System.out.println("Tu smo");
+		try {
+			Comment comment = cr.findOne(commentId);
+			cr.delete(comment);
+		} catch(Exception e) {
+			System.out.println("nije obrisan");
+			return ResponseEntity.badRequest().build();
+		}
 
-		p.getComments().remove(c);
-
-		pr.save(p);
-
-		return "ok";
+		return ResponseEntity.ok().build();
 	}
 	
 }

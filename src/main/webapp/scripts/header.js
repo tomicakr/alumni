@@ -3,14 +3,8 @@ $(document).ready(function () {
     .dropdown()
     ;
 
-    
-
     $.get("/links/all", function (data) {
-        console.log("linkovi:");
-        console.log(data);
-
         $.each(data, function (i, link) {
-            console.log(link);
             $('#links').append($('<a>', {
                 value: link.title,
                 class: "item",

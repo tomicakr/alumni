@@ -87,8 +87,10 @@ public class FormFactory {
 	public Comment createCommentFromForm(CommentForm cForm, CustomUserDetails user) {
 		Comment comment = new Comment();
 
+		User u = ur.findOne(user.getUserId());
+
 		comment.setMessage(cForm.getMessage());
-		comment.setUser(ur.findOne(user.getUserId()));
+		comment.setUsername(u.getFirstName() + " " + u.getLastName());
 
 		return comment;
 	}

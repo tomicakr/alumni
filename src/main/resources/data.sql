@@ -132,3 +132,20 @@ INSERT INTO links (title, url) VALUES ("ZAVIČAJNA UDRUGA STUDENATA DALMATINSKE 
 INSERT INTO links (title, url) VALUES ("OMNI MEDIA", "http://www.omnimedia.com.hr/");
 INSERT INTO links (title, url) VALUES ("UDRUGA O.A.ZA.", "http://oazainfo.hr/");
 INSERT INTO links (title, url) VALUES ("BEST ZAGREB", "http://www.best.hr/");
+
+insert into comments (comment_id, date, message, post_id, username) VALUES
+	('a7efaf35-5007-4132-a7ee-e347d9f2eb41', now(), "Jedva čekam!", '101ac6db-5225-494b-8216-1ab866a1d48a', 'Juraj Šebalj');
+
+insert into comments (comment_id, date, message, post_id, username) VALUES
+	('0c610025-1a43-4e39-93c6-7765dae309c5', now(), "I ja isto!", '101ac6db-5225-494b-8216-1ab866a1d48a', 'Ernest Tot');
+
+insert into comments (comment_id, date, message, post_id, username) VALUES
+	('a860bf57-c3e9-4dfb-947b-03ce5ce5900d', now(), "Vidimo se!", '101ac6db-5225-494b-8216-1ab866a1d48a', 'Tomislav Kravaršćan');
+
+insert into comments (comment_id, date, message, post_id, username) VALUES
+	('3e11e7d5-309d-4933-aeea-1734a5d4b0d2', now(), "Može :D", '101ac6db-5225-494b-8216-1ab866a1d48a', 'Juraj Šebalj');
+
+
+
+
+

@@ -63,7 +63,11 @@ public class Post {
 	@JoinTable(name = "posts_categories", joinColumns = @JoinColumn(name = "post_id", referencedColumnName = "postId"), inverseJoinColumns = @JoinColumn(name = "post_category_id", referencedColumnName = "postCategoryId"))
 	private List<PostCategory> postCategories;
 	
-	@OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+	@OneToMany(
+        mappedBy = "post", 
+        cascade = CascadeType.ALL, 
+        orphanRemoval = true
+    )
 	private List<Comment> comments;
 
 	@Column(columnDefinition="tinyint(1) default 0")
@@ -71,6 +75,16 @@ public class Post {
 	
 	public Post() {
 	}
+
+	public void addComment(Comment comment) {
+        comments.add(comment);
+        comment.setPost(this);
+    }
+ 
+    public void removeComment(Comment comment) {
+        comments.remove(comment);
+        comment.setPost(null);
+    }
 	
 	public UUID getPostId() {
 		return postId;

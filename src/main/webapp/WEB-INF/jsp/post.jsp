@@ -20,6 +20,7 @@
 <body>
 
     <%@ include file="../partials/header.jsp" %>
+    <%@ include file="../templates/comment.jsp" %>
 
     <div class="ui container">
         <spring:hasBindErrors name="commentForm">
@@ -52,6 +53,9 @@
                     </c:if>
                 </div>
             </sec:authorize>
+            <c:if test="${post.archived}">
+                <span class="ui red massive label"> ARHIVIRAN </span>
+            </c:if>
             <div class="ui segment">
                 <div class="ui items">
                     <div class="item">
@@ -79,34 +83,36 @@
                             </div>
                             <hr>
                             <div class="ui comments">
-                                <c:forEach items="${comments}" var="comment">
-                                    <div class="comment">
-                                        <div class="content">
-                                            <a class="author">${comment.user.firstName} ${comment.user.lastName}</a>
-                                            <div class="metadata">
-                                                <span class="date"><fmt:formatDate value="${comment.date}" pattern="dd-MM-yyyy, HH:mm" /></span>
-                                                <sec:authorize access="hasRole('ADMINISTRATOR')">
-                                                    <a title="Obriši komentar" onclick="deleteComment('${post.postId}', '${comment.commentId}')">
-                                                        <i class="trash icon"></i>
-                                                    </a>
-                                                </sec:authorize>
+                                <div id="${post.postId}-comment">
+                                    <c:forEach items="${comments}" var="comment">
+                                        <div id="${comment.commentId}" class="comment">
+                                            <div class="content">
+                                                <a class="author">${comment.username}</a>
+                                                <div class="metadata">
+                                                    <span class="date"><fmt:formatDate value="${comment.date}" pattern="dd-MM-yyyy, HH:mm" /></span>
+                                                    <sec:authorize access="hasRole('ADMINISTRATOR')">
+                                                        <a title="Obriši komentar" onclick="deleteComment('${comment.commentId}')">
+                                                            <i class="trash icon"></i>
+                                                        </a>
+                                                    </sec:authorize>
+                                                </div>
+                                            </div>
+                                            <div class="text">
+                                                ${comment.message}
                                             </div>
                                         </div>
-                                    </div>
-                                    <div class="text">
-                                        ${comment.message}
-                                    </div>
-                                </c:forEach>
+                                    </c:forEach>
+                                </div>
                                 <sec:authorize access="isAuthenticated()">
-                                    <form method="post" action="/posts/${post.postId}/comment" class="ui reply form">
+                                    <div class="ui reply form">
                                         <div class="header">Komentiraj</div>
                                         <div class="field">
-                                            <textarea name="message"></textarea>
+                                            <textarea id="${post.postId}-commentMessage" name="message"></textarea>
                                         </div>
-                                        <button type="submit" class="ui blue labeled submit icon button">
+                                        <button onclick="comment('${post.postId}')" class="ui blue labeled submit icon button">
                                             <i class="icon edit"></i> Komentiraj
                                         </button>
-                                    </form>
+                                    </div>
                                 </sec:authorize>
                                 <sec:authorize access="isAnonymous()">
                                     <div class="ui small message">
@@ -122,6 +128,8 @@
         </div>
         
     </div>
+    <script src="../../scripts/includes/moment.js"></script>
+    <script src="../../scripts/includes/handlebars-v4.0.11.js"></script>
     <script type="text/javascript" src="../../scripts/includes/global.js"></script>
     <script src="../../scripts/post.js"></script>
 

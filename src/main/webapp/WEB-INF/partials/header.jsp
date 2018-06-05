@@ -7,6 +7,7 @@
         <h1>Alumni</h1>
     </a>
     <a href="/files" class="item">
+        <i class="folder open icon"></i>
         Repozitorij
     </a>
     <div class="ui dropdown item">
@@ -37,8 +38,14 @@
         </div>
     </sec:authorize>
     <sec:authorize access="isAnonymous()">
-        <a href="/login" class="item">Prijava</a>
-        <a href="/register" class="item">Registracija</a>
+        <a href="/login" class="item">
+            <i class="sign in icon"></i>
+            Prijava
+        </a>
+        <a href="/register" class="item">
+            <i class="odnoklassniki icon"></i>
+            Registracija
+        </a>
     </sec:authorize>
     <sec:authorize access="isAuthenticated()">
         <div class="ui dropdown item right">

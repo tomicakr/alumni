@@ -1,9 +1,9 @@
-PWD /media/tomica/2fa42c9d-6f18-425e-b642-d24e91ac0aaa/home/tomica/git/alumni/Dokumentacija
+PWD /home/tomica/git/alumni/Dokumentacija
 INPUT /etc/texmf/web2c/texmf.cnf
 INPUT /usr/share/texmf/web2c/texmf.cnf
 INPUT /usr/share/texlive/texmf-dist/web2c/texmf.cnf
 INPUT /var/lib/texmf/web2c/pdftex/pdflatex.fmt
-INPUT /media/tomica/2fa42c9d-6f18-425e-b642-d24e91ac0aaa/home/tomica/git/alumni/Dokumentacija/zavrsni.tex
+INPUT /home/tomica/git/alumni/Dokumentacija/zavrsni.tex
 OUTPUT zavrsni.log
 INPUT fer.cls
 INPUT fer.cls

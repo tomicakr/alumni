@@ -24,13 +24,16 @@
                     </a>
                 </sec:authorize>
             </div>
-            <h1 class="ui massive center aligned header">Datoteke</h1>
+            <h1 class="ui massive center aligned header">Repozitorij datoteka</h1>
+           
+            <c:if test="${!files.isEmpty()}">
             <table class="ui very padded table">
-                <thead>
-                    <tr>
-                        <th>Naslov</th>
-                        <th>Opis</th>
-                        <th>Naziv datoteke</th>
+
+                    <thead>
+                        <tr>
+                            <th>Naslov</th>
+                            <th>Opis</th>
+                            <th>Naziv datoteke</th>
                         <th>Tip</th>
                         <th></th>
                         <th></th>
@@ -70,6 +73,7 @@
                     </c:forEach>
                 </tbody>
             </table>
+        </c:if>
         </div>
         <script type="text/javascript" src="../../scripts/includes/global.js"></script>
         <script type="text/javascript" src="../../scripts/file.js"></script>

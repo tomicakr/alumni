@@ -1,13 +1,10 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.16 (TeX Live 2015/Debian) (preloaded format=pdflatex 2018.5.28)  3 JUN 2018 22:31
+This is pdfTeX, Version 3.14159265-2.6-1.40.16 (TeX Live 2015/Debian) (preloaded format=pdflatex 2018.5.30)  5 JUN 2018 23:04
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
  %&-line parsing enabled.
-**/media/tomica/2fa42c9d-6f18-425e-b642-d24e91ac0aaa/home/tomica/git/alumni/Dok
-umentacija/zavrsni.tex
-
-(/media/tomica/2fa42c9d-6f18-425e-b642-d24e91ac0aaa/home/tomica/git/alumni/Doku
-mentacija/zavrsni.tex
+**/home/tomica/git/alumni/Dokumentacija/zavrsni.tex
+(/home/tomica/git/alumni/Dokumentacija/zavrsni.tex
 LaTeX2e <2016/02/01>
 Babel <3.9q> and hyphenation patterns for 81 language(s) loaded.
 (./fer.cls
@@ -1084,12 +1081,12 @@ Underfull \hbox (badness 2591) in paragraph at lines 51--55
 ]) [41] [42] (./zavrsni.aux) ) 
 Here is how much of TeX's memory you used:
  6300 strings out of 493029
- 90406 string characters out of 6136234
- 163922 words of memory out of 5000000
+ 90256 string characters out of 6136234
+ 163920 words of memory out of 5000000
  9643 multiletter control sequences out of 15000+600000
  77495 words of font info for 64 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
- 43i,6n,40p,1069b,344s stack positions out of 5000i,500n,10000p,200000b,80000s
+ 43i,6n,40p,1019b,344s stack positions out of 5000i,500n,10000p,200000b,80000s
 {/usr/share/texmf/fonts/enc/dvips/lm/lm-ec.enc}</
 usr/share/texmf/fonts/type1/public/lm/lmbx10.pfb></usr/share/texmf/fonts/type1/
 public/lm/lmbx12.pfb></usr/share/texmf/fonts/type1/public/lm/lmcsc10.pfb></usr/
@@ -1097,7 +1094,7 @@ share/texmf/fonts/type1/public/lm/lmr10.pfb></usr/share/texmf/fonts/type1/publi
 c/lm/lmr12.pfb></usr/share/texmf/fonts/type1/public/lm/lmri12.pfb></usr/share/t
 exmf/fonts/type1/public/lm/lmss12.pfb></usr/share/texmf/fonts/type1/public/lm/l
 mssbx10.pfb></usr/share/texmf/fonts/type1/public/lm/lmtt12.pfb>
-Output written on zavrsni.pdf (46 pages, 3611795 bytes).
+Output written on zavrsni.pdf (46 pages, 3611841 bytes).
 PDF statistics:
  244 PDF objects out of 1000 (max. 8388607)
  133 compressed objects within 2 object streams

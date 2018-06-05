@@ -1,5 +1,6 @@
 package hr.alumni.service;
 
+import java.io.IOException;
 import java.sql.Date;
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -8,8 +9,10 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
+import org.springframework.web.multipart.MultipartFile;
 
 import hr.alumni.model.Comment;
+import hr.alumni.model.File;
 import hr.alumni.model.Link;
 import hr.alumni.model.Post;
 import hr.alumni.model.PostCategory;
@@ -18,7 +21,9 @@ import hr.alumni.model.User;
 import hr.alumni.model.details.CustomUserDetails;
 import hr.alumni.model.form.CategoryForm;
 import hr.alumni.model.form.CommentForm;
+import hr.alumni.model.form.EditFileForm;
 import hr.alumni.model.form.EditUserForm;
+import hr.alumni.model.form.FileUploadForm;
 import hr.alumni.model.form.LinkForm;
 import hr.alumni.model.form.PostForm;
 import hr.alumni.model.form.RegistrationForm;
@@ -189,5 +194,39 @@ public class FormFactory {
 		l.setTitle(lf.getTitle());
 		l.setUrl(lf.getUrl());
 	}
+
+	public File createFileFromForm(FileUploadForm fuform) throws IOException{
+         
+        File file = new File();
+         
+		MultipartFile multipartFile = fuform.getFile();
+		
+		file.setName(multipartFile.getOriginalFilename());
+        file.setTitle(fuform.getTitle());
+        file.setDescription(fuform.getDescription());
+        file.setType(multipartFile.getContentType());
+        file.setContent(multipartFile.getBytes());
+	   
+		return file;
+	}
+
+	public EditFileForm createFormFromFile(File file) {
+		 
+		EditFileForm fuform = new EditFileForm();
+
+		fuform.setFileId(file.getFileId());
+        fuform.setTitle(file.getTitle());
+		fuform.setDescription(file.getDescription());
+	   
+		return fuform;
+	}
+	
+	public void editFileFromForm(EditFileForm fuform, File file) {
+		 
+        file.setTitle(fuform.getTitle());
+		file.setDescription(fuform.getDescription());
+	   
+	}
+
 
 }

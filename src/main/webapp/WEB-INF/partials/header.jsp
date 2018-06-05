@@ -6,6 +6,9 @@
     <a href="/" class="item">
         <h1>Alumni</h1>
     </a>
+    <a href="/files" class="item">
+        Repozitorij
+    </a>
     <div class="ui dropdown item">
         <i class="linkify icon"></i>
         Poveznice

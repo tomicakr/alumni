@@ -1,15 +1,15 @@
 # Fdb version 3
-["bibtex zavrsni"] 1528299245 "zavrsni.aux" "zavrsni.bbl" "zavrsni" 1528299311
+["bibtex zavrsni"] 1528312279 "zavrsni.aux" "zavrsni.bbl" "zavrsni" 1528312290
   "./fer.bst" 1527696217 26009 c9fe7ac62e814ee4c7bb7b0cdf6bf7a5 ""
   "literatura.bib" 1528294850 2116 e7daa428bb3482b47babccd1a48dd553 ""
-  "zavrsni.aux" 1528299311 13935 bdaec9c9ea48825dcc6439b0ba6b6777 ""
+  "zavrsni.aux" 1528312290 13897 c9336927bb06c69a8f46b17cc5398a24 ""
   "zavrsni.bcf" 0 -1 0 ""
   (generated)
   "zavrsni.bbl"
   "zavrsni.blg"
-["pdflatex"] 1528299301 "/home/tomica/git/alumni/Dokumentacija/zavrsni.tex" "zavrsni.pdf" "zavrsni" 1528299311
+["pdflatex"] 1528312279 "/home/tomica/git/alumni/Dokumentacija/zavrsni.tex" "zavrsni.pdf" "zavrsni" 1528312290
   "/etc/texmf/web2c/texmf.cnf" 1527636030 1101 af7716885e081ab43982cab7b4672c1a ""
-  "/home/tomica/git/alumni/Dokumentacija/zavrsni.tex" 1528299300 40698 8dea14bbfaa4122712fde2aff186222e ""
+  "/home/tomica/git/alumni/Dokumentacija/zavrsni.tex" 1528312270 40696 378e182cf3480b31f77bdebae67c62bc ""
   "/usr/share/texlive/texmf-dist/fonts/map/fontname/texfonts.map" 1272929888 3287 e6b82fe08f5336d4d5ebc73fb1152e87 ""
   "/usr/share/texlive/texmf-dist/fonts/tfm/jknappen/ec/ecrm1200.tfm" 1136768653 3584 f80ddd985bd00e29e9a6047ebd9d4781 ""
   "/usr/share/texlive/texmf-dist/fonts/tfm/public/amsfonts/symbols/msam10.tfm" 1246382020 916 f87d7c45f9c908e672703b83b72241a3 ""
@@ -154,12 +154,12 @@
   "slike/uredi-profil.png" 1528188003 161561 43a262b90571760b448d82f2aeb78fdc ""
   "slike/very-connect-dogadaji.png" 1527696217 393831 9676cde9c9e6dda19c09fbc24a0f4e78 ""
   "slike/very-connect-korisnici.png" 1527696217 286036 48769f50085e6b4a13a2fe227c9b7a45 ""
-  "zavrsni.aux" 1528299311 13935 bdaec9c9ea48825dcc6439b0ba6b6777 ""
-  "zavrsni.bbl" 1528299245 2491 330bb8be5966aadebe81db2bb07c4767 "bibtex zavrsni"
-  "zavrsni.tex" 1528299300 40698 8dea14bbfaa4122712fde2aff186222e ""
-  "zavrsni.toc" 1528299311 5454 9c01fc27b541d013f39a45d77ff91047 ""
+  "zavrsni.aux" 1528312290 13897 c9336927bb06c69a8f46b17cc5398a24 ""
+  "zavrsni.bbl" 1528312279 2491 330bb8be5966aadebe81db2bb07c4767 "bibtex zavrsni"
+  "zavrsni.tex" 1528312270 40696 378e182cf3480b31f77bdebae67c62bc ""
+  "zavrsni.toc" 1528312290 5454 9c01fc27b541d013f39a45d77ff91047 ""
   (generated)
-  "zavrsni.pdf"
   "zavrsni.log"
   "zavrsni.aux"
   "zavrsni.toc"
+  "zavrsni.pdf"

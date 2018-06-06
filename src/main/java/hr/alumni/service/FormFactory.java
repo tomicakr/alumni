@@ -1,20 +1,15 @@
 package hr.alumni.service;
 
 import java.io.IOException;
-import java.io.InputStream;
-import java.io.OutputStream;
-import java.io.UnsupportedEncodingException;
 import java.sql.Date;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
-import org.apache.commons.fileupload.FileItem;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
-import org.springframework.web.multipart.commons.CommonsMultipartFile;
 
 import hr.alumni.model.Comment;
 import hr.alumni.model.File;
@@ -150,7 +145,6 @@ public class FormFactory {
 		form.setLongDescription(post.getLongDescription());
 		form.setShortDescription(post.getShortDescription());
 		form.setTitle(post.getTitle());
-		form.setPicture();
 
 		int size = post.getPostCategories().size();
 		String[] postCategoryNames = new String[size];

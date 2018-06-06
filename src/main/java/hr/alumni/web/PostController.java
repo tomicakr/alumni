@@ -1,5 +1,6 @@
 package hr.alumni.web;
 
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.HashSet;
@@ -170,20 +171,25 @@ public class PostController {
 			return "newPost";
 		}
 
-		Post post = factory.createPostFromForm(postForm, userInSession);
-
-		Set<String> mailsToSend = new HashSet<>();
-		post.getPostCategories().forEach(category -> {
-			category.getUsers().forEach((user) -> {
-				mailsToSend.add(user.getEmail());
+		try{
+			Post post = factory.createPostFromForm(postForm, userInSession);
+			
+			Set<String> mailsToSend = new HashSet<>();
+			post.getPostCategories().forEach(category -> {
+				category.getUsers().forEach((user) -> {
+					mailsToSend.add(user.getEmail());
+				});
 			});
-		});
-		mailsToSend.forEach((mail) -> {
-			emailService.sendSimpleMessage(mail, "[OBAVIJEST] " + post.getTitle(), post);
-		});
-
-		pr.save(post);
-		return "index";
+			mailsToSend.forEach((mail) -> {
+				emailService.sendSimpleMessage(mail, "[OBAVIJEST] " + post.getTitle(), post);
+			});
+			
+			pr.save(post);
+			return "index";
+		} catch (IOException e) {
+			model.addAttribute("postForm", postForm);
+			return "newPost";
+		}
 	}
 
 	@RequestMapping(value = "/{id}/edit", method = RequestMethod.GET)

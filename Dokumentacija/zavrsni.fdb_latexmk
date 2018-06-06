@@ -1,15 +1,15 @@
 # Fdb version 3
-["bibtex zavrsni"] 1528054602 "zavrsni.aux" "zavrsni.bbl" "zavrsni" 1528232682
+["bibtex zavrsni"] 1528299245 "zavrsni.aux" "zavrsni.bbl" "zavrsni" 1528299311
   "./fer.bst" 1527696217 26009 c9fe7ac62e814ee4c7bb7b0cdf6bf7a5 ""
-  "literatura.bib" 1528188003 2116 e7daa428bb3482b47babccd1a48dd553 ""
-  "zavrsni.aux" 1528232681 14184 0d1bf6040615f683a8880c88d098bbd3 ""
+  "literatura.bib" 1528294850 2116 e7daa428bb3482b47babccd1a48dd553 ""
+  "zavrsni.aux" 1528299311 13935 bdaec9c9ea48825dcc6439b0ba6b6777 ""
   "zavrsni.bcf" 0 -1 0 ""
   (generated)
   "zavrsni.bbl"
   "zavrsni.blg"
-["pdflatex"] 1528232671 "/home/tomica/git/alumni/Dokumentacija/zavrsni.tex" "zavrsni.pdf" "zavrsni" 1528232682
+["pdflatex"] 1528299301 "/home/tomica/git/alumni/Dokumentacija/zavrsni.tex" "zavrsni.pdf" "zavrsni" 1528299311
   "/etc/texmf/web2c/texmf.cnf" 1527636030 1101 af7716885e081ab43982cab7b4672c1a ""
-  "/home/tomica/git/alumni/Dokumentacija/zavrsni.tex" 1528232670 38681 0965e405e8f867d7e2dd9ad13ee184dc ""
+  "/home/tomica/git/alumni/Dokumentacija/zavrsni.tex" 1528299300 40698 8dea14bbfaa4122712fde2aff186222e ""
   "/usr/share/texlive/texmf-dist/fonts/map/fontname/texfonts.map" 1272929888 3287 e6b82fe08f5336d4d5ebc73fb1152e87 ""
   "/usr/share/texlive/texmf-dist/fonts/tfm/jknappen/ec/ecrm1200.tfm" 1136768653 3584 f80ddd985bd00e29e9a6047ebd9d4781 ""
   "/usr/share/texlive/texmf-dist/fonts/tfm/public/amsfonts/symbols/msam10.tfm" 1246382020 916 f87d7c45f9c908e672703b83b72241a3 ""
@@ -145,7 +145,6 @@
   "slike/t-post_categories.png" 1528188003 11756 0391c8a5b21f2157d718ffe6e75c08e8 ""
   "slike/t-posts.png" 1528188003 21980 4e293237ac34392eab5a84f52fecf05c ""
   "slike/t-posts_categories.png" 1528188003 9876 36ee04e3763a29e814530e2e7529e7fc ""
-  "slike/t-posts_comments.png" 1528188003 8886 489906edb38cdc2185c1aa980d6e2443 ""
   "slike/t-privileges.png" 1528188003 9500 2978aebd5ac2b9b4e67e373d2c38990c ""
   "slike/t-roles.png" 1528188003 9158 a07e9f9fe0c34b8b49caf944ac3e87b2 ""
   "slike/t-roles_privileges.png" 1528188003 8917 479c24c8704c326ef911eaa154e8121b ""
@@ -155,12 +154,12 @@
   "slike/uredi-profil.png" 1528188003 161561 43a262b90571760b448d82f2aeb78fdc ""
   "slike/very-connect-dogadaji.png" 1527696217 393831 9676cde9c9e6dda19c09fbc24a0f4e78 ""
   "slike/very-connect-korisnici.png" 1527696217 286036 48769f50085e6b4a13a2fe227c9b7a45 ""
-  "zavrsni.aux" 1528232681 14184 0d1bf6040615f683a8880c88d098bbd3 ""
-  "zavrsni.bbl" 1528188003 2491 330bb8be5966aadebe81db2bb07c4767 "bibtex zavrsni"
-  "zavrsni.tex" 1528232670 38681 0965e405e8f867d7e2dd9ad13ee184dc ""
-  "zavrsni.toc" 1528232681 5539 86f74a5e6bb58f5399972e896675d1e3 ""
+  "zavrsni.aux" 1528299311 13935 bdaec9c9ea48825dcc6439b0ba6b6777 ""
+  "zavrsni.bbl" 1528299245 2491 330bb8be5966aadebe81db2bb07c4767 "bibtex zavrsni"
+  "zavrsni.tex" 1528299300 40698 8dea14bbfaa4122712fde2aff186222e ""
+  "zavrsni.toc" 1528299311 5454 9c01fc27b541d013f39a45d77ff91047 ""
   (generated)
-  "zavrsni.aux"
   "zavrsni.pdf"
-  "zavrsni.toc"
   "zavrsni.log"
+  "zavrsni.aux"
+  "zavrsni.toc"

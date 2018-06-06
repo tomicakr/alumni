@@ -103,7 +103,6 @@ public class FileController {
 
         if (result.hasErrors()) {
             model.addAttribute("fuform", fuform);
-            System.out.println(Arrays.toString(result.getAllErrors().toArray()));
             return "newFile";
         }
 

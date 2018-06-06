@@ -28,7 +28,11 @@
             </div>
                 Polja označena sa zvjezdicom(*) su obavezna
         </div>
-        <form method="post" action="/posts/newPost" class="ui form ">
+        <form method="post" enctype="multipart/form-data" action="/posts/newPost" class="ui form ">
+            <div class="field">
+                <label>Slika</label>
+                <input type="file" name="picture" value="${postForm.picture}">
+            </div>
             <div class="field">
                 <label>Naslov*</label>
                 <input type="text" name="title" value="${postForm.title}">

@@ -15,6 +15,7 @@ import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
@@ -34,6 +35,9 @@ public class Post {
 	@Type(type="uuid-char")
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private UUID postId;
+
+	@OneToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+	private Picture picture;
 	
 	@NotEmpty
 	@Column
@@ -166,4 +170,11 @@ public class Post {
 		this.archived = archived;
 	}
 
+	public Picture getPicture() {
+		return picture;
+	}
+
+	public void setPicture(Picture picture) {
+		this.picture = picture;
+	}
 }

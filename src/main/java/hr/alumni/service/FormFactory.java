@@ -1,19 +1,25 @@
 package hr.alumni.service;
 
 import java.io.IOException;
+import java.io.InputStream;
+import java.io.OutputStream;
+import java.io.UnsupportedEncodingException;
 import java.sql.Date;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
+import org.apache.commons.fileupload.FileItem;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
+import org.springframework.web.multipart.commons.CommonsMultipartFile;
 
 import hr.alumni.model.Comment;
 import hr.alumni.model.File;
 import hr.alumni.model.Link;
+import hr.alumni.model.Picture;
 import hr.alumni.model.Post;
 import hr.alumni.model.PostCategory;
 import hr.alumni.model.Role;
@@ -100,8 +106,15 @@ public class FormFactory {
 		return comment;
 	}
 
-	public Post createPostFromForm(PostForm postForm, CustomUserDetails userInSession) {
+	public Post createPostFromForm(PostForm postForm, CustomUserDetails userInSession) throws IOException{
 		Post post = new Post();
+		Picture picture = new Picture();
+
+		if(postForm.getPicture() != null) {
+			picture.setType(postForm.getPicture().getContentType());
+			picture.setContent(postForm.getPicture().getBytes());
+			post.setPicture(picture);
+		}
 
 		post.setAddress(postForm.getAddress());
 		post.setLongDescription(postForm.getLongDescription());
@@ -137,6 +150,7 @@ public class FormFactory {
 		form.setLongDescription(post.getLongDescription());
 		form.setShortDescription(post.getShortDescription());
 		form.setTitle(post.getTitle());
+		form.setPicture();
 
 		int size = post.getPostCategories().size();
 		String[] postCategoryNames = new String[size];

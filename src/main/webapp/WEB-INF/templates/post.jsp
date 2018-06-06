@@ -5,12 +5,20 @@
 <script id="postsTemplate" type="text/x-handlebars-template">
     {{#each this}}
     <div class="item">
-    
+
+        {{#if picture.pictureId}}
+            <div class="image">
+                <img src="/pictures/{{picture.pictureId}}">
+            </div>
+        {{/if}}
+
         <div class="content">
             <a class="header" href="/posts/{{postId}}">{{title}}</a>
-            <div class="meta">
-                <span class="cinema">Adresa: {{address}}</span>
-            </div>
+            {{#if address}}
+                <div class="meta">
+                    <span class="cinema">Adresa: {{address}}</span>
+                </div>
+            {{/if}}
             <div class="meta">
                 <span class="cinema">Kreirano: {{ formatTime createDate "DD-MM-YYYY, HH:mm" }}</span>
                 <span class="cinema">Zadnje modificirano: {{ formatTime modifyDate "DD-MM-YYYY, HH:mm" }}</span>

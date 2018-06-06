@@ -7,6 +7,7 @@ import org.hibernate.validator.constraints.NotEmpty;
 import org.hibernate.validator.constraints.SafeHtml;
 import org.hibernate.validator.constraints.SafeHtml.WhiteListType;
 import org.springframework.stereotype.Component;
+import org.springframework.web.multipart.MultipartFile;
 
 @Component
 public class PostForm {
@@ -29,6 +30,7 @@ public class PostForm {
     @SafeHtml(whitelistType = WhiteListType.NONE)
     private String address;
 
+    private MultipartFile picture;
 
     public PostForm() {
     }
@@ -79,6 +81,14 @@ public class PostForm {
 
     public void setPostCategories(String[] postCategories) {
         this.postCategories = postCategories;
+    }
+
+    public MultipartFile getPicture() {
+        return picture;
+    }
+
+    public void setPicture(MultipartFile picture) {
+        this.picture = picture;
     }
 
 }

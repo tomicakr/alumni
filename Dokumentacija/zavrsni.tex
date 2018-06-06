@@ -8,7 +8,7 @@
 
 \thesisnumber{5375}
 
-\title{Programska podrška za svršenike}
+\title{PROGRAMSKA PODRŠKA ZA SVRŠENIKE}
 
 \author{Tomislav Kravaršćan}
 
@@ -20,11 +20,11 @@
 Svršenici (lat. \textit{alumni}) je popularan naziv za bivše pripadnike neke ustanove, najčešće sveučilišta. Alumni su uobičajena udruženja u svijetu pa u nekim sveučilištima imaju i stoljetnu tradiciju. Njihovo ponovno okupljanje i sudjelovanje u radu sveučilišta je vrlo bitno za održavanje priče o prošlosti, a i za planiranje budućnosti sveučilišta. No, kako studenti sveučilišta vrlo brzo nakon diplomiranja utonu u nove životne prilike kao što su posao i obitelj, fakultetima je vrlo teško održavati vezu sa svojim bivšim studentima i ponovno ih okupljati. A i sami se svršenici teško održe na okupu. Za to je rješenje programska podrška u obliku informacijske web aplikacije, gdje će se moći organizirati događaji, sastanci i objavljivati razne objave vezane za svršenike.
 
 \chapter{Analiza postojeće programske podrške}
-Analizom postojeće programske potpore nastojimo bolje razumijeti problem koji rješavamo, njegovu domenu primjene i razrješiti moguće krive početne pretpostavke o programskoj podršci koju izrađujemo. Također, jasnije vidimo funkcionalnosti koje bi trebali implementirati i dobivamo ideje o nekim detaljima o kojima uopće nismo razmišljali. Osim toga, svrha analize je i otrkivanje mogućih nedostataka koje trpi posojeća programska podrška, te učenje na tuđim pogreškama. Moramo biti posebno svjesni kojim su resursima raspolagali razvojni inženjeri analiziranih rješenja kako bismo što ranije odredili doseg našeg rješenja sukladno našim resursima vremena i znanja.
+Analizom postojeće programske potpore nastojimo bolje razumjeti problem koji rješavamo, njegovu domenu primjene i razriješiti moguće krive početne pretpostavke o programskoj podršci koju izrađujemo. Također, jasnije vidimo funkcionalnosti koje bi trebali implementirati i dobivamo ideje o nekim detaljima o kojima uopće nismo razmišljali. Osim toga, svrha analize je i otkrivanje mogućih nedostataka koje trpi postojeća programska podrška, te učenje na tuđim pogreškama. Moramo biti posebno svjesni kojim su resursima raspolagali razvojni inženjeri analiziranih rješenja kako bismo što ranije odredili doseg našeg rješenja sukladno našim resursima vremena i znanja.
 U ovom konkretnom slučaju, analizirati ćemo programska rješenja za upravljanje svršenicima. Takvih rješenja ima neiscrpno puno pa ćemo navesti samo neka od njih. Gotovo sva postojeća rješenja nude neke osnovne funkcionalnosti kao što su organizacija i pregled događaja, pregled novosti, informacije o sustavu, ponuda poslova, stvaranje i upravljanje korisničkim računom.
 
 \section{Graduway}
-Graduway[1] je web platforma istoimene tvrtke koja za različite fakultete po narudžbi stvara aplikaciju prilagođenu određenoj ustanovi za koju se izrađuje. Uz gore navedene osnovne funkcionalnosti ovakvog i sličnih rješenja, Graduway ima još puno funkcionalnosti kao što su adminske stranice, pregled statistike korisnika i vizualizacija itd. Dostupna je za isporuku na iOS, Android ili kao web- aplikacija.
+Graduway[1] je web platforma istoimene tvrtke koja za različite fakultete po narudžbi stvara aplikaciju prilagođenu određenoj ustanovi za koju se izrađuje. Uz gore navedene osnovne funkcionalnosti ovakvog i sličnih rješenja, Graduway ima još puno funkcionalnosti kao što su administratorske stranice, pregled statistike korisnika i vizualizacija itd. Dostupna je za isporuku na iOS, Android ili kao web- aplikacija.
 
 Neki od njihovih klijenata za rješenje upravljanja svršenicima su Longwood University, University of Dundee, Brunel University, UCLA i mnogi drugi.
 
@@ -33,9 +33,11 @@ Svako rješenje je napravljeno za preko tisuću korisnika, početna cijena je pe
 \begin{figure}[H]
 	\centering
 	\includegraphics[width=13cm]{slike/izgledUCLAgraduwayRjesenja.png}
-	\caption{Izgled UCLA Graduway rješenja}
+	\caption{UCLA Graduway rješenje}
 	\label{fig:ucla-graduway}
 \end{figure}
+
+Slika \ref{fig:ucla-graduway} prikazuje izgled programske podrške za upravljanje svršenicima koju je izradila tvrtka \textit{Graduway}.
 
 \section{VeryConnect}
 VeryConnect je nešto manje popularna platforma za upravljanje svršenicima, ali sa jednako opširnim funkcionalnostima. Ima znatno manji broj klijenata od kojih je samo jedno sveučilište, University of Glasgow. Također ima neku početnu cijenu koja za razliku od Graduway-a nije javno vidljiva, a dodatne funkcionalnosti se naplaćuju zasebno.
@@ -47,6 +49,8 @@ VeryConnect je nešto manje popularna platforma za upravljanje svršenicima, ali
 	\label{fig:veryconn-users}
 \end{figure}
 
+Slika \ref{fig:veryconn-users} pokazuje izgled stranice za pregled korisnika na rješenju tvrtke \textit{VeryConnect}.
+
 \begin{figure}[H]
 	\centering
 	\includegraphics[width=13cm]{slike/very-connect-dogadaji.png}
@@ -54,15 +58,19 @@ VeryConnect je nešto manje popularna platforma za upravljanje svršenicima, ali
 	\label{fig:veryconn-events}
 \end{figure}
 
+Slika \ref{fig:veryconn-events} pokazuje izgled stranice za pregled događaja na rješenju tvrtke \textit{VeryConnect}.
+
 \section{Hiverbrite}
-Hiverbrite je također platforma sa vrlo opširnim funkcionalnostima.
+Hiverbrite je također platforma s vrlo opširnom funkcionalnošću.
 
 \begin{figure}[H]
 	\centering
 	\includegraphics[width=13cm]{slike/hiverbrite-upravljanje.png}
-	\caption{Izgled Hiverbrite stranice za upravljanje zajednicom}
+	\caption{Hiverbrite rješenje}
 	\label{fig:hiverbrite-menagements}
 \end{figure}
+
+Slika \ref{fig:hiverbrite-menagements} pokazuje rješenje tvrtke \textit{Hiverbrite}, koje ima vrlo moderan izgled i detaljno korisničko sučelje.
 
 \chapter{Zahtjevi nad programskom potporom}
 Zahtjevi nad programskom potporom dijele se na funkcionalne zahtjeve – ono što korisnik očekuje od sustava i osnovne potrebe zbog kojih korisnik želi programsku potporu, te nefunkcionalne zahtjeve – ograničenja sustava i način na koji sustav treba biti izveden.
@@ -97,13 +105,13 @@ Nefunkcionalni zahtjevi su sljedeći:
 	\item Sustav mora podržavati istodobni rad više korisnika
 	\item Sustav mora biti otporan na kritične pogreške
 	\item Sustav mora biti otporan na \textit{Cross site scripting - XSS}\citep{xss} ranjivosti
-	\item Sustav mora biti ostvaren model-pogled-upravljač (eng. \textit{Model-View-Controller - MVC}) arhitekturom kao web aplikacija
+	\item Sustav mora biti ostvaren arhitekturom model-pogled-upravljač (eng. \textit{Model-View-Controller - MVC}) kao web aplikacija
 	\item Sustav mora biti u mogućnosti spremati podatke u bazu podataka
 \end{itemize}
 
 \chapter{Arhitektura sustava}
 \section{Baza podataka}
-\subsection{Fizički model baze podataka}
+\subsection{Model baze podataka}
 
 \begin{figure}[H]
 	\centering
@@ -111,6 +119,8 @@ Nefunkcionalni zahtjevi su sljedeći:
 	\caption{Fizički model baze podataka}
 	\label{fig:fizicki-model}
 \end{figure}
+
+Slikom \ref{fig:fizicki-model} opisan je model baze podataka u obliku prikaza svih tablica i odnosa među njima.
 
 \subsection{Opis tablica}
 
@@ -123,7 +133,7 @@ Nefunkcionalni zahtjevi su sljedeći:
 	\label{fig:t-users}
 \end{figure}
 
-U tablici \textit{Users} su podaci o korisnicima aplikacije. Polja email, ime, prezime i lozinka su nužna za rad aplikacije, pa imaju "NN", odnosno \textit{Not Null} oznaku.
+U tablici \textit{Users} na slici \ref{fig:t-users}, nalaze se podaci o korisnicima aplikacije. Polja email, ime, prezime i lozinka su nužna za rad aplikacije, pa imaju "NN", odnosno \textit{Not Null} oznaku.
 
 \subsubsection{Roles}
 
@@ -134,7 +144,7 @@ U tablici \textit{Users} su podaci o korisnicima aplikacije. Polja email, ime, p
 	\label{fig:t-roles}
 \end{figure}
 
-Tablica \textit{Roles} nam služi za spremanje uloga korisnika u bazu. Pomoću tih uloga aplikacija određuje dozvole nad određenim akcijama.
+Tablica \textit{Roles} sa slike \ref{fig:t-roles} nam služi za spremanje uloga korisnika u bazu. Pomoću tih uloga aplikacija određuje dozvole nad određenim akcijama.
 
 \subsubsection{Privileges}
 
@@ -145,7 +155,7 @@ Tablica \textit{Roles} nam služi za spremanje uloga korisnika u bazu. Pomoću t
 	\label{fig:t-privileges}
 \end{figure}
 
-Tablica \textit{Privileges} služi istoj svrsi kao i tablica \textit{Roles}, samo što ova tablica pospješuje bolju granulaciju dozvola nad akcijama koje korisnik može obaviti u aplikaciji.
+Tablica \textit{Privileges} sa slike \ref{fig:t-privileges} služi istoj svrsi kao i tablica \textit{Roles}, samo što ova tablica pospješuje bolju razinu granulacije dozvola nad akcijama koje korisnik može obaviti u aplikaciji.
 
 \subsubsection{Users roles}
 
@@ -156,7 +166,7 @@ Tablica \textit{Privileges} služi istoj svrsi kao i tablica \textit{Roles}, sam
 	\label{fig:t-users_roles}
 \end{figure}
 
-Svaki korisnik može imati više uloga, a svaka uloga može biti zastupljena kod više korisnika. Ova tablica spaja ta dva entiteta.
+Svaki korisnik može imati više uloga, a svaka uloga može biti zastupljena kod više korisnika. Tablica \textit{Users roles} sa slike \ref{fig:t-users_roles} spaja ta dva entiteta.
 
 \subsubsection{Roles privileges}
 
@@ -167,7 +177,7 @@ Svaki korisnik može imati više uloga, a svaka uloga može biti zastupljena kod
 	\label{fig:t-roles_privileges}
 \end{figure}
 
-Svaka uloga može imati više privilegija, te svaka privilegija može biti prisutna u više uloga. Zbog toga postoji ova tablica koja spaja uloge sa privilegijama.
+Svaka uloga može imati više privilegija, te svaka privilegija može biti prisutna u više uloga. Zbog toga postoji tablica sa slike \ref{fig:t-roles_privileges} koja spaja uloge sa privilegijama.
 
 \subsubsection{Posts}
 
@@ -178,7 +188,7 @@ Svaka uloga može imati više privilegija, te svaka privilegija može biti prisu
 	\label{fig:t-posts}
 \end{figure}
 
-Tablica \textit{Posts} sprema podatke o postovima. Podaci koji su nužni su naslov i kratki opis. Datum izrade posta se automatski sprema u bazu prilikom \textit{Insert} akcije, dok se datum izmjene automatski ažurira prilikom \textit{Update} akcije.
+Tablica \textit{Posts} sa slike \ref{fig:t-posts} sprema podatke o postovima. Podaci koji su nužni su naslov i kratki opis. Datum izrade posta se automatski sprema u bazu prilikom \textit{Insert} akcije, dok se datum izmjene automatski ažurira prilikom \textit{Update} akcije.
 
 \subsubsection{Post categories}
 
@@ -189,7 +199,7 @@ Tablica \textit{Posts} sprema podatke o postovima. Podaci koji su nužni su nasl
 	\label{fig:t-post_categories}
 \end{figure}
 
-Svaki post može imati više kategorija. Tablica \textit{Post categories} sprema te vrste kategorija. Ime kategorije je obavezno pa je označeno \textit{Not Null} oznakom.
+Svaki post može imati više kategorija. Tablica \textit{Post categories} sa slike \ref{fig:t-post_categories} sprema te vrste kategorija. Ime kategorije je obavezno pa je označeno \textit{Not Null} oznakom.
 
 \subsubsection{Posts categories}
 
@@ -200,7 +210,7 @@ Svaki post može imati više kategorija. Tablica \textit{Post categories} sprema
 	\label{fig:t-posts_categories}
 \end{figure}
 
-Pošto svaki post može imati više kategorija, a svaka kategorija može biti prisutna u više postova, postoji tablica \textit{Posts categories} koja spaja ta dva entiteta.
+Pošto svaki post može imati više kategorija, a svaka kategorija može biti prisutna u više postova, postoji tablica \textit{Posts categories} sa slike \ref{fig:t-posts_categories} koja spaja ta dva entiteta.
 
 \subsubsection{Users subscriptions}
 
@@ -211,7 +221,7 @@ Pošto svaki post može imati više kategorija, a svaka kategorija može biti pr
 	\label{fig:t-users_subscriptions}
 \end{figure}
 
-Korisnik može biti pretplaćen na više kategorija, a više kategorija može biti u listi pretplata različitih korisnika. Zato tablica \textit{Users subscriptions} čuva informaciju o tome koji je korisnik pretplaćen na koje kategorije.
+Korisnik može biti pretplaćen na više kategorija, a više kategorija može biti u listi pretplata različitih korisnika. Zato tablica \textit{Users subscriptions} sa slike \ref{fig:t-users_subscriptions} čuva informaciju o tome koji je korisnik pretplaćen na koje kategorije.
 
 \subsubsection{Comments}
 
@@ -222,18 +232,7 @@ Korisnik može biti pretplaćen na više kategorija, a više kategorija može bi
 	\label{fig:t-comments}
 \end{figure}
 
-Tablica \textit{Comments} sadrži podatke o komentarima na razne postove. Za komentar je bitno da u bazi bude prisutno ime autora komentara, te poruka koju komentar sadrži. Datum komentara se automatski upisuje prilikom \textit{Insert} akcije.
-
-\subsubsection{Posts comments}
-
-\begin{figure}[H]
-	\centering
-	\includegraphics[width=7cm]{slike/t-posts_comments.png}
-	\caption{Tablica Posts comments}
-	\label{fig:t-posts_comments}
-\end{figure}
-
-Svaki post može imati više komentara, tablica \textit{Posts comments} sadrži podatke o tome koji post ima koje komentare.
+Tablica \textit{Comments} sa slike \ref{fig:t-comments} sadrži podatke o komentarima na razne postove. Za komentar je bitno da u bazi bude prisutno ime autora komentara, te poruka koju komentar sadrži. Datum komentara se automatski upisuje prilikom \textit{Insert} akcije.
 
 \subsubsection{Links}
 
@@ -244,7 +243,7 @@ Svaki post može imati više komentara, tablica \textit{Posts comments} sadrži 
 	\label{fig:t-links}
 \end{figure}
 
-Tablica \textit{Links} sadrži ime i "URL" poveznica.
+Tablica \textit{Links} sa slike \ref{fig:t-links} sadrži ime i "URL" poveznica.
 
 \section{Obrazac model-pogled-upravljač}
 Obrazac jedan je od najčešće upotrebljavanih arhitekturnih obrazaca prilikom izrade web aplikacija. Glavna ideja obrasca je logičko i fizičko odvajanje poslovnih procesa, odnosno dobavljanja podataka i operacija nad njima, od prikaza tih podataka na klijentskoj strani aplikacije.  
@@ -276,9 +275,9 @@ Pregled funkcionalnosti koje posjeduje programska potpora. Svaka funkcionalnost 
 	\label{fig:nav-admin}
 \end{figure}
 
-Navigacijska traka je \textit{html} element koji se pojavljuje u svim \textit{html} stranicama aplikacije i svrha joj je omogućavanje dolaska do svih stranica aplikacije. Svaki korisnik putem navigacijske trake u svakom trenutku može doći do početne stranice, gdje je popis svih postova, odabirom "Alumni" natpisa u lijevom dijelu trake. 
+Izgled navigacijske trake je prikazan na slici \ref{fig:nav-admin}. To je \textit{html} element koji se pojavljuje u svim \textit{html} stranicama aplikacije i svrha joj je omogućavanje dolaska do svih stranica aplikacije. Svaki korisnik putem navigacijske trake u svakom trenutku može doći do početne stranice, gdje je popis svih postova, odabirom "Alumni" natpisa u lijevom dijelu trake. 
 
-\subsection{Navigacijska traka za anonimnog(ne prijavljenog) korisnika}
+\subsection{Navigacijska traka za anonimnog korisnika}
 Anonimni korisnik pomoću navigacijske trake može doći do stranice za registraciju, stranice za prijavu te ima pregled svih poveznica koje su u sustavu. 
 
 \subsection{Navigacijska traka za prijavljenog korisnika}
@@ -295,7 +294,7 @@ Navigacijska traka je posebno bitna i administratoru sustava, koji, ako je prija
 	\label{fig:registracija}
 \end{figure}
 
-Prilikom odabira opcije "Registracija" u navigacijskoj traci, anonimnom se korisniku prikaže obrazac za registraciju na sustav. Kako bi se uspješno registrirao, korisnik mora upisati ime, prezime, email, datum diplomiranja te lozinku. Broj telefona, adresa i datum rođenja su neobavezna polja te se korisniku daje na izbor hoće li ih upisati ili ne. Za sve navedene obavezne stavke postoje provjere na klijentskoj te na poslužiteljskoj strani, te osim provjera za postojanost obaveznih stavki, postoje i provjere za ispravnost email-a, te provjere da li lozinka ima najmanje 6, a najviše 30 znakova.
+Prilikom odabira opcije "Registracija" u navigacijskoj traci, anonimnom se korisniku prikaže obrazac za registraciju na sustav. Kako bi se uspješno registrirao, korisnik mora upisati ime, prezime, email, datum diplomiranja te lozinku. Broj telefona, adresa i datum rođenja su neobavezna polja te se korisniku daje na izbor hoće li ih upisati ili ne. Za sve navedene obavezne stavke postoje provjere na klijentskoj te na poslužiteljskoj strani, te osim provjera za postojanost obaveznih stavki, postoje i provjere za ispravnost email-a, te provjere da li lozinka ima najmanje 6, a najviše 30 znakova. Izgled implementiranog obrasca za registraciju prikazan je na slici \ref{fig:registracija}.
 
 \subsection{Prijava na sustav}
 
@@ -306,7 +305,7 @@ Prilikom odabira opcije "Registracija" u navigacijskoj traci, anonimnom se koris
 	\label{fig:prijava}
 \end{figure}
 
-Odabirom "Prijava" na navigacijskoj traci, korisniku se pojavljuje obrazac za prijavu koji se sastoji samo od polja za upis email-a, te polja za upis lozinke. Za oba polja postoji provjera postojanosti, te dodatno za email postoji provjera ispravnosti. Ukoliko se korisnik pokuša prijaviti sa nepostojećim email-om, ili krivo upiše lozinku, prikazati će mu se poruka "Pogrešna kombinacija elektroničke pošte i lozinke". Takva poruka je vrlo popularna u većini aplikacija jer ne otkriva korisniku da li je krivo upisao email ili lozinku, što malo podigne razinu sigurnosti aplikacije.
+Odabirom "Prijava" na navigacijskoj traci, korisniku se pojavljuje obrazac za prijavu koji se sastoji samo od polja za upis email-a, te polja za upis lozinke. Za oba polja postoji provjera postojanosti, te dodatno za email postoji provjera ispravnosti. Ukoliko se korisnik pokuša prijaviti sa nepostojećim email-om, ili krivo upiše lozinku, prikazati će mu se poruka "Pogrešna kombinacija elektroničke pošte i lozinke". Takva poruka je vrlo popularna u većini aplikacija jer ne otkriva korisniku da li je krivo upisao email ili lozinku, što malo podigne razinu sigurnosti aplikacije. Izgled implementiranog obrasca za registraciju prikazan je na slici \ref{fig:prijava}.
 
 \subsection{Odjava sa sustava}
 
@@ -317,10 +316,10 @@ Odabirom "Prijava" na navigacijskoj traci, korisniku se pojavljuje obrazac za pr
 	\label{fig:odjava}
 \end{figure}
 
-Odabirom "Odjava" u padajućem izborniku na desnom kraju trake, korisnik se briše iz trenutne sesije aplikacije i odjavljuje se sa sustava. Time se aplikacija vraća u stanje pregleda koje vidi anoniman korisnik.
+Odabirom "Odjava" u padajućem izborniku na desnom kraju trake, korisnik se briše iz trenutne sesije aplikacije i odjavljuje se sa sustava. Time se aplikacija vraća u stanje pregleda koje vidi anoniman korisnik. Izgled padajućeg izbornika na kojem se može odabrati opcija odjave prikazan je na slici \ref{fig:odjava}.
 
 \section{Upravljanje korisnicima}
-Upravljanje korisnicima je mogućnost koju ima samo administrator, te se sve naredne funkcionalnotsti odnose samo na njega.
+Upravljanje korisnicima je mogućnost koju ima samo administrator, te se sve naredne funkcionalnosti odnose samo na njega.
 
 \subsection{Pregled svih korisnika}
 
@@ -331,7 +330,7 @@ Upravljanje korisnicima je mogućnost koju ima samo administrator, te se sve nar
 	\label{fig:korisnici}
 \end{figure}
 
-Pregled svih korisnika koji se nalaze u aplikaciji ostvaruje se odabirom "Korisnici" u padajućem izborniku "Admin" na navigacijskoj traci. Na tom pregledu su vidljive samo osnovne informacije o korisniku kao što su ime, prezime, email, te uloga korisnika. Osim toga, na desnoj strani zapisa svakog korisnika je moguće odabrati prikaz detalja korisnika, brisanje korisnika te uređivanje korisničkih podataka.
+Pregled svih korisnika koji se nalaze u aplikaciji ostvaruje se odabirom "Korisnici" u padajućem izborniku "Admin" na navigacijskoj traci. Na tom pregledu su vidljive samo osnovne informacije o korisniku kao što su ime, prezime, email, te uloga korisnika. Osim toga, na desnoj strani zapisa svakog korisnika je moguće odabrati prikaz detalja korisnika, brisanje korisnika te uređivanje korisničkih podataka. Izgled stranice za pregled svih korisnika prikazan je na slici \ref{fig:korisnici}.
 
 \subsection{Pregled korisničkog računa}
 
@@ -341,6 +340,8 @@ Pregled svih korisnika koji se nalaze u aplikaciji ostvaruje se odabirom "Korisn
 	\caption{Korisnički profil}
 	\label{fig:profil}
 \end{figure}
+
+Slika \ref{fig:profil} pokazuje izgled stranice za pregled korisničkog profila.
 
 Administrator može vidjeti sve korisničke račune u sustavu, pa do pregleda korisničkog računa može doći na dva načina: putem padajućeg izbornika u navigacijskoj traci, gdje odabire pregled vlastitog korisničkog računa, te odabirom poveznice detalji na pregledu svih korisnika.
 
@@ -355,7 +356,7 @@ Na pregledu korisničkog računa, imamo sve bitne informacije o korisniku kao š
 	\label{fig:uredi-profil}
 \end{figure}
 
-Stranica za uređivanje korisničkog računa je vrlo slična stranici za registraciju, osim što nema upisa lozinke. Korisniku se pojavljuje obrazac gdje su sva polja već ispunjena njegovim podacima. Promijenom bilo kojeg podatka korisnički se račun ažurira i to je odmah vidljivo. Dodatna mogućnost kod uređivanja korisničkog računa je dodavanje pretplata na kategorije postova, o tome će biti više u poglavlju "Sustav pretplata".
+Stranica za uređivanje korisničkog računa, čiji je prikaz dan na slici \ref{fig:uredi-profil}, je vrlo slična stranici za registraciju, osim što nema upisa lozinke. Korisniku se pojavljuje obrazac gdje su sva polja već ispunjena njegovim podacima. Promijenom bilo kojeg podatka korisnički se račun ažurira i to je odmah vidljivo. Dodatna mogućnost kod uređivanja korisničkog računa je dodavanje pretplata na kategorije postova, o tome će biti više u poglavlju "Sustav pretplata".
 
 \subsection{Promijena uloge korisnika}
 Na pregledu korisničkog profila, administrator može promijeniti ulogu korisnika odnosno pretvaranje korisnika u one uloge koje postoje u sustavu, a da ih korisnik trenutno nema. Promijenom uloge korisnik preuzima sve mogućnosti te uloge u sustavu.
@@ -364,7 +365,7 @@ Na pregledu korisničkog profila, administrator može promijeniti ulogu korisnik
 Brisanjem korisničkog računa se iz baze podataka obrišu svi podaci korisnika, te se brišu svi njegovi komentari na postove.
 
 \section{Upravljanje poveznicama}
-Poveznice su vrlo bitne za upravljanje bilo kojom udrugom, pa je sustavom za upravljanje poveznicama administratoru koji nije upoznat sa \textit{html} sintaksom i nije u mogućnosti ugraditi poveznice izravno u kod stranice, administratoru omogićeno lagano dodavanje poveznica.
+Poveznice su vrlo bitne za upravljanje bilo kojom udrugom, pa je sustavom za upravljanje poveznicama administratoru koji nije upoznat sa \textit{html} sintaksom i nije u mogućnosti ugraditi poveznice izravno u kod stranice, administratoru omogućeno lagano dodavanje poveznica.
 
 \subsection{Pregled svih poveznica}
 
@@ -375,7 +376,7 @@ Poveznice su vrlo bitne za upravljanje bilo kojom udrugom, pa je sustavom za upr
 	\label{fig:poveznice}
 \end{figure}
 
-Osim što se sve poveznice mogu vidjeti u padajućem izborniku navigacijske trake, za administratora je bitno da ima popis svih poveznica uz dodatne opcije uređivanja i brisanja svake poveznice, slično kao i kod pregleda svih korisnika. Do tog pregleda poveznica dolazi se putem padajućeg izbornika "Admin", odabirom "Stranica poveznica".
+Osim što se sve poveznice mogu vidjeti u padajućem izborniku navigacijske trake, za administratora je bitno da ima popis svih poveznica uz dodatne opcije uređivanja i brisanja svake poveznice, slično kao i kod pregleda svih korisnika. Do tog pregleda poveznica dolazi se putem padajućeg izbornika "Admin", odabirom "Stranica poveznica". Izgled stranice za pregled svih poveznica nalazi se na slici \ref{fig:poveznice}.
 
 \subsection{Dodavanje nove poveznice}
 
@@ -386,7 +387,7 @@ Osim što se sve poveznice mogu vidjeti u padajućem izborniku navigacijske trak
 	\label{fig:nova-poveznica}
 \end{figure}
 
-Odabirom opcije dodavanja nove poveznice na vrhu pregleda svih poveznica, korisniku se pojavljuje jednostavan obrazac koji ima samo polja naslov i url. Oba polja su obavezna i ne upisivanje bilo kojeg rezultira pogreškom, dodatno, url mora biti ispravnog formata i započinjati sa oznakom protokola.
+Odabirom opcije dodavanja nove poveznice na vrhu pregleda svih poveznica, korisniku se pojavljuje jednostavan obrazac koji ima samo polja naslov i url. Oba polja su obavezna i ne upisivanje bilo kojeg rezultira pogreškom, dodatno, url mora biti ispravnog formata i započinjati sa oznakom protokola. Izgled obrasca za izradu nove poveznice dan je slikom \ref{fig:nova-poveznica}.
 
 \subsection{Uređivanje poveznice}
 Odabirom opcije uređivanja poveznice na desnoj strani zapisa svake poveznice prikazuje se isti obrazac kao i kod stvaranja poveznice, uz to da su podaci o poveznici već upisani. 
@@ -406,7 +407,7 @@ Svaki post u sustavu mora imati određenu kategoriju. Zbog olakšanog proširiva
 	\label{fig:kategorije}
 \end{figure}
 
-Do pregleda svih kategorija dolazi se putem padajućeg izbornika "Admin" u navigacijskoj traci, odabirom na "Kategorije". Za svaku kategoriju prikazan je samo njen naziv, te postoje mogućnosti brisanja i uređivanja. Osim toga, na vrhu stranice je opcija dodavanja nove kategorije.
+Do pregleda svih kategorija dolazi se putem padajućeg izbornika "Admin" u navigacijskoj traci, odabirom na "Kategorije". Za svaku kategoriju prikazan je samo njen naziv, te postoje mogućnosti brisanja i uređivanja. Osim toga, na vrhu stranice je opcija dodavanja nove kategorije. Slika \ref{fig:kategorije} prikazuje stranicu za pregled svih kategorija.
 
 \subsection{Dodavanje nove kategorije}
 
@@ -417,7 +418,7 @@ Do pregleda svih kategorija dolazi se putem padajućeg izbornika "Admin" u navig
 	\label{fig:nova-kategorija}
 \end{figure}
 
-Dodavanje nove kategorije je vrlo jednostavno i obrazac ima samo jedno polje, naslov kategorije. To polje naravno ne smije biti prazno.
+Dodavanje nove kategorije je vrlo jednostavno i obrazac ima samo jedno polje, naslov kategorije. To polje naravno ne smije biti prazno. Izgled tog obrasca dan je na slici \ref{fig:nova-kategorija}.
 
 \subsection{Uređivanje kategorije}
 Kategorija se može urediti, i to se obavlja na isti način kao i kod stvaranja.
@@ -437,9 +438,11 @@ Upravljane postovima je gotovo najbitnija funkcionalnost kod programske podrške
 	\label{fig:postovi}
 \end{figure}
 
-Svi postovi se nalaze na početnoj stranici aplikacije, do koje se i u svakom dijelu aplikacije može doći odabirom "Alumni" u navigacijskoj traci. Na početnoj se stranici ne nalaze sve informacije vezane za određene postove. Početna je stranica zamišljena kao sažetak postova, dok se puni opis svakog posta nalazi na njegovoj zasebnoj stranici. Na pregledu svih postova vidimo naslov posta, adresu (lokaciju odrđavanja ako je događaj), datum izrade posta, datum zadnjeg uređivanja posta, kategorije, kratki opis. Dodatno, odabirom na "Komentari..." pojavljuje se padaući element sa svim komentarima posta, na kojem korisnik može i komentirati taj post ako je prijavljen. Uz to, administrator na pregledu svih postova ima mogućnost uređivanja, brisanja i arhiviranja svih postova, te brisanja komentara.
+Svi postovi se nalaze na početnoj stranici aplikacije, do koje se i u svakom dijelu aplikacije može doći odabirom "Alumni" u navigacijskoj traci. Na početnoj se stranici ne nalaze sve informacije vezane za određene postove. Početna je stranica zamišljena kao sažetak postova, dok se puni opis svakog posta nalazi na njegovoj zasebnoj stranici. Na pregledu svih postova vidimo naslov posta, adresu (lokaciju održavanja ako je događaj), datum izrade posta, datum zadnjeg uređivanja posta, kategorije, kratki opis. Dodatno, odabirom na "Komentari..." pojavljuje se padajući element sa svim komentarima posta, na kojem korisnik može i komentirati taj post ako je prijavljen. Uz to, administrator na pregledu svih postova ima mogućnost uređivanja, brisanja i arhiviranja svih postova, te brisanja komentara. 
 
 Kako nebi bilo previše postova na stranici, postoji sustav straničenja.
+
+Izgled početne stranice aplikacije prikazan je na slici \ref{fig:postovi}.
 
 \subsection{Filtriranje postova}
 
@@ -450,7 +453,7 @@ Kako nebi bilo previše postova na stranici, postoji sustav straničenja.
 	\label{fig:filter}
 \end{figure}
 
-Postovi mogu biti različitih kategorija, a korisniku sustava često neće biti bitne sve te kategorije. Zbog toga je korisniku omogućeno filtriranje postova po kategorijama putem padajućeg izbornika na vrhu stranice svih postova. Tekst padajućeg izbornika se dinamički mijenja, te se ovisno o tome koja je kategorija izabrana za filtriranje tekst postavi na naziv te kategorije. Osim filtriranja pomoću tog izbornika, filtriranje se može obaviti i odabirom na oznaku kategorije na svakom postu.
+Postovi mogu biti različitih kategorija, a korisniku sustava često neće biti bitne sve te kategorije. Zbog toga je korisniku omogućeno filtriranje postova po kategorijama putem padajućeg izbornika na vrhu stranice svih postova. Tekst padajućeg izbornika se dinamički mijenja, te se ovisno o tome koja je kategorija izabrana za filtriranje tekst postavi na naziv te kategorije. Osim filtriranja pomoću tog izbornika, filtriranje se može obaviti i odabirom na oznaku kategorije na svakom postu. Izgled padajućeg izbornika za filtriranje postova prikazan je na slici \ref{fig:filter}.
 
 \subsection{Pregled posta}
 
@@ -460,6 +463,8 @@ Postovi mogu biti različitih kategorija, a korisniku sustava često neće biti 
 	\caption{Pregled posta}
 	\label{fig:post}
 \end{figure}
+
+Na slici \ref{fig:post} prikazan je izgled stranice za pregled pojedinog posta.
 
 Odabirom poveznice "Više informacija" ili odabirom naslova posta na stranici pregleda svih postova, dolazi se do stranice za pregled određenog posta gdje se nalazi sve što postoji i na pregledu svih postova, uz dodatan dio gdje se nalazi dugi opis posta.
 
@@ -474,7 +479,7 @@ Također, pri vrhu stranice nalaze se administratorske opcije uređivanja, brisa
 	\label{fig:novi-post}
 \end{figure}
 
-Do obrasca za dodavanje novog posta dolazi se odabirom opcije "Novi post" u padajućem izborniku "Admin". Dodavanje novog posta zahtijeva upis naslova, kratkog opisa te odabira kategorija postova. Dok su neobavezna polja adresa(lokacija održavanja ako je događaj, dvorana ako je predavanje) i dugi opis posta. Dodavanje dugog opisa posta ostvareno je funkcionalnim uređivačem teksta, zbog administratora koji možda nisu upoznati sa \textit{html} sintaksom. Kao opcije za uređivanje omogućeno je podebljanje teksta, ukošavanje teksta, izrada neporedane liste, izrada poredane, brojevima označene liste, ubacivanje poveznice, ubacivanje slike, izrada velikog naslova, izrada naslova srednje veličine, te prikaz teksta u \textit{html} formatu za naprednije korisnike koji žele dodatno uljepšati tekst opcijama koje nisu ponuđene.
+Do obrasca za dodavanje novog posta, koji je prikazan na slici \ref{fig:novi-post}, dolazi se odabirom opcije "Novi post" u padajućem izborniku "Admin". Dodavanje novog posta zahtijeva upis naslova, kratkog opisa te odabira kategorija postova. Dok su neobavezna polja adresa(lokacija održavanja ako je događaj, dvorana ako je predavanje) i dugi opis posta. Dodavanje dugog opisa posta ostvareno je funkcionalnim uređivačem teksta, zbog administratora koji možda nisu upoznati sa \textit{html} sintaksom. Kao opcije za uređivanje omogućeno je podebljanje teksta, ukošavanje teksta, izrada neporedane liste, izrada poredane, brojevima označene liste, ubacivanje poveznice, ubacivanje slike, izrada velikog naslova, izrada naslova srednje veličine, te prikaz teksta u \textit{html} formatu za naprednije korisnike koji žele dodatno uljepšati tekst opcijama koje nisu ponuđene.
 
 \subsection{Uređivanje posta}
 Uređivanje posta je ostvareno tako da bude gotovo identično stvaranju novog posta, uz već upisana polja s postojećim podacima.
@@ -494,7 +499,7 @@ Arhiviranje posta je vrlo bitno jer postovi nakon nekog vremena postaju beznača
 	\label{fig:arhivirani-postovi}
 \end{figure}
 
-Do pregleda arhiviranih postova dolazi se odabirom opcije "Arhiva postova" u padajućem izborniku "Admin" na navigacijskoj traci. Arhiva postova imitira stranicu za prikaz svih postova, te je također omogućeno filtriranje, straničenje, brisanje te uređivanje tih postova.
+Do pregleda arhiviranih postova, koji je prikazan na slici \ref{fig:arhivirani-postovi},dolazi se odabirom opcije "Arhiva postova" u padajućem izborniku "Admin" na navigacijskoj traci. Arhiva postova imitira stranicu za prikaz svih postova, te je također omogućeno filtriranje, straničenje, brisanje te uređivanje tih postova.
 
 \subsection{Komentari}
 
@@ -505,7 +510,7 @@ Do pregleda arhiviranih postova dolazi se odabirom opcije "Arhiva postova" u pad
 	\label{fig:komentari}
 \end{figure}
 
-Zbog toga što je ovo stranica za upravljanje zajednicom, vrlo je bitan društveni aspekt te zajednice te je vrlo bitna interakcija korisnika sa sustavom i međusobno. To je ostvareno preko sustava komentara kojim bilo koji prijavljeni korisnik može komentirati postove.
+Zbog toga što je ovo stranica za upravljanje zajednicom, vrlo je bitan društveni aspekt te zajednice te je vrlo bitna interakcija korisnika sa sustavom i međusobno. To je ostvareno preko sustava komentara kojim bilo koji prijavljeni korisnik može komentirati postove. Izgled komentara na postove prikazan je na slici \label{fig:komentari}.
 
 \subsubsection{Dodavanje novog komentara}
 
@@ -526,7 +531,7 @@ Korisnici često propuste neke važne obavijesti na stranicama ako redovno ne po
 	\label{fig:pretplate}
 \end{figure}
 
-Uređivanje pretplata ostvareno je u sklopu uređivanja korisničkog računa, pri dnu obrasca. Korisnik se pomoću više-odabirnog padajućeg izbornika može pretplatiti na određene kategorije postova. Na taj isti način mogu se i ukloniti pretplate. Korisnik ne mora nužno biti pretplaćen na bilo koju kategoriju. Ako je korisnik pretplaćen na neke kategorije, to je vidljivo na pregledu njegovog računa.
+Uređivanje pretplata ostvareno je u sklopu uređivanja korisničkog računa, pri dnu obrasca. Korisnik se pomoću više-odabirnog padajućeg izbornika može pretplatiti na određene kategorije postova. Na taj isti način mogu se i ukloniti pretplate. Korisnik ne mora nužno biti pretplaćen na bilo koju kategoriju. Ako je korisnik pretplaćen na neke kategorije, to je vidljivo na pregledu njegovog računa. Izgled padajućeg izbornika za dodavanje postova na stranici za uređivanje korisnika prikazan je na slici \ref{fig:pretplate}.
 
 \subsection{Slanje pošte prilikom dodavanja novog posta}
 
@@ -591,19 +596,18 @@ Korisnici mogu biti u interakciji sa administratorima, sustavom drugim korisnici
 
 \begin{sazetak}
 	Rad obuhvaća teorijski dio potreban za razumijevanje potrebe za aplikacijom kojom bi se upravljalo svršenicima, zatim implementaciju takve aplikacije i popratnu dokumentaciju u obliku funkcionalnosti i arhitekture sustava kojom je ostvareno.
-	
+		
 	Za uspješan rad takve aplikacije, osnovne mogućnosti koje je potrebno imati su objave vijesti, pregled korisnika, definiranje specifičnih kategorija za vlastitu zajednicu svršenika te sustav pretplata kojim korisnik obavijesti dobiva email-om.
-	
+		
 	\kljucnerijeci{Aplikacija, programska podrška, vijesti, korisnici, kategorije, pretplate, obavijesti, internet, klijent, poslužitelj}
 \end{sazetak}
 
-% TODO: Navedite naslov na engleskom jeziku.
-\engtitle{Alumni menagement software}
+\engtitle{Alumni management software}
 \begin{abstract}
-	This paper explains the theory behind the necessity of an application for menaging alumnae, then, it explains the implementation of such software and that software's documentation in form of functionalities it has and the architecture of its system.
-
+	This paper explains the theory behind the necessity of an application for managing alumnae, then, it explains the implementation of such software and that software's documentation in form of functionalities it has and the architecture of its system.
+	
 	For this application to be successful, there are some core features that ought to be implemented such as posting news, overview of its users, defining a specific category relevant for an alumnae community and subscription system that allows user to read notification for a posted news via email.
-			
+				
 	\keywords{Application, software, news, users, categories, subscriptions, notifications, web, client, server}
 \end{abstract}
 

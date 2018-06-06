@@ -9,7 +9,7 @@
 \contentsline {section}{\numberline {3.2}Nefunkcionalni zahtjevi}{7}
 \contentsline {chapter}{\numberline {4}Arhitektura sustava}{8}
 \contentsline {section}{\numberline {4.1}Baza podataka}{8}
-\contentsline {subsection}{\numberline {4.1.1}Fizi\IeC {\v c}ki model baze podataka}{8}
+\contentsline {subsection}{\numberline {4.1.1}Model baze podataka}{8}
 \contentsline {subsection}{\numberline {4.1.2}Opis tablica}{9}
 \contentsline {subsubsection}{Users}{9}
 \contentsline {subsubsection}{Roles}{9}
@@ -21,7 +21,6 @@
 \contentsline {subsubsection}{Posts categories}{11}
 \contentsline {subsubsection}{Users subscriptions}{11}
 \contentsline {subsubsection}{Comments}{12}
-\contentsline {subsubsection}{Posts comments}{12}
 \contentsline {subsubsection}{Links}{12}
 \contentsline {section}{\numberline {4.2}Obrazac model-pogled-upravlja\IeC {\v c}}{12}
 \contentsline {subsection}{\numberline {4.2.1}Modeli podataka}{13}
@@ -29,7 +28,7 @@
 \contentsline {subsection}{\numberline {4.2.3}Upravlja\IeC {\v c}i}{13}
 \contentsline {chapter}{\numberline {5}Implementirane funkcionalnosti}{14}
 \contentsline {section}{\numberline {5.1}Navigacijska traka}{14}
-\contentsline {subsection}{\numberline {5.1.1}Navigacijska traka za anonimnog(ne prijavljenog) korisnika}{14}
+\contentsline {subsection}{\numberline {5.1.1}Navigacijska traka za anonimnog korisnika}{14}
 \contentsline {subsection}{\numberline {5.1.2}Navigacijska traka za prijavljenog korisnika}{15}
 \contentsline {subsection}{\numberline {5.1.3}Registracija na sustav}{15}
 \contentsline {subsection}{\numberline {5.1.4}Prijava na sustav}{16}

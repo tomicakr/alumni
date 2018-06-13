@@ -1,9 +1,9 @@
-PWD /media/tomica/2fa42c9d-6f18-425e-b642-d24e91ac0aaa/home/tomica/git/alumni/Dokumentacija
+PWD /home/tomica/git/alumni/Dokumentacija
 INPUT /etc/texmf/web2c/texmf.cnf
 INPUT /usr/share/texmf/web2c/texmf.cnf
 INPUT /usr/share/texlive/texmf-dist/web2c/texmf.cnf
 INPUT /var/lib/texmf/web2c/pdftex/pdflatex.fmt
-INPUT /media/tomica/2fa42c9d-6f18-425e-b642-d24e91ac0aaa/home/tomica/git/alumni/Dokumentacija/zavrsni.tex
+INPUT /home/tomica/git/alumni/Dokumentacija/zavrsni.tex
 OUTPUT zavrsni.log
 INPUT fer.cls
 INPUT fer.cls
@@ -311,9 +311,6 @@ INPUT ./slike/mail.png
 INPUT ./slike/mail.png
 INPUT zavrsni.bbl
 INPUT zavrsni.bbl
-INPUT /usr/share/texmf/tex/latex/lm/t1lmtt.fd
-INPUT /usr/share/texmf/tex/latex/lm/t1lmtt.fd
-INPUT /usr/share/texmf/fonts/tfm/public/lm/ec-lmtt12.tfm
 INPUT zavrsni.aux
 INPUT /usr/share/texmf/fonts/enc/dvips/lm/lm-ec.enc
 INPUT /usr/share/texmf/fonts/type1/public/lm/lmbx10.pfb
@@ -324,4 +321,3 @@ INPUT /usr/share/texmf/fonts/type1/public/lm/lmr12.pfb
 INPUT /usr/share/texmf/fonts/type1/public/lm/lmri12.pfb
 INPUT /usr/share/texmf/fonts/type1/public/lm/lmss12.pfb
 INPUT /usr/share/texmf/fonts/type1/public/lm/lmssbx10.pfb
-INPUT /usr/share/texmf/fonts/type1/public/lm/lmtt12.pfb

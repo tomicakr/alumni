@@ -1,9 +1,10 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.16 (TeX Live 2015/Debian) (preloaded format=pdflatex 2018.5.28)  13 JUN 2018 05:19
+This is pdfTeX, Version 3.14159265-2.6-1.40.16 (TeX Live 2015/Debian) (preloaded format=pdflatex 2018.5.30)  13 JUN 2018 15:30
 entering extended mode
  restricted \write18 enabled.
+ file:line:error style messages enabled.
  %&-line parsing enabled.
-**zavrsni.tex
-(./zavrsni.tex
+**/home/tomica/git/alumni/Dokumentacija/zavrsni.tex
+(/home/tomica/git/alumni/Dokumentacija/zavrsni.tex
 LaTeX2e <2016/02/01>
 Babel <3.9q> and hyphenation patterns for 81 language(s) loaded.
 (./fer.cls
@@ -818,6 +819,10 @@ Poglavlje 3.
 [6
 
 ]
+
+Package natbib Warning: Citation `xss' on page 7 undefined on input line 111.
+
+
 Overfull \hbox (11.02708pt too wide) in paragraph at lines 112--113
 []\T1/lmr/m/n/12 Sustav mora biti os-tva-ren ar-hi-tek-tu-rom model-pogled-upra
 vlja£ (eng. \T1/lmr/m/it/12 Model-
@@ -1086,44 +1091,85 @@ Package pdftex.def Info: slike/mail.png used on input line 611.
 (pdftex.def)             Requested size: 369.88582pt x 410.3685pt.
  [38 <./slike/pretplate.png>] [39 <./slike/mail.png>]
 Poglavlje 6.
+
+Package natbib Warning: Citation `apache-maven' on page 40 undefined on input l
+ine 624.
+
+
+Package natbib Warning: Citation `spring-boot' on page 40 undefined on input li
+ne 629.
+
+
+Package natbib Warning: Citation `spring-initializr' on page 40 undefined on in
+put line 629.
+
+
+Package natbib Warning: Citation `spring-security' on page 40 undefined on inpu
+t line 632.
+
 [40
 
-] [41] [42] [43]
+]
+
+Package natbib Warning: Citation `jpa' on page 41 undefined on input line 635.
+
+
+Package natbib Warning: Citation `hibernate' on page 41 undefined on input line
+ 638.
+
+
+Package natbib Warning: Citation `jsp' on page 41 undefined on input line 641.
+
+
+Package natbib Warning: Citation `ecma-script' on page 41 undefined on input li
+ne 644.
+
+[41]
+
+Package natbib Warning: Citation `jquery' on page 42 undefined on input line 64
+7.
+
+
+Package natbib Warning: Citation `semantic' on page 42 undefined on input line 
+650.
+
+
+Package natbib Warning: Citation `mysql' on page 42 undefined on input line 653
+.
+
+[42]
+
+Package natbib Warning: Citation `vscode' on page 43 undefined on input line 65
+6.
+
+[43]
 Poglavlje 7.
-(./zavrsni.bbl [44
+(./zavrsni.bbl) [44
 
 ]
-LaTeX Font Info:    Try loading font information for T1+lmtt on input line 11.
- (/usr/share/texmf/tex/latex/lm/t1lmtt.fd
-File: t1lmtt.fd 2009/10/30 v1.6 Font defs for Latin Modern
-)
-Underfull \hbox (badness 2591) in paragraph at lines 51--55
-[]\T1/lmr/m/n/12 Oracle.  \T1/lmr/m/it/12 Ja-va-Ser-ver Pa-ges\T1/lmr/m/n/12 , 
-2007.  URL $\T1/lmtt/m/n/12 http : / / www . oracle . com /
- []
 
-[45
+Package natbib Warning: There were undefined citations.
 
-]) [46] [47] (./zavrsni.aux) ) 
+[45] (./zavrsni.aux) ) 
 Here is how much of TeX's memory you used:
- 6329 strings out of 493029
- 90813 string characters out of 6136234
- 163982 words of memory out of 5000000
- 9668 multiletter control sequences out of 15000+600000
- 77495 words of font info for 64 fonts, out of 8000000 for 9000
+ 6263 strings out of 493029
+ 89809 string characters out of 6136234
+ 163597 words of memory out of 5000000
+ 9605 multiletter control sequences out of 15000+600000
+ 77177 words of font info for 63 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
- 43i,6n,40p,981b,344s stack positions out of 5000i,500n,10000p,200000b,80000s
-{/usr/share/texmf/fonts/enc/dvips/lm/lm-ec.enc}</
-usr/share/texmf/fonts/type1/public/lm/lmbx10.pfb></usr/share/texmf/fonts/type1/
-public/lm/lmbx12.pfb></usr/share/texmf/fonts/type1/public/lm/lmcsc10.pfb></usr/
-share/texmf/fonts/type1/public/lm/lmr10.pfb></usr/share/texmf/fonts/type1/publi
-c/lm/lmr12.pfb></usr/share/texmf/fonts/type1/public/lm/lmri12.pfb></usr/share/t
-exmf/fonts/type1/public/lm/lmss12.pfb></usr/share/texmf/fonts/type1/public/lm/l
-mssbx10.pfb></usr/share/texmf/fonts/type1/public/lm/lmtt12.pfb>
-Output written on zavrsni.pdf (51 pages, 6122359 bytes).
+ 43i,6n,40p,1014b,344s stack positions out of 5000i,500n,10000p,200000b,80000s
+{/usr/share/texmf/fonts/enc/dvips/lm/lm-ec.enc}</usr/shar
+e/texmf/fonts/type1/public/lm/lmbx10.pfb></usr/share/texmf/fonts/type1/public/l
+m/lmbx12.pfb></usr/share/texmf/fonts/type1/public/lm/lmcsc10.pfb></usr/share/te
+xmf/fonts/type1/public/lm/lmr10.pfb></usr/share/texmf/fonts/type1/public/lm/lmr
+12.pfb></usr/share/texmf/fonts/type1/public/lm/lmri12.pfb></usr/share/texmf/fon
+ts/type1/public/lm/lmss12.pfb></usr/share/texmf/fonts/type1/public/lm/lmssbx10.
+pfb>
+Output written on zavrsni.pdf (49 pages, 6094841 bytes).
 PDF statistics:
- 268 PDF objects out of 1000 (max. 8388607)
- 144 compressed objects within 2 object streams
+ 258 PDF objects out of 1000 (max. 8388607)
+ 137 compressed objects within 2 object streams
  0 named destinations out of 1000 (max. 500000)
  206 words of extra memory for PDF output out of 10000 (max. 10000000)
 

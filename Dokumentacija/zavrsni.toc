@@ -38,7 +38,7 @@
 \contentsline {subsection}{\numberline {5.2.1}Pregled svih korisnika}{20}
 \contentsline {subsection}{\numberline {5.2.2}Pregled korisni\IeC {\v c}kog ra\IeC {\v c}una}{21}
 \contentsline {subsection}{\numberline {5.2.3}Ure\IeC {\dj }ivanje korisni\IeC {\v c}kog ra\IeC {\v c}una}{22}
-\contentsline {subsection}{\numberline {5.2.4}Promijena uloge korisnika}{22}
+\contentsline {subsection}{\numberline {5.2.4}Promjena uloge korisnika}{22}
 \contentsline {subsection}{\numberline {5.2.5}Brisanje korisni\IeC {\v c}kog ra\IeC {\v c}una}{23}
 \contentsline {section}{\numberline {5.3}Upravljanje poveznicama}{23}
 \contentsline {subsection}{\numberline {5.3.1}Pregled svih poveznica}{24}
@@ -85,4 +85,3 @@
 \contentsline {section}{\numberline {6.2}Baza podataka}{42}
 \contentsline {section}{\numberline {6.3}Razvojno okru\IeC {\v z}enje}{43}
 \contentsline {chapter}{\numberline {7}Zaklju\IeC {\v c}ak}{44}
-\contentsline {chapter}{Literatura}{45}

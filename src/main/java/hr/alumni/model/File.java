@@ -40,16 +40,10 @@ public class File {
     @Column(name = "content", nullable = false)
     private byte[] content;
 
-    /**
-     * @return the fileId
-     */
     public Integer getFileId() {
         return fileId;
     }
 
-    /**
-     * @param fileId the fileId to set
-     */
     public void setFileId(Integer fileId) {
         this.fileId = fileId;
     }
@@ -86,16 +80,10 @@ public class File {
         this.content = content;
     }
 
-    /**
-     * @return the name
-     */
     public String getName() {
         return name;
     }
 
-    /**
-     * @param name the name to set
-     */
     public void setName(String name) {
         this.name = name;
     }

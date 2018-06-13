@@ -1,10 +1,9 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.16 (TeX Live 2015/Debian) (preloaded format=pdflatex 2018.5.30)  13 JUN 2018 03:50
+This is pdfTeX, Version 3.14159265-2.6-1.40.16 (TeX Live 2015/Debian) (preloaded format=pdflatex 2018.5.28)  13 JUN 2018 05:19
 entering extended mode
  restricted \write18 enabled.
- file:line:error style messages enabled.
  %&-line parsing enabled.
-**/home/tomica/git/alumni/Dokumentacija/zavrsni.tex
-(/home/tomica/git/alumni/Dokumentacija/zavrsni.tex
+**zavrsni.tex
+(./zavrsni.tex
 LaTeX2e <2016/02/01>
 Babel <3.9q> and hyphenation patterns for 81 language(s) loaded.
 (./fer.cls
@@ -819,7 +818,7 @@ Poglavlje 3.
 [6
 
 ]
-Overfull \hbox (11.02708pt too wide) in paragraph at lines 108--109
+Overfull \hbox (11.02708pt too wide) in paragraph at lines 112--113
 []\T1/lmr/m/n/12 Sustav mora biti os-tva-ren ar-hi-tek-tu-rom model-pogled-upra
 vlja£ (eng. \T1/lmr/m/it/12 Model-
  []
@@ -830,13 +829,13 @@ Poglavlje 4.
 File: slike/fizicki-model.png Graphic file (type png)
 
 <use slike/fizicki-model.png>
-Package pdftex.def Info: slike/fizicki-model.png used on input line 118.
+Package pdftex.def Info: slike/fizicki-model.png used on input line 122.
 (pdftex.def)             Requested size: 369.88582pt x 313.35191pt.
 
 <slike/t-users.png, id=54, 493.845pt x 215.80624pt>
 File: slike/t-users.png Graphic file (type png)
  <use slike/t-users.png>
-Package pdftex.def Info: slike/t-users.png used on input line 131.
+Package pdftex.def Info: slike/t-users.png used on input line 135.
 (pdftex.def)             Requested size: 199.16928pt x 87.03223pt.
 
 [8
@@ -845,41 +844,41 @@ Package pdftex.def Info: slike/t-users.png used on input line 131.
 <slike/t-roles.png, id=58, 284.06125pt x 75.28125pt>
 File: slike/t-roles.png Graphic file (type png)
  <use slike/t-roles.png>
-Package pdftex.def Info: slike/t-roles.png used on input line 142.
+Package pdftex.def Info: slike/t-roles.png used on input line 146.
 (pdftex.def)             Requested size: 199.16928pt x 52.78494pt.
 
 <slike/t-privileges.png, id=59, 285.065pt x 71.26625pt>
 File: slike/t-privileges.png Graphic file (type png)
 
 <use slike/t-privileges.png>
-Package pdftex.def Info: slike/t-privileges.png used on input line 153.
+Package pdftex.def Info: slike/t-privileges.png used on input line 157.
 (pdftex.def)             Requested size: 199.16928pt x 49.7925pt.
 
 <slike/t-users_roles.png, id=60, 285.065pt x 69.25874pt>
 File: slike/t-users_roles.png Graphic file (type png)
 
 <use slike/t-users_roles.png>
-Package pdftex.def Info: slike/t-users_roles.png used on input line 164.
+Package pdftex.def Info: slike/t-users_roles.png used on input line 168.
 (pdftex.def)             Requested size: 199.16928pt x 48.3899pt.
  [9 <./slike/t-users.png> <./slike/t-roles.png> <./slike/t-privileges.png>]
 <slike/t-roles_privileges.png, id=65, 255.95625pt x 68.255pt>
 File: slike/t-roles_privileges.png Graphic file (type png)
 
 <use slike/t-roles_privileges.png>
-Package pdftex.def Info: slike/t-roles_privileges.png used on input line 175.
+Package pdftex.def Info: slike/t-roles_privileges.png used on input line 179.
 (pdftex.def)             Requested size: 199.16928pt x 53.1116pt.
 
 <slike/t-posts.png, id=66, 330.23375pt x 196.735pt>
 File: slike/t-posts.png Graphic file (type png)
  <use slike/t-posts.png>
-Package pdftex.def Info: slike/t-posts.png used on input line 186.
+Package pdftex.def Info: slike/t-posts.png used on input line 190.
 (pdftex.def)             Requested size: 199.16928pt x 118.65729pt.
 
 <slike/t-post_categories.png, id=67, 342.27875pt x 70.2625pt>
 File: slike/t-post_categories.png Graphic file (type png)
 
 <use slike/t-post_categories.png>
-Package pdftex.def Info: slike/t-post_categories.png used on input line 197.
+Package pdftex.def Info: slike/t-post_categories.png used on input line 201.
 (pdftex.def)             Requested size: 199.16928pt x 40.88628pt.
  [10 <./slike/t-users_roles.png> <./slike/t-roles_privileges.png> <./slike/t-po
 sts.png>]
@@ -887,14 +886,14 @@ sts.png>]
 File: slike/t-posts_categories.png Graphic file (type png)
 
 <use slike/t-posts_categories.png>
-Package pdftex.def Info: slike/t-posts_categories.png used on input line 208.
+Package pdftex.def Info: slike/t-posts_categories.png used on input line 212.
 (pdftex.def)             Requested size: 199.16928pt x 46.40811pt.
 
 <slike/t-users_subscriptions.png, id=72, 309.155pt x 71.26625pt>
 File: slike/t-users_subscriptions.png Graphic file (type png)
 
 <use slike/t-users_subscriptions.png>
-Package pdftex.def Info: slike/t-users_subscriptions.png used on input line 219
+Package pdftex.def Info: slike/t-users_subscriptions.png used on input line 223
 .
 (pdftex.def)             Requested size: 199.16928pt x 45.91362pt.
 
@@ -902,53 +901,229 @@ Package pdftex.def Info: slike/t-users_subscriptions.png used on input line 219
 File: slike/t-comments.png Graphic file (type png)
 
 <use slike/t-comments.png>
-Package pdftex.def Info: slike/t-comments.png used on input line 230.
+Package pdftex.def Info: slike/t-comments.png used on input line 234.
 (pdftex.def)             Requested size: 199.16928pt x 91.87068pt.
  [11 <./slike/t-post_categories.png> <./slike/t-posts_categories.png> <./slike/
 t-users_subscriptions.png>]
 <slike/t-links.png, id=77, 282.05376pt x 91.34125pt>
 File: slike/t-links.png Graphic file (type png)
  <use slike/t-links.png>
-Package pdftex.def Info: slike/t-links.png used on input line 241.
+Package pdftex.def Info: slike/t-links.png used on input line 245.
 (pdftex.def)             Requested size: 199.16928pt x 64.5001pt.
 
 <slike/t-files.png, id=78, 668.4975pt x 155.58125pt>
 File: slike/t-files.png Graphic file (type png)
  <use slike/t-files.png>
-Package pdftex.def Info: slike/t-files.png used on input line 252.
+Package pdftex.def Info: slike/t-files.png used on input line 256.
 (pdftex.def)             Requested size: 199.16928pt x 46.35187pt.
 
 [12 <./slike/t-comments.png> <./slike/t-links.png> <./slike/t-files.png>]
-[13]
+<slike/modeli-dijagram.png, id=82, 1151.30125pt x 976.64874pt>
+File: slike/modeli-dijagram.png Graphic file (type png)
+
+<use slike/modeli-dijagram.png>
+Package pdftex.def Info: slike/modeli-dijagram.png used on input line 277.
+(pdftex.def)             Requested size: 369.88582pt x 313.77089pt.
+ [13] [14 <./slike/modeli-dijagram.png (PNG copy)>] <slike/kontroleri.png, id=8
+9, 1137.24875pt x 675.52374pt>
+File: slike/kontroleri.png Graphic file (type png)
+
+<use slike/kontroleri.png>
+Package pdftex.def Info: slike/kontroleri.png used on input line 292.
+(pdftex.def)             Requested size: 369.88582pt x 219.70753pt.
+ [15 <./slike/kontroleri.png (PNG copy)>]
 Poglavlje 5.
-<slike/nav-admin.png, id=85, 1912.14375pt x 596.2275pt>
+<slike/nav-admin.png, id=94, 1912.14375pt x 596.2275pt>
 File: slike/nav-admin.png Graphic file (type png)
 
 <use slike/nav-admin.png>
-Package pdftex.def Info: slike/nav-admin.png used on input line 284.
+Package pdftex.def Info: slike/nav-admin.png used on input line 306.
 (pdftex.def)             Requested size: 369.88582pt x 115.33138pt.
- [14
+ [16
 
  <./slike/nav-admin.png>]
-<slike/registracija.png, id=89, 1927.2pt x 2073.7475pt>
+<slike/registracija.png, id=98, 1927.2pt x 2073.7475pt>
 File: slike/registracija.png Graphic file (type png)
 
 <use slike/registracija.png>
-Package pdftex.def Info: slike/registracija.png used on input line 303.
+Package pdftex.def Info: slike/registracija.png used on input line 325.
 (pdftex.def)             Requested size: 369.88582pt x 398.00311pt.
- [15 <./slike/registracija.png>]
-<slike/prijava.png, id=95, 1927.2pt x 917.4275pt>
+ [17 <./slike/registracija.png>]
+<slike/prijava.png, id=103, 1927.2pt x 917.4275pt>
 File: slike/prijava.png Graphic file (type png)
  <use slike/prijava.png>
-Package pdftex.def Info: slike/prijava.png used on input line 314.
+Package pdftex.def Info: slike/prijava.png used on input line 336.
 (pdftex.def)             Requested size: 369.88582pt x 176.07689pt.
 
-<slike/odjava.png, id=96, 290.08376pt x 369.38pt>
+<slike/odjava.png, id=104, 290.08376pt x 369.38pt>
 File: slike/odjava.png Graphic file (type png)
  <use slike/odjava.png>
-Package pdftex.def Info: slike/odjava.png used on input line 325.
+Package pdftex.def Info: slike/odjava.png used on input line 347.
 (pdftex.def)             Requested size: 227.62204pt x 289.84557pt.
 
-[16 <./slike/prijava.png>
-!pdfTeX error: pdflatex: fflush() failed (Broken pipe)
- ==> Fatal error occurred, no output PDF file produced!
+[18 <./slike/prijava.png>] <slike/korisnici.png, id=109, 1927.2pt x 1589.94pt>
+File: slike/korisnici.png Graphic file (type png)
+
+<use slike/korisnici.png>
+Package pdftex.def Info: slike/korisnici.png used on input line 361.
+(pdftex.def)             Requested size: 369.88582pt x 305.14856pt.
+ [19 <./slike/odjava.png>]
+<slike/profil.png, id=113, 1927.2pt x 1322.9425pt>
+File: slike/profil.png Graphic file (type png)
+ <use slike/profil.png>
+Package pdftex.def Info: slike/profil.png used on input line 372.
+(pdftex.def)             Requested size: 369.88582pt x 253.90518pt.
+
+[20 <./slike/korisnici.png>]
+<slike/uredi-profil.png, id=118, 1927.2pt x 1704.3675pt>
+File: slike/uredi-profil.png Graphic file (type png)
+
+<use slike/uredi-profil.png>
+Package pdftex.def Info: slike/uredi-profil.png used on input line 387.
+(pdftex.def)             Requested size: 369.88582pt x 327.11002pt.
+ [21 <./slike/profil.png>] [22 <./slike/uredi-profil.png>] <slike/poveznice.png
+, id=128, 1927.2pt x 2069.7325pt>
+File: slike/poveznice.png Graphic file (type png)
+
+<use slike/poveznice.png>
+Package pdftex.def Info: slike/poveznice.png used on input line 407.
+(pdftex.def)             Requested size: 369.88582pt x 397.23254pt.
+ [23]
+<slike/nova-poveznica.png, id=132, 1927.2pt x 935.495pt>
+File: slike/nova-poveznica.png Graphic file (type png)
+
+<use slike/nova-poveznica.png>
+Package pdftex.def Info: slike/nova-poveznica.png used on input line 418.
+(pdftex.def)             Requested size: 369.88582pt x 179.54448pt.
+ [24 <./slike/poveznice.png>]
+<slike/kategorije.png, id=137, 1927.2pt x 1353.055pt>
+File: slike/kategorije.png Graphic file (type png)
+
+<use slike/kategorije.png>
+Package pdftex.def Info: slike/kategorije.png used on input line 438.
+(pdftex.def)             Requested size: 369.88582pt x 259.68451pt.
+ [25 <./slike/nova-poveznica.png>]
+<slike/nova-kategorija.png, id=142, 1927.2pt x 917.4275pt>
+File: slike/nova-kategorija.png Graphic file (type png)
+
+<use slike/nova-kategorija.png>
+Package pdftex.def Info: slike/nova-kategorija.png used on input line 449.
+(pdftex.def)             Requested size: 369.88582pt x 176.07689pt.
+ [26 <./slike/kategorije.png>]
+<slike/repozitorij.png, id=147, 1927.2pt x 930.47626pt>
+File: slike/repozitorij.png Graphic file (type png)
+
+<use slike/repozitorij.png>
+Package pdftex.def Info: slike/repozitorij.png used on input line 469.
+(pdftex.def)             Requested size: 369.88582pt x 178.58125pt.
+ [27 <./slike/nova-kategorija.png>]
+<slike/nova-datoteka.png, id=153, 1927.2pt x 1268.74pt>
+File: slike/nova-datoteka.png Graphic file (type png)
+
+<use slike/nova-datoteka.png>
+Package pdftex.def Info: slike/nova-datoteka.png used on input line 480.
+(pdftex.def)             Requested size: 369.88582pt x 243.50238pt.
+ [28 <./slike/repozitorij.png>]
+<slike/uredi-datoteku.png, id=158, 1927.2pt x 967.615pt>
+File: slike/uredi-datoteku.png Graphic file (type png)
+
+<use slike/uredi-datoteku.png>
+Package pdftex.def Info: slike/uredi-datoteku.png used on input line 491.
+(pdftex.def)             Requested size: 369.88582pt x 185.70909pt.
+ [29 <./slike/nova-datoteka.png>]
+<slike/postovi.png, id=163, 1927.2pt x 2591.6825pt>
+File: slike/postovi.png Graphic file (type png)
+ <use slike/postovi.png>
+Package pdftex.def Info: slike/postovi.png used on input line 507.
+(pdftex.def)             Requested size: 369.88582pt x 497.40758pt.
+
+[30 <./slike/uredi-datoteku.png>] [31 <./slike/postovi.png>]
+<slike/filter.png, id=172, 592.2125pt x 643.40375pt>
+File: slike/filter.png Graphic file (type png)
+ <use slike/filter.png>
+Package pdftex.def Info: slike/filter.png used on input line 522.
+(pdftex.def)             Requested size: 369.88582pt x 401.8711pt.
+
+[32 <./slike/filter.png>] <slike/post.png, id=176, 1927.2pt x 2593.69pt>
+File: slike/post.png Graphic file (type png)
+
+<use slike/post.png>
+Package pdftex.def Info: slike/post.png used on input line 533.
+(pdftex.def)             Requested size: 369.88582pt x 497.79286pt.
+ [33 <./slike/post.png>]
+<slike/novi-post.png, id=182, 1927.2pt x 2224.31pt>
+File: slike/novi-post.png Graphic file (type png)
+ <use slike/novi-post.png>
+Package pdftex.def Info: slike/novi-post.png used on input line 548.
+(pdftex.def)             Requested size: 369.88582pt x 426.89977pt.
+
+[34 <./slike/novi-post.png>]
+<slike/arhivirani-postovi.png, id=187, 1927.2pt x 1732.4725pt>
+File: slike/arhivirani-postovi.png Graphic file (type png)
+
+<use slike/arhivirani-postovi.png>
+Package pdftex.def Info: slike/arhivirani-postovi.png used on input line 568.
+(pdftex.def)             Requested size: 369.88582pt x 332.50406pt.
+ [35]
+<slike/komentari.png, id=191, 1138.2525pt x 953.5625pt>
+File: slike/komentari.png Graphic file (type png)
+
+<use slike/komentari.png>
+Package pdftex.def Info: slike/komentari.png used on input line 579.
+(pdftex.def)             Requested size: 369.88582pt x 309.87505pt.
+ [36 <./slike/arhivirani-postovi.png>] [37 <./slike/komentari.png>] <slike/pret
+plate.png, id=199, 1767.60374pt x 962.59625pt>
+File: slike/pretplate.png Graphic file (type png)
+
+<use slike/pretplate.png>
+Package pdftex.def Info: slike/pretplate.png used on input line 600.
+(pdftex.def)             Requested size: 369.88582pt x 201.43146pt.
+ <slike/mail.png, id=200, 880.28876pt x 976.64874pt>
+File: slike/mail.png Graphic file (type png)
+
+<use slike/mail.png>
+Package pdftex.def Info: slike/mail.png used on input line 611.
+(pdftex.def)             Requested size: 369.88582pt x 410.3685pt.
+ [38 <./slike/pretplate.png>] [39 <./slike/mail.png>]
+Poglavlje 6.
+[40
+
+] [41] [42] [43]
+Poglavlje 7.
+(./zavrsni.bbl [44
+
+]
+LaTeX Font Info:    Try loading font information for T1+lmtt on input line 11.
+ (/usr/share/texmf/tex/latex/lm/t1lmtt.fd
+File: t1lmtt.fd 2009/10/30 v1.6 Font defs for Latin Modern
+)
+Underfull \hbox (badness 2591) in paragraph at lines 51--55
+[]\T1/lmr/m/n/12 Oracle.  \T1/lmr/m/it/12 Ja-va-Ser-ver Pa-ges\T1/lmr/m/n/12 , 
+2007.  URL $\T1/lmtt/m/n/12 http : / / www . oracle . com /
+ []
+
+[45
+
+]) [46] [47] (./zavrsni.aux) ) 
+Here is how much of TeX's memory you used:
+ 6329 strings out of 493029
+ 90813 string characters out of 6136234
+ 163982 words of memory out of 5000000
+ 9668 multiletter control sequences out of 15000+600000
+ 77495 words of font info for 64 fonts, out of 8000000 for 9000
+ 1141 hyphenation exceptions out of 8191
+ 43i,6n,40p,981b,344s stack positions out of 5000i,500n,10000p,200000b,80000s
+{/usr/share/texmf/fonts/enc/dvips/lm/lm-ec.enc}</
+usr/share/texmf/fonts/type1/public/lm/lmbx10.pfb></usr/share/texmf/fonts/type1/
+public/lm/lmbx12.pfb></usr/share/texmf/fonts/type1/public/lm/lmcsc10.pfb></usr/
+share/texmf/fonts/type1/public/lm/lmr10.pfb></usr/share/texmf/fonts/type1/publi
+c/lm/lmr12.pfb></usr/share/texmf/fonts/type1/public/lm/lmri12.pfb></usr/share/t
+exmf/fonts/type1/public/lm/lmss12.pfb></usr/share/texmf/fonts/type1/public/lm/l
+mssbx10.pfb></usr/share/texmf/fonts/type1/public/lm/lmtt12.pfb>
+Output written on zavrsni.pdf (51 pages, 6122359 bytes).
+PDF statistics:
+ 268 PDF objects out of 1000 (max. 8388607)
+ 144 compressed objects within 2 object streams
+ 0 named destinations out of 1000 (max. 500000)
+ 206 words of extra memory for PDF output out of 10000 (max. 10000000)
+

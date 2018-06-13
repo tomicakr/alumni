@@ -65,7 +65,7 @@
                 <label>Ponovi lozinku*</label>
                 <input type="password" name="passwordConfirm" id="password-confirm" value="${registrationForm.passwordConfirm}">
             </div>
-            <button class="ui button" type="submit">Submit</button>
+            <button class="ui button" type="submit">Registriraj se</button>
         </form>
 
         <spring:hasBindErrors name="registrationForm">

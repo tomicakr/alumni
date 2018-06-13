@@ -36,7 +36,7 @@
 
             <div class="field">
                 <label>Opis*</label>
-                <input type="text" name="description" value="${fuform.description}">
+                <textarea type="textarea" name="description" value="${fuform.description}"></textarea>
             </div>
 
             <label>Datoteka*</label>

@@ -245,6 +245,17 @@ Tablica \textit{Comments} sa slike \ref{fig:t-comments} sadrži podatke o koment
 
 Tablica \textit{Links} sa slike \ref{fig:t-links} sadrži ime i "URL" poveznica.
 
+\subsubsection{Files}
+
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=7cm]{slike/t-files.png}
+	\caption{Tablica Files}
+	\label{fig:t-files}
+\end{figure}
+
+Tablica \textit{Files} sa slike \ref{fig:t-files} sprema sve podatke o datotekama koje su spremljene u aplikaciji.
+
 \section{Obrazac model-pogled-upravljač}
 Obrazac jedan je od najčešće upotrebljavanih arhitekturnih obrazaca prilikom izrade web aplikacija. Glavna ideja obrasca je logičko i fizičko odvajanje poslovnih procesa, odnosno dobavljanja podataka i operacija nad njima, od prikaza tih podataka na klijentskoj strani aplikacije.  
 
@@ -315,7 +326,7 @@ Odabirom "Prijava" na navigacijskoj traci, korisniku se pojavljuje obrazac za pr
 	\caption{Odjava sa sustava}
 	\label{fig:odjava}
 \end{figure}
-
+	
 Odabirom "Odjava" u padajućem izborniku na desnom kraju trake, korisnik se briše iz trenutne sesije aplikacije i odjavljuje se sa sustava. Time se aplikacija vraća u stanje pregleda koje vidi anoniman korisnik. Izgled padajućeg izbornika na kojem se može odabrati opcija odjave prikazan je na slici \ref{fig:odjava}.
 
 \section{Upravljanje korisnicima}
@@ -426,6 +437,44 @@ Kategorija se može urediti, i to se obavlja na isti način kao i kod stvaranja.
 \subsection{Brisanje kategorije}
 Kod pokušaja brisanja kategorije, ako postoje postovi koji su te kategorije, aplikacija će nam zabraniti taj pokušaj. Prvo je potrebno obrisati sve postove s tom kategorijom, ili svim takvim postovima ukloniti kategoriju koju želimo obrisati.
 
+\section{Upravljanje datotekama}
+Aplikacija sadrži repozitorij u kojem se nalaze sve datoteke koje postoje. Na taj način upravitelji zajednicom mogu dijeliti datoteke sa korisnicima stranice.
+
+\subsection{Pregled svih datoteka}
+
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=13cm]{slike/repozitorij.png}
+	\caption{Pregled svih datoteka}
+	\label{fig:repozitorij}
+\end{figure}
+
+Do pregleda svih datoteka može doći bilo koji korisnik koji posjećuje stranicu odabirom oznake "Repozitorij" u navigacijskoj traci aplikacije. Na tom pregledu svi korisnici mogu vidjeti naslov i opis svake datoteke, te mogu preuzeti svaku datoteku. Administrator posebno može i urediti naslov i opis i obrisati datoteku. Izgled stranice repozitorija nalazi se na slici \ref{fig:repozitorij}.
+
+\section{Dodavanje nove datoteke}
+
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=13cm]{slike/nova-datoteka.png}
+	\caption{Dodavanje nove datoteke}
+	\label{fig:nova-datoteka}
+\end{figure}
+
+Administrator može dodati novu datoteku odabirom opcije "Nova datoteka" na stranici za pregled svih datoteka. Prilikom dodavanja nove datoteke obavezno mora odrediti naslov i opis te datoteke, te odabrati datoteku koja će biti učitana. Izgled stranice za dodavanje nove datoteke vidimo na slici \ref{fig:nova-datoteka}.
+
+\section{Uređivanje datoteke}
+
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=13cm]{slike/uredi-datoteku.png}
+	\caption{Uređivanje datoteke}
+	\label{fig:uredi-datoteku}
+\end{figure}
+
+Kada administrator odabere opciju uređivanja datoteke, pokaže mu se stranica za uređivanje koju vidimo na slici \ref{fig:uredi-datoteku}. Stranica je vrlo slična stranici za dodavanje nove datoteke, osim što administrator ima mogućnost mijenjanja samo naslova i opisa datoteke, a ne i sadržaja.
+
+\section{Brisanje datoteke}
+
 \section{Upravljanje postovima}
 Upravljane postovima je gotovo najbitnija funkcionalnost kod programske podrške za neku zajednicu. Vrlo je bitno na pregledan način korisnicima prikazati sve relevantne novosti.
 
@@ -501,7 +550,7 @@ Arhiviranje posta je vrlo bitno jer postovi nakon nekog vremena postaju beznača
 
 Do pregleda arhiviranih postova, koji je prikazan na slici \ref{fig:arhivirani-postovi},dolazi se odabirom opcije "Arhiva postova" u padajućem izborniku "Admin" na navigacijskoj traci. Arhiva postova imitira stranicu za prikaz svih postova, te je također omogućeno filtriranje, straničenje, brisanje te uređivanje tih postova.
 
-\subsection{Komentari}
+\subsection{Komentari}	
 
 \begin{figure}[H]
 	\centering

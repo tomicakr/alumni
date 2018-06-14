@@ -1,4 +1,4 @@
-\begin{thebibliography}{13}
+\begin{thebibliography}{17}
 \providecommand{\natexlab}[1]{#1}
 \providecommand{\url}[1]{\texttt{#1}}
 \expandafter\ifx\csname urlstyle\endcsname\relax
@@ -17,6 +17,18 @@
 \newblock URL
   \url{https://www.ecma-international.org/publications/standards/Ecma-262.html}.
 \newblock (2.6.2018).
+
+\bibitem[Gra()]{uclasolution}
+Graduway solution.
+\newblock URL
+  \url{https://graduway.com/wp-content/uploads/2018/02/Alumni-Network-Profile-Page.jpg?x18935}.
+\newblock (17.5.2018).
+
+\bibitem[Hiv()]{hivebritesolution}
+Hivebrite solution.
+\newblock URL
+  \url{https://ga1.imgix.net/screenshot/o/105281-hivebrite-1475490921-3772075?ixlib=rb-1.0.0&ch=Width%2CDPR&auto=format}.
+\newblock (17.5.2018).
 
 \bibitem[Mic(2018)]{vscode}
 \emph{Visual Studio Code}.
@@ -85,5 +97,17 @@
 \newblock The Web Application Security Consortium, 2011.
 \newblock URL \url{https://en.wikipedia.org/wiki/Cross-site_scripting}.
 \newblock (20.5.2018).
+
+\bibitem[Ver({\natexlab{a}})]{veryconnectevents}
+VeryConnect events, {\natexlab{a}}.
+\newblock URL
+  \url{https://d2.alternativeto.net/dist/s/veryconnect_405554_full.png?format=jpg&width=1600&height=1600&mode=min&upscale=false}.
+\newblock (17.5.2018).
+
+\bibitem[Ver({\natexlab{b}})]{veryconnectusers}
+VeryConnect users, {\natexlab{b}}.
+\newblock URL
+  \url{https://ga0.imgix.net/screenshot/o/105361-veryconnect-1498312882-3589883?ixlib=rb-1.0.0&ch=Width%2CDPR&auto=format}.
+\newblock (17.5.2018).
 
 \end{thebibliography}

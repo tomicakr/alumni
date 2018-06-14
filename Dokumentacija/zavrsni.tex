@@ -2,17 +2,22 @@
 \usepackage{booktabs}
 \usepackage[section]{placeins}
 \usepackage{float}
+\usepackage{pdfpages}
 
 
 \begin{document}
 
-\thesisnumber{5375}
+\thesisnumber{5373}
 
 \title{PROGRAMSKA PODRŠKA ZA SVRŠENIKE} 
 
 \author{Tomislav Kravaršćan}
 
 \maketitle
+
+\includepdf[pages={1}]{izvornik.pdf}
+
+\zahvala{Hvala mentoru prof. dr. sc. Krešimiru Fertalju na pomoći, uputama i strpljenju.}
  
 \tableofcontents
 
@@ -21,10 +26,11 @@ Svršenici (lat. \textit{alumni}) je popularan naziv za bivše pripadnike neke u
 
 \chapter{Analiza postojeće programske podrške}
 Analizom postojeće programske potpore nastojimo bolje razumjeti problem koji rješavamo, njegovu domenu primjene i razriješiti moguće krive početne pretpostavke o programskoj podršci koju izrađujemo. Također, jasnije vidimo funkcionalnosti koje bi trebali implementirati i dobivamo ideje o nekim detaljima o kojima uopće nismo razmišljali. Osim toga, svrha analize je i otkrivanje mogućih nedostataka koje trpi postojeća programska podrška, te učenje na tuđim pogreškama. Moramo biti posebno svjesni kojim su resursima raspolagali razvojni inženjeri analiziranih rješenja kako bismo što ranije odredili doseg našeg rješenja sukladno našim resursima vremena i znanja.
+
 U ovom konkretnom slučaju, analizirat ćemo programska rješenja za upravljanje svršenicima. Takvih rješenja ima neiscrpno puno pa ćemo navesti samo neka od njih. Gotovo sva postojeća rješenja nude neke osnovne funkcionalnosti kao što su organizacija i pregled događaja, pregled novosti, informacije o sustavu, ponuda poslova, stvaranje i upravljanje korisničkim računom.
 
 \section{Graduway}
-Graduway[1] je web platforma istoimene tvrtke koja za različite fakultete po narudžbi stvara aplikaciju prilagođenu određenoj ustanovi za koju se izrađuje. Uz gore navedene osnovne funkcionalnosti ovakvog i sličnih rješenja, Graduway ima još puno funkcionalnosti kao što su administratorske stranice, pregled  i vizualizacija statistike korisnika itd. Dostupna je za isporuku na iOS, Android ili kao web-aplikacija.
+Graduway je web platforma istoimene tvrtke koja za različite fakultete po narudžbi stvara aplikaciju prilagođenu određenoj ustanovi za koju se izrađuje. Uz gore navedene osnovne funkcionalnosti ovakvog i sličnih rješenja, Graduway ima još puno funkcionalnosti kao što su administratorske stranice, pregled  i vizualizacija statistike korisnika itd. Dostupna je za isporuku na iOS, Android ili kao web-aplikacija.
 
 Neki od njihovih klijenata za rješenje upravljanja svršenicima su Longwood University, University of Dundee, Brunel University te UCLA.
 
@@ -33,10 +39,10 @@ Svako rješenje je napravljeno za preko tisuću korisnika, početna cijena je pe
 \begin{figure}[H]
 	\centering
 	\includegraphics[width=13cm]{slike/izgledUCLAgraduwayRjesenja.png}
-	\caption{UCLA Graduway rješenje}
+	\caption{UCLA Graduway rješenje \citep{uclasolution}}
 	\label{fig:ucla-graduway}
 \end{figure}
-
+ 
 Slika \ref{fig:ucla-graduway} prikazuje izgled programske podrške za upravljanje svršenicima koju je izradila tvrtka \textit{Graduway}.
 
 \section{VeryConnect}
@@ -45,7 +51,7 @@ VeryConnect je nešto manje popularna platforma za upravljanje svršenicima, ali
 \begin{figure}[H]
 	\centering
 	\includegraphics[width=13cm]{slike/very-connect-korisnici.png}
-	\caption{VeryConnect - pregled korisnika}
+	\caption{VeryConnect - pregled korisnika \citep{veryconnectusers}}
 	\label{fig:veryconn-users}
 \end{figure}
 
@@ -54,23 +60,23 @@ Slika \ref{fig:veryconn-users} pokazuje izgled stranice za pregled korisnika na 
 \begin{figure}[H]
 	\centering
 	\includegraphics[width=13cm]{slike/very-connect-dogadaji.png}
-	\caption{VeryConnect - pregled događaja}
+	\caption{VeryConnect - pregled događaja \citep{veryconnectevents}}
 	\label{fig:veryconn-events}
 \end{figure}
 
 Slika \ref{fig:veryconn-events} pokazuje izgled stranice za pregled događaja na rješenju tvrtke \textit{VeryConnect}.
 
-\section{Hiverbrite}
-Hiverbrite je također platforma s vrlo opširnom funkcionalnošću.
+\section{Hivebrite}
+Hivebrite je također platforma s vrlo opširnom funkcionalnošću.
 
 \begin{figure}[H]
 	\centering
 	\includegraphics[width=13cm]{slike/hiverbrite-upravljanje.png}
-	\caption{Hiverbrite rješenje}
-	\label{fig:hiverbrite-menagements}
-\end{figure}
+	\caption{Hivebrite rješenje \citep{hivebritesolution}}
+	\label{fig:hivebrite-menagements}
+\end{figure} 
 
-Slika \ref{fig:hiverbrite-menagements} pokazuje rješenje tvrtke \textit{Hiverbrite}, koje ima vrlo moderan izgled i detaljno korisničko sučelje.
+Slika \ref{fig:hivebrite-menagements} pokazuje rješenje tvrtke \textit{Hivebrite}, koje ima vrlo moderan izgled i detaljno korisničko sučelje.
 
 \chapter{Zahtjevi na programsku potporu}
 Zahtjevi na programsku potporu dijele se na funkcionalne zahtjeve – ono što korisnik očekuje od sustava i osnovne potrebe zbog kojih korisnik želi programsku potporu, te nefunkcionalne zahtjeve – ograničenja sustava te koliko dobro sustav treba biti izveden.
@@ -282,7 +288,7 @@ U ovoj aplikaciji su modeli podataka \textit{Java} razredi s posebnim oznakama k
 Na slici \ref{fig:modeli-dijagram} vidimo modele dijagrama u trenutnoj implementaciji. Na tim se modelima dobro vidi \textit{code-first} način stvaranja baze podataka, zbog toga što su modeli gotovo identični tablicama u bazi. Jedina razlika je to što su u bazi polja imenovana pomoću podvlake, dok su u Javi lokalne varijable nazvane \textit{Camel-case} tehnikom. Sve lokalne varijable u modelima su privatne pa je nužno da postoje \textit{get} i \textit{set} metode za dohvaćanje, odnosno postavljanje vrijednosti.
 
 \subsection{Pogledi}
-Pogledi i logika prikaza podataka je implementirana pomoću \textit{JSP(Java Server Pages)} tehnologije.  U aplikaciji su pogledi implementirani tako da je svaka stranica koju bilo koji korisnik može dohvatiti jedna JSP datoteka. U toj se datoteci nalazi HTML kod zajedno sa JSP oznakama i potrebnim direktivama za uključenje drugih potrebnih datoteka, kao npr. zaglavlje aplikacije koje je vidljivo na svakoj stranici, pa ne želimo u svakoj datoteci ponavljati isti kod za zaglavlje, već koristimo \textit{JSP include} oznaku kojom uključujemo datoteku s kodom za zaglavlje.
+Pogledi i logika prikaza podataka je implementirana pomoću \textit{JSP(Java Server Pages)} tehnologije.  U aplikaciji su pogledi implementirani tako da je svaka stranica koju bilo koji korisnik može dohvatiti jedna JSP datoteka. U toj se datoteci nalazi HTML kod sa JSP oznakama i potrebnim direktivama za uključenje drugih potrebnih datoteka, kao npr. zaglavlje aplikacije koje je vidljivo na svakoj stranici, pa ne želimo u svakoj datoteci ponavljati isti kod za zaglavlje, već koristimo \textit{JSP include} oznaku kojom uključujemo datoteku s kodom za zaglavlje.
 
 \subsection{Upravljači}
 Upravljači su u ovoj aplikaciji implementirani pomoću \textit{Spring Boot} tehnologije. Pomoću te tehnologije je, slično kao i za model podataka, moguće definirati oznake kojima se prilikom prevođenja razredi i metode u aplikaciji povezuju s različitim \textit{URL}-ovima.
@@ -398,7 +404,7 @@ Na pregledu korisničkog računa, administrator može promijeniti ulogu korisnik
 Brisanjem korisničkog računa se iz BP obrišu svi podaci korisnika, te se brišu svi njegovi komentari na postove.
 
 \section{Upravljanje poveznicama}
-Poveznice su vrlo bitne za upravljanje bilo kojom udrugom, pa je sustavom za upravljanje poveznicama administratoru koji nije upoznat sa HTML sintaksom i nije u mogućnosti ugraditi poveznice izravno u kod stranice, omogućeno lagano dodavanje poveznica.
+Poveznice su vrlo bitne za upravljanje bilo kojom udrugom, pa je sustavom za upravljanje poveznicama administratoru koji nije upoznat s HTML sintaksom i ne može ugraditi poveznice izravno u kod stranice, omogućeno lagano dodavanje poveznica.
 
 \subsection{Pregled svih poveznica}
 
@@ -496,7 +502,7 @@ Administrator može dodati novu datoteku odabirom opcije "Nova datoteka" na stra
 Kada administrator odabere opciju uređivanja datoteke, pokaže mu se stranica za uređivanje koju vidimo na slici \ref{fig:uredi-datoteku}. Stranica je vrlo slična stranici za dodavanje nove datoteke, osim što administrator ima mogućnost mijenjanja samo naslova i opisa datoteke, a ne i sadržaja.
 
 \section{Brisanje datoteke}
-Pritiskom crvenog gumba sa ikonicom smeća na stranici repozitorija, datoteka se briše iz sustava.
+Pritiskom crvenog gumba s ikonicom smeća na stranici repozitorija, datoteka se briše iz sustava.
 
 \section{Upravljanje postovima}
 Upravljane postovima je gotovo najbitnija funkcionalnost kod programske podrške za neku zajednicu. Vrlo je bitno na pregledan način korisnicima prikazati sve relevantne novosti.
@@ -551,7 +557,7 @@ Također, pri vrhu stranice nalaze se administratorske opcije uređivanja, brisa
 	\label{fig:novi-post}
 \end{figure}
 
-Do obrasca za dodavanje novog posta, koji je prikazan na slici \ref{fig:novi-post}, dolazi se odabirom opcije "Novi post" u padajućem izborniku "Admin". Dodavanje novog posta zahtijeva upis naslova, kratkog opisa te odabira kategorija postova. Dok su neobavezna polja slika koja će biti vezana uz post, adresa(lokacija održavanja ako je događaj, dvorana ako je predavanje) i dugi opis posta. Dodavanje dugog opisa posta ostvareno je funkcionalnim uređivačem teksta, zbog administratora koji možda nisu upoznati sa HTML sintaksom. Kao opcije za uređivanje omogućeno je podebljanje teksta, ukošavanje teksta, izrada neporedane liste, izrada poredane, brojevima označene liste, ubacivanje poveznice, ubacivanje slike preko poveznice, izrada velikog naslova, izrada naslova srednje veličine, te prikaz teksta u HTML formatu za naprednije korisnike koji žele dodatno uljepšati tekst opcijama koje nisu ponuđene.
+Do obrasca za dodavanje novog posta, koji je prikazan na slici \ref{fig:novi-post}, dolazi se odabirom opcije "Novi post" u padajućem izborniku "Admin". Dodavanje novog posta zahtijeva upis naslova, kratkog opisa te odabira kategorija postova. Dok su neobavezna polja slika koja će biti vezana uz post, adresa(lokacija održavanja ako je događaj, dvorana ako je predavanje) i dugi opis posta. Dodavanje dugog opisa posta ostvareno je funkcionalnim uređivačem teksta, zbog administratora koji možda nisu upoznati s HTML sintaksom. Kao opcije za uređivanje omogućeno je podebljanje teksta, ukošavanje teksta, izrada neporedane liste, izrada poredane, brojevima označene liste, ubacivanje poveznice, ubacivanje slike preko poveznice, izrada velikog naslova, izrada naslova srednje veličine, te prikaz teksta u HTML formatu za naprednije korisnike koji žele dodatno uljepšati tekst opcijama koje nisu ponuđene.
 
 \subsection{Uređivanje posta}
 Uređivanje posta je ostvareno tako da bude gotovo identično stvaranju novog posta, uz već upisana polja s postojećim podacima.
@@ -636,7 +642,7 @@ Kada administrator na stranici izradi novi post, automatski se svim korisnicima 
 \textit{Java Persistance API - JPA} \citep{jpa} je specifikacija sučelja koja opisuje upravljanje relacijskim podacima unutar aplikacije u Javi. To je skup konvencija kojih bi se svi koji žele implementirati ORM (eng. \textit{Object Relation Model}) trebali pridržavati.
 
 \subsubsection{Hibernate ORM}
-\textit{Hibernate ORM} \citep{hibernate} je implementacija JPA sučelja koja je vrlo intuitivna za korištenje te ima vrlo dobra radna svojstva. Temeljena je na \textit{code-first} načinu programiranja, gdje se programer ne brine oko implementiranja BP, nego izrađuje modele podataka izravno u Java razredima i u isto vrijeme se posebnim oznakama, odnosno anotacijama definira izgled tablica u bazi. To također i olakšava dohvaćanje entiteta iz BP pomoću razreda koji oponašaju repozitorije, odnosno preko metoda u Javi pružaju apstraktan pogled na \textit{query} naredbe u bazi. Kod izrade razreda repozitorija programer nasljeđuje \textit{JPARepository} razred, u kojem su već predefinirane neke metode koje se najčešće koriste prilikom dohvata podataka, kao npr. \textit{jpa.findAll()} metoda koja dohvaća sve podatke iz neke tablice.
+\textit{Hibernate ORM} \citep{hibernate} je implementacija JPA sučelja koja je vrlo intuitivna za korištenje te ima vrlo dobra radna svojstva. Temeljena je na \textit{code-first} načinu programiranja, gdje se programer ne brine oko implementiranja BP, nego izrađuje modele podataka izravno u Java razredima i u isto vrijeme se posebnim oznakama, odnosno anotacijama definira izgled tablica u bazi. To također olakšava dohvaćanje entiteta iz BP pomoću razreda koji oponašaju repozitorije, odnosno preko metoda u Javi pružaju apstraktan pogled na \textit{query} naredbe u bazi. Kod izrade razreda repozitorija programer nasljeđuje \textit{JPARepository} razred, u kojem su već predefinirane neke metode koje se najčešće koriste prilikom dohvata podataka, kao npr. \textit{jpa.findAll()} metoda koja dohvaća sve podatke iz neke tablice.
 
 \subsection{JavaServer Pages}
 \textit{Java Server Pages - JSP} \citep{jsp} omogućava stvaranje pogleda, odnosno web stranica koje imaju statične(običan HTML) i dinamične elemente. Dinamični elementi se definiraju JSP oznakama, a mogućnosti su vrlo opširne. Dinamičnost elemenata postiže se izvršavanjem koda ubačenog u JSP stranicu na poslužiteljskom dijelu aplikacije. Taj kod, osim oznake, može biti i običan Java kod.
@@ -654,11 +660,9 @@ HTML stranice same po sebi nisu baš oku ugodne, samo su funkcionalne. Kako bi s
 Baza podataka(BP) korištena u ovoj aplikaciji je također besplatna i otvorenog koda, \textit{MySQL} \citep{mysql}. To je relativno nova i brza relacijska BP koja je dobar izbor jer je optimizirana za web aplikacije, štoviše, na neki način je postala standardnom bazom za internetski orijentirane aplikacije. S ovom aplikacijom se spaja preko JDBC-a (eng. \textit{Java Database Connectivity}), koja definira način na koji klijent pristupa bazi.
 
 \section{Razvojno okruženje}
-\textit{Visual Studio Code - VSCode} \citep{vscode} je lakša verzija okruženja \textit{Visual Studio}, koja ne pruža mnogo funkcionalnsti sama po sebi, ali je izrađena tako da je moguće dodati proširenja po želji. Proširenja pišu korisnici i nije ih teško izraditi. Osim toga, VSCode je podržan na mnogim operacijskim sustavima, za razliku od Visual Studia.
+\textit{Visual Studio Code - VSCode} \citep{vscode} je lakša verzija okruženja \textit{Visual Studio}, koja ne pruža mnogo funkcionalnosti sama po sebi, ali je izrađena tako da je moguće dodati proširenja po želji. Proširenja pišu korisnici i nije ih teško izraditi. Osim toga, VSCode je podržan na mnogim operacijskim sustavima, za razliku od Visual Studia.
 
-
-
-\chapter{Zaključak}
+\chapter{Zaključak} 
 Ovom se aplikacijom uz vrlo jednostavno sučelje može informirati svršenike neke organizacije o bitnim događajima ili bilo kakvim drugim vrstama objava zbog sustava postova i pretplata. Također, upravljanje korisničkim računima osigurava administratorima koji upravljaju zajednicom uvid u aktivnost korisnika aplikacije. Aplikacija kao vrlo važan aspekt sustava uzima sigurnost korisničkih podataka te samo ovlaštene osobe imaju pristup određenim dijelovima sustava, što je vrlo bitno za krajnjeg korisnika.
 
 Korisnici mogu biti u interakciji s administratorima, sustavom drugim korisnicima preko komentara na postove, što je, osim pregleda vijesti, vrlo korisno.

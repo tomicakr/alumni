@@ -3,44 +3,53 @@ Capacity: max_strings=35307, hash_size=35307, hash_prime=30011
 The top-level auxiliary file: zavrsni.aux
 The style file: fer.bst
 Database file #1: literatura.bib
-You've used 13 entries,
+Warning--empty title in uclasolution
+Warning--empty year in uclasolution
+Warning--empty title in hivebritesolution
+Warning--empty year in hivebritesolution
+Warning--empty title in veryconnectevents
+Warning--empty year in veryconnectevents
+Warning--empty title in veryconnectusers
+Warning--empty year in veryconnectusers
+You've used 17 entries,
             2773 wiz_defined-function locations,
-            656 strings with 6079 characters,
-and the built_in function-call counts, 3356 in all, are:
-= -- 403
+            668 strings with 6643 characters,
+and the built_in function-call counts, 4360 in all, are:
+= -- 517
 > -- 0
 < -- 0
-+ -- 15
++ -- 20
 - -- 0
-* -- 231
-:= -- 400
-add.period$ -- 52
-call.type$ -- 13
-change.case$ -- 39
-chr.to.int$ -- 11
-cite$ -- 26
-duplicate$ -- 221
-empty$ -- 378
+* -- 309
+:= -- 506
+add.period$ -- 64
+call.type$ -- 17
+change.case$ -- 51
+chr.to.int$ -- 14
+cite$ -- 42
+duplicate$ -- 289
+empty$ -- 494
 format.name$ -- 0
-if$ -- 781
-int.to.chr$ -- 3
+if$ -- 1011
+int.to.chr$ -- 4
 int.to.str$ -- 1
 missing$ -- 0
-newline$ -- 86
+newline$ -- 106
 num.names$ -- 0
-pop$ -- 91
+pop$ -- 141
 preamble$ -- 1
-purify$ -- 39
+purify$ -- 51
 quote$ -- 0
-skip$ -- 138
+skip$ -- 171
 stack$ -- 0
-substring$ -- 52
-swap$ -- 30
+substring$ -- 68
+swap$ -- 36
 text.length$ -- 0
-text.prefix$ -- 13
+text.prefix$ -- 17
 top$ -- 0
-type$ -- 143
-warning$ -- 0
+type$ -- 187
+warning$ -- 8
 while$ -- 0
 width$ -- 0
-write$ -- 189
+write$ -- 235
+(There were 8 warnings)

@@ -1,0 +1,89 @@
+\begin{thebibliography}{13}
+\providecommand{\natexlab}[1]{#1}
+\providecommand{\url}[1]{\texttt{#1}}
+\expandafter\ifx\csname urlstyle\endcsname\relax
+  \providecommand{\doi}[1]{doi: #1}\else
+  \providecommand{\doi}{doi: \begingroup \urlstyle{rm}\Url}\fi
+
+\bibitem[Apa(2017)]{apache-maven}
+\emph{Apache Maven 3.5.0}.
+\newblock Apache Software Foundation, 2017.
+\newblock URL \url{https://maven.apache.org/}.
+\newblock (7.6.2018).
+
+\bibitem[Ecm(1997)]{ecma-script}
+\emph{Standard ECMA-262, ECMAScript Language Specification}.
+\newblock Ecma International, 1997.
+\newblock URL
+  \url{https://www.ecma-international.org/publications/standards/Ecma-262.html}.
+\newblock (2.6.2018).
+
+\bibitem[Mic(2018)]{vscode}
+\emph{Visual Studio Code}.
+\newblock Microsoft, 2018.
+\newblock URL \url{https://code.visualstudio.com/}.
+\newblock (17.5.2018).
+
+\bibitem[MIT(2018)]{semantic}
+\emph{SemanticUI 2.2.13, Open Source}.
+\newblock MIT, 2018.
+\newblock URL \url{https://jquery.com/}.
+\newblock (16.5.2018).
+
+\bibitem[Ora(2007{\natexlab{a}})]{jpa}
+\emph{Java Persistance Api}.
+\newblock Oracle, 2007{\natexlab{a}}.
+\newblock URL
+  \url{http://www.oracle.com/technetwork/java/javaee/tech/persistence-jsp-140049.html}.
+\newblock (7.6.2018).
+
+\bibitem[Ora(2007{\natexlab{b}})]{jsp}
+\emph{JavaServer Pages}.
+\newblock Oracle, 2007{\natexlab{b}}.
+\newblock URL
+  \url{http://www.oracle.com/technetwork/java/index-jsp-138231.html}.
+\newblock (7.6.2018).
+
+\bibitem[Ora(2018)]{mysql}
+\emph{MySQL 5.7, Open Source}.
+\newblock Oracle, 2018.
+\newblock URL \url{https://www.mysql.com/}.
+\newblock (5.5.2018).
+
+\bibitem[Piv(2018{\natexlab{a}})]{spring-boot}
+\emph{Spring Boot 2.0.2}.
+\newblock Pivotal Software, 2018{\natexlab{a}}.
+\newblock URL \url{https://spring.io/projects/spring-boot}.
+\newblock (19.5.2018).
+
+\bibitem[Piv(2018{\natexlab{b}})]{spring-security}
+\emph{Spring Security 5.0.6}.
+\newblock Pivotal Web Services, 2018{\natexlab{b}}.
+\newblock URL \url{https://projects.spring.io/spring-security/}.
+\newblock (7.6.2018).
+
+\bibitem[Red(2018)]{hibernate}
+\emph{Hibernate ORM 5.3.0}.
+\newblock Red Hat Developers, 2018.
+\newblock URL \url{http://hibernate.org/orm/}.
+\newblock (7.6.2018).
+
+\bibitem[Spr(2018)]{spring-initializr}
+\emph{Spring Initializr}.
+\newblock Spring Initializer and Pivotal Web Services, 2018.
+\newblock URL \url{https://start.spring.io/}.
+\newblock (20.5.2018).
+
+\bibitem[The(2018)]{jquery}
+\emph{JQuery 3.3.1}.
+\newblock The JQuery Foundation, 2018.
+\newblock URL \url{https://jquery.com/}.
+\newblock (13.5.2018).
+
+\bibitem[The(2011)]{xss}
+\emph{Cross Site scripting}.
+\newblock The Web Application Security Consortium, 2011.
+\newblock URL \url{https://en.wikipedia.org/wiki/Cross-site_scripting}.
+\newblock (20.5.2018).
+
+\end{thebibliography}

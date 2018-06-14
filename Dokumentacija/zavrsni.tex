@@ -108,7 +108,7 @@ Nefunkcionalni zahtjevi su sljedeći:
 \begin{itemize}
 	\item Sustav mora podržavati istodobni rad više korisnika
 	\item Sustav mora biti otporan na kritične pogreške
-	\item Sustav mora biti otporan na \textit{Cross site scripting - XSS}\citep{xss} ranjivosti
+	\item Sustav mora biti otporan na \textit{Cross site scripting - XSS} \citep{xss} ranjivosti
 	\item Sustav mora biti ostvaren arhitekturom model-pogled-upravljač (eng. \textit{Model-View-Controller - MVC}) kao web aplikacija
 	\item Sustav mora moći spremati podatke u BP
 \end{itemize}
@@ -267,7 +267,7 @@ U MVC obrascu, model predstavlja svojevrsno spremište podataka kojem mogu prist
 
 Upravljač je zadužen za obavljanje neke operacije. Svakom je upravljaču pridružen jedinstveni \textit{URL (Uniform Resource Locator)}. Najčešće pomoću repozitorija dohvaća podatke iz BP, odradi neku akciju nad njima i ubacuje ih u model. Nakon toga klijentu šalje neku vrstu odgovora, a taj odgovor je većinom stranica sa \textit{Hyper Text Markup Language - HTML} oznakama, odnosno pogled.
 
-Pogled je \textit{HTML} datoteka koja prikazuje podatke na klijentskoj strani aplikacije. Izveden je tako da koristi neku tehnologiju kojom je moguće obavljati operacije nad podacima koji se nalaze u modelu. Takva tehnologija je programski jezik koji, kao i svaki drugi treba biti preveden prije slanja stranice klijentu. 
+Pogled je HTML datoteka koja prikazuje podatke na klijentskoj strani aplikacije. Izveden je tako da koristi neku tehnologiju kojom je moguće obavljati operacije nad podacima koji se nalaze u modelu. Takva tehnologija je programski jezik koji, kao i svaki drugi treba biti preveden prije slanja stranice klijentu. 
 
 \subsection{Modeli podataka}
 U ovoj aplikaciji su modeli podataka \textit{Java} razredi s posebnim oznakama koje se mogu staviti iznad naziva polja lokalnih podataka, metoda za dobavljanje lokalnih podataka ili konstruktora. Te se oznake prilikom prevođenja koriste za stvaranje fizičkog modela BP. Pomoću tih oznaka također je moguće vrlo detaljno opisati karakteristike podataka koji će fizički biti spremljeni. 
@@ -282,7 +282,7 @@ U ovoj aplikaciji su modeli podataka \textit{Java} razredi s posebnim oznakama k
 Na slici \ref{fig:modeli-dijagram} vidimo modele dijagrama u trenutnoj implementaciji. Na tim se modelima dobro vidi \textit{code-first} način stvaranja baze podataka, zbog toga što su modeli gotovo identični tablicama u bazi. Jedina razlika je to što su u bazi polja imenovana pomoću podvlake, dok su u Javi lokalne varijable nazvane \textit{Camel-case} tehnikom. Sve lokalne varijable u modelima su privatne pa je nužno da postoje \textit{get} i \textit{set} metode za dohvaćanje, odnosno postavljanje vrijednosti.
 
 \subsection{Pogledi}
-Pogledi i logika prikaza podataka je implementirana pomoću \textit{JSP(Java Server Pages)} tehnologije.  U aplikaciji su pogledi implementirani tako da je svaka stranica koju bilo koji korisnik može dohvatiti jedna \textit{JSP} datoteka. U toj se datoteci nalazi \textit{HTML} kod zajedno sa \textit{JSP} oznakama i potrebnim direktivama za uključenje drugih potrebnih datoteka, kao npr. zaglavlje aplikacije koje je vidljivo na svakoj stranici, pa ne želimo u svakoj datoteci ponavljati isti kod za zaglavlje, već koristimo \textit{JSP include} oznaku kojom uključujemo datoteku s kodom za zaglavlje.
+Pogledi i logika prikaza podataka je implementirana pomoću \textit{JSP(Java Server Pages)} tehnologije.  U aplikaciji su pogledi implementirani tako da je svaka stranica koju bilo koji korisnik može dohvatiti jedna JSP datoteka. U toj se datoteci nalazi HTML kod zajedno sa JSP oznakama i potrebnim direktivama za uključenje drugih potrebnih datoteka, kao npr. zaglavlje aplikacije koje je vidljivo na svakoj stranici, pa ne želimo u svakoj datoteci ponavljati isti kod za zaglavlje, već koristimo \textit{JSP include} oznaku kojom uključujemo datoteku s kodom za zaglavlje.
 
 \subsection{Upravljači}
 Upravljači su u ovoj aplikaciji implementirani pomoću \textit{Spring Boot} tehnologije. Pomoću te tehnologije je, slično kao i za model podataka, moguće definirati oznake kojima se prilikom prevođenja razredi i metode u aplikaciji povezuju s različitim \textit{URL}-ovima.
@@ -307,9 +307,9 @@ Pregled funkcionalnosti koje posjeduje programska potpora. Svaka funkcionalnost 
 	\caption{Navigacijska traka admistratora}
 	\label{fig:nav-admin}
 \end{figure}
-
-Izgled navigacijske trake je prikazan na slici \ref{fig:nav-admin}. To je \textit{HTML} element koji se pojavljuje u svim \textit{HTML} stranicama aplikacije i svrha joj je omogućavanje dolaska do svih stranica aplikacije. Svaki korisnik putem navigacijske trake u svakom trenutku može doći do početne stranice, gdje je popis svih postova, odabirom "Alumni" natpisa u lijevom dijelu trake. 
-
+ 
+Izgled navigacijske trake je prikazan na slici \ref{fig:nav-admin}. To je HTML element koji se pojavljuje u svim HTML stranicama aplikacije i svrha joj je omogućavanje dolaska do svih stranica aplikacije. Svaki korisnik putem navigacijske trake u svakom trenutku može doći do početne stranice, gdje je popis svih postova, odabirom "Alumni" natpisa u lijevom dijelu trake. 
+ 
 \subsection{Navigacijska traka za anonimnog korisnika}
 Anonimni korisnik pomoću navigacijske trake može doći do stranice za registraciju, stranice za prijavu te ima pregled svih poveznica koje su u sustavu. 
 
@@ -317,7 +317,7 @@ Anonimni korisnik pomoću navigacijske trake može doći do stranice za registra
 Prijavljenom se korisniku više ne prikazuje mogućnost odabira prijave niti registracije, nego u desnom dijelu trake ima prikaz svoga imena kojeg može odabrati. Tim odabirom mu se prikazuje padajući izbornik koji prikazuje dvije dodatne opcije, prikaz vlastitog profila, te odjava sa sustava.
 
 Navigacijska traka je posebno bitna i administratoru sustava, koji, ako je prijavljen, vidi dodatnu opciju odabira padajućeg izbornika "Admin", čijim odabirom se otvara padajući izbornik s opcijama izrade novog posta, pregleda arhive postova, svih korisnika, kategorija te poveznica.
-
+ 
 \subsection{Registracija na sustav}
 
 \begin{figure}[H]
@@ -327,7 +327,7 @@ Navigacijska traka je posebno bitna i administratoru sustava, koji, ako je prija
 	\label{fig:registracija}
 \end{figure}
 
-Prilikom odabira opcije "Registracija" u navigacijskoj traci, anonimnom se korisniku prikaže obrazac za registraciju na sustav. Kako bi se uspješno registrirao, korisnik mora upisati ime, prezime, email, datum diplomiranja te lozinku. Broj telefona, adresa i datum rođenja su neobavezna polja te se korisniku daje na izbor hoće li ih upisati ili ne. Za sve navedene obavezne stavke postoje provjere na klijentskoj te na poslužiteljskoj strani, te osim provjera za postojanost obaveznih stavki, postoje i provjere za ispravnost email-a, te provjere da li lozinka ima najmanje 6, a najviše 30 znakova. Izgled implementiranog obrasca za registraciju prikazan je na slici \ref{fig:registracija}.
+Prilikom odabira opcije "Registracija" u navigacijskoj traci, anonimnom se korisniku prikaže obrazac za registraciju na sustav. Kako bi se uspješno registrirao, korisnik mora upisati ime, prezime, email, datum diplomiranja te lozinku. Broj telefona, adresa i datum rođenja su neobavezna polja te se korisniku daje na izbor hoće li ih upisati ili ne. Za sve navedene obavezne stavke postoje provjere na klijentskoj te na poslužiteljskoj strani, te osim provjera za postojanost obaveznih stavki, postoje i provjere za ispravnost emaila, te provjere da li lozinka ima najmanje 6, a najviše 30 znakova. Izgled implementiranog obrasca za registraciju prikazan je na slici \ref{fig:registracija}.
 
 \subsection{Prijava na sustav}
 
@@ -338,7 +338,7 @@ Prilikom odabira opcije "Registracija" u navigacijskoj traci, anonimnom se koris
 	\label{fig:prijava}
 \end{figure}
 
-Odabirom "Prijava" na navigacijskoj traci, korisniku se pojavljuje obrazac za prijavu koji se sastoji samo od polja za upis email-a, te polja za upis lozinke. Za oba polja postoji provjera postojanosti, te dodatno za email postoji provjera ispravnosti. Ako se korisnik pokuša prijaviti s nepostojećim email-om, ili krivo upiše lozinku, prikazat će mu se poruka "Pogrešna kombinacija elektroničke pošte i lozinke". Takva poruka je vrlo popularna u većini aplikacija jer ne otkriva korisniku da li je krivo upisao email ili lozinku, što malo podigne razinu sigurnosti aplikacije. Izgled implementiranog obrasca za registraciju prikazan je na slici \ref{fig:prijava}.
+Odabirom "Prijava" na navigacijskoj traci, korisniku se pojavljuje obrazac za prijavu koji se sastoji samo od polja za upis emaila, te polja za upis lozinke. Za oba polja postoji provjera postojanosti, te dodatno za email postoji provjera ispravnosti. Ako se korisnik pokuša prijaviti s nepostojećim emailom, ili krivo upiše lozinku, prikazat će mu se poruka "Pogrešna kombinacija elektroničke pošte i lozinke". Takva poruka je vrlo popularna u većini aplikacija jer ne otkriva korisniku da li je krivo upisao email ili lozinku, što malo podigne razinu sigurnosti aplikacije. Izgled implementiranog obrasca za registraciju prikazan je na slici \ref{fig:prijava}.
 
 \subsection{Odjava sa sustava}
 
@@ -352,7 +352,7 @@ Odabirom "Prijava" na navigacijskoj traci, korisniku se pojavljuje obrazac za pr
 Odabirom "Odjava" u padajućem izborniku na desnom kraju trake, korisnik se briše iz trenutne sesije aplikacije i odjavljuje se sa sustava. Time se aplikacija vraća u stanje pregleda koje vidi anoniman korisnik. Izgled padajućeg izbornika na kojem se može odabrati opcija odjave prikazan je na slici \ref{fig:odjava}.
 
 \section{Upravljanje korisnicima}
-Upravljanje korisnicima je mogućnost koju ima samo administrator, te se sve naredne funkcionalnosti odnose samo na njega.
+Korisnici na vlastitim korisničkim računima mogu mijenjati podatke te obrisati račun. Administrator može vidjeti sve korisničke račune, njima mijenjati podatke, brisati ih te im mijenjati uloge.
 
 \subsection{Pregled svih korisnika}
 
@@ -372,13 +372,13 @@ Pregled svih korisnika koji se nalaze u aplikaciji ostvaruje se odabirom "Korisn
 	\includegraphics[width=13cm]{slike/profil.png}
 	\caption{Korisnički profil}
 	\label{fig:profil}
-\end{figure}
+\end{figure} 
 
 Slika \ref{fig:profil} pokazuje izgled stranice za pregled korisničkog profila.
 
-Administrator može vidjeti sve korisničke račune u sustavu, pa do pregleda korisničkog računa može doći na dva načina: putem padajućeg izbornika u navigacijskoj traci, gdje odabire pregled vlastitog korisničkog računa, te odabirom poveznice detalji na pregledu svih korisnika.
+Administrator može vidjeti sve korisničke račune u sustavu, pa do pregleda korisničkog računa može doći na dva načina: putem padajućeg izbornika u navigacijskoj traci, gdje odabire pregled vlastitog korisničkog računa kao i ostali korisnici, te odabirom poveznice detalji na pregledu svih korisnika.
 
-Na pregledu korisničkog računa, imamo sve bitne informacije o korisniku kao što su ime, prezime, email, adresa, broj mobitela, datum rođenja, datum diplomiranja te uloga. Običan korisnik pregledom svog računa može odabrati opciju uređivanja i brisanja pri vrhu stranice za pregled računa, dok administrator ima još opcije promjene uloge korisnika.
+Na pregledu korisničkog računa imamo sve bitne informacije o korisniku kao što su ime, prezime, email, adresa, broj mobitela, datum rođenja, datum diplomiranja te uloga. Običan korisnik pregledom svog računa može odabrati opciju uređivanja i brisanja pri vrhu stranice za pregled računa, dok administrator ima dodatne opcije promjene uloge korisnika.
 
 \subsection{Uređivanje korisničkog računa}
 
@@ -392,13 +392,13 @@ Na pregledu korisničkog računa, imamo sve bitne informacije o korisniku kao š
 Stranica za uređivanje korisničkog računa, čiji je prikaz dan na slici \ref{fig:uredi-profil}, je vrlo slična stranici za registraciju, osim što nema upisa lozinke. Korisniku se pojavljuje obrazac gdje su sva polja već ispunjena njegovim podacima. Promjenom bilo kojeg podatka korisnički se račun ažurira i to je odmah vidljivo. Dodatna mogućnost kod uređivanja korisničkog računa je dodavanje pretplata na kategorije postova, o tome će biti više u poglavlju "Sustav pretplata".
 
 \subsection{Promjena uloge korisnika}
-Na pregledu korisničkog profila, administrator može promijeniti ulogu korisnika odnosno pretvaranje korisnika u one uloge koje postoje u sustavu, a da ih korisnik trenutno nema. Promjenom uloge korisnik preuzima sve mogućnosti te uloge u sustavu.
+Na pregledu korisničkog računa, administrator može promijeniti ulogu korisnika, odnosno pretvoriti korisnika u one uloge koje postoje u sustavu, a da ih korisnik trenutno nema. Promjenom uloge korisnik preuzima sve mogućnosti te uloge u sustavu.
 
 \subsection{Brisanje korisničkog računa}
 Brisanjem korisničkog računa se iz BP obrišu svi podaci korisnika, te se brišu svi njegovi komentari na postove.
 
 \section{Upravljanje poveznicama}
-Poveznice su vrlo bitne za upravljanje bilo kojom udrugom, pa je sustavom za upravljanje poveznicama administratoru koji nije upoznat sa \textit{HTML} sintaksom i nije u mogućnosti ugraditi poveznice izravno u kod stranice, administratoru omogućeno lagano dodavanje poveznica.
+Poveznice su vrlo bitne za upravljanje bilo kojom udrugom, pa je sustavom za upravljanje poveznicama administratoru koji nije upoznat sa HTML sintaksom i nije u mogućnosti ugraditi poveznice izravno u kod stranice, omogućeno lagano dodavanje poveznica.
 
 \subsection{Pregled svih poveznica}
 
@@ -420,7 +420,7 @@ Osim što se sve poveznice mogu vidjeti u padajućem izborniku navigacijske trak
 	\label{fig:nova-poveznica}
 \end{figure}
 
-Odabirom opcije dodavanja nove poveznice na vrhu pregleda svih poveznica, korisniku se pojavljuje jednostavan obrazac koji ima samo polja naslov i url. Oba polja su obavezna i ne upisivanje bilo kojeg rezultira pogreškom, dodatno, url mora biti ispravnog formata i započinjati s oznakom protokola. Izgled obrasca za izradu nove poveznice dan je slikom \ref{fig:nova-poveznica}.
+Odabirom opcije dodavanja nove poveznice na vrhu pregleda svih poveznica korisniku se pojavljuje jednostavan obrazac koji ima samo polja naslov i url. Oba polja su obavezna i ne upisivanje bilo kojeg rezultira pogreškom. Dodatno, url mora biti ispravnog formata i započinjati s oznakom protokola. Izgled obrasca za izradu nove poveznice dan je slikom \ref{fig:nova-poveznica}.
 
 \subsection{Uređivanje poveznice}
 Odabirom opcije uređivanja poveznice na desnoj strani zapisa svake poveznice prikazuje se isti obrazac kao i kod stvaranja poveznice, uz to da su podaci o poveznici već upisani. 
@@ -454,7 +454,7 @@ Do pregleda svih kategorija dolazi se putem padajućeg izbornika "Admin" u navig
 Dodavanje nove kategorije je vrlo jednostavno i obrazac ima samo jedno polje, naslov kategorije. To polje naravno ne smije biti prazno. Izgled tog obrasca dan je na slici \ref{fig:nova-kategorija}.
 
 \subsection{Uređivanje kategorije}
-Kategorija se može urediti, i to se obavlja na isti način kao i kod stvaranja.
+Kategorija se može urediti, i to se obavlja na isti način kao i kod stvaranja, s tim da je postojeći naziv prilikom uređivanja već upisan u obrazac.
 
 \subsection{Brisanje kategorije}
 Kod pokušaja brisanja kategorije, ako postoje postovi koji su te kategorije, aplikacija će nam zabraniti taj pokušaj. Prvo je potrebno obrisati sve postove s tom kategorijom, ili svim takvim postovima ukloniti kategoriju koju želimo obrisati.
@@ -471,7 +471,7 @@ Aplikacija sadrži repozitorij u kojem se nalaze sve datoteke koje postoje. Tako
 	\label{fig:repozitorij}
 \end{figure}
 
-Do pregleda svih datoteka može doći bilo koji korisnik koji posjećuje stranicu odabirom oznake "Repozitorij" u navigacijskoj traci aplikacije. Na tom pregledu svi korisnici mogu vidjeti naslov i opis svake datoteke, te mogu preuzeti svaku datoteku. Administrator posebno može i urediti naslov i opis i obrisati datoteku. Izgled stranice repozitorija nalazi se na slici \ref{fig:repozitorij}.
+Do pregleda svih datoteka može doći bilo koji korisnik koji posjećuje stranicu odabirom oznake "Repozitorij" u navigacijskoj traci aplikacije. Na tom pregledu svi korisnici mogu vidjeti naslov i opis svake datoteke, te mogu preuzeti svaku datoteku. Administrator posebno može i urediti naslov i opis te obrisati datoteku. Izgled stranice repozitorija nalazi se na slici \ref{fig:repozitorij}.
 
 \section{Dodavanje nove datoteke}
 
@@ -482,7 +482,7 @@ Do pregleda svih datoteka može doći bilo koji korisnik koji posjećuje stranic
 	\label{fig:nova-datoteka}
 \end{figure}
 
-Administrator može dodati novu datoteku odabirom opcije "Nova datoteka" na stranici za pregled svih datoteka. Prilikom dodavanja nove datoteke obavezno mora odrediti naslov i opis te datoteke, te odabrati datoteku koja će biti učitana. Izgled stranice za dodavanje nove datoteke vidimo na slici \ref{fig:nova-datoteka}.
+Administrator može dodati novu datoteku odabirom opcije "Nova datoteka" na stranici za pregled svih datoteka. Prilikom dodavanja nove datoteke obavezno mora odrediti naslov i opis te datoteke te odabrati datoteku koja će biti učitana. Izgled stranice za dodavanje nove datoteke vidimo na slici \ref{fig:nova-datoteka}.
 
 \section{Uređivanje datoteke}
 
@@ -496,6 +496,7 @@ Administrator može dodati novu datoteku odabirom opcije "Nova datoteka" na stra
 Kada administrator odabere opciju uređivanja datoteke, pokaže mu se stranica za uređivanje koju vidimo na slici \ref{fig:uredi-datoteku}. Stranica je vrlo slična stranici za dodavanje nove datoteke, osim što administrator ima mogućnost mijenjanja samo naslova i opisa datoteke, a ne i sadržaja.
 
 \section{Brisanje datoteke}
+Pritiskom crvenog gumba sa ikonicom smeća na stranici repozitorija, datoteka se briše iz sustava.
 
 \section{Upravljanje postovima}
 Upravljane postovima je gotovo najbitnija funkcionalnost kod programske podrške za neku zajednicu. Vrlo je bitno na pregledan način korisnicima prikazati sve relevantne novosti.
@@ -522,10 +523,10 @@ Izgled početne stranice aplikacije prikazan je na slici \ref{fig:postovi}.
 	\includegraphics[width=13cm]{slike/filter.png}
 	\caption{Padajući izbornik za filtriranje postova}
 	\label{fig:filter}
-\end{figure}
+\end{figure} 
 
 Postovi mogu biti različitih kategorija, a korisniku sustava često neće biti bitne sve te kategorije. Zbog toga je korisniku omogućeno filtriranje postova po kategorijama putem padajućeg izbornika na vrhu stranice svih postova. Tekst padajućeg izbornika se dinamički mijenja, te se ovisno o tome koja je kategorija izabrana za filtriranje tekst postavi na naziv te kategorije. Osim filtriranja pomoću tog izbornika, filtriranje se može obaviti i odabirom na oznaku kategorije na svakom postu. Izgled padajućeg izbornika za filtriranje postova prikazan je na slici \ref{fig:filter}.
-
+ 
 \subsection{Pregled posta}
 
 \begin{figure}[H]
@@ -550,7 +551,7 @@ Također, pri vrhu stranice nalaze se administratorske opcije uređivanja, brisa
 	\label{fig:novi-post}
 \end{figure}
 
-Do obrasca za dodavanje novog posta, koji je prikazan na slici \ref{fig:novi-post}, dolazi se odabirom opcije "Novi post" u padajućem izborniku "Admin". Dodavanje novog posta zahtijeva upis naslova, kratkog opisa te odabira kategorija postova. Dok su neobavezna polja adresa(lokacija održavanja ako je događaj, dvorana ako je predavanje) i dugi opis posta. Dodavanje dugog opisa posta ostvareno je funkcionalnim uređivačem teksta, zbog administratora koji možda nisu upoznati sa \textit{HTML} sintaksom. Kao opcije za uređivanje omogućeno je podebljanje teksta, ukošavanje teksta, izrada neporedane liste, izrada poredane, brojevima označene liste, ubacivanje poveznice, ubacivanje slike, izrada velikog naslova, izrada naslova srednje veličine, te prikaz teksta u \textit{HTML} formatu za naprednije korisnike koji žele dodatno uljepšati tekst opcijama koje nisu ponuđene.
+Do obrasca za dodavanje novog posta, koji je prikazan na slici \ref{fig:novi-post}, dolazi se odabirom opcije "Novi post" u padajućem izborniku "Admin". Dodavanje novog posta zahtijeva upis naslova, kratkog opisa te odabira kategorija postova. Dok su neobavezna polja slika koja će biti vezana uz post, adresa(lokacija održavanja ako je događaj, dvorana ako je predavanje) i dugi opis posta. Dodavanje dugog opisa posta ostvareno je funkcionalnim uređivačem teksta, zbog administratora koji možda nisu upoznati sa HTML sintaksom. Kao opcije za uređivanje omogućeno je podebljanje teksta, ukošavanje teksta, izrada neporedane liste, izrada poredane, brojevima označene liste, ubacivanje poveznice, ubacivanje slike preko poveznice, izrada velikog naslova, izrada naslova srednje veličine, te prikaz teksta u HTML formatu za naprednije korisnike koji žele dodatno uljepšati tekst opcijama koje nisu ponuđene.
 
 \subsection{Uređivanje posta}
 Uređivanje posta je ostvareno tako da bude gotovo identično stvaranju novog posta, uz već upisana polja s postojećim podacima.
@@ -559,7 +560,7 @@ Uređivanje posta je ostvareno tako da bude gotovo identično stvaranju novog po
 Brisanjem posta brišu se i svi komentari na taj post, a ostvarivo je preko stranice za pregled svih postova ili preko stranice za dotični post koji želimo obrisati.
 
 \subsection{Arhiviranje posta}
-Arhiviranje posta je vrlo bitno jer postovi nakon nekog vremena postaju beznačajni, npr. nakon odvijanja događaja o kojem je bio taj post. Ali svejedno ga ne želimo iz nekog razloga obrisati iz sustava jer možda sadrži neku bitnu informaciju, ili čisto radi statistike. Zbog toga postoji funkcionalnost arhiviranja posta koju odrađuje administrator odabirom opcije arhiviranja na pregledu svih postova ili na stranici određenog posta. Ako je post arhiviran, on se više neće prikazivati na pregledu svih postova, nego ćemo ga pronaći na pregledu arhiviranih postova.
+Arhiviranje posta je vrlo bitno jer postovi nakon nekog vremena postaju beznačajni, npr. nakon odvijanja događaja o kojem je bio taj post. Ali svejedno ga ne želimo iz nekog razloga obrisati iz sustava jer možda sadrži neku bitnu informaciju, ili čisto radi statistike. Zbog toga postoji funkcionalnost arhiviranja posta koju odrađuje administrator odabirom opcije arhiviranja na pregledu svih postova ili na stranici određenog posta. Ako je post arhiviran, on se više neće prikazivati na pregledu svih postova, nego će ga samo administrator vidjeti na pregledu arhiviranih postova.
 
 \subsection{Pregled arhiviranih postova}
 
@@ -580,7 +581,7 @@ Do pregleda arhiviranih postova, koji je prikazan na slici \ref{fig:arhivirani-p
 	\caption{Komentari na postu}
 	\label{fig:komentari}
 \end{figure}
-
+ 
 Zbog toga što je ovo stranica za upravljanje zajednicom, vrlo je bitan društveni aspekt te zajednice te je vrlo bitna interakcija korisnika sa sustavom i međusobno. To je ostvareno preko sustava komentara kojim bilo koji prijavljeni korisnik može komentirati postove. Izgled komentara na postove prikazan je na slici \ref{fig:komentari}.
 
 \subsubsection{Dodavanje novog komentara}
@@ -609,11 +610,11 @@ Uređivanje pretplata ostvareno je u sklopu uređivanja korisničkog računa, pr
 \begin{figure}[H]
 	\centering
 	\includegraphics[width=13cm]{slike/mail.png}
-	\caption{Izgled email-a obavijesti} 
+	\caption{Izgled emaila obavijesti} 
 	\label{fig:mail}
 \end{figure}
 
-Kada administrator na stranici izradi novi post, automatski se svim korisnicima koji su pretplaćeni na kategorije koje sadrži taj post šalje email s cjelokupnim sadržajem tog posta. Tip sadržaja tog email-a je \textit{HTML} kao što je vidljivo na slici \ref{fig:mail}. 
+Kada administrator na stranici izradi novi post, automatski se svim korisnicima koji su pretplaćeni na kategorije koje sadrži taj post šalje email s cjelokupnim sadržajem tog posta. Tip sadržaja tog emaila je HTML kao što je vidljivo na slici \ref{fig:mail}. 
 
 \chapter{Korištene tehnologije i alati}
 
@@ -621,39 +622,39 @@ Kada administrator na stranici izradi novi post, automatski se svim korisnicima 
 
 \subsection{Maven}
 
-\textit{Apache Maven}\citep{apache-maven} je alat za upravljanje projektom. Pomoću \textit{xml} (eng. \textit{EXtenisble Markup Language}) datoteke pom.xml (eng. \textit{Project Object Model}) upravlja projektom pomoću niza \textit{xml} oznaka. U toj datoteci nalazi se popis ovisnosti, ime aplikacije i još mnogo meta-podataka bitnih za ispravan rad. Jednostavnim dodavanjem nove ovisnosti oznakom \textit{dependency} unutar oznake \textit{dependencies}, većina radnih okruženja automatski s interneta skine potrebne datoteke i smjesti ih u naš projekt. Ovo je vrlo važna komponenta razvoja jer bi uz toliko ovisnosti o drugim komponentama snalaženje u procesu bilo gotovo nemoguće.
+\textit{Apache Maven} \citep{apache-maven} je alat za upravljanje projektom. Pomoću XML (eng. \textit{EXtenisble Markup Language}) datoteke pom.xml (eng. \textit{Project Object Model}) upravlja projektom pomoću niza XML oznaka. U toj datoteci nalazi se popis ovisnosti, ime aplikacije i još mnogo meta-podataka bitnih za ispravan rad. Jednostavnim dodavanjem nove ovisnosti oznakom \textit{dependency} unutar oznake \textit{dependencies}, većina radnih okruženja automatski s interneta skine potrebne datoteke i smjesti ih u naš projekt. Ovo je vrlo važna komponenta razvoja jer bi uz toliko ovisnosti o drugim komponentama snalaženje u procesu bilo gotovo nemoguće.
 
 \subsection{Spring}
 
 \subsubsection{Spring Boot}
-\textit{Spring Boot}\citep{spring-boot} je vrlo moćan i opširan razvojni okvir kojim se nastoji olakšati razvoj složenih aplikacija u Javi. Točnije, \textit{Spring Boot} je nadogradnja na postojeći okvir \textit{Spring},koji ima nedostatak u procesu razvoja u obliku vrlo opširne i naporne konfiguracije kako bi se dobilo radno rješenje. \textit{Spring Boot} je po svim funkcionalnostima isti kao \textit{Spring}, ali je početno postavljanje i konfiguriranje projekta svedeno na minimum. Radna verzija okvira se može dobiti automatskim generiranjem preko \textit{Spring Initializr}\citep{spring-initializr} alata, gdje se upišu željeni meta-podaci i dodaju ovisnosti o drugim projektima preko obrasca na službenoj stranici. Dodatne datoteke za konfiguraciju mogu se po volji izrađivati, a glavna je \textit{application.properties}, u kojoj se nalaze neke osnovne karakteristike kao što je port na kojem će aplikacija slušati.
+\textit{Spring Boot} \citep{spring-boot} je vrlo moćan i opširan razvojni okvir kojim se nastoji olakšati razvoj složenih aplikacija u Javi. Točnije, \textit{Spring Boot} je nadogradnja na postojeći okvir \textit{Spring}, koji ima nedostatak u procesu razvoja u obliku vrlo opširne i naporne konfiguracije kako bi se dobilo radno rješenje. \textit{Spring Boot} je po svim funkcionalnostima isti kao \textit{Spring}, ali je početno postavljanje i konfiguriranje projekta svedeno na minimum. Radna verzija okvira se može dobiti automatskim generiranjem preko \textit{Spring Initializr} \citep{spring-initializr} alata, gdje se upišu željeni meta-podaci i dodaju ovisnosti o drugim projektima preko obrasca na službenoj stranici. Dodatne datoteke za konfiguraciju mogu se po volji izrađivati, a glavna je \textit{application.properties}, u kojoj se nalaze neke osnovne karakteristike kao što je port na kojem će aplikacija slušati.
 
 \subsubsection{Spring Security}
-\textit{Spring Security}\citep{spring-security} jedna je od korištenih nadogradnji na osnovni \textit{Spring} projekt. Pomoću njega moguće je jednostavno stvoriti sustav autorizacije i autentifikacije, definirati ograničenja na pristupanje upravljačima i njihovim metodama te spriječiti stvaranje određenih elemenata neautoriziranim korisnicima na pogledima. Prema \textit{Pivotal Software}-u, ovo je standardni način osiguravanja aplikacije u \textit{Spring} projektu.
+\textit{Spring Security} \citep{spring-security} jedna je od korištenih nadogradnji na osnovni \textit{Spring} projekt. Pomoću njega moguće je jednostavno stvoriti sustav autorizacije i autentifikacije, definirati ograničenja na pristupanje upravljačima i njihovim metodama te spriječiti stvaranje određenih elemenata neautoriziranim korisnicima na pogledima. Prema \textit{Pivotal Software}-u, ovo je standardni način osiguravanja aplikacije u \textit{Spring} projektu.
 
 \subsection{Java Persistance API}
-\textit{Java Persistance API - JPA}\citep{jpa} je specifikacija sučelja koja opisuje upravljanje relacijskim podacima unutar aplikacije u Javi. To je skup konvencija kojih bi se svi koji žele implementirati ORM (eng. \textit{Object Relation Model}) trebali pridržavati.
+\textit{Java Persistance API - JPA} \citep{jpa} je specifikacija sučelja koja opisuje upravljanje relacijskim podacima unutar aplikacije u Javi. To je skup konvencija kojih bi se svi koji žele implementirati ORM (eng. \textit{Object Relation Model}) trebali pridržavati.
 
 \subsubsection{Hibernate ORM}
-\textit{Hibernate ORM}\citep{hibernate} je implementacije JPA sučelja koja je vrlo intuitivna za korištenje te ima vrlo dobre performanse. Bazirana je na \textit{code-first} načinu programiranja, gdje se programer ne brine oko implementiranja BP, nego izrađuje modele podataka izravno u Java razredima i u isto vrijeme se posebnim oznakama, odnosno anotacijama definira izgled tablica u bazi. To također i olakšava dohvaćanje entiteta iz BP pomoću razreda koji oponašaju repozitorije, odnosno preko metoda u Javi pružaju apstraktan pogled na \textit{query} naredbe u bazi. Kod izrade razreda repozitorija programer nasljeđuje \textit{JPARepository} razred, u kojem su već predefinirane neke metode koje se najčešće koriste prilikom dohvata podataka, kao npr. \textit{jpa.findAll()} metoda koja dohvaća sve podatke iz neke tablice.
+\textit{Hibernate ORM} \citep{hibernate} je implementacija JPA sučelja koja je vrlo intuitivna za korištenje te ima vrlo dobra radna svojstva. Temeljena je na \textit{code-first} načinu programiranja, gdje se programer ne brine oko implementiranja BP, nego izrađuje modele podataka izravno u Java razredima i u isto vrijeme se posebnim oznakama, odnosno anotacijama definira izgled tablica u bazi. To također i olakšava dohvaćanje entiteta iz BP pomoću razreda koji oponašaju repozitorije, odnosno preko metoda u Javi pružaju apstraktan pogled na \textit{query} naredbe u bazi. Kod izrade razreda repozitorija programer nasljeđuje \textit{JPARepository} razred, u kojem su već predefinirane neke metode koje se najčešće koriste prilikom dohvata podataka, kao npr. \textit{jpa.findAll()} metoda koja dohvaća sve podatke iz neke tablice.
 
 \subsection{JavaServer Pages}
-\textit{Java Server Pages - JSP}\citep{jsp} nam omogućava stvaranje pogled, odnosno web stranica koje imaju statične - običan HTML i dinamične elemente. Dinamični elementi se definiraju JSP oznakama, a mogućnosti su vrlo opširne. Dinamičnost elemenata postiže se izvršavanjem koda ubačenog u JSP stranicu na poslužiteljskom dijelu aplikacije. Taj kod, osim oznake, može biti i običan Java kod.
+\textit{Java Server Pages - JSP} \citep{jsp} omogućava stvaranje pogleda, odnosno web stranica koje imaju statične(običan HTML) i dinamične elemente. Dinamični elementi se definiraju JSP oznakama, a mogućnosti su vrlo opširne. Dinamičnost elemenata postiže se izvršavanjem koda ubačenog u JSP stranicu na poslužiteljskom dijelu aplikacije. Taj kod, osim oznake, može biti i običan Java kod.
 
 \subsection{JavaScript}
-\textit{JavaScript} je implementacija \textit{ECMAScipt}\citep{ecma-script} specifikacije. To je skriptni, interpretirani jezik koji koriste web preglednici. On nam omogućuje izradu vrlo dinamičnih stranica i vrlo je fleksibilan. Program napisan u JavaScriptu se izvodi na klijentskoj strani aplikacije. Pomoću njega možemo manipulirati DOM-om (eng. \textit{Document Object Model}) HTML stranice. Uz HTML i CSS (eng. \textit{Cascading Style Sheets}), JavaScript je jedna od tri glavnih tehnologija korištenih na internetu u web preglednicima. Bitna tehnika u programskom jeziku JavaScript je AJAX (eng. \textit{Asynchronous JavaScript And XML}), kojim možemo komunicirati s web poslužiteljem i nakon što je stranica učitana. To čini izmjenjivanjem XML dokumenata s poslužiteljem, iako se u današnjici gotovo stalno koristi JSON notacija (eng. \textit{JavaScript Object Notation}). 
+\textit{JavaScript} je implementacija \textit{ECMAScipt} \citep{ecma-script} specifikacije. To je skriptni, interpretirani jezik koji koriste web preglednici. On nam omogućuje izradu vrlo dinamičnih stranica i vrlo je fleksibilan. Program napisan u JavaScriptu se izvodi na klijentskoj strani aplikacije. Pomoću njega možemo manipulirati DOM-om (eng. \textit{Document Object Model}) HTML stranice. Uz HTML i CSS (eng. \textit{Cascading Style Sheets}), \textit{JavaScript} je jedna od tri glavne tehnologije korištene prilikom izrada web aplikacija. Bitna tehnika u programskom jeziku \textit{JavaScript} je AJAX (eng. \textit{Asynchronous JavaScript And XML}), kojim možemo komunicirati s web poslužiteljem i nakon što je stranica učitana. To čini razmjenom XML dokumenata s poslužiteljem, iako se u današnjici gotovo stalno koristi JSON notacija (eng. \textit{JavaScript Object Notation}). 
 
 \subsubsection{JQuery}
-\textit{JQuery}\citep{jquery} je mala i brza JavaScript biblioteka. On olakšava upotrebu JavaScripta smanjivanjem potrebnih linija koda. Također ga podržava većina modernih web preglednika te je intuitivan za korištenje.
+\textit{JQuery} \citep{jquery} je mala i brza \textit{JavaScript} biblioteka. On olakšava upotrebu \textit{JavaScripta} smanjivanjem potrebnih linija koda. Također ga podržava većina modernih web preglednika te je intuitivan za korištenje.
 
 \subsection{SemanticUI}
-Html stranice same po sebi nisu baš oku ugodne, samo su funkcionalne. Kako bi se stranica uljepšala koristi se CSS, kojim možemo definirati razne karakteristike elemenata na stranici kao što su boja, veličina, granice. CSS je vrlo opširan i na izgledu stranice može se potrošiti dosta vremena. Ako želimo da nam stranica pristojno izgleda, ali nemamo baš vremena, možemo koristiti neke CSS biblioteke koje imaju dobar odziv na različite vrste uređaja (npr. prilagode se ekranu mobitela). Jedna od takvih bibilioteka je \textit{SemanticUI}\citep{semantic}, koji programer koristi korištenjem postojećih imena razreda za svaku HTML oznaku na stranici. SemanticUI je besplatan i otvorenog koda, pod MIT licencom.
+HTML stranice same po sebi nisu baš oku ugodne, samo su funkcionalne. Kako bi se stranica uljepšala koristi se CSS, kojim možemo definirati razne karakteristike elemenata na stranici kao što su boja, veličina, granice. CSS je vrlo opširan i na izgledu stranice moglo bi se potrošiti dosta vremena. Ako želimo da nam stranica pristojno izgleda, ali nemamo baš vremena, možemo koristiti neke CSS biblioteke koje imaju dobar odziv na različite vrste uređaja (npr. prilagode se ekranu mobitela). Jedna od takvih bibilioteka je \textit{SemanticUI} \citep{semantic}, koji programer koristi korištenjem postojećih imena razreda za svaku HTML oznaku na stranici. SemanticUI je besplatan i otvorenog koda, pod MIT licencom.
 
 \section{Baza podataka}
-Baza podataka(BP) korištena u ovoj aplikaciji je također besplatna i otvorenog koda, \textit{MySQL}\citep{mysql}. To je relativno nova i brza relacijska BP koja je dobar izbor jer je optimizirana za web aplikacije, štoviše, na neki način je postala standardnom bazom za internetski orijentirane aplikacije. S ovom aplikacijom se spaja preko JDBC-a (eng. \textit{Java Database Connectivity}), koja definira način na koji klijent pristupa bazi.
+Baza podataka(BP) korištena u ovoj aplikaciji je također besplatna i otvorenog koda, \textit{MySQL} \citep{mysql}. To je relativno nova i brza relacijska BP koja je dobar izbor jer je optimizirana za web aplikacije, štoviše, na neki način je postala standardnom bazom za internetski orijentirane aplikacije. S ovom aplikacijom se spaja preko JDBC-a (eng. \textit{Java Database Connectivity}), koja definira način na koji klijent pristupa bazi.
 
 \section{Razvojno okruženje}
-\textit{Visual Studio Code - VSCode}\citep{vscode} je lakša verzija okruženja \textit{Visual Studio}, koja ne pruža mnogo funkcionalnsti sama po sebi, ali je napravljena tako da je moguće dodati proširenja po želji. Proširenja pišu korisnici i nije ih komplicirano napraviti. Osim toga, VSCode je podržan na mnogim operacijskim sustavima, za razliku od Visual Studia.
+\textit{Visual Studio Code - VSCode} \citep{vscode} je lakša verzija okruženja \textit{Visual Studio}, koja ne pruža mnogo funkcionalnsti sama po sebi, ali je izrađena tako da je moguće dodati proširenja po želji. Proširenja pišu korisnici i nije ih teško izraditi. Osim toga, VSCode je podržan na mnogim operacijskim sustavima, za razliku od Visual Studia.
 
 
 
@@ -668,7 +669,7 @@ Korisnici mogu biti u interakciji s administratorima, sustavom drugim korisnicim
 \begin{sazetak}
 	Rad obuhvaća teorijski dio potreban za razumijevanje potrebe za aplikacijom kojom bi se upravljalo svršenicima, zatim implementaciju takve aplikacije i popratnu dokumentaciju u obliku funkcionalnosti i arhitekture sustava kojom je ostvareno.
 		
-	Za uspješan rad takve aplikacije, osnovne mogućnosti koje je potrebno imati su objave vijesti, pregled korisnika, definiranje specifičnih kategorija za vlastitu zajednicu svršenika te sustav pretplata kojim korisnik obavijesti dobiva email-om.
+	Za uspješan rad takve aplikacije, osnovne mogućnosti koje je potrebno imati su objave vijesti, pregled korisnika, definiranje specifičnih kategorija za vlastitu zajednicu svršenika te sustav pretplata kojim korisnik obavijesti dobiva emailom.
 		
 	\kljucnerijeci{Aplikacija, programska podrška, vijesti, korisnici, kategorije, pretplate, obavijesti, internet, klijent, poslužitelj}
 \end{sazetak}
@@ -680,6 +681,6 @@ Korisnici mogu biti u interakciji s administratorima, sustavom drugim korisnicim
 	For this application to be successful, there are some core features that ought to be implemented such as posting news, overview of its users, defining a specific category relevant for an alumnae community and subscription system that allows user to read notification for a posted news via email.
 				
 	\keywords{Application, software, news, users, categories, subscriptions, notifications, web, client, server}
-\end{abstract}
+\end{abstract} 
 
 \end{document}

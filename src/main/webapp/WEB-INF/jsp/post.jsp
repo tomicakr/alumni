@@ -57,7 +57,7 @@
                 <div class="item">
                     <div class="content">
                         <a class="ui massive header">${post.title}</a>
-                        <c:if test="${post.picture.pictureId != null}">
+                        <c:if test="${empty post.picture.content}">
                             <img class="ui centered medium image" src="/pictures/${post.picture.pictureId}">
                         </c:if>
                         <c:if test="${post.address != ''}">

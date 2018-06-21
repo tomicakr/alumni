@@ -6,7 +6,7 @@
     {{#each this}}
     <div class="item">
 
-        {{#if picture.pictureId}}
+        {{#if picture.content}}
             <div class="image">
                 <img src="/pictures/{{picture.pictureId}}">
             </div>
